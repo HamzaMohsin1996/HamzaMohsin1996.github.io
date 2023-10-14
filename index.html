@@ -54,14 +54,16 @@
                                         <!-- <li class="nav-item">
                                             <a class="nav-link active" href="index.html"><i class="fa fa-home"></i></a>
                                         </li> -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="about.html">About</a>
+                                        <li class="nav-item active">
+                                            <a class="nav-link active" href="about.html">
+                                                <img src="images/home.svg" alt="Home change button">
+                                            </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#recent-work">Experiences</a>
+                                            <a class="nav-link" href="#about-me">About</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#recent-work">Projects</a>
+                                            <a class="nav-link" href="#recent-work">Recent Work</a>
                                         </li>
                                         <!-- <li class="nav-item">
                                             <a class="change-theme-btn light" href="javascript:void(0);"><img src="images/moon.svg" alt="theme change button"></a>
@@ -74,7 +76,7 @@
                     </div>
                 </div>
             </section>
-            <section class="banner-wrap light-bg">
+            <section class="banner-wrap light-bg" style="background-image: url('./images/header-bg.svg');">
                 <div class="banner">
                     <div class="container">
                         <div class="row">
@@ -91,7 +93,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="banner-img-wrap animate__animated animate__fadeInUp wow">
-                                    <img src="images/about-img.png" class="img-fluid" alt="person using laptop">
+                                    <img src="images/developer-logo.svg" class="img-fluid" alt="person using laptop">
                                 </div>
                             </div>
                         </div>
@@ -112,7 +114,7 @@
         <main>
 
             <!-- about section -->
-            <section class="about-sec-wrap article-padd">
+            <section class="about-sec-wrap article-padd" id="about-me">
                 <div class="about-sec">
                     <div class="about-img-wrap">
                         <div class="about-img">
@@ -155,7 +157,7 @@
                         <div class="col-lg-3">
                             <div class="service-single-wrap">
                                 <div class="service-single shadded-bg">
-                                    <img src="images/front-end-icon.svg" alt="web design service icon">
+                                    <img src="images/web-design.svg" alt="web design service icon">
                                     <h4 class="sec-title">Web Design</h4>
                                     <p class="sec-p">I use various web technologies to develop attractive websites which converts the visitors to customers. I develop creative and fully responsive website layouts that looks great on every device.</p>
                                 </div>
@@ -223,39 +225,34 @@
             </section>
 
             <!-- my portfolio section -->
-            <section id="recent-work" class="portfolio-sec light-bg">
+            <section id="recent-work" class="portfolio-sec light-bg" style="background-image: url('./images/my-work.svg');">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="portfolio-text">
-                                <h2 class="sec-subtitle">Portfolio</h2>
-                                <h3 class="sec-title">My Recent Work</h3>
+                            <div class="d-flex justify-content-between align-content-center">
+                                <div class="portfolio-text">
+                                    <h2 class="sec-subtitle">Portfolio</h2>
+                                    <h3 class="sec-title">My Recent Work</h3>
+                                </div>
+                                <div>
+                                    <a href="recent-work.html" class="banner-cta-btn">View All</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="portfolio-wrap">
+                        <div class="portfolio-wrap mt-5">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class=" animate__animated animate__fadeInLeft wow">
-                                     <h2 class="sec-subtitle">Work</h2>
-                                     <p class="pb-2 pe-5">In my recent front-end HTML development work, I focus on translating design concepts into clean, cross-browser compatible HTML code. I collaborate closely with design and development teams to ensure precision in the user interface and prioritize accessibility. My commitment to excellence is evident through my attention to detail and adherence to industry best practices, resulting in user-centric web solutions that captivate and engage.</p>
+                                        <a href="https://www.staging.wp1.fridaypos.com/" class="my-work-links">
+                                            <img src="images/friday-pos-banner.svg" alt="theme change button">
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class=" animate__animated animate__fadeInRight wow">
-                                      <div class="projects-listing-wrapper ">
-                                        <div class="project-listing-wrapper-inner pb-4">
-                                            <a href="https://www.techverx.com/" class="mb-2">Techverx</a>
-                                            <p>I created a WordPress and HTML-based website for a prominent software house, delivering a user-friendly interface that highlights their services and expertise while ensuring easy content management and optimal performance.</p>
-                                        </div>
-                                        <div class="project-listing-wrapper-inner pb-4">
-                                            <a href="https://www.techverx.com/" class="mb-2">Techverx Portfolio</a>
-                                            <p>I designed and developed TechVerxPortfolio, a single-page application (SPA) that elegantly showcases your work, skills, and achievements in an interactive and user-friendly format. This SPA serves as a compelling digital portfolio, allowing visitors to navigate seamlessly through your accomplishments and expertise.</p>
-                                        </div>
-                                        <div class="project-listing-wrapper-inner pb-2">
-                                            <a href="https://www.techverx.com/" class="mb-2">Friday Pos</a>
-                                            <p>I successfully developed FridayPOS, a sophisticated point-of-sale (POS) system, offering seamless transactions, inventory management, and sales analytics, catering to the retail industry's diverse needs.</p>
-                                        </div>
-                                      </div>
+                                        <a href="https://www.techverx.com/" class="my-work-links">
+                                            <img src="images/techverx-banner.svg" alt="theme change button">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +262,7 @@
             </section>
 
             <!-- CTA -->
-            <section class="cta-wrap-outer animate__animated animate__fadeInUp wow">
+            <!-- <section class="cta-wrap-outer animate__animated animate__fadeInUp wow">
                 <div class="cta-wrap-inner">
                     <div class="cta-wrap">
                         <div class="cta-wrap-title">
@@ -276,7 +273,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
             <!-- contact info section -->
             <section class="contact-info-wrap">
@@ -284,6 +281,8 @@
                     <h2 class="sec-subtitle">Stay Connected</h2>
                     <p class="sec-p">I am available to work on your projects and bring your ideas to life. I’m just a click away.</p>
                     <a class="contact-email" href="mailto:hamza95.hw@gmail.com">hamza95.hw@gmail.com</a>
+                    <a class="contact-email" href="callto:+49 176 27811530">+49 176 27811530</a>
+
                     <div class="contact-social">
                         <a href="https://www.linkedin.com/in/hamzamohsin/"><img src="images/linkedin.svg" alt="linkedin icon"></a>
                         <a href="https://www.instagram.com/hamzamohsinmughal/"><img src="images/instagram.svg" alt="instagram icon"></a>
@@ -306,8 +305,7 @@
                         <ul class="footer-links">
                             <li><a href="index.html">Home</a></li>
                             <li><a href="about.html">About</a></li>
-                            <li><a href="#recent-work">Recent Work</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="recent-work.html">Recent Work</a></li>
                         </ul>
                     </div>
                     <div class="col-xl-4 col-lg-12">

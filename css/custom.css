@@ -363,6 +363,8 @@ body.dark .go-back a {
 .banner-wrap {
   padding: 100px 0 100px 0;
   position: relative;
+  background-position: bottom left;
+  background-repeat: no-repeat  ;
 }
 
 .banner-wrap:before {
@@ -443,7 +445,7 @@ body.dark .go-back a {
   margin-bottom: 20px;
 }
 
-.banner-text .banner-cta-btn {
+ .banner-cta-btn {
   font-size: 16px;
   color: #ffffff;
   background-color: #6666ff;
@@ -457,7 +459,7 @@ body.dark .go-back a {
   -o-transition: all ease-in-out 0.3s;
 }
 
-.banner-text .banner-cta-btn:hover {
+ .banner-cta-btn:hover {
   background: #4DD0E2;
 }
 
@@ -524,7 +526,6 @@ body.dark .go-back a {
 }
 
 .about-img img {
-  border: 8px solid #ffffff;
   border-radius: 50%;
   width: 100%;
   height: 100%;
@@ -766,12 +767,12 @@ body.dark .go-back a {
   opacity: 0.3;
 }
 
-.portfolio-text {
+/* .portfolio-text {
   max-width: max-content;
   width: 100%;
   margin: 0 auto;
   position: relative;
-}
+} */
 
 .portfolio-text::before {
   content: "";
@@ -783,9 +784,8 @@ body.dark .go-back a {
   height: 115px;
   opacity: 0.3;
 }
-
-.portfolio-text .sec-subtitle {
-  margin-left: 20px;
+#recent-work{
+  background-repeat: no-repeat;
 }
 
 .portfolio-wrap {
@@ -1646,6 +1646,32 @@ body.dark .go-back a {
 }
 .blue-icon-wrapper h2{
   font-size: 50px;
+}
+.custom-links-wrapper{
+  border-radius: 16px;
+  background-color: white;
+  display: block;
+  box-shadow: 0px 0px 15px -1px rgba(0,0,0,0.59);
+}
+.custom-links-wrapper:hover{
+  box-shadow: 0px 0px 15px -1px rgba(0,0,0,0.59);
+}
+.custom-links-wrapper img{
+  max-width: 100%;
+  width: 100%;
+  min-height: 200px;
+  max-height: 200px;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  object-fit: cover;
+}
+.custom-links-wrapper span{
+  padding: 10px 20px;
+  text-align: center;
+  color: black;
+  font-size: 24px;
+  display: block;
+
 }
 @media all and (max-width: 1440px) {
   .banner-social span {
