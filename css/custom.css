@@ -392,7 +392,7 @@ body.dark .go-back a {
 }
 
 .banner-text {
-  max-width: 464px;
+  max-width:100%;
   width: 100%;
 }
 
@@ -416,6 +416,13 @@ body.dark .go-back a {
   height: 100%;
   padding: 60px 0 0;
 }
+.profile-image-wrapper{
+  max-width: 400px;
+  background: white;
+  border-radius: 50%;
+  max-height: 400px;
+  overflow: hidden;
+}
 
 .banner-text h1 {
   font-family: "p-eb", sans-serif;
@@ -435,12 +442,19 @@ body.dark .go-back a {
   margin-bottom: 20px;
 }
 
+
 .banner-text h2 img {
   margin-left: 10px;
 }
 
-.banner-text p {
+.banner-text h6 {
   font-size: 22px;
+  color: var(--title-black-color);
+  margin-bottom: 20px;
+}
+
+.banner-text p {
+  font-size: 18px;
   color: var(--title-black-color);
   margin-bottom: 20px;
 }
@@ -2323,5 +2337,15 @@ body.dark .go-back a {
     margin-top: 20px;
   }
 }
-
+.section-padding{
+  padding: 120px 0;
+}
+.custom-image-wrapper{
+ 
+}
+.custom-image-wrapper img{
+  max-width: 100%;
+  border-radius: 20px;
+  
+}
 /*# sourceMappingURL=style.css.map */
