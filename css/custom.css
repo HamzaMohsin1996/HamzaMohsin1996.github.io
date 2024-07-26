@@ -378,7 +378,14 @@ body.dark .go-back a {
   width: 1157px;
   height: 488px;
 }
-
+.case-studies-wrapper{
+  height: 750px;
+  background-size: inherit;
+  background-position: center;
+}
+.case-studies-wrapper::before{
+  content: none;
+}
 .banner-wrap .banner {
   height: 100%;
 }
@@ -2347,5 +2354,67 @@ body.dark .go-back a {
   max-width: 100%;
   border-radius: 20px;
   
+}
+.my-work-links img{
+  max-width: 100%;
+}
+.text-wrapper-purple{
+  background: #5960f5;
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  display: block;
+}
+.text-wrapper-purple:hover h4{
+  color: white;
+}
+.text-wrapper-purple p{
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+}
+.custom-header-wrapper h6{
+  padding-bottom: 15px;
+  border-bottom: 1px solid black;
+  font-weight: 400;
+}
+.custom-section-images{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+}
+.custom-section-images::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 35%; /* Adjust the size as needed */
+  height: 240px;
+  background: url('../images/img1.png') no-repeat;
+  background-size: contain;
+}
+
+.custom-section-images::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: 0;
+  width: 35%; /* Adjust the size as needed */
+  height: 240px;
+  background: url('../images/img2.png') no-repeat;
+  background-size: contain;
+}
+
+.center-right-image {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0%; /* Adjust the position as needed */
+  width: 50%; /* Adjust the size as needed */
+  height: 450px;
+  transform: translateY(-50%);
+  background: url('../images/img3.png') no-repeat;
+  background-size: contain;
 }
 /*# sourceMappingURL=style.css.map */
