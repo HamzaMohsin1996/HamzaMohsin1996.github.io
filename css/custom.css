@@ -2174,6 +2174,11 @@ body.dark .go-back a {
   .project-tools {
     display: none;
   }
+
+.review-item {
+
+  min-height: 100% !important;
+}
 }
 @media all and (max-width: 575px) {
   .banner-text h2 {
