@@ -40,7 +40,6 @@ body {
 
 p {
   margin: 0;
-  color: #787E84;
 }
 
 ::selection {
@@ -2345,7 +2344,7 @@ body.dark .go-back a {
   }
 }
 .section-padding{
-  padding: 120px 0;
+  padding: 60px 0;
 }
 .custom-image-wrapper{
  
@@ -2373,7 +2372,7 @@ body.dark .go-back a {
   font-weight: 400;
   color: white;
 }
-.custom-header-wrapper h6{
+.portfolio-text h6 ,.portfolio-text h2{
   padding-bottom: 15px;
   border-bottom: 1px solid black;
   font-weight: 400;
@@ -2387,7 +2386,7 @@ body.dark .go-back a {
 .custom-section-images::before {
   content: '';
   position: absolute;
-  top: -80px;
+  top: -60px;
   left: 0;
   width: 35%; /* Adjust the size as needed */
   height: 240px;
@@ -2398,7 +2397,7 @@ body.dark .go-back a {
 .custom-section-images::after {
   content: '';
   position: absolute;
-  bottom: -80px;
+  bottom: -60px;
   left: 0;
   width: 35%; /* Adjust the size as needed */
   height: 240px;
@@ -2416,5 +2415,214 @@ body.dark .go-back a {
   transform: translateY(-50%);
   background: url('../images/img3.png') no-repeat;
   background-size: contain;
+}
+
+
+.personas-section {
+  margin-bottom: 40px;
+}
+
+.personas-section h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.personas-section p {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.personas-container {
+}
+
+.persona-card {
+  background-color: #e0e7ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  text-align: left;
+}
+.persona-card p {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.persona-card img {
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.persona-card h3 {
+  margin: 20px 0;
+}
+
+
+.literature-review-section h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+
+.review-item {
+  background-color: #e0e7ff;
+  border-radius: 8px;
+  padding: 40px 20px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+  min-height: 240px;
+}
+
+.review-item ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.review-item a {
+  display: block;
+  margin-top: 10px;
+  color: #6666ff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.review-item a:hover {
+  text-decoration: underline;
+}
+ul{
+  margin: 0 !important;
+}
+
+.review-item .icon {
+  font-size: 24px;
+  color: #555;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.comparison-table th, .comparison-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.comparison-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.comparison-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.user-testing-section {
+  margin-bottom: 40px;
+}
+
+.user-testing-section h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.first-user-study, .enhancements, .second-user-study, .final-results {
+  margin-bottom: 20px;
+}
+
+.first-user-study h3, .enhancements h3, .second-user-study h3, .final-results h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.key-findings ul, .enhancements ul {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+.visual-comparison .before-after {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.interface-images img{
+  border-radius: 20px;
+}
+
+.visual-comparison img, .graphs img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.graphs {
+  text-align: center;
+}
+
+.graphs img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.user-testing-section p{
+  color: #000000;
+}
+.custom-ul-list{
+  position: relative;
+}
+.custom-ul-list li{
+  position: relative;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.custom-ul-list li::before{
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  left: 0;
+  top:50%;
+  transform: translateY(-50%);
+  background-color: black;
+
+}
+.custom-border-bottom{
+  border-bottom: 1px solid black;
+}
+.summary table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.summary th, .summary td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.summary th {
+  background-color: #f2f2f2;
+}
+
+.summary tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
 /*# sourceMappingURL=style.css.map */
