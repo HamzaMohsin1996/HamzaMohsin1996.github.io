@@ -2363,6 +2363,9 @@ body.dark .go-back a {
   border-radius: 20px;
   color: white;
 }
+.text-wrapper-purple h4{
+  color: white;
+}
 .text-wrapper-purple:hover h4{
   color: white;
 }
