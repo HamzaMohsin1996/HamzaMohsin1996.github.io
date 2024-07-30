@@ -16,25 +16,7 @@ $(window).on('scroll', function () {
 
 // dark mode toggle button
 
-window.addEventListener('load', (event) => {
-    //retrieve current state
-    $('body').toggleClass(localStorage.toggled);
 
-/* Toggle */
-    $('.change-theme-btn').on('click',function(){
-
-        //localstorage values are always strings (no booleans)  
-
-        if (localStorage.toggled != "dark" ) {
-            $('body').toggleClass("dark", true );
-            localStorage.toggled = "dark";
-        } else {
-            $('body').toggleClass("dark", false );
-            localStorage.toggled = "";
-    }
-
-    });
-});
   
 
 // initializing wow.js for animations

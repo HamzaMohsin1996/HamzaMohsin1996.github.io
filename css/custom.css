@@ -2119,6 +2119,10 @@ body.dark .go-back a {
   }
 }
 @media all and (max-width: 767px) {
+  
+  .sticky-top ,.mobile-sticky-top{
+    top:unset !important;
+  }
   .process-single {
     width: 100%;
     max-width: unset;
@@ -2845,6 +2849,9 @@ ul{
   color: #555;
   margin-bottom: 10px;
   line-height: 1.5;
+}
+.about-page-body{
+  overflow: unset;
 }
 
 /*# sourceMappingURL=style.css.map */
