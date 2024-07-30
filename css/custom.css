@@ -238,6 +238,9 @@ body.dark .go-back a {
 .navbar-light .navbar-toggler-icon {
   background-image: url(../images/hamburder-icon.svg);
 }
+.navbar-light .navbar-toggler i{
+  color: #6666ff;
+}
 
 .navbar-toggler:focus {
   box-shadow: none;
