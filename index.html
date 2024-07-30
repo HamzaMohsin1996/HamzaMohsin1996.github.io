@@ -16,10 +16,13 @@
       <link href="./css/bootstrap.min.css" rel="stylesheet">
       <!-- animate css -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-      <!-- Custom Css -->
-      <link href="./css/custom.css" rel="stylesheet">
+
       <!--FontAwesome-->
-      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+            <!-- Custom Css -->
+            <link href="./css/custom.css" rel="stylesheet">
    </head>
    <body>
       <!-- preloader -->
@@ -39,14 +42,21 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                            <ul class="navbar-nav ms-auto nav-links">
-                              <!-- <li class="nav-item">
-                                 <a class="nav-link active" href="index.html"><i class="fa fa-home"></i></a>
-                                 </li> -->
+                          
                               <li class="nav-item active">
                                  <a class="nav-link active" href="about.html">
                                  <img src="images/home.svg" alt="Home change button">
                                  </a>
                               </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#skills-section">Skills</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#experience-section">Experience</a>
+                              </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="#recent-work">Case Studies</a>
+                           </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="/about.html">About</a>
                               </li>
@@ -92,16 +102,122 @@
             <div class="banner-social-wrap">
                <div class="banner-social">
                   <a href="https://www.linkedin.com/in/hamzamohsin/"><img src="images/linkedin.svg" alt="linkedin icon"></a>
-                  <a href="https://www.instagram.com/hamza_wrch/"><img src="images/instagram.svg" alt="instagram icon"></a>
-                  <a href="https://www.facebook.com/hamza.warraich.581/"><img src="images/facebook.svg" alt="facebook icon"></a>
-                  <span></span>
+                  <a href="https://github.com/HamzaMohsin1996"><i class="fa fa-brands fa-github"></i></a>
+                  <a href="https://www.xing.com/Hamza_Warraich"><i class="fa fa-brands fa-xing"></i></a>
+              
                </div>
             </div>
          </section>
       </header>
       <!-- main -->
       <main>
-         <!-- about section -->
+       
+         <!-- Skills section -->
+         <section id="skills-section" class="portfolio-sec light-bg" >
+            <div class="container">
+               <h2 class="custom-primary-text mb-3">Skills</h2>
+            <div class="skills-carousel">
+               <div class="skill-card" >
+                   <i class="fa fa-paint-brush icon"></i>
+                   <h3>Design</h3>
+                   <ul class="custom-ul-list">
+                     <li>UI/UX Design</li>
+                     <li>Interactive Design</li>
+                     <li>Wireframes</li>
+                     <li>Mockups</li>
+                     <li>Prototypes</li>
+                   </ul>
+               </div>
+               <div class="skill-card">
+                   <i class="fa fa-code icon"></i>
+                   <h3>Web Development</h3>
+                   <ul class="custom-ul-list">
+                     <li>HTML5</li>
+                     <li>CSS3</li>
+                     <li>JavaScript</li>
+                     <li>TypeScript</li>
+                     <li>Responsive Web Development</li>
+                     <li>CSS Preprocessors (LESS/SASS)</li>
+                   </ul>
+               </div>
+               <div class="skill-card">
+                  <i class="fa fa-cogs icon"></i>
+                  <h3>Tools</h3>
+                  <ul class="custom-ul-list">
+                    <li>Figma</li>
+                    <li>Sketch</li>
+                    <li>Adobe XD</li>
+                    <li>InVision</li>
+                    <li>Trello</li>
+
+                  </ul>
+              </div>
+              <div class="skill-card">
+               <i class="fa fa-search icon"></i>
+               <h3>Research</h3>
+               <ul class="custom-ul-list">
+                 <li>User Research</li>
+                 <li>Usability Testing</li>
+                 <li>Surveys</li>
+                 <li> Data Analysis</li>
+           
+               </ul>
+           </div>
+               <div class="skill-card">
+                   <i class="fa fa-tools icon"></i>
+                   <h3>Build Tools</h3>
+                   <ul class="custom-ul-list">
+                     <li>Webpack</li>
+                     <li>Version Control (Git)</li>
+                     <li>Storybook</li>
+                   </ul>
+               </div>
+               
+               <div class="skill-card">
+                   <i class="fa fa-users icon"></i>
+                   <h3>Collaboration</h3>
+                   <ul class="custom-ul-list">
+                     <li>Effective communication</li>
+                     <li>teamwork</li>
+                     <li>project management</li>
+                   </ul>
+               </div>
+               
+           </div>
+         </div>
+         </section>
+
+
+  <!-- Work Experience section -->
+  <section class="section-padding" id="experience-section">
+   <div class="container">
+  
+     <h2 class="custom-primary-text ">Work Experience</h2>
+     <div class="work-experience">
+       <div class="experience-card">
+         <div class="d-flex align-content-center justify-content-between">
+            <div>
+               <h3 class="job-title">Senior Software Engineer</h3>
+               <p class="company-name">Techverx</p>
+            </div>
+            <p class="employment-duration">Jan 2019 - Sept 2023</p>
+         </div>
+         <ul class="custom-ul-list">
+           <li>Developed responsive and user-friendly interfaces using HTML, CSS, JavaScript, and React.</li>
+           <li>Collaborated with UX designers to implement intuitive user experiences.</li>
+           <li>Optimized web performance and ensured cross-browser compatibility.</li>
+           <li>Worked closely with backend developers to integrate APIs and enhance functionality.</li>
+           <li>Maintained and updated existing websites, ensuring they met modern web standards.</li>
+           <li>Participated in code reviews and contributed to the improvement of the development process.</li>
+         </ul>
+       </div>
+     </div>
+   </div>
+ </section>
+
+
+
+
          <!-- <section class="about-sec-wrap article-padd" id="about-me">
             <div class="about-sec">
                 <div class="about-img-wrap">
@@ -163,7 +279,7 @@
             </div>
             </section> -->
          <!-- work process section -->
-         <section class="process-outer article-padd">
+         <!-- <section class="process-outer article-padd">
             <div class="process-inner">
                <div class="process-text">
                   <h2 class="sec-subtitle">Work Flow</h2>
@@ -171,7 +287,7 @@
                </div>
                <div class="process-wrap">
                   <div class="process-single shadded-bg">
-                     <!-- <img src="images/process-1.svg" alt="image showing workflow process number"> -->
+                     <img src="images/process-1.svg" alt="image showing workflow process number">
                      <div class="blue-icon-wrapper">
                         <h2>1</h2>
                      </div>
@@ -208,7 +324,7 @@
                   </div>
                </div>
             </div>
-         </section>
+         </section> -->
          <!-- my portfolio section -->
          <section id="recent-work" class="portfolio-sec light-bg" style="background-image: url('./images/my-work.svg');">
             <div class="container">
@@ -225,8 +341,8 @@
                      </div>
                   </div>
                   <div class="portfolio-wrap mt-5">
-                     <div class="row text-wrapper-purple">
-                        <div class="col-md-6">
+                     <div class="row">
+                        <!-- <div class="col-md-6">
                             <a href="./gesture-bond.html" class=" animate__animated animate__fadeInLeft wow">
                                <h4>Challenge:</h4>
                                <p class="py-2"><span class="fw-bold">Digital Isolation:</span> Traditional text-based chat systems often fail to foster genuine social presence and emotional connectivity in remote collaborative environments, leading to feelings of isolation and disengagement among users.</p>
@@ -245,6 +361,16 @@
                                  <img src="images/interface-preview.png" alt="theme change button">
                                </a>
                             </div>
+                         </div> -->
+                         <div class="col-md-6">
+                           <a href="./gesture-bond.html" class="persona-card d-block" >
+                              <img src="images/interface-preview.png" alt="theme change button">
+                              <h3>Gesture Bond</h3>
+                              <p >
+                                 Explore how gesture-based avatar systems enhance social interactions and emotional connectivity in remote learning environments.
+                              </p>
+
+                           </a>
                          </div>
                         <!-- <div class="col-md-6">
                            <div class=" animate__animated animate__fadeInLeft wow">
@@ -316,9 +442,43 @@
             </div>
          </div>
       </footer>
+     
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <script src="js/wow.js"></script>
       <script src="js/custom.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+      <script>
+          $(document).ready(function(){
+              $('.skills-carousel').slick({
+                  infinite: true,
+                  slidesToShow: 3,
+                  slidesToScroll: 1,
+                  arrows: true,
+                  dots: false,
+                  autoplay: true,            // Enable autoplay
+                  autoplaySpeed: 1000,       // Set autoplay speed to 3 seconds
+                  responsive: [
+                      {
+                          breakpoint: 1024,
+                          settings: {
+                              slidesToShow: 2,
+                              slidesToScroll: 1,
+                              infinite: true,
+                              dots: true
+                          }
+                      },
+                      {
+                          breakpoint: 600,
+                          settings: {
+                              slidesToShow: 1,
+                              slidesToScroll: 1
+                          }
+                      }
+                  ]
+              });
+          });
+      </script>
    </body>
 </html>

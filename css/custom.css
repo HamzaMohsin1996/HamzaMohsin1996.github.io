@@ -513,11 +513,25 @@ body.dark .go-back a {
   height: 150px;
   background: #6666ff;
 }
-
+.banner-social a{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6666ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.banner-social a i{
+  color: white;
+  font-size: 22px;
+}
 .about-sec-wrap {
   position: relative;
 }
-
+.custom-primary-text{
+  color: #6666ff;
+}
 .about-sec-wrap::after {
   content: "";
   position: absolute;
@@ -780,7 +794,7 @@ body.dark .go-back a {
   content: "";
   position: absolute;
   top: 230px;
-  right: -4%;
+  right: 0;
   background: url(../images/black-box.png) no-repeat;
   width: 289px;
   height: 286px;
@@ -2632,4 +2646,202 @@ ul{
 .summary tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+.custom-card-wrapper{
+  border: 3px solid #6666ff;
+}
+.custom-card-wrapper .custom-card-wrapper-inner h2{
+  background: #6565fe;
+  color: white;
+  padding: 10px;
+}
+
+
+
+/* Add custom styles here */
+.sticky-top {
+  position: sticky;
+  top: 70px;
+  z-index: 10;
+}
+
+.custom-card-wrapper-inner {
+  margin-bottom: 50px; /* Space between cards */
+}
+
+.section-padding {
+  padding: 60px 0;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+.p-3 {
+  padding: 1rem;
+}
+
+
+.skills-section {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.skills-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #aaa;
+}
+
+.skills-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skill-card {
+  background-color: #e0e7ff;
+  border-radius: 15px;
+  padding: 40px 20px 20px;
+  margin: 10px;
+  min-width: 250px;
+  max-width: 300px;
+  min-height: 240px !important;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  color: black !important;
+}
+
+.skill-card .icon {
+  color: #6c63ff;
+  font-size: 24px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.skill-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  
+}
+
+.skill-card p {
+  font-size: 16px;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #6c63ff;
+}
+/* Override the default slick arrow styles */
+.slick-prev, .slick-next {
+  font-size: 0; /* Hide the default text */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #6c63ff;
+  border: none;
+  outline: none;
+  z-index: 1;
+  cursor: pointer;
+}
+.slick-prev:hover, .slick-next:hover {
+  font-size: 0; /* Hide the default text */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #6c63ff;
+  border: none;
+  outline: none;
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+/* Position the arrows */
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+/* Add Font Awesome icons */
+.slick-prev:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f053"; /* Font Awesome left arrow */
+  font-size: 20px;
+  color: #fff;
+}
+
+.slick-next:before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f054"; /* Font Awesome right arrow */
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 36px;
+  color: #6c63ff;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Work Experience */
+.work-experience {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.experience-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.job-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.company-name {
+  font-size: 18px;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.employment-duration {
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.responsibilities {
+  list-style: none;
+  padding: 0;
+}
+
+.responsibilities li {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
 /*# sourceMappingURL=style.css.map */
