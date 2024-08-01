@@ -26,7 +26,7 @@
    </head>
    <body>
       <!-- preloader -->
-      <div id="loader"></div>
+
       <!-- header -->
       <header>
          <section id="menu-logo" class="nav-wraper light-bg">
@@ -42,7 +42,6 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                            <ul class="navbar-nav ms-auto nav-links">
-                          
                               <li class="nav-item active">
                                  <a class="nav-link active" href="about.html">
                                  <img src="images/home.svg" alt="Home change button">
@@ -54,19 +53,15 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="#experience-section">Experience</a>
                               </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#education-experience">Education</a>
+                              </li>
                            <li class="nav-item">
                               <a class="nav-link" href="#recent-work">Case Studies</a>
                            </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="/about.html">About</a>
                               </li>
-                              <!-- <li class="nav-item">
-                                 <a class="nav-link" href="#recent-work">Recent Work</a>
-                              </li> -->
-                              <!-- <li class="nav-item">
-                                 <a class="change-theme-btn light" href="javascript:void(0);"><img src="images/moon.svg" alt="theme change button"></a>
-                                 <a class="change-theme-btn dark" href="javascript:void(0);"><img src="images/light.svg" alt="theme change button"></a>
-                                 </li> -->
                            </ul>
                         </div>
                      </nav>
@@ -189,31 +184,32 @@
 
 
   <!-- Work Experience section -->
-  <section class="section-padding" id="experience-section">
-   <div class="container">
-  
-     <h2 class="custom-primary-text ">Work Experience</h2>
-     <div class="work-experience">
-       <div class="experience-card">
-         <div class="d-flex align-content-center justify-content-between">
-            <div>
-               <h3 class="job-title">Senior Software Engineer</h3>
-               <p class="company-name">Techverx</p>
-            </div>
-            <p class="employment-duration">Jan 2019 - Sept 2023</p>
+  <section class="section-padding" id="education">
+   <div class="container-education container">
+      <div class="row align-items-center g-4 h-100">
+         <div class="col-md-2 education-items h-100">
+            <div class="education-item" id="education-title">
+               <h2 class="custom-primary-text">Education</h2>
+           </div>
          </div>
-         <ul class="custom-ul-list">
-           <li>Developed responsive and user-friendly interfaces using HTML, CSS, JavaScript, and React.</li>
-           <li>Collaborated with UX designers to implement intuitive user experiences.</li>
-           <li>Optimized web performance and ensured cross-browser compatibility.</li>
-           <li>Worked closely with backend developers to integrate APIs and enhance functionality.</li>
-           <li>Maintained and updated existing websites, ensuring they met modern web standards.</li>
-           <li>Participated in code reviews and contributed to the improvement of the development process.</li>
-         </ul>
+         <div class="col-md-5 education-items h-100">
+            <div class="education-item" id="masters">
+               <h3 class="mb-3">Masters in User Experience Design</h3>
+               <p>Technische Hochschule Ingolstadt</p>
+           </div>
+         </div>
+       <div class="col-md-5 education-items h-100">
+         <div class="education-item" id="bachelors">
+            <h3 class="mb-3">Bachelor in Information Technology</h3>
+            <p>Bahauddin Zakariya University, Multan (Pakistan)</p>
+        </div>
        </div>
-     </div>
+         </div>
+       
+      </div>
+   
    </div>
- </section>
+</section>
 
 
 
@@ -442,14 +438,9 @@
             </div>
          </div>
       </footer>
-     
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <script src="js/wow.js"></script>
-      <script src="js/custom.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
       <script>
+
           $(document).ready(function(){
               $('.skills-carousel').slick({
                   infinite: true,
@@ -480,5 +471,12 @@
               });
           });
       </script>
+    
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/wow.js"></script>
+      <script src="js/custom.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
    </body>
 </html>

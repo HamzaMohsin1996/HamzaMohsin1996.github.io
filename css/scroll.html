@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Snapping Sections</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.education-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.education-section {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px; /* Adjust if necessary for your header height */
+}
+
+.education-sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px; /* Adjust if necessary for your header height */
+    background: white; /* Ensure background color to avoid content overlap */
+    z-index: 10; /* Ensure it stays on top */
+    padding-top: 1rem;
+}
+
+.education-custom-primary-text {
+    color: #4A90E2;
+}
+
+.education-mb-3 {
+    margin-bottom: 1rem;
+}
+
+.education-section-padding {
+    padding: 2rem 0;
+}
+
+.education-row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+    </style>
+</head>
+<body>
+    <!-- Education section -->
+    <section class="education-section-padding" id="education-experience">
+        <div class="education-container">
+            <div class="education-experience">
+                <div class="row education-row">
+                    <div class="col-md-2 education-sticky-top">
+                        <h2 class="education-custom-primary-text">Education</h2>
+                    </div>
+                    <div class="col-md-5 education-section">
+                        <h4 class="education-mb-3">Masters in User Experience Design</h4>
+                        <h6>Technische Hochschule Ingolstadt</h6>
+                    </div>
+                    <div class="col-md-5 education-section">
+                        <h4 class="education-mb-3">Bachelor in Information Technology</h4>
+                        <h6>Bahauddin Zakariya University, Multan (Pakistan)</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // scripts.js
+// scripts.js
+document.addEventListener('DOMContentLoaded', function () {
+    const sections = document.querySelectorAll('.education-section');
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            } else {
+                entry.target.classList.remove('active');
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+            // Downscroll
+            sections.forEach((section, index) => {
+                if (section.getBoundingClientRect().top < window.innerHeight / 2) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        } else {
+            // Upscroll
+            sections.forEach((section, index) => {
+                if (section.getBoundingClientRect().top < window.innerHeight / 2) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        }
+        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    });
+});
+    </script>
+</body>
+</html>
