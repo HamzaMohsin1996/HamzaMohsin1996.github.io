@@ -1,24 +1,4 @@
-@font-face {
-  font-family: "p-r";
-  src: url("../fonts/ProximaNova-Regular.woff2") format("woff2"), url("../fonts/ProximaNova-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "p-eb";
-  src: url("../fonts/ProximaNova-Extrabld.woff2") format("woff2"), url("../fonts/ProximaNova-Extrabld.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "p-b";
-  src: url("../fonts/ProximaNova-Bold.woff2") format("woff2"), url("../fonts/ProximaNova-Bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+
 /* Resets */
 html, body {
   overflow-x: hidden;
@@ -102,7 +82,6 @@ button:focus {
   height: 100vh;
   z-index: 9999;
   overflow: visible;
-  background: #f3f6fb url("../images/preloader.gif") no-repeat center center;
 }
 
 body.dark {
@@ -371,7 +350,6 @@ body.dark .go-back a {
 
 .banner-wrap:before {
   content: "";
-  background: url(../images/banner-abstract-bg.svg) no-repeat;
   background-size: cover;
   position: absolute;
   left: 0;
@@ -787,7 +765,6 @@ body.dark .go-back a {
   position: absolute;
   bottom: 160px;
   left: 3%;
-  background: url(../images/red-box.png) no-repeat;
   width: 132px;
   height: 125px;
   opacity: 0.3;
@@ -798,7 +775,6 @@ body.dark .go-back a {
   position: absolute;
   top: 230px;
   right: 0;
-  background: url(../images/black-box.png) no-repeat;
   width: 289px;
   height: 286px;
   opacity: 0.3;
@@ -816,7 +792,6 @@ body.dark .go-back a {
   position: absolute;
   top: -40px;
   left: -300%;
-  background: url(../images/grey-box.png) no-repeat;
   width: 132px;
   height: 115px;
   opacity: 0.3;
@@ -2372,9 +2347,6 @@ body.dark .go-back a {
 .section-padding{
   padding: 60px 0;
 }
-.custom-image-wrapper{
- 
-}
 .custom-image-wrapper img{
   max-width: 100%;
   border-radius: 20px;
@@ -2852,6 +2824,19 @@ ul{
 }
 .about-page-body{
   overflow: unset;
+}
+.education-items{
+  border-left: 1px solid #6c63ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#education{
+  min-height: 250px;
+}
+#education > div{
+  height: 100%;
+
 }
 
 /*# sourceMappingURL=style.css.map */
