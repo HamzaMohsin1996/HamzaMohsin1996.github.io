@@ -2948,11 +2948,11 @@ ul{
     object-fit: cover;
     object-position: top;
 }
+.user-journey-persona.user-persona{
+  flex-direction: column;
 }
-  .user-journey-persona.user-persona{
-    flex-direction: column;
-  }
-  .section-padding{
-    padding: 15px 0;
-  }
+.section-padding{
+  padding: 15px 0;
 }
+}
+
