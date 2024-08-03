@@ -22,6 +22,12 @@ p {
   margin: 0;
 }
 
+a {
+  display: inline-block;
+  color: #6666ff;
+  font-size: 14px;
+}
+
 ::selection {
   background-color: #6666FF;
   color: #ffffff;
@@ -1774,7 +1780,9 @@ body.dark .go-back a {
   font-size: 16px;
   margin-bottom: 20px;
 }
-
+.persona-card h3{
+  color: #6666ff;
+}
 
 .persona-card img{
   max-height: 300px;
