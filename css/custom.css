@@ -1785,7 +1785,7 @@ body.dark .go-back a {
 }
 
 .persona-card img{
-  max-height: 300px;
+  max-height: 160px;
   object-fit: contain;
 }
 .persona-card {
