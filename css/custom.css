@@ -2275,6 +2275,15 @@ ul{
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
+.my-journey-experience{
+  max-width: 100%;
+  max-height: 400px;
+  margin: 0 auto;
+}
+
+
 /*# sourceMappingURL=style.css.map */
 @media all and (max-width: 1440px) {
   .banner-social span {
@@ -2963,4 +2972,5 @@ ul{
   padding: 15px 0;
 }
 }
+
 
