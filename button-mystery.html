@@ -48,22 +48,7 @@
                                  <img src="images/home.svg" alt="Home change button">
                                  </a>
                               </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#skills-section">Skills</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#experience-section">Experience</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#education-experience">Education</a>
-                              </li>
-                              
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#projects">Projects</a>
-                              </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="#recent-work">Case Studies</a>
-                           </li>
+                             
                               <li class="nav-item">
                                  <a class="nav-link" href="/about.html">About</a>
                               </li>
@@ -74,17 +59,54 @@
                </div>
             </div>
          </section>
-         <section class="banner-wrap light-bg" style="background-image: url('./images/header-bg.svg');">
+         <section class="banner-wrap light-bg" >
             <div class="banner">
                <div class="container">
-                  <div class="row">
+                  <div class="row g-5">
+                     <div class="col-md-6">
+                        <div class="portfolio-text pb-3">
+                           <h6 class="mb-3">Problem Statement</h6>
+                           <p class="">The virtual reality (VR) gaming landscape lacks environments that combine rich, immersive features with engaging interactive elements. Many existing VR experiences fall short in providing both visually captivating settings and stimulating gameplay, which limits user engagement and exploration.</p>
+                        </div>
+                     </div>
+                  
+                     <div class="col-md-6">
+                        <div class="portfolio-text">
+                           <h6 class="mb-3">Outcomes</h6>
+                           <ul class="custom-ul-list">	
+                              <li>Immersive Environment: Created a visually stunning VR world featuring intricate details like picturesque landscapes and charming architecture.</li>	
+                              <li>Interactive Features: Incorporated interactive puzzles and hidden clues to enhance user exploration and engagement.</li>	
+                              <li>Dynamic Sound Design: Implemented responsive sound elements to deepen the immersive experience and align audio with user actions.</li>	
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="portfolio-text">
+                           <h6 class="mb-3">Results</h6>
+                              <ul class="custom-ul-list">	
+                                 <li>Enhanced User Engagement: Feedback showed significant improvements in user immersion and enjoyment, with players appreciating the detailed environment and interactive challenges.</li>	
+                                 <li>Successful Problem Solving: Addressed initial feedback on sound and spatial design by expanding the room and integrating clearer visual cues.</li>	
+                                 <li>Positive User Feedback: Final testing indicated high satisfaction with the game’s aesthetics and interactive elements, reflecting the project’s successful enhancement of VR gaming experiences.</li>	
+                              </ul>
+                        </div>
+                     </div>
                      <div class="col-12">
-                        <div class="banner-text-wrap animate__animated animate__fadeInRight wow">
-                            <video width="100%" controls autoplay style="max-height: 400px;">
+                        <div class="video-icon-wrapper">
+                           <div class="video-container">
+                              <video id="background-video" src="./images/vr.mp4" loop></video>
+                              <div class="poster">
+                                  <img src="./images/vr-banner.png" alt="Poster">
+                                 
+                              </div>
+                              <i class="fa fa-play-circle circle-icon" onclick="playVideo()" ></i>
+                          </div>
+                        </div>
+                        <!-- <div class="banner-text-wrap animate__animated animate__fadeInRight wow">
+                            <video width="100%" controls  style="max-height: 400px;">
                                 <source src="./images/vr.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>    
-                        </div>
+                        </div> -->
                      </div>
                   
                   </div>
@@ -131,7 +153,12 @@
       </footer>
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <script>
-
+         function playVideo() {
+         var videoContainer = document.querySelector('.video-container');
+         var video = document.getElementById('background-video');
+         videoContainer.classList.add('active'); // Add the 'active' class
+         video.play(); // Play the video
+         }
           $(document).ready(function(){
               $('.skills-carousel').slick({
                   infinite: true,
