@@ -77,13 +77,25 @@
          <section class="banner-wrap light-bg" style="background-image: url('./images/header-bg.svg');">
             <div class="banner">
                <div class="container">
-                  <div class="row">
-                     <div class="col-12">
+                  <div class="row g-4 align-items-center">
+                     <div class="col-lg-8">
+                        <div class="portfolio-text">
+                           <h6 class="mb-3">Hotel Booking Application Animation</h6>
+                            <p>For my course project, I utilized Adobe After Effects to create an engaging animation for a hotel booking application. I designed and integrated a range of animations to illustrate the app’s features and interactions, focusing on enhancing the user experience. The final outcome was a polished video that effectively showcased the application’s interface and functionalities, providing a clear and dynamic presentation of how users can interact with the app. </p>
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
                         <div class="banner-text-wrap animate__animated animate__fadeInRight wow">
-                            <video width="100%" controls autoplay style="max-height: 400px;">
-                                <source src="images/animation-project.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                        
+                            <div class="video-icon-wrapper animation-wrapper">
+                              <div class="video-container">
+                                 <video id="background-video" src="./images/animation-project.mp4" loop></video>
+                                 <div class="poster">
+                                     <img src="./images/3d-animation.png" alt="Poster">
+                                 </div>
+                                 <i class="fa fa-play-circle circle-icon" onclick="playVideo()" ></i>
+                             </div>
+                           </div>
                         </div>
                      </div>
                   
@@ -131,7 +143,12 @@
       </footer>
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <script>
-
+function playVideo() {
+         var videoContainer = document.querySelector('.video-container');
+         var video = document.getElementById('background-video');
+         videoContainer.classList.add('active'); // Add the 'active' class
+         video.play(); // Play the video
+         }
           $(document).ready(function(){
               $('.skills-carousel').slick({
                   infinite: true,
