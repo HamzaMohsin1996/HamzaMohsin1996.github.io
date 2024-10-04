@@ -365,7 +365,7 @@ body.dark .go-back a {
   height: 488px;
 }
 .case-studies-wrapper{
-  height: 750px;
+ 
   background-size: inherit;
   background-position: center;
 }
@@ -1790,7 +1790,7 @@ body.dark .go-back a {
   object-position: center center;
 }
 .personas-container .persona-card img{
-  max-height: 160px;
+  max-height: 100%;
   object-fit: contain;
   object-position: none;
 }
