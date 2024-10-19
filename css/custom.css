@@ -2378,7 +2378,13 @@ ul{
 .animation-wrapper .circle-icon{
   font-size: 2em;
 }
-
+.custom-publication-link{
+  font-size: 28px;
+  color: black;
+}
+.pub-list-wrapper p{
+  color: black;
+}
 
 
 /*# sourceMappingURL=style.css.map */
