@@ -1,0 +1,452 @@
+{
+  "valid_event_count": 903,
+  "top_users": [
+    [
+      "U005",
+      198
+    ],
+    [
+      "U002",
+      186
+    ],
+    [
+      "U003",
+      175
+    ]
+  ],
+  "average_value": 152.78183831672203,
+  "event_type_distribution": {
+    "INPUT": 329,
+    "CLICK": 295,
+    "SCROLL": 279
+  },
+  "anomalies": [
+    {
+      "line_number": 31,
+      "user": "U005",
+      "type": "CLICK",
+      "value": 9,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 40,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 117,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 61,
+      "user": "U002",
+      "type": "INPUT",
+      "value": 38,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 67,
+      "user": "U002",
+      "type": "CLICK",
+      "value": 72,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 80,
+      "user": "U002",
+      "type": "CLICK",
+      "value": 197,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 99,
+      "user": "U001",
+      "type": "SCROLL",
+      "value": 90,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 100,
+      "user": "U001",
+      "type": "INPUT",
+      "value": 52,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 111,
+      "user": "U004",
+      "type": "SCROLL",
+      "value": 55,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 143,
+      "user": "U004",
+      "type": "CLICK",
+      "value": 80,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 151,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 98,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 156,
+      "user": "U004",
+      "type": "INPUT",
+      "value": 176,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 182,
+      "user": "U004",
+      "type": "SCROLL",
+      "value": 114,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 188,
+      "user": "U002",
+      "type": "INPUT",
+      "value": 139,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 296,
+      "user": "U005",
+      "type": "INPUT",
+      "value": 78,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 311,
+      "user": "U001",
+      "type": "CLICK",
+      "value": 133,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 325,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 114,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 334,
+      "user": "U003",
+      "type": "CLICK",
+      "value": 86,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 349,
+      "user": "U003",
+      "type": "INPUT",
+      "value": 191,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 351,
+      "user": "U001",
+      "type": "SCROLL",
+      "value": 35,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 393,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 193,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 441,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 44,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 485,
+      "user": "U002",
+      "type": "CLICK",
+      "value": 42,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 495,
+      "user": "U005",
+      "type": "SCROLL",
+      "value": 78,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 498,
+      "user": "U001",
+      "type": "SCROLL",
+      "value": 187,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 527,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 57,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 530,
+      "user": "U003",
+      "type": "CLICK",
+      "value": 135,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 539,
+      "user": "U003",
+      "type": "SCROLL",
+      "value": 18,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 540,
+      "user": "U001",
+      "type": "INPUT",
+      "value": 108,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 543,
+      "user": "U001",
+      "type": "SCROLL",
+      "value": 19,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 558,
+      "user": "U002",
+      "type": "CLICK",
+      "value": 112,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 565,
+      "user": "U005",
+      "type": "SCROLL",
+      "value": 159,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 567,
+      "user": "U003",
+      "type": "SCROLL",
+      "value": 80,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 618,
+      "user": "U003",
+      "type": "CLICK",
+      "value": 177,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 619,
+      "user": "U003",
+      "type": "CLICK",
+      "value": 29,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 630,
+      "user": "U003",
+      "type": "INPUT",
+      "value": 125,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 631,
+      "user": "U004",
+      "type": "SCROLL",
+      "value": 4,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 635,
+      "user": "U005",
+      "type": "CLICK",
+      "value": 121,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 649,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 111,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 669,
+      "user": "U005",
+      "type": "SCROLL",
+      "value": 40,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 718,
+      "user": "U001",
+      "type": "CLICK",
+      "value": 132,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 721,
+      "user": "U005",
+      "type": "INPUT",
+      "value": 56,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 727,
+      "user": "U005",
+      "type": "INPUT",
+      "value": 31,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 748,
+      "user": "U002",
+      "type": "INPUT",
+      "value": 41,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 764,
+      "user": "U004",
+      "type": "INPUT",
+      "value": 124,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 788,
+      "user": "U002",
+      "type": "CLICK",
+      "value": 84,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 792,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 35,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 793,
+      "user": "U004",
+      "type": "INPUT",
+      "value": 123,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 810,
+      "user": "U004",
+      "type": "CLICK",
+      "value": 177,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 865,
+      "user": "U003",
+      "type": "CLICK",
+      "value": 98,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 867,
+      "user": "U005",
+      "type": "INPUT",
+      "value": 79,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 876,
+      "user": "U002",
+      "type": "INPUT",
+      "value": 106,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 899,
+      "user": "U002",
+      "type": "CLICK",
+      "value": 128,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 902,
+      "user": "U005",
+      "type": "CLICK",
+      "value": 90,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 935,
+      "user": "U001",
+      "type": "CLICK",
+      "value": 14,
+      "reason": "timestamp_order_violation"
+    },
+    {
+      "line_number": 72,
+      "user": "U005",
+      "type": "CLICK",
+      "value": 9582,
+      "reason": "value_outlier"
+    },
+    {
+      "line_number": 339,
+      "user": "U002",
+      "type": "SCROLL",
+      "value": 5142,
+      "reason": "value_outlier"
+    },
+    {
+      "line_number": 548,
+      "user": "U005",
+      "type": "SCROLL",
+      "value": 2717,
+      "reason": "value_outlier"
+    },
+    {
+      "line_number": 714,
+      "user": "U003",
+      "type": "SCROLL",
+      "value": 9225,
+      "reason": "value_outlier"
+    },
+    {
+      "line_number": 734,
+      "user": "U001",
+      "type": "INPUT",
+      "value": 7362,
+      "reason": "value_outlier"
+    },
+    {
+      "line_number": 794,
+      "user": "U004",
+      "type": "SCROLL",
+      "value": 5060,
+      "reason": "value_outlier"
+    },
+    {
+      "line_number": 841,
+      "user": "U001",
+      "type": "INPUT",
+      "value": 3817,
+      "reason": "value_outlier"
+    }
+  ]
+}
