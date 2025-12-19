@@ -16,25 +16,7 @@ $(window).on('scroll', function () {
 
 // dark mode toggle button
 
-window.addEventListener('load', (event) => {
-    //retrieve current state
-    $('body').toggleClass(localStorage.toggled);
 
-/* Toggle */
-    $('.change-theme-btn').on('click',function(){
-
-        //localstorage values are always strings (no booleans)  
-
-        if (localStorage.toggled != "dark" ) {
-            $('body').toggleClass("dark", true );
-            localStorage.toggled = "dark";
-        } else {
-            $('body').toggleClass("dark", false );
-            localStorage.toggled = "";
-    }
-
-    });
-});
   
 
 // initializing wow.js for animations
@@ -43,29 +25,6 @@ new WOW().init();
 
 
 // preloader
-
-var loader;
-
-function loadNow(opacity) {
-    if (opacity <= 0) {
-        displayContent();
-    } else {
-        loader.style.opacity = opacity;
-        window.setTimeout(function() {
-            loadNow(opacity - 0.05);
-        }, 30);
-    }
-}
-
-function displayContent() {
-    loader.style.display = 'none';
-    document.getElementById('content').style.display = 'block';
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    loader = document.getElementById('loader');
-    loadNow(1);
-});
 
 
 // laod more projects button
@@ -84,7 +43,6 @@ $(function () {
     });
 });
 
-    
 
 
 
