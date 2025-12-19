@@ -16,14 +16,17 @@
       <link href="./css/bootstrap.min.css" rel="stylesheet">
       <!-- animate css -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-      <!-- Custom Css -->
-      <link href="./css/custom.css" rel="stylesheet">
+
       <!--FontAwesome-->
-      <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+            <!-- Custom Css -->
+            <link href="./css/custom.css" rel="stylesheet">
    </head>
    <body>
       <!-- preloader -->
-      <div id="loader"></div>
+
       <!-- header -->
       <header>
          <section id="menu-logo" class="nav-wraper light-bg">
@@ -35,28 +38,38 @@
                         <img class="img-fluid" src="images/header-logo.svg" alt="site logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                           <i class="fa fa-bars" aria-hidden="true"></i>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                            <ul class="navbar-nav ms-auto nav-links">
-                              <!-- <li class="nav-item">
-                                 <a class="nav-link active" href="index.html"><i class="fa fa-home"></i></a>
-                                 </li> -->
                               <li class="nav-item active">
-                                 <a class="nav-link active" href="about.html">
+                                 <a class="nav-link active" href="/index.html">
                                  <img src="images/home.svg" alt="Home change button">
                                  </a>
                               </li>
                               <li class="nav-item">
+                                 <a class="nav-link" href="#skills-section">Skills</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#experience-section">Experience</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="#education-experience">Education</a>
+                              </li>
+                              
+                       
+                           <li class="nav-item">
+                              <a class="nav-link" href="#recent-work">Case Studies</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="#publication-work">Publications</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="#projects">Projects</a>
+                           </li>
+                              <li class="nav-item">
                                  <a class="nav-link" href="/about.html">About</a>
                               </li>
-                              <!-- <li class="nav-item">
-                                 <a class="nav-link" href="#recent-work">Recent Work</a>
-                              </li> -->
-                              <!-- <li class="nav-item">
-                                 <a class="change-theme-btn light" href="javascript:void(0);"><img src="images/moon.svg" alt="theme change button"></a>
-                                 <a class="change-theme-btn dark" href="javascript:void(0);"><img src="images/light.svg" alt="theme change button"></a>
-                                 </li> -->
                            </ul>
                         </div>
                      </nav>
@@ -66,42 +79,258 @@
          </section>
          <section class="banner-wrap light-bg" style="background-image: url('./images/header-bg.svg');">
             <div class="banner">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-6">
-                        <div class="banner-text-wrap animate__animated animate__fadeInRight wow">
-                           <div class="banner-text">
-                              <span>HI THERE I’M</span>
-                              <h1>Hamza Mohsin</h1>
-                              <h2>Front-End Developer & UX Designer</h2>
-                              <h6>Crafting intuitive and engaging digital experiences.</h6>
-                              <p>Combining a Bachelor’s in Information Technology with a Master’s in User Experience Design, I specialize in front-end development, UX research, and user-centered design.</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-lg-6">
-                        <div class="banner-img-wrap animate__animated animate__fadeInUp wow">
-                           <div class="profile-image-wrapper1">
-                              <img src="images/new-image.png" class="img-fluid" alt="Profile Image">
-                           </div>
-                        </div>
-                     </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="banner-text-wrap animate__animated animate__fadeInRight wow">
+                      <div class="banner-text">
+                        <span>HI THERE, I'M</span>
+                        <h1>Hamza Mohsin</h1>
+                        <h2>Front-End Developer · UI/UX Engineer</h2>
+          
+                        <h6>Building intuitive, high-performance interfaces for complex systems.</h6>
+          
+                        <p>
+                          I specialize in front-end engineering and user-centered design, with experience
+                          modernizing simulation UIs at Keysight and leading React-based development for enterprise products.
+                          With a background in UX research and HCI, I create interfaces that are clean, efficient,
+                          and optimized for real-world workflows.
+                        </p>
+                      </div>
+                    </div>
                   </div>
-               </div>
+          
+                  <div class="col-lg-6">
+                    <div class="banner-img-wrap animate__animated animate__fadeInUp wow">
+                      <div class="profile-image-wrapper1">
+                        <img src="images/new-image.png" class="img-fluid" alt="Profile Image">
+                      </div>
+                    </div>
+                  </div>
+          
+                </div>
+              </div>
             </div>
+          
             <div class="banner-social-wrap">
-               <div class="banner-social">
-                  <a href="https://www.linkedin.com/in/hamzamohsin/"><img src="images/linkedin.svg" alt="linkedin icon"></a>
-                  <a href="https://www.instagram.com/hamza_wrch/"><img src="images/instagram.svg" alt="instagram icon"></a>
-                  <a href="https://www.facebook.com/hamza.warraich.581/"><img src="images/facebook.svg" alt="facebook icon"></a>
-                  <span></span>
-               </div>
+              <div class="banner-social">
+                <a href="https://www.linkedin.com/in/hamzamohsin/">
+                  <img src="images/linkedin.svg" alt="linkedin icon">
+                </a>
+                <a href="https://github.com/HamzaMohsin1996">
+                  <i class="fa fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.xing.com/Hamza_Warraich">
+                  <i class="fa fa-brands fa-xing"></i>
+                </a>
+              </div>
             </div>
-         </section>
+          </section>
+          
       </header>
       <!-- main -->
       <main>
-         <!-- about section -->
+          <!-- Skills section -->
+          <!-- <section id="skills-section" class="portfolio-sec light-bg" >
+            <div class="container">
+               <h2 class="custom-primary-text mb-3">From Code to Craft: My Journey</h2>
+           <div class="row g-4 ">
+            <div class="col-md-6 mt-3 mt-md-5">
+               <h5>Every great story has a beginning. Mine started in Pakistan, where a passion for technology led me to pursue a Bachelor's in Information Technology...</h5>
+            </div>
+            <div class="col-md-6 text-center">
+               <video controls class="my-journey-experience">
+                  <source src="./images/my-journey.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>            </div>
+           </div>
+         </div>
+         </section> -->
+         <!-- Skills section -->
+         <section id="skills-section" class="portfolio-sec light-bg" >
+            <div class="container">
+               <h2 class="custom-primary-text mb-3">Skills</h2>
+            <div class="skills-carousel">
+               <div class="skill-card" >
+                   <i class="fa fa-paint-brush icon"></i>
+                   <h3>Design</h3>
+                   <ul class="custom-ul-list">
+                     <li>UI/UX Design</li>
+                     <li>Interactive Design</li>
+                     <li>Wireframes</li>
+                     <li>Mockups</li>
+                     <li>Prototypes</li>
+                   </ul>
+               </div>
+               <div class="skill-card">
+                   <i class="fa fa-code icon"></i>
+                   <h3>Web Development</h3>
+                   <ul class="custom-ul-list">
+                     <li>HTML5</li>
+                     <li>CSS3</li>
+                     <li>JavaScript</li>
+                     <li>TypeScript</li>
+                     <li>Responsive Web Development</li>
+                     <li>CSS Preprocessors (LESS/SASS)</li>
+                   </ul>
+               </div>
+               <div class="skill-card">
+                  <i class="fa fa-cogs icon"></i>
+                  <h3>Tools</h3>
+                  <ul class="custom-ul-list">
+                    <li>Figma</li>
+                    <li>Sketch</li>
+                    <li>Adobe XD</li>
+                    <li>InVision</li>
+                    <li>Trello</li>
+
+                  </ul>
+              </div>
+              <div class="skill-card">
+               <i class="fa fa-search icon"></i>
+               <h3>Research</h3>
+               <ul class="custom-ul-list">
+                 <li>User Research</li>
+                 <li>Usability Testing</li>
+                 <li>Surveys</li>
+                 <li> Data Analysis</li>
+           
+               </ul>
+           </div>
+               <div class="skill-card">
+                   <i class="fa fa-tools icon"></i>
+                   <h3>Build Tools</h3>
+                   <ul class="custom-ul-list">
+                     <li>Webpack</li>
+                     <li>Version Control (Git)</li>
+                     <li>Storybook</li>
+                   </ul>
+               </div>
+               
+               <div class="skill-card">
+                   <i class="fa fa-users icon"></i>
+                   <h3>Collaboration</h3>
+                   <ul class="custom-ul-list">
+                     <li>Effective communication</li>
+                     <li>teamwork</li>
+                     <li>project management</li>
+                   </ul>
+               </div>
+               
+           </div>
+         </div>
+         </section>
+
+
+  <!-- Work Experience section -->
+<!-- Work Experience section -->
+<section class="section-padding" id="experience-section">
+   <div class="container">
+ 
+     <h2 class="custom-primary-text">Work Experience</h2>
+ 
+     <!-- Keysight -->
+     <div class="work-experience">
+       <div class="experience-card">
+         <div class="d-flex align-content-center justify-content-between">
+           <div>
+             <h3 class="job-title">Working Student – UI Developer</h3>
+             <p class="company-name">Keysight Technologies · Böblingen, Germany</p>
+           </div>
+           <p class="employment-duration">Mar 2025 – Present</p>
+         </div>
+ 
+         <ul class="custom-ul-list">
+           <li>Refactored legacy simulation UIs into a modular, component-based structure using JavaScript, Handlebars.js, and Bootstrap 5.</li>
+           <li>Enhanced UI responsiveness and workflow clarity for complex photonics simulations.</li>
+           <li>Collaborated with C++/Qt teams to align interface behavior with simulation logic.</li>
+           <li>Improved usability and reduced UI-related bug reports across key engineering workflows.</li>
+         </ul>
+       </div>
+     </div>
+ 
+     <!-- Techverx -->
+     <div class="work-experience">
+       <div class="experience-card">
+         <div class="d-flex align-content-center justify-content-between">
+           <div>
+             <h3 class="job-title">Senior Frontend Developer</h3>
+             <p class="company-name">Techverx · Lahore, Pakistan</p>
+           </div>
+           <p class="employment-duration">Nov 2018 – Sep 2023</p>
+         </div>
+ 
+         <ul class="custom-ul-list">
+           <li>Led UI development for enterprise platforms using React.js and vanilla JavaScript.</li>
+           <li>Built modular, high-performance components improving load times and user experience.</li>
+           <li>Collaborated with designers to translate design systems into scalable engineering solutions.</li>
+           <li>Optimized cross-device performance and accessibility across major client products.</li>
+           <li>Introduced iterative user testing and feedback loops to improve design decisions.</li>
+         </ul>
+       </div>
+     </div>
+ <!-- Master Thesis section -->
+<!-- Master Thesis section -->
+<div class="work-experience">
+   <div class="experience-card">
+     <div class="d-flex align-content-center justify-content-between">
+       <div>
+         <h3 class="job-title">Master Thesis – Information Retrieval Interface for UAV-Assisted Emergency Dispatch</h3>
+         <p class="company-name">
+           Technology Transfer Center (TTZ) – Unmanned Aircraft Systems, TH Ingolstadt
+         </p>
+       </div>
+       <p class="employment-duration">Mar 2025 – Jan 2026</p>
+     </div>
+ 
+     <ul class="custom-ul-list">
+       <li>Conducted research at TTZ Manching, part of THI’s Unmanned Aircraft Systems division specializing in drone technology and human–machine interaction.</li>
+       <li>Designed a UAV-based information retrieval interface to support firefighting dispatchers during multitasking and interruptions.</li>
+       <li>Developed a functional prototype using React and a Unity-based UAV simulation environment connected to TTZ’s research workflows.</li>
+       <li>Evaluated the system with real dispatcher workflows, showing improved re-engagement speed, situational awareness, and reduced cognitive workload.</li>
+     </ul>
+   </div>
+ </div>
+ 
+ 
+   </div>
+ </section>
+ 
+
+
+
+
+
+  <section class="section-padding" id="education-experience">
+   <div class="container-education container">
+      <div class="row align-items-center g-4 h-100">
+         <div class="col-md-2 education-items h-100">
+            <div class="education-item" id="education-title">
+               <h2 class="custom-primary-text">Education</h2>
+           </div>
+         </div>
+         <div class="col-md-5 education-items h-100">
+            <div class="education-item" id="masters">
+               <h3 class="mb-3">Masters in User Experience Design</h3>
+               <p>Technische Hochschule Ingolstadt</p>
+           </div>
+         </div>
+       <div class="col-md-5 education-items h-100">
+         <div class="education-item" id="bachelors">
+            <h3 class="mb-3">Bachelor in Information Technology</h3>
+            <p>Bahauddin Zakariya University, Multan (Pakistan)</p>
+        </div>
+       </div>
+         </div>
+       
+      </div>
+   
+   </div>
+</section>
+
+
+
+
          <!-- <section class="about-sec-wrap article-padd" id="about-me">
             <div class="about-sec">
                 <div class="about-img-wrap">
@@ -163,7 +392,7 @@
             </div>
             </section> -->
          <!-- work process section -->
-         <section class="process-outer article-padd">
+         <!-- <section class="process-outer article-padd">
             <div class="process-inner">
                <div class="process-text">
                   <h2 class="sec-subtitle">Work Flow</h2>
@@ -171,7 +400,7 @@
                </div>
                <div class="process-wrap">
                   <div class="process-single shadded-bg">
-                     <!-- <img src="images/process-1.svg" alt="image showing workflow process number"> -->
+                     <img src="images/process-1.svg" alt="image showing workflow process number">
                      <div class="blue-icon-wrapper">
                         <h2>1</h2>
                      </div>
@@ -208,8 +437,13 @@
                   </div>
                </div>
             </div>
-         </section>
+         </section> -->
          <!-- my portfolio section -->
+
+     
+
+
+
          <section id="recent-work" class="portfolio-sec light-bg" style="background-image: url('./images/my-work.svg');">
             <div class="container">
                <div class="row">
@@ -224,9 +458,9 @@
                         </div> -->
                      </div>
                   </div>
-                  <div class="portfolio-wrap mt-5">
-                     <div class="row text-wrapper-purple">
-                        <div class="col-md-6">
+                  <div class="portfolio-wrap mt-5 case-studies-wrapper">
+                     <div class="row">
+                        <!-- <div class="col-md-6">
                             <a href="./gesture-bond.html" class=" animate__animated animate__fadeInLeft wow">
                                <h4>Challenge:</h4>
                                <p class="py-2"><span class="fw-bold">Digital Isolation:</span> Traditional text-based chat systems often fail to foster genuine social presence and emotional connectivity in remote collaborative environments, leading to feelings of isolation and disengagement among users.</p>
@@ -245,7 +479,28 @@
                                  <img src="images/interface-preview.png" alt="theme change button">
                                </a>
                             </div>
+                         </div> -->
+                         <div class="col-md-6">
+                           <a href="./gesture-bond.html" class="persona-card d-block" >
+                              <img src="images/interface-preview.png" alt="theme change button">
+                              <h3>Gesture Bond</h3>
+                              <p >
+                                 Explore how gesture-based avatar systems enhance social interactions and emotional connectivity in remote learning environments.
+                              </p>
+
+                           </a>
                          </div>
+                         <div class="col-md-6">
+                           <a href="./Cyclosphere.html" class="persona-card d-block " >
+                              <img src="images/uiux.png" alt="theme change button">
+                              <h3> Cyclosphere</h3>
+                              <p  class="masking-2">
+                                 Explore how our digital support system for cyclists enhances safety and performance through VR glasses, sound notifications, and haptic feedback, tailored for diverse user needs.
+                              </p>
+
+                           </a>
+                         </div>
+                     
                         <!-- <div class="col-md-6">
                            <div class=" animate__animated animate__fadeInLeft wow">
                               <a href="https://www.staging.wp1.fridaypos.com/" class="my-work-links">
@@ -260,6 +515,150 @@
                               </a>
                            </div>
                         </div> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section id="publication-work" class="portfolio-sec" >
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="d-flex justify-content-between align-content-center">
+                        <div class="portfolio-text">
+                           <div class="portfolio-text">
+                              <h2 class="sec-subtitle">Research Insights and Contributions</h2>
+                              <p>Here are some of the research projects I've had the pleasure to contribute to, including report writing and primary research roles.</p>
+                           </div>
+                        </div> 
+                        <!-- <div>
+                           <a href="recent-work.html" class="banner-cta-btn">View All</a>
+                        </div> -->
+                     </div>
+                  </div>
+                  <div class="portfolio-wrap mt-5 case-studies-wrapper">
+                     <div class="row">
+                        <div class="col-12 mt-4">
+                           <a href="./publications/teleoperation_paper.pdf" target="_blank"  class="pub-list-wrapper mb-2">
+                              <p class="custom-publication-link fw-bold">Enhancing Teleoperator Performance: Investigating the Impact of Audio Information in Teleoperation Tasks</p>
+                              <p class="my-2 fw-bold">Group Research Project</p>
+                              <p class="my-2">The study explored the impact of audio, audio-to-visual, and combined audio-visual feedback on teleoperator performance and situational awareness during dynamic tasks, such as controlling autonomous vehicles. Results showed that teleoperators relying solely on audio cues responded more quickly compared to those using both audio and visual feedback, suggesting that audio-only systems reduce cognitive load and expedite decision-making. However, the audio-visual condition enhanced overall situational awareness, indicating that visual cues provide valuable environmental context despite slower response times. The findings recommend refining feedback systems to balance cognitive efficiency with comprehensive awareness, with future studies suggested to explore real-time control and multimodal feedback for improved teleoperation performance.</p>
+
+                           </a>
+                         </div>
+                         <div class="col-12">
+                           <a href="./publications/Automotive_Paper.pdf" target="_blank" class="pub-list-wrapper">
+                              <p class="custom-publication-link fw-bold">Revolutionizing Automotive Interfaces: Dynamic Visual Cues for Better Distance Perception in Low Visibility</p>
+                              <p class="my-2 fw-bold">Independent Research Project</p>
+                              <p class="my-2">This research explores how dynamic visual cues in automotive interfaces, such as bars and vehicle icons, can enhance driver perception and safety in foggy environments. Through controlled experiments, participants interacted with simulated driving scenarios, with response times measured to assess the effectiveness of visual aids. While the results did not reach statistical significance, the study provides valuable insights into the potential of visual interface design to mitigate risks in low-visibility conditions, paving the way for further innovation in this field.</p>
+
+                           </a>
+                         </div>
+                        
+                         
+                     
+                        <!-- <div class="col-md-6">
+                           <div class=" animate__animated animate__fadeInLeft wow">
+                              <a href="https://www.staging.wp1.fridaypos.com/" class="my-work-links">
+                              <img src="images/friday-pos-banner.svg" alt="theme change button">
+                              </a>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class=" animate__animated animate__fadeInRight wow">
+                              <a href="https://www.techverx.com/" class="my-work-links">
+                              <img src="images/techverx-banner.svg" alt="theme change button">
+                              </a>
+                           </div>
+                        </div> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+            
+         <section id="projects" class="portfolio-sec light-bg" style="background-image: url('./images/my-work.svg');">
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="d-flex justify-content-between align-content-center">
+                        <div class="portfolio-text">
+                           <h2 class="sec-subtitle">Projects</h2>
+                           <p>Here are some of the projects I've had the pleasure to work on. Click on any project to learn more about my role and contributions.</p>
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <div class="portfolio-wrap mt-5">
+                     <div class="row g-4">
+                        <div class="col-md-4">
+                           <div class="persona-card d-block " >
+                              <img src="images/techverx-banner.svg" alt="theme change button">
+                              <h3 class="my-2">Techverx</h3>
+                              <p class="pb-2 small-p">Converted Figma designs into responsive, high-quality web pages using HTML, CSS, and Bootstrap 5. Implemented front-end code that ensured cross-browser compatibility and a seamless user experience. Collaborated with design and development teams to meet project specifications and deadlines.</p>
+                              <a href="https://hamzamohsin1996.github.io/carwaly/index.html">Learn More</a>
+               
+                           </div>
+                         </div>
+                         <div class="col-md-4">
+                           <div class="persona-card d-block " >
+                              <img src="images/carwaly-preview.png" alt="theme change button">
+                              <h3 class="my-2">Carwaly</h3>
+                              <p class="pb-2 small-p">As a Front-End Developer for the CarWaly project, I converted Figma designs into responsive web pages using HTML, CSS, and Bootstrap. I optimized the code for performance and ensured cross-browser compatibility. My work included implementing interactive features for a seamless user experience.
+                              </p>
+                              <a href="https://hamzamohsin1996.github.io/carwaly/">Learn More</a>
+               
+                           </div>
+                         </div>
+                         <div class="col-md-4">
+                           <div class="persona-card d-block " >
+                              <img src="images/friday-pos-banner.svg" alt="theme change button">
+                              <h3 class="my-2">Friday POS</h3>
+                              <p class="pb-2 small-p">For the Friday POS project, I developed the website in HTML and created a component-based UI for React.js. I optimized and customized CSS to align with our design system, ensuring a flexible and scalable front-end. My work enhanced the website’s performance and adaptability. </p>
+                              <a href="https://www.staging.wp1.fridaypos.com/">Learn More</a>
+               
+                           </div>
+                         </div>
+                         <div class="col-md-4">
+                           <div class="persona-card d-block " >
+                              <img src="images/quure.png" alt="theme change button">
+                              <h3 class="my-2">Quure</h3>
+                              <p class="pb-2  small-p">For the Quure project, I developed components in HTML and Tailwind CSS and implemented a React.js module. I designed and built a challenging chat system UI and a video call layout feature, creating wireframes and converting them into responsive, styled components with Tailwind CSS.</p>
+                              <a href="https://app.quure.com/login">Learn More</a>
+                           </div>
+                         </div>
+                         <div class="col-md-4">
+                           <div class="persona-card d-block " >
+                              <img src="images/hivekeeper.png" alt="theme change button">
+                              <h3 class="my-2">HiveKeeper</h3>
+                              <p class="pb-2 small-p">For the Hivekeeper project, I developed the interactive honey section, allowing users to place apiaries dynamically with a click. I meticulously crafted the UI to align with the design and focused on optimizing user experience to ensure seamless interaction.</p>
+                              <a href="https://github.com/HamzaMohsin1996/Hivekeeper">Learn More</a>
+                           </div>
+                         </div>
+                         <div class="col-md-4">
+                           <div class="persona-card d-block " >
+                              <img src="images/bdata.png" alt="theme change button">
+                              <h3 class="my-2">Bdata</h3>
+                              <p class="pb-2 small-p">As a Front-End Developer for BDATA, I developed the homepage and contributed to the portal for adding devices using React.js. I focused on creating reusable components and ensuring a user-friendly interface that aligned with the project’s design requirements.</p>
+                              <a href="https://www.bdata.ca/">Learn More</a>
+                           </div>
+                         </div>
+                         <div class="col-md-4">
+                           <div class="persona-card d-block " >
+                              <img src="images/3d-animation.png" alt="theme change button">
+                              <h3 class="my-2">Hotel Booking Application</h3>
+                              <p class="pb-2 small-p">For my course project, I created a hotel booking application animation using Adobe After Effects. I developed and integrated various animations to enhance the user experience, producing a polished video that showcased the app’s features and interactions.</p>
+                              <a href="./3d-animation.html">Learn More</a>
+                           </div>
+                         </div>
+                         <div class="col-md-4">
+                           <div class="persona-card d-block " >
+                              <img src="images/vr-banner.png" alt="theme change button">
+                              <h3 class="my-2">The button flower Mystery</h3>
+                              <p class="pb-2  small-p">The Button Flower Mystery is an immersive VR game featuring a beautifully detailed environment and interactive puzzles. Players explore a captivating world with dynamic soundscapes and engaging challenges, including a floral puzzle and hidden clues. The game was refined through user feedback to enhance immersion and interaction.</p>
+                              <a href="./button-mystery.html">Learn More</a>
+                           </div>
+                         </div>
                      </div>
                   </div>
                </div>
@@ -317,8 +716,45 @@
          </div>
       </footer>
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <script>
+         
+
+          $(document).ready(function(){
+              $('.skills-carousel').slick({
+                  infinite: true,
+                  slidesToShow: 3,
+                  slidesToScroll: 1,
+                  arrows: true,
+                  dots: false,
+                  autoplay: true,            // Enable autoplay
+                  autoplaySpeed: 1000,       // Set autoplay speed to 3 seconds
+                  responsive: [
+                      {
+                          breakpoint: 1024,
+                          settings: {
+                              slidesToShow: 2,
+                              slidesToScroll: 1,
+                              infinite: true,
+                              dots: true
+                          }
+                      },
+                      {
+                          breakpoint: 600,
+                          settings: {
+                              slidesToShow: 1,
+                              slidesToScroll: 1
+                          }
+                      }
+                  ]
+              });
+          });
+      </script>
+    
       <script src="js/bootstrap.min.js"></script>
       <script src="js/wow.js"></script>
       <script src="js/custom.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
    </body>
 </html>
