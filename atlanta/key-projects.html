@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Key Projects in Safety &amp; XR - Hamza Mohsin</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white min-h-screen flex flex-col font-display overflow-x-hidden">
+<!-- Header / Navigation -->
+<div id="header-container"></div>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-start p-6 md:p-10 lg:px-20 max-w-[1400px] mx-auto w-full">
+<!-- Slide Heading -->
+<div class="w-full mb-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 rounded bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">Research Overview</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-black tracking-tight text-[#111318] dark:text-white">
+                    Key Projects in <span class="text-primary">Safety &amp; XR</span>
+</h2>
+<p class="text-[#616f89] dark:text-gray-400 text-lg md:text-xl font-normal max-w-2xl mt-2">
+                    Exploration of human factors in augmented reality cycling and remote teleoperation environments.
+                </p>
+</div>
+</div>
+<!-- Projects Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mb-12">
+<!-- Project 1: Cyclosphere AR -->
+<div class="group relative flex flex-col bg-white dark:bg-[#1e2330] rounded-2xl overflow-hidden shadow-sm border border-[#e5e7eb] dark:border-white/10 hover:shadow-md transition-shadow h-full">
+<!-- Image Section -->
+<div class="relative h-64 w-full bg-gray-200 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Cyclist riding on a city street with abstract augmented reality data overlays showing route and hazards" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD4bfIUsaMgRQg0JWOdZyA1XP-Q93--ed3sY-PEW6PS4ptoXovSCcLuSCoTOzPEc7F07cVAHsgWkVT_qYrV3RHO7w300u0x4prhubs2odjP6i8S8V4aXxOdx3JhT24IdT5kRlsyVr4RBL5QpN-D-FwI3lw2edbZ0CVmTOHUsrZ4wcTBEiNccPbfMEUcBri2GgiZhzWCgxeTkFFVr3QW8rCJqHzl2ZYyyURguaAUotX3yCvlqCJO5lpXoi-WG2rOUcvc7j-ZBwb69s0");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<div class="p-2 bg-white/20 backdrop-blur-md rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl">pedal_bike</span>
+</div>
+<div class="p-2 bg-white/20 backdrop-blur-md rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl">view_in_ar</span>
+</div>
+</div>
+</div>
+<!-- Content Section -->
+<div class="flex flex-col p-8 flex-grow">
+<div class="mb-4">
+<h3 class="text-2xl font-bold text-[#111318] dark:text-white mb-1 group-hover:text-primary transition-colors">Cyclosphere AR</h3>
+<p class="text-primary font-medium text-sm uppercase tracking-wide">Cyclist Safety App</p>
+</div>
+<ul class="flex flex-col gap-4 mt-auto">
+<li class="flex items-start gap-3 text-[#4b5563] dark:text-gray-300">
+<span class="material-symbols-outlined text-primary mt-0.5">warning</span>
+<span class="text-lg leading-snug"><strong>AR Hazard Alerts</strong>: Visualizing blind spots and traffic dangers in real-time.</span>
+</li>
+<li class="flex items-start gap-3 text-[#4b5563] dark:text-gray-300">
+<span class="material-symbols-outlined text-primary mt-0.5">visibility</span>
+<span class="text-lg leading-snug"><strong>Attention Management</strong>: Minimizing distraction through HUD optimization.</span>
+</li>
+<li class="flex items-start gap-3 text-[#4b5563] dark:text-gray-300">
+<span class="material-symbols-outlined text-primary mt-0.5">psychology</span>
+<span class="text-lg leading-snug"><strong>Cognitive Load Analysis</strong>: Measuring mental effort during navigation tasks.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Project 2: Teleoperation & Fog UI -->
+<div class="group relative flex flex-col bg-white dark:bg-[#1e2330] rounded-2xl overflow-hidden shadow-sm border border-[#e5e7eb] dark:border-white/10 hover:shadow-md transition-shadow h-full">
+<!-- Image Section -->
+<div class="relative h-64 w-full bg-gray-200 overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="Drone flying in a misty foggy environment with abstract sound wave graphics emanating from it" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCqlN3cUJk4z6gutxtDeq-0IblQ2q3eFGlqItbcEkXZ78Otj_U00PWdjdbYQJ9ENnBnGPrtoP3MZ1nupXE09hpLvDecwjL6L-Xm5XfH0wxJv60kLbXCXAA9D9oCQTm3PPE9TX9Cft5gRlhWoxgq2kf8gfi1PQr6kBE4vYRM6E5t36iKFxIlsBMkW2TLJYwuoIzQImJ4vDsEhe1yYbWUsQox5_7lhBGiIkicRx0H7heSIUm49iSxYjWyCIHFLvsn2LCDEJWMP2j7bAM");'>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<div class="p-2 bg-white/20 backdrop-blur-md rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl">joystick</span>
+</div>
+<div class="p-2 bg-white/20 backdrop-blur-md rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl">graphic_eq</span>
+</div>
+</div>
+</div>
+<!-- Content Section -->
+<div class="flex flex-col p-8 flex-grow">
+<div class="mb-4">
+<h3 class="text-2xl font-bold text-[#111318] dark:text-white mb-1 group-hover:text-primary transition-colors">Teleoperation &amp; Fog UI</h3>
+<p class="text-primary font-medium text-sm uppercase tracking-wide">Remote Navigation</p>
+</div>
+<ul class="flex flex-col gap-4 mt-auto">
+<li class="flex items-start gap-3 text-[#4b5563] dark:text-gray-300">
+<span class="material-symbols-outlined text-primary mt-0.5">headphones</span>
+<span class="text-lg leading-snug"><strong>Auditory Cues &amp; Feedback</strong>: Spatial audio to compensate for visual loss.</span>
+</li>
+<li class="flex items-start gap-3 text-[#4b5563] dark:text-gray-300">
+<span class="material-symbols-outlined text-primary mt-0.5">crisis_alert</span>
+<span class="text-lg leading-snug"><strong>Decision-Making under Stress</strong>: Evaluating operator response times in fog.</span>
+</li>
+<li class="flex items-start gap-3 text-[#4b5563] dark:text-gray-300">
+<span class="material-symbols-outlined text-primary mt-0.5">blur_on</span>
+<span class="text-lg leading-snug"><strong>Degraded Visibility UI</strong>: High-contrast interfaces for low-visibility conditions.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer / Progress -->
+<footer class="w-full bg-white dark:bg-[#1e2330] border-t border-[#f0f2f4] dark:border-white/10 p-6">
+<div class="max-w-[1400px] mx-auto flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm font-medium text-[#111318] dark:text-white">
+<span>Slide 7 of 10</span>
+<a href="./skills.html" class="text-[#616f89] dark:text-gray-400">Research Projects</a>
+</div>
+<div class="w-full h-2 rounded-full bg-[#dbdfe6] dark:bg-gray-700 overflow-hidden">
+<div class="h-full rounded-full bg-primary transition-all duration-500 ease-out" style="width: 70%;"></div>
+</div>
+</div>
+</footer>
+<script>
+    fetch("./components/header.html")
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("header-container").innerHTML = html;
+
+            // Load slide-nav.js AFTER header is injected
+            const script = document.createElement("script");
+            script.src = "./slide-nav.js";
+            document.body.appendChild(script);
+        });
+</script>
+</body></html>

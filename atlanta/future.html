@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PhD Interview: Future XR Research Ideas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Header / Navigation -->
+<div id="header-container"></div>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 py-8 md:py-12">
+<!-- Page Title Section -->
+<div class="mb-12">
+<h1 class="text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] text-[#111318] dark:text-white mb-3">
+                Future XR Research Directions
+            </h1>
+<p class="text-xl text-[#616f89] dark:text-[#9ca3af] font-normal max-w-3xl">
+                Exploring adaptive systems and multimodal integration to enhance situational awareness in safety-critical environments.
+            </p>
+</div>
+<!-- Split Layout: Research Pillars (Left) & Visual (Right) -->
+<div class="flex flex-col lg:flex-row gap-12 items-stretch">
+<!-- Left Column: Research Pillars -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- Card 1: Adaptive XR -->
+<div class="group relative flex gap-5 rounded-xl border border-[#dbdfe6] dark:border-[#2b3545] bg-white dark:bg-[#1a202c] p-6 shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300">
+<div class="shrink-0 flex items-center justify-center size-14 rounded-full bg-blue-50 dark:bg-blue-900/20 text-primary">
+<span class="material-symbols-outlined text-[32px]">visibility</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-xl font-bold text-[#111318] dark:text-white group-hover:text-primary transition-colors">Adaptive XR Interfaces</h3>
+<p class="text-[#616f89] dark:text-[#9ca3af] leading-relaxed">
+                            Developing systems that respond in real-time to <span class="font-semibold text-[#111318] dark:text-gray-200">user gaze</span> and <span class="font-semibold text-[#111318] dark:text-gray-200">cognitive workload</span>. Utilizing physiological sensors to dynamically adjust information density.
+                        </p>
+</div>
+</div>
+<!-- Card 2: Multimodal Cues -->
+<div class="group relative flex gap-5 rounded-xl border border-[#dbdfe6] dark:border-[#2b3545] bg-white dark:bg-[#1a202c] p-6 shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300">
+<div class="shrink-0 flex items-center justify-center size-14 rounded-full bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined text-[32px]">spatial_audio_off</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-xl font-bold text-[#111318] dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Multimodal Orchestration</h3>
+<p class="text-[#616f89] dark:text-[#9ca3af] leading-relaxed">
+                            Balancing <span class="font-semibold text-[#111318] dark:text-gray-200">visual, audio, and haptic</span> feedback channels. Designed to enhance situational awareness without triggering sensory overload in complex scenarios.
+                        </p>
+</div>
+</div>
+<!-- Card 3: Safety Evaluation -->
+<div class="group relative flex gap-5 rounded-xl border border-[#dbdfe6] dark:border-[#2b3545] bg-white dark:bg-[#1a202c] p-6 shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300">
+<div class="shrink-0 flex items-center justify-center size-14 rounded-full bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-500">
+<span class="material-symbols-outlined text-[32px]">security</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-xl font-bold text-[#111318] dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-500 transition-colors">Safety-Critical Evaluation</h3>
+<p class="text-[#616f89] dark:text-[#9ca3af] leading-relaxed">
+                            Establishing rigorous testing protocols for <span class="font-semibold text-[#111318] dark:text-gray-200">high-pressure environments</span>. Validating XR utility in emergency response and industrial maintenance contexts.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Right Column: Visualization -->
+<div class="flex-1 min-h-[400px] lg:min-h-auto relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#151b26] dark:to-[#1a202c] border border-[#dbdfe6] dark:border-[#2b3545] p-8 flex items-center justify-center">
+<!-- Background Grid Pattern -->
+<div class="absolute inset-0 z-0 opacity-[0.03] dark:opacity-[0.05]" style="background-image: radial-gradient(#135bec 1px, transparent 1px); background-size: 24px 24px;">
+</div>
+<!-- Abstract Visual Representation -->
+<div class="relative z-10 w-full max-w-md aspect-square flex flex-col items-center justify-center">
+<!-- Headset Image -->
+<div class="relative w-full h-64 bg-center bg-contain bg-no-repeat z-20 transition-transform hover:scale-105 duration-500" data-alt="Futuristic XR headset illustration with glowing sensors" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBhsRpqDTAciNA0leeGY52XzNLD_kXzPjK57fqTPG8h37m4o1R09iI-6vhmEPTd7iAuZN0j52FVrsPR1Jg9-EJ5DWk6tfPCecs6ExBisvqZEot-HxsJnSkGzbQKiA3YU9EUP_Bq8H-X154B2Z9CB9VDP0U4DpR4OExo229yefBJocBBSTJ1oINDsGi8A7Tg1SayaFMIr2XxSF62-5bF8s9sgZyXn62-ztAfG9ifJjWcpqmHu4btvBoVqmI45psXzLyer8Oi110dSbs");'>
+<!-- Connecting Lines Overlay (Simulated with CSS) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] pointer-events-none">
+<svg class="w-full h-full" fill="none" viewbox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<!-- Top Right Line -->
+<path class="opacity-60 animate-pulse" d="M220 180 L280 120" stroke="#135bec" stroke-dasharray="4 4" stroke-width="2"></path>
+<circle cx="280" cy="120" fill="#135bec" r="4"></circle>
+<!-- Top Left Line -->
+<path class="opacity-60 animate-pulse" d="M180 180 L120 120" stroke="#9333ea" stroke-dasharray="4 4" stroke-width="2"></path>
+<circle cx="120" cy="120" fill="#9333ea" r="4"></circle>
+<!-- Bottom Center Line -->
+<path class="opacity-60 animate-pulse" d="M200 220 L200 300" stroke="#d97706" stroke-dasharray="4 4" stroke-width="2"></path>
+<circle cx="200" cy="300" fill="#d97706" r="4"></circle>
+</svg>
+</div>
+</div>
+<!-- Floating Badge: Gaze Tracking -->
+<div class="absolute top-10 left-0 lg:-left-4 bg-white dark:bg-[#2b3545] shadow-lg rounded-lg p-3 flex items-center gap-3 border-l-4 border-purple-600 animate-[bounce_3s_infinite]">
+<span class="material-symbols-outlined text-purple-600">remove_red_eye</span>
+<div>
+<p class="text-xs font-bold text-[#111318] dark:text-white uppercase tracking-wider">Input</p>
+<p class="text-sm font-semibold text-[#616f89] dark:text-[#9ca3af]">Gaze Tracking</p>
+</div>
+</div>
+<!-- Floating Badge: Physiological -->
+<div class="absolute top-10 right-0 lg:-right-4 bg-white dark:bg-[#2b3545] shadow-lg rounded-lg p-3 flex items-center gap-3 border-l-4 border-primary animate-[bounce_4s_infinite]">
+<span class="material-symbols-outlined text-primary">monitor_heart</span>
+<div>
+<p class="text-xs font-bold text-[#111318] dark:text-white uppercase tracking-wider">Sensor</p>
+<p class="text-sm font-semibold text-[#616f89] dark:text-[#9ca3af]">Physiology</p>
+</div>
+</div>
+<!-- Floating Badge: Haptic Output -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white dark:bg-[#2b3545] shadow-lg rounded-lg p-3 flex items-center gap-3 border-b-4 border-amber-500 animate-[pulse_3s_infinite]">
+<span class="material-symbols-outlined text-amber-500">vibration</span>
+<div>
+<p class="text-xs font-bold text-[#111318] dark:text-white uppercase tracking-wider">Feedback</p>
+<p class="text-sm font-semibold text-[#616f89] dark:text-[#9ca3af]">Haptic Response</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Metadata -->
+<div class="mt-12 pt-8 border-t border-[#dbdfe6] dark:border-[#2b3545] flex flex-col md:flex-row justify-between items-center text-[#616f89] dark:text-[#9ca3af] text-sm">
+<p>PhD Candidacy Presentation 2024</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">domain</span> Dept. of Computer Science</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">schedule</span> 15 mins remaining</span>
+</div>
+</div>
+</main>
+<script>
+    fetch("./components/header.html")
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("header-container").innerHTML = html;
+
+            // Load slide-nav.js AFTER header is injected
+            const script = document.createElement("script");
+            script.src = "./slide-nav.js";
+            document.body.appendChild(script);
+        });
+</script>
+</body></html>
