@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PhD Interview - Slide 4</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111318] dark:text-gray-100 flex flex-col min-h-screen overflow-x-hidden">
+<!-- Header / Nav -->
+<div id="header-container"></div>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col px-4 md:px-10 py-8 max-w-7xl mx-auto w-full h-full justify-center">
+<!-- Page Heading -->
+<div class="mb-10 text-center md:text-left">
+<div class="flex flex-col gap-2">
+<div class="inline-flex items-center gap-2 text-sm font-semibold text-primary uppercase tracking-wider mb-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                    Master's Thesis
+                </div>
+<h1 class="text-3xl md:text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em] text-[#111318] dark:text-white">
+                    Web-Based UAV Interface for <br class="hidden md:block"/> Firefighting Dispatchers
+                </h1>
+<p class="text-lg text-gray-500 dark:text-gray-400 font-normal mt-2 max-w-3xl">
+                    Identifying cognitive bottlenecks and designing for supported re-engagement.
+                </p>
+</div>
+</div>
+<!-- Split Content Cards -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full">
+<!-- Problem Card -->
+<div class="group relative flex flex-col rounded-xl bg-white dark:bg-[#1a202c] shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 dark:border-gray-800 overflow-hidden transition-all hover:shadow-lg">
+<div class="absolute top-0 left-0 w-full h-1 bg-red-400"></div>
+<!-- Card Header -->
+<div class="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+<h3 class="text-xl font-bold text-[#111318] dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500 bg-red-50 p-1 rounded-md">warning</span>
+                        The Problem
+                    </h3>
+<span class="text-xs font-semibold uppercase text-gray-400 tracking-wider">Cognitive Overload</span>
+</div>
+<!-- Visual -->
+<div class="relative w-full aspect-[16/9] bg-gray-100 dark:bg-gray-900 overflow-hidden">
+<div class="w-full h-full bg-center bg-cover opacity-90 transition-transform duration-700 group-hover:scale-105" data-alt="chaotic multiple monitor dispatcher setup with cluttered windows and red alert badges" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCK3sCb_zMPKULQbf7pJr_oDD6HdN81RMKUS_xvuU9uRjO9rSX35Das2Y7_m8taAYvaxVlXZBnj1WukfHQ5tjF8sglgThYbWT_3WhAlYhXzIcZ0lZC4tIs8HFHLsRzH-rGJNDeKKMOiBsi6_OO975FodAbyLx0sk0a1LFauy8xF_-et2Ju6a8Nv8MO0leJTHH99Jm0B1wFxVw6xDzsxix6piS0EC57sKyJfu8T632c53x_KtTJaTI3EZ3DaEi4UlOKsgWvOjTOffqI");'>
+<!-- Overlay gradient to ensure text readability if text were over it, but mostly for mood -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</div>
+<!-- Status Badge -->
+<div class="absolute bottom-4 right-4 bg-red-100/90 dark:bg-red-900/90 backdrop-blur-sm px-3 py-1 rounded-full border border-red-200 dark:border-red-700 shadow-sm flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+<span class="text-xs font-bold text-red-700 dark:text-red-100">High Stress</span>
+</div>
+</div>
+<!-- Content -->
+<div class="p-6 flex flex-col gap-4 flex-grow bg-white dark:bg-[#1a202c]">
+<p class="text-gray-600 dark:text-gray-300">Current systems overwhelm operators with unfiltered data streams.</p>
+<ul class="space-y-3 mt-2">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-red-400 text-[20px] mt-0.5">remove_circle_outline</span>
+<span class="text-sm md:text-base font-medium text-[#111318] dark:text-gray-200">Multitasking strain &amp; split attention</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-red-400 text-[20px] mt-0.5">remove_circle_outline</span>
+<span class="text-sm md:text-base font-medium text-[#111318] dark:text-gray-200">Frequent interruptions disrupt workflow</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-red-400 text-[20px] mt-0.5">remove_circle_outline</span>
+<span class="text-sm md:text-base font-medium text-[#111318] dark:text-gray-200">Missed critical alerts due to clutter</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Goal Card -->
+<div class="group relative flex flex-col rounded-xl bg-white dark:bg-[#1a202c] shadow-[0_4px_25px_rgba(19,91,236,0.15)] ring-1 ring-primary/20 overflow-hidden transition-all hover:shadow-xl hover:ring-primary/40">
+<div class="absolute top-0 left-0 w-full h-1.5 bg-primary"></div>
+<!-- Card Header -->
+<div class="px-6 py-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-primary/5">
+<h3 class="text-xl font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-white bg-primary p-1 rounded-md">check</span>
+                        The Goal
+                    </h3>
+<span class="text-xs font-semibold uppercase text-primary tracking-wider">Supported Re-engagement</span>
+</div>
+<!-- Visual -->
+<div class="relative w-full aspect-[16/9] bg-gray-100 dark:bg-gray-900 overflow-hidden">
+<div class="w-full h-full bg-center bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="clean minimal dashboard interface with clear data visualization and focused map view" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsWDKSXweJ4dKIS9zH4COwMDh9d-HP9wjnw3v5a5vmVRZh-D9dm8uf4D3-Imly7b-Lx4mQjtBUptl87axCiD3eN9KnEbhChClHjvt2hYIWFtPLv9nUeHYzJ1WYsvFiU6F5S1eGvNWeawhuAc1ApHy8831lRgpKwCcHLqHZ12VvTGls-WbvhxYYH9s316Z-kXEuIzNAP5QsPVCCIR_JVacEhACbf1IUMmlgjr41OXQmPWlktfDj3pUl73Noyp-Y439AhUx0PcIbNHQ");'>
+</div>
+<!-- Status Badge -->
+<div class="absolute bottom-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-3 py-1 rounded-full border border-primary/20 shadow-sm flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-xs font-bold text-primary">Focused State</span>
+</div>
+</div>
+<!-- Content -->
+<div class="p-6 flex flex-col gap-4 flex-grow bg-white dark:bg-[#1a202c]">
+<p class="text-gray-600 dark:text-gray-300">Design UI support that guides attention back to critical tasks.</p>
+<ul class="space-y-3 mt-2">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">add_circle</span>
+<span class="text-sm md:text-base font-medium text-[#111318] dark:text-gray-200">Seamless re-engagement after interruptions</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">add_circle</span>
+<span class="text-sm md:text-base font-medium text-[#111318] dark:text-gray-200">Efficient information retrieval</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">add_circle</span>
+<span class="text-sm md:text-base font-medium text-[#111318] dark:text-gray-200">UI-driven cognitive support mechanisms</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer / Progress -->
+<footer class="sticky bottom-0 z-40 bg-white dark:bg-[#1a202c] border-t border-gray-200 dark:border-gray-800">
+<div class="px-6 lg:px-10 py-3 flex justify-between items-center text-xs text-gray-500 font-medium">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">person</span>
+                Hamza Mohsin
+            </div>
+<div>
+                PhD Interview Presentation
+            </div>
+<div class="flex items-center gap-2">
+<span>Slide 04</span>
+<span class="opacity-30">/</span>
+<span class="opacity-50">12</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1 bg-gray-100 dark:bg-gray-800">
+<div class="h-full bg-primary w-[33%] transition-all duration-1000 ease-out"></div>
+</div>
+</footer>
+<script>
+    fetch("./components/header.html")
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("header-container").innerHTML = html;
+
+            // Load slide-nav.js AFTER header is injected
+            const script = document.createElement("script");
+            script.src = "./slide-nav.js";
+            document.body.appendChild(script);
+        });
+</script>
+</body></html>

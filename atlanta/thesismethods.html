@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thesis: Methods &amp; Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white font-display overflow-x-hidden min-h-screen flex flex-col">
+<!-- Navbar / Header -->
+<div id="header-container"></div>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center p-6 lg:p-10">
+<div class="w-full max-w-[1280px] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 h-full">
+<!-- Left Column: Information & Specs -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Heading -->
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em] text-[#111318] dark:text-white">
+                        Methods <br/><span class="text-primary">&amp; Setup</span>
+</h1>
+<p class="text-[#616f89] dark:text-[#9aa2b1] text-lg font-medium">Master's Thesis Experimental Design</p>
+</div>
+<!-- System Architecture Section -->
+<div class="bg-white dark:bg-[#1a202c] rounded-xl p-6 shadow-sm border border-[#f0f2f4] dark:border-[#2a303b]">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">architecture</span>
+<h3 class="text-xl font-bold tracking-tight">System Architecture</h3>
+</div>
+<ul class="space-y-4">
+<li class="flex flex-col gap-1 border-l-2 border-primary pl-4">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#616f89] dark:text-[#9aa2b1]">Simulation Engine</span>
+<span class="font-medium">Unity-based dispatcher environment</span>
+</li>
+<li class="flex flex-col gap-1 border-l-2 border-primary/40 pl-4">
+<span class="text-xs font-semibold uppercase tracking-wider text-[#616f89] dark:text-[#9aa2b1]">User Interface</span>
+<span class="font-medium">React-based dashboard with re-engagement support</span>
+</li>
+</ul>
+</div>
+<!-- Dependent Measures Section -->
+<div class="bg-white dark:bg-[#1a202c] rounded-xl p-6 shadow-sm border border-[#f0f2f4] dark:border-[#2a303b]">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="text-xl font-bold tracking-tight">Measures</h3>
+</div>
+<div class="flex flex-wrap gap-2">
+<div class="inline-flex items-center gap-2 px-3 py-2 bg-primary/10 text-primary rounded-lg text-sm font-semibold">
+<span class="material-symbols-outlined text-lg">visibility</span>
+                            Eye Tracking (Smart Eye Pro)
+                        </div>
+<div class="inline-flex items-center gap-2 px-3 py-2 bg-[#f0f2f4] dark:bg-[#2d3748] text-[#111318] dark:text-white rounded-lg text-sm font-medium">
+<span class="material-symbols-outlined text-lg">touch_app</span>
+                            DRT (Secondary Task)
+                        </div>
+<div class="inline-flex items-center gap-2 px-3 py-2 bg-[#f0f2f4] dark:bg-[#2d3748] text-[#111318] dark:text-white rounded-lg text-sm font-medium">
+<span class="material-symbols-outlined text-lg">psychology</span>
+                            NASA-TLX
+                        </div>
+<div class="inline-flex items-center gap-2 px-3 py-2 bg-[#f0f2f4] dark:bg-[#2d3748] text-[#111318] dark:text-white rounded-lg text-sm font-medium">
+<span class="material-symbols-outlined text-lg">fact_check</span>
+                            SART
+                        </div>
+<div class="inline-flex items-center gap-2 px-3 py-2 bg-[#f0f2f4] dark:bg-[#2d3748] text-[#111318] dark:text-white rounded-lg text-sm font-medium">
+<span class="material-symbols-outlined text-lg">speed</span>
+                            Performance Metrics
+                        </div>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Diagram -->
+<div class="lg:col-span-8 flex flex-col justify-center h-full">
+<div class="relative bg-white dark:bg-[#1a202c] rounded-2xl shadow-lg border border-[#dbdfe6] dark:border-[#2a303b] p-8 lg:p-12 min-h-[500px] flex items-center justify-center overflow-hidden">
+<!-- Background Grid Pattern -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#111318 1px, transparent 1px); background-size: 24px 24px;"></div>
+<!-- Diagram Container -->
+<div class="relative w-full max-w-[800px] aspect-video flex items-center justify-center">
+<!-- Connecting Lines (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+<!-- Line from Dispatcher to Screen -->
+<path class="dark:stroke-[#4a5568]" d="M 120,250 C 200,250 250,250 320,250" fill="none" stroke="#dbdfe6" stroke-dasharray="8 4" stroke-width="2"></path>
+<!-- Line from Eye Tracker to Eyes -->
+<path d="M 400,380 L 400,320" fill="none" stroke="#135bec" stroke-dasharray="4 2" stroke-width="2"></path>
+<!-- Lines from Screen to Scenario Elements -->
+<path class="dark:stroke-[#4a5568]" d="M 480,250 C 550,250 600,150 650,150" fill="none" stroke="#dbdfe6" stroke-width="2"></path>
+<path class="dark:stroke-[#4a5568]" d="M 480,250 C 550,250 600,350 650,350" fill="none" stroke="#dbdfe6" stroke-width="2"></path>
+</svg>
+<!-- Node 1: Dispatcher (User) -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center gap-3 z-10 w-24">
+<div class="size-20 bg-primary/10 rounded-full flex items-center justify-center border-2 border-primary/20 shadow-sm relative group">
+<span class="material-symbols-outlined text-4xl text-primary">person</span>
+<div class="absolute -right-2 top-0 bg-green-500 rounded-full p-1 border-2 border-white dark:border-[#1a202c]">
+<span class="material-symbols-outlined text-white text-[10px] block">check</span>
+</div>
+</div>
+<span class="font-bold text-sm text-center bg-white dark:bg-[#2d3748] px-2 py-1 rounded shadow-sm border border-[#f0f2f4] dark:border-[#4a5568]">Dispatcher</span>
+</div>
+<!-- Node 2: The Interface (Centerpiece) -->
+<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-4">
+<div class="relative w-64 h-40 bg-[#101622] rounded-lg border-4 border-[#3a4250] shadow-xl flex flex-col overflow-hidden">
+<!-- Mock UI Header -->
+<div class="h-4 bg-[#2a303b] w-full flex items-center px-2 gap-1">
+<div class="size-1.5 rounded-full bg-red-500"></div>
+<div class="size-1.5 rounded-full bg-yellow-500"></div>
+<div class="size-1.5 rounded-full bg-green-500"></div>
+</div>
+<!-- Mock UI Body -->
+<div class="flex-1 p-2 grid grid-cols-3 gap-2">
+<div class="col-span-1 bg-[#1a202c] rounded flex items-center justify-center">
+<div class="w-8 h-8 rounded-full border-2 border-primary/50"></div>
+</div>
+<div class="col-span-2 bg-[#1a202c] rounded flex flex-col gap-1 p-1">
+<div class="h-2 w-3/4 bg-[#2d3748] rounded"></div>
+<div class="h-2 w-1/2 bg-[#2d3748] rounded"></div>
+<div class="mt-auto h-16 bg-primary/10 rounded border border-primary/20 relative">
+<span class="absolute top-1 left-1 text-[8px] text-primary">MAP VIEW</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Eye Tracker Device -->
+<div class="absolute -bottom-12 flex flex-col items-center">
+<div class="w-32 h-3 bg-black rounded-full shadow-lg relative flex justify-center items-center">
+<div class="w-1 h-1 bg-red-500 rounded-full animate-pulse"></div>
+</div>
+<div class="w-0.5 h-4 bg-gray-400"></div>
+<div class="bg-primary/10 text-primary text-xs font-bold px-2 py-0.5 rounded border border-primary/20 mt-1">Smart Eye Pro</div>
+</div>
+</div>
+<!-- Node 3: Scenario Elements (Right Side) -->
+<div class="absolute right-0 top-[20%] flex flex-col items-center gap-2 z-10 w-28">
+<div class="size-16 bg-orange-50 dark:bg-orange-900/20 rounded-xl flex items-center justify-center border border-orange-200 dark:border-orange-800 shadow-sm">
+<span class="material-symbols-outlined text-3xl text-orange-500">local_fire_department</span>
+</div>
+<span class="font-semibold text-xs text-center text-[#616f89] dark:text-[#9aa2b1]">Fire Incident</span>
+</div>
+<div class="absolute right-0 bottom-[20%] flex flex-col items-center gap-2 z-10 w-28">
+<div class="size-16 bg-blue-50 dark:bg-blue-900/20 rounded-xl flex items-center justify-center border border-blue-200 dark:border-blue-800 shadow-sm">
+<span class="material-symbols-outlined text-3xl text-blue-500">flight</span>
+</div>
+<span class="font-semibold text-xs text-center text-[#616f89] dark:text-[#9aa2b1]">UAV Feed</span>
+</div>
+<!-- Labels for Flow -->
+<div class="absolute top-[35%] left-[22%] bg-white dark:bg-[#1a202c] px-2 py-1 text-[10px] font-medium text-[#616f89] border border-[#dbdfe6] dark:border-[#4a5568] rounded shadow-sm rotate-[-5deg]">
+                            Visual Input
+                        </div>
+<div class="absolute top-[35%] right-[22%] bg-white dark:bg-[#1a202c] px-2 py-1 text-[10px] font-medium text-[#616f89] border border-[#dbdfe6] dark:border-[#4a5568] rounded shadow-sm rotate-[5deg]">
+                            Telemetry
+                        </div>
+</div>
+<div class="absolute bottom-4 right-4 text-xs text-[#9aa2b1] italic">
+                        Figure 1: Experimental Setup Diagram
+                    </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Controls -->
+<footer class="sticky bottom-0 z-50 w-full bg-white dark:bg-background-dark border-t border-[#f0f2f4] dark:border-[#2a303b] py-3 px-6 lg:px-10">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<button class="flex items-center gap-2 text-[#616f89] dark:text-[#9aa2b1] hover:text-primary transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined">arrow_back</span>
+<span class="text-sm font-semibold">Previous Slide</span>
+</button>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-[#dbdfe6] dark:bg-[#4a5568]"></div>
+<div class="w-2 h-2 rounded-full bg-[#dbdfe6] dark:bg-[#4a5568]"></div>
+<div class="w-2 h-2 rounded-full bg-[#dbdfe6] dark:bg-[#4a5568]"></div>
+<div class="w-2 h-2 rounded-full bg-[#dbdfe6] dark:bg-[#4a5568]"></div>
+<div class="w-6 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-[#dbdfe6] dark:bg-[#4a5568]"></div>
+<div class="w-2 h-2 rounded-full bg-[#dbdfe6] dark:bg-[#4a5568]"></div>
+</div>
+<a href="./insights.html" class="flex items-center gap-2 text-[#111318] dark:text-white hover:text-primary transition-colors">
+<span class="text-sm font-semibold">Next Slide</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</footer>
+<script>
+    fetch("./components/header.html")
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("header-container").innerHTML = html;
+
+            // Load slide-nav.js AFTER header is injected
+            const script = document.createElement("script");
+            script.src = "./slide-nav.js";
+            document.body.appendChild(script);
+        });
+</script>
+</body></html>

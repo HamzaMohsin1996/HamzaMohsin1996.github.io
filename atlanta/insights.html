@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PhD Interview Presentation - Slide 6</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#135bec",
+          "background-light": "#f6f6f8",
+          "background-dark": "#101622",
+        },
+        fontFamily: {
+          "display": ["Inter", "sans-serif"]
+        },
+        borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+      },
+    },
+  }
+</script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-200">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- TopNavBar -->
+<div id="header-container"></div>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto w-full flex justify-center p-4 md:p-8 lg:p-12">
+<div class="w-full max-w-7xl flex flex-col gap-8 h-full">
+<!-- Page Heading -->
+<div class="flex flex-col gap-2 border-b border-slate-200 dark:border-slate-700 pb-6">
+<div class="flex items-center gap-3 text-primary font-bold tracking-wider uppercase text-sm">
+<span class="w-8 h-[2px] bg-primary"></span>
+<span>Thesis Overview</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+            Thesis: Insights &amp; Skills Gained
+          </h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl">
+            A comprehensive look at preliminary findings on cognitive workload and the methodological toolkit developed throughout the research process.
+          </p>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full items-start">
+<!-- LEFT COLUMN: Insights (Chart) -->
+<div class="lg:col-span-5 flex flex-col gap-6 h-full">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 md:p-8 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col gap-6 h-full">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary text-3xl">analytics</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white leading-tight">Expected Outcomes</h2>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-slate-600 dark:text-slate-300 font-medium text-lg">Workload &amp; Re-engagement</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                   Preliminary data indicates a significant positive impact on operator performance during handover scenarios.
+                 </p>
+</div>
+<!-- Chart Visualization -->
+<div class="flex-1 flex flex-col justify-end gap-6 bg-background-light dark:bg-slate-900/50 rounded-lg p-6 relative overflow-hidden group">
+<!-- Background Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between px-6 py-6 pointer-events-none opacity-20">
+<div class="w-full h-px bg-slate-400 border-dashed"></div>
+<div class="w-full h-px bg-slate-400 border-dashed"></div>
+<div class="w-full h-px bg-slate-400 border-dashed"></div>
+<div class="w-full h-px bg-slate-400 border-dashed"></div>
+</div>
+<div class="flex items-end justify-around gap-4 z-10 h-64">
+<!-- Bar 1 -->
+<div class="flex flex-col items-center gap-3 group w-full max-w-[100px]">
+<span class="text-slate-500 dark:text-slate-400 font-bold text-sm bg-white dark:bg-slate-800 px-2 py-1 rounded shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">High</span>
+<div class="w-full bg-slate-300 dark:bg-slate-600 rounded-t-lg relative h-48 transition-all duration-500 hover:bg-slate-400"></div>
+<span class="text-slate-600 dark:text-slate-300 font-bold text-sm text-center">Standard<br/>Interface</span>
+</div>
+<!-- Bar 2 (Optimized) -->
+<div class="flex flex-col items-center gap-3 w-full max-w-[100px]">
+<div class="flex items-center gap-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-2 py-1 rounded-full text-xs font-bold shadow-sm animate-bounce">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+                        30%
+                      </div>
+<div class="w-full bg-primary rounded-t-lg relative h-32 transition-all duration-500 shadow-lg shadow-primary/20"></div>
+<span class="text-slate-900 dark:text-white font-bold text-sm text-center">Optimized<br/>Interface</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm border border-slate-100 dark:border-slate-700 mt-4">
+<h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Key Insight</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Cognitive load reduced by ~30% in high-stress tasks, suggesting improved re-engagement capabilities.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Skills Grid -->
+<div class="lg:col-span-7 flex flex-col h-full gap-6">
+<div class="flex flex-col gap-2 mb-2">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Methodological Competencies</h2>
+<p class="text-slate-500 dark:text-slate-400">Core skills acquired and refined throughout the doctoral research process.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-fr">
+<!-- Skill Card 1 -->
+<div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col gap-4">
+<div class="size-12 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">science</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Experiment Design</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Rigorous validation of XR protocols and controlled environment setup for reproducibility.</p>
+</div>
+</div>
+<!-- Skill Card 2 -->
+<div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col gap-4">
+<div class="size-12 rounded-lg bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">assignment</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Data Collection</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Gathering complex datasets including biometric readings and psychometric survey responses.</p>
+</div>
+</div>
+<!-- Skill Card 3 -->
+<div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col gap-4">
+<div class="size-12 rounded-lg bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">query_stats</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Mixed Methods Analysis</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Synthesizing quantitative performance metrics with qualitative user feedback for holistic insights.</p>
+</div>
+</div>
+<!-- Skill Card 4 -->
+<div class="group bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col gap-4">
+<div class="size-12 rounded-lg bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">settings_suggest</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Interface Design</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Development of high-load, safety-critical systems with a focus on human factors.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Progress -->
+<div class="w-full bg-background-light dark:bg-background-dark h-1.5 fixed bottom-0 left-0">
+<div class="h-full bg-primary w-[45%] rounded-r-full"></div>
+</div>
+</div>
+<script>
+    fetch("./components/header.html")
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("header-container").innerHTML = html;
+
+            // Load slide-nav.js AFTER header is injected
+            const script = document.createElement("script");
+            script.src = "./slide-nav.js";
+            document.body.appendChild(script);
+        });
+</script>
+</body></html>
