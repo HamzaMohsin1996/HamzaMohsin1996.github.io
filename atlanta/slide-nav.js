@@ -2,12 +2,12 @@
 const slides = [
     "index.html",
     "background.html",
-    "core-motivation.html",
+    "key-projects.html",
+    "skills.html",
     "thesis-problem.html",
     "thesismethods.html",
     "insights.html",
-    "key-projects.html",
-    "skills.html",
+    "core-motivation.html",
     "future.html",
     "fitwithteam.html",
 ];
