@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     { title: "Fog Interface", file: "fog-interface.html" },
     { title: "Fog Challenges", file: "fog-challenges.html" },   // ✅ ADD THIS
-  
+    { title: "Fog Results", file: "fog-results.html" },  
     { title: "Methods Matrix", file: "technicalProjects.html" }
   ];
   

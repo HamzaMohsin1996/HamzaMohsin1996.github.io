@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fog Interface – Results | Hamza Mohsin</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#136986",
+            bg: "#f8fafc"
+          },
+          fontFamily: {
+            display: ["Manrope", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-bg font-display text-slate-900 overflow-hidden">
+
+  <!-- REQUIRED -->
+  <div id="presentation-shell"></div>
+
+  <!-- SLIDE CONTENT -->
+  <main class="p-10 lg:p-14">
+
+    <div class="max-w-6xl mx-auto space-y-10">
+
+      <!-- HEADER -->
+      <section class="border-l-4 border-primary pl-8 space-y-2">
+        <span class="text-[10px] font-black uppercase tracking-widest text-primary">
+          Project 3 · Automotive HCI
+        </span>
+        <h1 class="text-4xl font-extrabold uppercase tracking-tight">
+          Fog Interface — Results
+        </h1>
+      </section>
+
+      <!-- KEY RESULT -->
+      <section class="bg-primary/5 border border-primary/20 rounded-xl p-6">
+        <p class="text-xs font-black uppercase tracking-widest text-primary mb-2">
+          Key Result
+        </p>
+        <p class="text-sm text-slate-700 leading-relaxed max-w-4xl">
+          Drivers using visual distance cues showed <strong>behavioral trends toward faster
+          reactions</strong>, but the difference between conditions was
+          <strong>not statistically significant</strong>
+          (<em>t-test = 0.16</em>).
+        </p>
+      </section>
+
+      <!-- INTERFACE COMPARISON -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- WITH VISUAL -->
+        <div class="space-y-3">
+          <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+            With Visual Distance Cues
+          </p>
+          <div class="bg-white border rounded-xl overflow-hidden shadow-sm">
+            <img
+              src="./images/withvisuals.png"
+              alt="Fog interface with visual distance cues"
+              class="w-full h-64 object-cover"
+            />
+          </div>
+          <p class="text-xs text-slate-500">
+            Abstract bars and vehicle icon communicated relative distance
+            without numeric precision.
+          </p>
+        </div>
+
+        <!-- WITHOUT VISUAL -->
+        <div class="space-y-3">
+          <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+            Without Visual Cues
+          </p>
+          <div class="bg-white border rounded-xl overflow-hidden shadow-sm">
+            <img
+              src="./images/withoutvisuals.png"
+              alt="Fog scenario without visual distance cues"
+              class="w-full h-64 object-cover"
+            />
+          </div>
+          <p class="text-xs text-slate-500">
+            Baseline condition relying solely on degraded visual perception
+            in fog.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- METHODS SNAPSHOT -->
+      <section class="grid grid-cols-2 lg:grid-cols-5 gap-4 pt-4">
+
+        <div class="bg-slate-50 border rounded-xl p-4">
+          <p class="text-[10px] uppercase font-black text-slate-400">Design</p>
+          <p class="font-extrabold text-sm">Between-group</p>
+        </div>
+
+        <div class="bg-slate-50 border rounded-xl p-4">
+          <p class="text-[10px] uppercase font-black text-slate-400">Participants</p>
+          <p class="font-extrabold text-sm">N = 18</p>
+        </div>
+
+        <div class="bg-slate-50 border rounded-xl p-4">
+          <p class="text-[10px] uppercase font-black text-slate-400">Environment</p>
+          <p class="font-extrabold text-sm">Lab simulation</p>
+        </div>
+
+        <div class="bg-slate-50 border rounded-xl p-4">
+          <p class="text-[10px] uppercase font-black text-slate-400">Metrics</p>
+          <p class="font-extrabold text-sm">RT, errors</p>
+        </div>
+
+        <div class="bg-slate-50 border rounded-xl p-4">
+          <p class="text-[10px] uppercase font-black text-slate-400">UX</p>
+          <p class="font-extrabold text-sm">UEQ</p>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <script src="./presentation.js"></script>
+</body>
+</html>
