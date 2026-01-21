@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fog Interface – Challenges & Decisions | Hamza Mohsin</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#136986",
+            backgroundLight: "#f8fafc",
+            borderSubtle: "#e2e8f0",
+            accentGreen: "#8AB32E",
+            accentRed: "#e73508"
+          },
+          fontFamily: { display: ["Manrope", "sans-serif"] }
+        }
+      }
+    }
+    </script>
+</head>
+
+<body class="bg-[#f8fafc] font-display overflow-hidden">
+<div id="presentation-shell"></div>
+
+<main class="p-10 lg:p-14">
+  <div class="max-w-5xl mx-auto space-y-12">
+
+    <!-- HEADER -->
+    <section>
+      <span class="text-[10px] font-black uppercase tracking-widest text-primary">
+        Design Reflection
+      </span>
+      <h1 class="text-4xl font-extrabold uppercase tracking-tight mt-2">
+        Fog Interface — Challenges & Decisions
+      </h1>
+    </section>
+
+    <!-- FLOW -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- CHALLENGE -->
+      <div class="bg-white border rounded-xl p-6 shadow-sm">
+        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+          Challenge
+        </h3>
+        <p class="text-sm text-slate-600">
+          Fog removes reliable depth perception.
+          Visual clutter or over-precise graphics risk distracting drivers
+          in already stressful conditions.
+        </p>
+      </div>
+
+      <!-- DESIGN DECISION -->
+      <div class="bg-primary text-white rounded-xl p-6 shadow-lg">
+        <h3 class="text-xs font-black uppercase tracking-widest text-white/70 mb-2">
+          Design Decision
+        </h3>
+        <p class="text-sm text-white/90">
+          Use <strong>abstract distance bars</strong> and a
+          <strong>vehicle-centric icon</strong>
+          instead of numeric distances to reduce cognitive load.
+        </p>
+      </div>
+
+      <!-- EVALUATION INSIGHT -->
+      <div class="bg-white border rounded-xl p-6 shadow-sm">
+        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+          Evaluation Insight
+        </h3>
+        <p class="text-sm text-slate-600">
+          Non-significant statistics highlighted limitations of
+          sample size and lab realism,
+          not necessarily interface usefulness.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- LESSONS -->
+    <section class="bg-slate-50 border rounded-xl p-6">
+      <h3 class="text-sm font-black uppercase tracking-widest mb-3">
+        Lessons Learned
+      </h3>
+      <ul class="list-disc list-inside text-sm text-slate-600 space-y-2">
+        <li>Interface design can be valuable even without statistical significance.</li>
+        <li>Fog requires abstraction, not precision.</li>
+        <li>Future studies need real driving contexts and larger samples.</li>
+      </ul>
+    </section>
+
+  </div>
+</main>
+
+<script src="./presentation.js"></script>
+</body>
+</html>

@@ -4,17 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const slides = [
     { title: "Title Slide", file: "index.html" },
+  
     { title: "UAV Overview", file: "project1.html", confidential: true },
     { title: "UAV RQs", file: "uavRQ.html", confidential: true },
     { title: "UAV Methods", file: "uavMethodology.html", confidential: true },
     { title: "UAV Results", file: "uavresults.html", confidential: true },
     { title: "UAV Challenges", file: "uavchallanges.html", confidential: true },
+  
     { title: "Teleop Overview", file: "teleop.html" },
     { title: "Teleop Challenges", file: "teleop-challenges.html" },
     { title: "Teleop Results", file: "teleop-results.html" },
+  
     { title: "Fog Interface", file: "fog-interface.html" },
+    { title: "Fog Challenges", file: "fog-challenges.html" },   // ✅ ADD THIS
+  
     { title: "Methods Matrix", file: "technicalProjects.html" }
   ];
+  
 
   // =========================
   // CURRENT SLIDE DETECTION

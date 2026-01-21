@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" >
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fog Interface Project - Hamza Mohsin</title>
+  <title>Fog Interface – Research Overview | Hamza Mohsin</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       darkMode: "class",
@@ -20,204 +16,114 @@
         extend: {
           colors: {
             primary: "#136986",
-            "background-light": "#f9fafb",
-            "background-dark": "#1a1c21",
-            "scientific-green": "#8AB32E",
-            "scientific-yellow": "#F2D136",
-            "scientific-red": "#E13A3A"
+            backgroundLight: "#f8fafc",
+            borderSubtle: "#e2e8f0",
+            accentGreen: "#8AB32E",
+            accentRed: "#e73508"
           },
-          fontFamily: {
-            display: ["Manrope", "sans-serif"]
-          },
-          borderRadius: {
-            DEFAULT: "0.25rem",
-            lg: "0.5rem",
-            xl: "0.75rem",
-            full: "9999px"
-          }
+          fontFamily: { display: ["Manrope", "sans-serif"] }
         }
       }
-    };
-  </script>
-
-  <!-- Shared Presentation Engine -->
-  <script src="presentation.js" defer></script>
-
-  <style>
-    body {
-      font-family: "Manrope", sans-serif;
     }
-    .fog-gradient {
-      background: linear-gradient(180deg, #e5e7eb 0%, #ffffff 100%);
-    }
-  </style>
+    </script>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display text-[#111617] dark:text-gray-100 antialiased">
+<body class="bg-bg font-display text-slate-900 overflow-hidden">
+<div id="presentation-shell"></div>
 
-  <!-- REQUIRED: presentation.js injects layout here -->
-  <div id="presentation-shell"></div>
+<main class="p-10 lg:p-14">
+  <div class="max-w-6xl mx-auto space-y-12">
 
-  <!-- ========================= -->
-  <!-- SLIDE CONTENT (ONLY MAIN) -->
-  <!-- ========================= -->
-  <main class="flex-1 overflow-y-auto p-8 lg:p-12">
+    <!-- HEADER -->
+    <section class="border-l-4 border-primary pl-8 space-y-3">
+      <span class="text-[10px] font-black uppercase tracking-widest text-primary">
+        Project 3 · Automotive HCI
+      </span>
+      <h1 class="text-5xl font-extrabold uppercase tracking-tight">
+        Fog Distance Perception Interface
+      </h1>
+      <p class="text-lg text-slate-600 max-w-3xl">
+        Enhancing driver distance perception in foggy conditions using
+        <strong>dynamic visual cues</strong> when natural visibility breaks down.
+      </p>
+    </section>
 
-    <div class="max-w-5xl mx-auto">
+    <!-- STORY GRID -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-      <!-- TITLE -->
-      <div class="mb-12">
-        <h4 class="text-primary font-bold text-sm tracking-[0.2em] uppercase mb-2">
-          Portfolio Presentation
-        </h4>
-        <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4">
-          PROJECT 3 — FOG INTERFACE
-        </h1>
-        <div class="h-1.5 w-24 bg-primary"></div>
+      <!-- PROBLEM -->
+      <div class="bg-white border rounded-xl p-6 shadow-sm">
+        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">
+          Problem
+        </h3>
+        <p class="text-sm text-slate-600">
+          In foggy conditions, drivers lose reliable depth cues.
+          Existing dashboards do not compensate for reduced distance perception,
+          increasing accident risk.
+        </p>
       </div>
 
-      <!-- MAIN GRID -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
-        <!-- ANALYSIS COLUMN -->
-        <div class="lg:col-span-5 space-y-8">
-
-          <div class="bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm relative">
-            <div class="absolute top-0 right-0 w-1 h-full bg-primary/20"></div>
-
-            <h3 class="text-primary font-bold text-lg mb-6 flex items-center gap-2">
-              <span class="material-symbols-outlined">visibility_off</span>
-              Fog Distance Perception
-            </h3>
-
-            <div class="space-y-10">
-
-              <div>
-                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-primary/10 rounded text-primary">
-                  Problem
-                </span>
-                <p class="mt-3 text-lg font-medium leading-relaxed text-gray-700 dark:text-gray-300">
-                  Severe <span class="text-scientific-red font-bold underline">distance cue loss</span> in low-visibility environments causes spatial disorientation.
-                </p>
-              </div>
-
-              <div>
-                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-scientific-green/10 rounded text-scientific-green">
-                  Solution
-                </span>
-                <p class="mt-3 text-lg font-medium leading-relaxed text-gray-700 dark:text-gray-300">
-                  Augmented <span class="text-primary font-bold">dynamic visual bars</span> transitioning from green to red based on obstacle proximity.
-                </p>
-              </div>
-
-              <div class="pt-6 border-t border-gray-100 dark:border-gray-800 flex items-center gap-4">
-                <div class="size-12 rounded-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-primary">terminal</span>
-                </div>
-                <div>
-                  <p class="text-xs font-bold uppercase tracking-wider text-gray-400">
-                    Implementation
-                  </p>
-                  <p class="text-sm font-semibold">
-                    HTML / JS Prototype Engine
-                  </p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <!-- META -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
-                Methodology
-              </p>
-              <p class="text-sm font-bold">
-                Quantitative HCI
-              </p>
-            </div>
-            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
-                Status
-              </p>
-              <p class="text-sm font-bold text-scientific-green">
-                Functional Prototype
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- VISUALIZATION COLUMN -->
-        <div class="lg:col-span-7">
-
-          <div class="bg-[#111617] rounded-xl overflow-hidden shadow-2xl border-4 border-gray-800">
-
-            <!-- SIM HEADER -->
-            <div class="bg-gray-800/50 px-6 py-4 flex justify-between border-b border-gray-700">
-              <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
-                Prototype_Simulation_v3.2
-              </span>
-              <span class="text-[10px] font-mono text-scientific-green animate-pulse">
-                ● LIVE_FEED
-              </span>
-            </div>
-
-            <!-- SIM VIEW -->
-            <div class="aspect-video relative bg-slate-900 overflow-hidden">
-
-              <div class="absolute inset-0 opacity-60 mix-blend-screen pointer-events-none"
-                   style="background-image: radial-gradient(circle at center, transparent 0%, #334155 100%);">
-              </div>
-
-              <div class="absolute inset-0 flex items-center justify-center p-12">
-                <div class="w-full flex items-end gap-2 h-64">
-                  <div class="flex-1 bg-scientific-green h-[30%]"></div>
-                  <div class="flex-1 bg-scientific-yellow h-[60%]"></div>
-                  <div class="flex-1 bg-scientific-red h-[90%]"></div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          <p class="mt-4 text-xs text-gray-500 italic text-center">
-            Fig. Real-time spatial feedback encoding obstacle proximity in fog.
-          </p>
-
-        </div>
-
+      <!-- RESEARCH QUESTION -->
+      <div class="bg-white border rounded-xl p-6 shadow-sm">
+        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">
+          Research Question
+        </h3>
+        <p class="text-sm text-slate-600">
+          How can <strong>visual distance cues</strong> in automotive interfaces
+          improve driver understanding of surrounding vehicles in fog?
+        </p>
       </div>
 
-      <!-- FOOTNOTES -->
-      <div class="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between gap-6">
-
-        <div>
-          <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
-            Key Research Question
-          </p>
-          <p class="text-sm font-semibold italic">
-            “Can chroma-encoded cues compensate for contrast reduction?”
-          </p>
-        </div>
-
-        <div>
-          <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
-            Technical Stack
-          </p>
-          <div class="flex gap-2">
-            <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">D3.js</span>
-            <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">WebGL</span>
-            <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">LiDAR API</span>
-          </div>
-        </div>
-
+      <!-- APPROACH -->
+      <div class="bg-white border rounded-xl p-6 shadow-sm">
+        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">
+          Approach
+        </h3>
+        <p class="text-sm text-slate-600">
+          A controlled lab study comparing
+          <strong>driving with</strong> and <strong>without</strong> visual distance cues
+          using simulated fog scenarios.
+        </p>
       </div>
 
-    </div>
-  </main>
+    </section>
 
+    <!-- STUDY SNAPSHOT -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-slate-50 border rounded-xl p-4">
+        <p class="text-[10px] uppercase font-black text-slate-400">Participants</p>
+        <p class="font-extrabold">N = 18</p>
+      </div>
+      <div class="bg-slate-50 border rounded-xl p-4">
+        <p class="text-[10px] uppercase font-black text-slate-400">Conditions</p>
+        <p class="font-extrabold">Visual vs No Visual</p>
+      </div>
+      <div class="bg-slate-50 border rounded-xl p-4">
+        <p class="text-[10px] uppercase font-black text-slate-400">Tasks</p>
+        <p class="font-extrabold">Emergency scenarios</p>
+      </div>
+      <div class="bg-slate-50 border rounded-xl p-4">
+        <p class="text-[10px] uppercase font-black text-slate-400">Metrics</p>
+        <p class="font-extrabold">RT, Errors, UEQ</p>
+      </div>
+    </section>
+
+    <!-- HONEST OUTCOME -->
+    <section class="bg-primary/5 border border-primary/20 rounded-xl p-6">
+      <h3 class="text-sm font-black uppercase tracking-widest text-primary mb-2">
+        Key Outcome
+      </h3>
+      <p class="text-sm text-slate-700">
+        While visual cues showed promising behavioral trends,
+        the statistical analysis did <strong>not reach significance</strong>
+        (t-test = 0.16).  
+        The work contributes design insights rather than performance guarantees.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<script src="./presentation.js"></script>
 </body>
 </html>
