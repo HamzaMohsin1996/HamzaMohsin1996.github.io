@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   // =========================
-  // SLIDES CONFIG (EDIT ONLY THIS)
+  // SLIDES CONFIG
   // =========================
   const slides = [
     { title: "Title Slide", file: "index.html" },
-    { title: "UAV Overview", file: "project1.html" },
-    { title: "UAV RQs", file: "uavRQ.html" },
-    { title: "UAV Methods", file: "uavMethodology.html" },
-    { title: "UAV Results", file: "uavresults.html" },
-    { title: "UAV Challenges", file: "uavchallanges.html" },
+    { title: "UAV Overview", file: "project1.html", confidential: true },
+    { title: "UAV RQs", file: "uavRQ.html", confidential: true },
+    { title: "UAV Methods", file: "uavMethodology.html", confidential: true },
+    { title: "UAV Results", file: "uavresults.html", confidential: true },
+    { title: "UAV Challenges", file: "uavchallanges.html", confidential: true },
     { title: "Teleop Overview", file: "teleop.html" },
+    { title: "Teleop Challenges", file: "teleop-challenges.html" },
     { title: "Teleop Results", file: "teleop-results.html" },
     { title: "Fog Interface", file: "fog-interface.html" },
     { title: "Methods Matrix", file: "technicalProjects.html" }
@@ -18,9 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // CURRENT SLIDE DETECTION
   // =========================
-  const currentFile = (location.pathname.split("/").pop() || "index.html").split("?")[0];
+  const currentFile =
+    (location.pathname.split("/").pop() || "index.html").split("?")[0];
+
   const currentIndex = slides.findIndex(s => s.file === currentFile);
   const safeIndex = currentIndex >= 0 ? currentIndex : 0;
+
+  const isConfidential = slides[safeIndex]?.confidential === true;
 
   // =========================
   // SHELL TARGET
@@ -32,34 +37,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =========================
-  // INJECT GLOBAL LAYOUT
+  // GLOBAL LAYOUT
   // =========================
   shell.innerHTML = `
-    <div class="flex flex-1 overflow-hidden min-h-screen">
+    <div class="flex flex-1 overflow-hidden min-h-screen ${isConfidential ? "confidential-watermark" : ""}">
 
       <!-- SIDEBAR -->
       <aside class="w-64 shrink-0 bg-sidebar-bg dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
         <div class="p-4 border-b border-slate-200 dark:border-slate-800">
-          <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">Slides</p>
+          <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+            Slides
+          </p>
         </div>
 
         <nav class="flex-1 overflow-y-auto p-3 space-y-1">
           ${slides.map((s, i) => `
             <a href="${s.file}"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all
-               ${i === safeIndex
-                 ? "bg-primary text-white shadow-md shadow-primary/20 font-semibold"
-                 : "text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary"}">
+              class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all
+              ${i === safeIndex
+                ? "bg-primary text-white shadow-md shadow-primary/20 font-semibold"
+                : "text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary"}">
               <span class="material-symbols-outlined text-sm">
                 ${i === safeIndex ? "radio_button_checked" : "chevron_right"}
               </span>
               <span>${s.title}</span>
+              ${s.confidential ? `<span class="ml-auto text-[9px] bg-red-600 text-white px-2 py-0.5 rounded font-black uppercase">Conf.</span>` : ""}
             </a>
           `).join("")}
         </nav>
       </aside>
 
-      <!-- CONTENT + FOOTER STACK -->
+      <!-- CONTENT + FOOTER -->
       <div class="flex-1 flex flex-col overflow-hidden">
 
         <!-- CONTENT SLOT -->
@@ -89,6 +97,16 @@ document.addEventListener("DOMContentLoaded", () => {
             </button>
           </div>
 
+          ${
+            isConfidential
+              ? `<div class="text-[10px] font-black uppercase tracking-widest text-red-600">
+                   Confidential · Unpublished Master’s Thesis · Do Not Distribute
+                 </div>`
+              : `<div class="text-[10px] font-black uppercase tracking-widest text-slate-300">
+                   Public Presentation
+                 </div>`
+          }
+
           <div class="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">
             Slide ${safeIndex + 1} / ${slides.length}
           </div>
@@ -99,82 +117,71 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
 
   // =========================
-  // MOVE SLIDE'S MAIN INTO SLOT
-  // IMPORTANT: pick the slide <main>, NOT the injected slot <main>
+  // MOVE SLIDE CONTENT
   // =========================
   const slideMain = document.querySelector("main:not(#slide-content)");
   const slot = document.getElementById("slide-content");
 
-  if (!slideMain) {
-    console.warn("[presentation.js] No slide <main> found. Each slide must contain exactly one <main>.");
-    return;
-  }
-  if (!slot) {
-    console.warn("[presentation.js] Missing #slide-content slot.");
+  if (!slideMain || !slot) {
+    console.warn("[presentation.js] Slide <main> or slot missing.");
     return;
   }
 
-  // Move the slide <main> content into the slot
   slot.appendChild(slideMain);
 
-  // OPTIONAL: remove extra padding/bg from slide main if you want the global layout to control it
-  // slideMain.classList.remove("flex-1");
-
   // =========================
-  // NAVIGATION HELPERS
+  // NAVIGATION
   // =========================
   const goTo = (idx) => {
     if (idx < 0 || idx >= slides.length) return;
     location.href = slides[idx].file;
   };
 
-  // =========================
-  // FOOTER BUTTONS
-  // =========================
-  const prevBtn = document.getElementById("prev-slide");
-  const nextBtn = document.getElementById("next-slide");
+  document.getElementById("prev-slide")?.addEventListener("click", () => {
+    goTo(safeIndex - 1);
+  });
 
-  if (prevBtn && safeIndex > 0) prevBtn.addEventListener("click", () => goTo(safeIndex - 1));
-  if (nextBtn && safeIndex < slides.length - 1) nextBtn.addEventListener("click", () => goTo(safeIndex + 1));
+  document.getElementById("next-slide")?.addEventListener("click", () => {
+    goTo(safeIndex + 1);
+  });
 
   // =========================
-  // KEYBOARD NAV (ignore typing in inputs)
+  // KEYBOARD NAVIGATION (PRESENTATION MODE)
   // =========================
   document.addEventListener("keydown", (e) => {
-    const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : "";
-    if (tag === "input" || tag === "textarea" || tag === "select") return;
+    const tag = e.target?.tagName?.toLowerCase();
+    if (["input", "textarea", "select"].includes(tag)) return;
 
-    if (e.key === "ArrowLeft") goTo(safeIndex - 1);
-    if (e.key === "ArrowRight") goTo(safeIndex + 1);
+    if (["ArrowLeft", "ArrowRight", " ", "Enter"].includes(e.key)) {
+      e.preventDefault();
+    }
+
+    if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") {
+      goTo(safeIndex + 1);
+    }
+
+    if (e.key === "ArrowLeft") {
+      goTo(safeIndex - 1);
+    }
   });
 });
-// =========================
-// KEYBOARD NAV (PRESENTATION MODE)
-// =========================
-document.addEventListener("keydown", (e) => {
-  // Ignore typing in form elements
-  const tag = e.target?.tagName?.toLowerCase();
-  if (["input", "textarea", "select"].includes(tag)) return;
 
-  // Prevent browser scrolling / navigation
-  if (
-    e.key === "ArrowLeft" ||
-    e.key === "ArrowRight" ||
-    e.key === " " ||
-    e.key === "Enter"
-  ) {
-    e.preventDefault();
+/* =========================
+   CONFIDENTIAL WATERMARK
+   ========================= */
+const style = document.createElement("style");
+style.innerHTML = `
+  .confidential-watermark::after {
+    content: "CONFIDENTIAL · UNPUBLISHED MASTER’S THESIS";
+    position: fixed;
+    bottom: 22px;
+    right: 28px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.18);
+    pointer-events: none;
+    z-index: 9999;
   }
-
-  switch (e.key) {
-    case "ArrowRight":
-    case " ":
-    case "Enter":
-      goTo(safeIndex + 1);
-      break;
-
-    case "ArrowLeft":
-      goTo(safeIndex - 1);
-      break;
-  }
-});
+`;
+document.head.appendChild(style);

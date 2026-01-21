@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UAV – Challenges & Decisions | Master Thesis</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#136986",
+            "background-light": "#f8fafc",
+            "background-dark": "#0f172a"
+          },
+          fontFamily: {
+            display: ["Manrope", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body { font-family: "Manrope", sans-serif; }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark antialiased overflow-hidden">
+
+  <!-- REQUIRED: presentation shell -->
+  <div id="presentation-shell"></div>
+
+  <!-- ========================= -->
+  <!-- SLIDE CONTENT ONLY -->
+  <!-- ========================= -->
+  <main class="flex-1 overflow-y-auto p-10 lg:p-14">
+
+    <div class="max-w-6xl mx-auto space-y-12">
+
+      <!-- HEADER -->
+      <header class="border-l-4 border-primary pl-8 space-y-3">
+        <div class="flex items-center gap-3">
+          <span class="px-2 py-0.5 rounded bg-primary text-white text-[10px] font-black uppercase tracking-wider">
+            Master’s Thesis
+          </span>
+          <span class="px-2 py-0.5 rounded border border-slate-300 text-slate-500 text-[9px] font-black uppercase tracking-widest">
+            Confidential
+          </span>
+        </div>
+
+        <h1 class="text-5xl font-extrabold tracking-tight leading-none text-slate-900 dark:text-white uppercase">
+          UAV — Challenges & Decisions
+        </h1>
+
+        <p class="text-slate-600 dark:text-slate-400 text-xl font-medium max-w-3xl">
+          Key constraints encountered during the design and evaluation of the UAV-based dispatcher interface,
+          and the rationale behind critical design and methodological decisions.
+        </p>
+      </header>
+
+      <!-- CONTENT GRID -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+        <!-- CHALLENGES -->
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-primary text-2xl">warning</span>
+            <h2 class="text-lg font-bold uppercase tracking-wide text-slate-900 dark:text-white">
+              Key Challenges
+            </h2>
+          </div>
+
+          <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            <li>
+              • Dispatchers operate under <strong>frequent interruptions</strong>, requiring rapid re-engagement with incident information.
+            </li>
+            <li>
+              • Continuous UAV video streams introduced <strong>information overload</strong> rather than improving situational awareness.
+            </li>
+            <li>
+              • Re-engagement after task switching was <strong>not supported</strong> by existing UAV interfaces.
+            </li>
+            <li>
+              • Measuring situational awareness without <strong>disrupting time-critical workflows</strong> posed methodological constraints.
+            </li>
+            <li>
+              • Real emergency control centers could not be used due to <strong>ethical, safety, and availability limitations</strong>.
+            </li>
+          </ul>
+        </div>
+
+        <!-- DECISIONS -->
+        <div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-primary text-2xl">engineering</span>
+            <h2 class="text-lg font-bold uppercase tracking-wide text-slate-900 dark:text-white">
+              Design & Methodological Decisions
+            </h2>
+          </div>
+
+          <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            <li>
+              • Introduced <strong>structured summaries, logs, and timelines</strong> to support rapid re-engagement after interruptions.
+            </li>
+            <li>
+              • Prioritized <strong>abstracted information over raw video</strong> to reduce cognitive load.
+            </li>
+            <li>
+              • Adopted a <strong>within-subjects experimental design</strong> to control for individual differences.
+            </li>
+            <li>
+              • Selected <strong>SPAM</strong> instead of freeze-based methods (e.g., SAGAT) to avoid interrupting dispatcher workflows.
+            </li>
+            <li>
+              • Used a <strong>high-fidelity simulation environment</strong> to balance experimental control with ecological validity.
+            </li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- FOOTER NOTE -->
+      <footer class="pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
+        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">
+          Confidential · Unpublished Master’s Thesis · Internal Review Only
+        </p>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- REQUIRED -->
+  <script src="./presentation.js"></script>
+
+</body>
+</html>

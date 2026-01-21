@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teleoperation Results - HCI Research | Hamza Mohsin</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       darkMode: "class",
@@ -22,157 +19,125 @@
             primary: "#136986",
             "background-light": "#f8fafc",
             "background-dark": "#0f172a",
-            accent: "#0ea5e9"
           },
           fontFamily: {
             display: ["Manrope", "sans-serif"]
-          },
-          borderRadius: {
-            DEFAULT: "0.25rem",
-            lg: "0.5rem",
-            xl: "0.75rem",
-            full: "9999px"
           }
         }
       }
     };
   </script>
 
-  <!-- Shared Presentation Engine -->
   <script src="presentation.js" defer></script>
-
-  <style type="text/tailwindcss">
-    @layer base {
-      body {
-        @apply font-display text-slate-900 dark:text-slate-100 bg-background-light dark:bg-background-dark;
-      }
-    }
-  </style>
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-background-light dark:bg-background-dark">
+<div id="presentation-shell"></div>
 
-  <!-- REQUIRED: presentation.js injects layout here -->
-  <div id="presentation-shell"></div>
+<!-- IMPORTANT: no overflow-y-auto here -->
+<main class="p-8 lg:p-12">
 
-  <!-- ========================= -->
-  <!-- SLIDE CONTENT (ONLY MAIN) -->
-  <!-- ========================= -->
-  <main class="flex-1 overflow-y-auto p-8 lg:p-12">
+<div class="max-w-6xl mx-auto space-y-10">
 
-    <div class="max-w-6xl mx-auto space-y-12">
+<!-- HEADER -->
+<section class="border-l-4 border-primary pl-8 space-y-3">
+  <span class="inline-block text-[10px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded">
+    Quantitative & Qualitative Results
+  </span>
 
-      <!-- TITLE -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-slate-200 dark:border-slate-800">
-        <div class="space-y-4">
-          <div class="inline-flex items-center px-2 py-1 bg-primary/5 text-primary text-[10px] font-black rounded uppercase tracking-[0.2em] border border-primary/10">
-            Result Analysis
-          </div>
+  <h1 class="text-5xl font-extrabold tracking-tight uppercase">
+    Teleoperation – Results
+  </h1>
 
-          <h1 class="text-5xl lg:text-6xl font-black tracking-tighter uppercase">
-            TELEOP – RESULTS
-          </h1>
+  <p class="text-lg text-slate-600 max-w-3xl font-medium">
+    Impact of auditory, audio-to-visual, and combined feedback on response time,
+    errors, and situational awareness during emergency takeover.
+  </p>
+</section>
 
-          <div class="flex items-center gap-3 text-xl font-medium text-slate-600 dark:text-slate-400">
-            <span class="bg-primary/10 px-3 py-1 rounded-md text-primary font-bold">
-              Audio-only RT
-            </span>
-            <span class="material-symbols-outlined">chevron_left</span>
-            <span class="bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-md font-bold">
-              Audio + Visual
-            </span>
-          </div>
-        </div>
+<!-- KEY RESULT -->
+<section class="bg-primary rounded-2xl p-8 text-white shadow-xl">
+  <p class="text-xs font-black uppercase tracking-widest text-sky-200 mb-2">
+    Primary Statistical Outcome
+  </p>
+  <h2 class="text-3xl font-black mb-3">
+    No statistically significant differences observed
+  </h2>
+  <p class="text-sky-100 max-w-3xl font-medium">
+    One-way ANOVA revealed no significant effect of feedback modality on response time
+    (<strong>F = 0.27, p = .76</strong>). However, consistent performance trends emerged
+    across conditions.
+  </p>
+</section>
 
-        <div class="flex flex-col gap-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-          <div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-            <span class="material-symbols-outlined text-sm">terminal</span>
-            Methodology Notes
-          </div>
-          <p class="font-bold italic text-slate-700 dark:text-slate-300">
-            3D simulation + JS high-resolution timing
-          </p>
-        </div>
-      </div>
+<!-- TREND CARDS -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      <!-- KEY FINDING -->
-      <div class="bg-primary rounded-2xl p-8 text-white relative overflow-hidden shadow-xl">
-        <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
-          <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
-            <span class="material-symbols-outlined text-4xl text-sky-200">science</span>
-          </div>
-          <div class="space-y-2">
-            <p class="text-sky-200 text-xs font-black uppercase tracking-[0.2em]">
-              Key Finding
-            </p>
-            <h3 class="text-3xl font-black leading-tight">
-              Modality count does not equal performance
-            </h3>
-            <p class="text-sky-100/80 font-medium max-w-2xl">
-              Multi-modal stimuli increased cognitive load, resulting in slower reaction times compared to isolated auditory cues.
-            </p>
-          </div>
-        </div>
-        <div class="absolute -bottom-10 -right-10 opacity-10">
-          <span class="material-symbols-outlined text-[160px]">insights</span>
-        </div>
-      </div>
+  <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
+    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
+      Audio Only
+    </p>
+    <p class="text-3xl font-black text-primary mb-2">
+      Fastest trend
+    </p>
+    <p class="text-xs text-slate-500">
+      Participants responded more quickly when relying solely on auditory cues,
+      without competing visual information.
+    </p>
+  </div>
 
-      <!-- METRIC CARDS -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
+    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
+      Audio → Visual
+    </p>
+    <p class="text-3xl font-black mb-2">
+      Comparable trend
+    </p>
+    <p class="text-xs text-slate-500">
+      Converting audio cues into visual alerts showed similar response patterns,
+      without measurable performance gains.
+    </p>
+  </div>
 
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-          <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
-            Audio Only
-          </p>
-          <div class="flex items-baseline gap-2">
-            <span class="text-4xl font-black text-primary">245ms</span>
-            <span class="text-emerald-500 text-sm font-bold">Optimal</span>
-          </div>
-          <p class="mt-4 text-xs text-slate-500 font-medium">
-            Fastest reaction via auditory-only pathway.
-          </p>
-        </div>
+  <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
+    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
+      Audio + Visual
+    </p>
+    <p class="text-3xl font-black mb-2">
+      Slower trend
+    </p>
+    <p class="text-xs text-slate-500">
+      Simultaneous multimodal cues increased cognitive demand,
+      often leading to delayed reactions.
+    </p>
+  </div>
 
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-          <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
-            Audio + Visual
-          </p>
-          <div class="flex items-baseline gap-2">
-            <span class="text-4xl font-black">312ms</span>
-            <span class="text-rose-500 text-sm font-bold">+27%</span>
-          </div>
-          <p class="mt-4 text-xs text-slate-500 font-medium">
-            Multi-channel integration overhead.
-          </p>
-        </div>
+</section>
 
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
-          <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
-            Visual Only
-          </p>
-          <div class="flex items-baseline gap-2">
-            <span class="text-4xl font-black">289ms</span>
-            <span class="text-slate-400 text-sm font-bold">Baseline</span>
-          </div>
-          <p class="mt-4 text-xs text-slate-500 font-medium">
-            Standard visual reaction baseline.
-          </p>
-        </div>
+<!-- QUALITATIVE INSIGHTS -->
+<section class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
+  <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">
+    Qualitative Insights (Post-study Interviews)
+  </p>
 
-      </div>
+  <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+    <li>• “Audio alone was enough to understand what was happening.”</li>
+    <li>• “With both audio and visuals, I sometimes didn’t know where to focus.”</li>
+    <li>• Participants reported information overload when multiple cues appeared simultaneously.</li>
+  </ul>
+</section>
 
-      <!-- INTERPRETATION -->
-      <div class="prose prose-slate dark:prose-invert max-w-none">
-        <p>
-          Contrary to common interface design assumptions, increasing sensory modalities does not inherently improve performance.  
-          In this study, <strong>audio-only cues</strong> produced the fastest responses, suggesting that for time-critical teleoperation,
-          visual information may act as a distractor rather than a complement.
-        </p>
-      </div>
+<!-- TAKEAWAY -->
+<section class="flex items-center gap-4 border-t pt-6">
+  <span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+  <p class="text-lg font-semibold text-slate-700 dark:text-slate-200">
+    More information is not always better: <strong>audio-only cues can support faster,
+    clearer decisions in time-critical teleoperation.</strong>
+  </p>
+</section>
 
-    </div>
-  </main>
+</div>
+</main>
 
 </body>
 </html>
