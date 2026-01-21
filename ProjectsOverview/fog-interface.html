@@ -1,259 +1,223 @@
 <!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fog Interface Project - Hamza Mohsin</title>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Fog Interface Project - Hamza Mohsin</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#136986",
-                        "background-light": "#f9fafb",
-                        "background-dark": "#1a1c21",
-                        "scientific-green": "#8AB32E",
-                        "scientific-yellow": "#F2D136",
-                        "scientific-red": "#E13A3A",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#136986",
+            "background-light": "#f9fafb",
+            "background-dark": "#1a1c21",
+            "scientific-green": "#8AB32E",
+            "scientific-yellow": "#F2D136",
+            "scientific-red": "#E13A3A"
+          },
+          fontFamily: {
+            display: ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          }
         }
-    </script>
-        <script src="./presentation.js"></script>
-<style>
-        body {
-            font-family: 'Manrope', sans-serif;
-        }
-        .fog-gradient {
-            background: linear-gradient(180deg, #e5e7eb 0%, #ffffff 100%);
-        }
-    </style>
+      }
+    };
+  </script>
+
+  <!-- Shared Presentation Engine -->
+  <script src="presentation.js" defer></script>
+
+  <style>
+    body {
+      font-family: "Manrope", sans-serif;
+    }
+    .fog-gradient {
+      background: linear-gradient(180deg, #e5e7eb 0%, #ffffff 100%);
+    }
+  </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-[#111617] dark:text-gray-100 transition-colors duration-200">
-<div class="flex min-h-screen">
-<!-- Side Navigation -->
-<div id="presentation-shell"></div>
-<!-- Main Content -->
-<main class="flex-1 flex flex-col min-w-0">
-<!-- Top Header -->
 
-<!-- Scrollable Content -->
-<div class="flex-1 overflow-y-auto p-8 lg:p-12">
-<div class="max-w-5xl mx-auto">
-<!-- Title Section -->
-<div class="mb-12">
-<h4 class="text-primary font-bold text-sm tracking-[0.2em] uppercase mb-2">Portfolio Presentation</h4>
-<h1 class="text-4xl md:text-5xl font-black leading-none tracking-tighter text-[#111617] dark:text-white mb-4">
-                            PROJECT 3 — FOG INTERFACE
-                        </h1>
-<div class="h-1.5 w-24 bg-primary mb-6"></div>
-</div>
-<!-- Main Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-<!-- Analysis Column -->
-<div class="lg:col-span-5 space-y-8">
-<div class="bg-white dark:bg-gray-900 p-8 rounded-xl border border-[#e0e6e9] dark:border-gray-800 shadow-sm relative overflow-hidden group">
-<div class="absolute top-0 right-0 w-1 h-full bg-primary/20 group-hover:bg-primary transition-colors"></div>
-<h3 class="text-primary font-bold text-lg mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined">visibility_off</span>
-                                    Fog Distance Perception
-                                </h3>
-<div class="space-y-10">
-<div>
-<div class="flex items-center gap-2 mb-2">
-<span class="text-[10px] font-bold text-primary uppercase tracking-widest px-2 py-0.5 bg-primary/10 rounded">Problem</span>
-</div>
-<p class="text-lg font-medium leading-relaxed text-gray-700 dark:text-gray-300">
-                                            Significant <span class="text-scientific-red font-bold underline decoration-2">distance cue loss</span> in low-visibility environments leading to spatial disorientation.
-                                        </p>
-</div>
-<div>
-<div class="flex items-center gap-2 mb-2">
-<span class="text-[10px] font-bold text-scientific-green uppercase tracking-widest px-2 py-0.5 bg-scientific-green/10 rounded">Solution</span>
-</div>
-<p class="text-lg font-medium leading-relaxed text-gray-700 dark:text-gray-300">
-                                            Augmented <span class="text-primary font-bold">Dynamic Visual Bars</span> that transition from green to red based on proximity to obstacles.
-                                        </p>
-</div>
-<div class="pt-6 border-t border-gray-100 dark:border-gray-800">
-<div class="flex items-center gap-4">
-<div class="size-12 rounded-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">terminal</span>
-</div>
-<div>
-<p class="text-xs font-bold uppercase tracking-wider text-gray-400">Implementation</p>
-<p class="text-sm font-semibold text-gray-900 dark:text-white">HTML/JS Prototype Engine</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Metadata Grid -->
-<div class="grid grid-cols-2 gap-4">
-<div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-<p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Methodology</p>
-<p class="text-sm font-bold">Quantitative HCI</p>
-</div>
-<div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-<p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Status</p>
-<p class="text-sm font-bold text-scientific-green">Functional Prototype</p>
-</div>
-</div>
-</div>
-<!-- Visualization Column -->
-<div class="lg:col-span-7">
-<div class="bg-[#111617] rounded-xl overflow-hidden relative shadow-2xl border-4 border-gray-800">
-<!-- Simulator Header -->
-<div class="bg-gray-800/50 px-6 py-4 flex items-center justify-between border-b border-gray-700">
-<div class="flex items-center gap-2">
-<div class="flex gap-1.5">
-<div class="size-2.5 rounded-full bg-red-500"></div>
-<div class="size-2.5 rounded-full bg-yellow-500"></div>
-<div class="size-2.5 rounded-full bg-green-500"></div>
-</div>
-<span class="text-[10px] font-mono text-gray-400 ml-4 uppercase tracking-widest">Prototype_Simulation_v3.2</span>
-</div>
-<div class="text-[10px] font-mono text-scientific-green animate-pulse">● LIVE_FEED</div>
-</div>
-<!-- The Visual Simulator Content -->
-<div class="aspect-video relative overflow-hidden bg-slate-900">
-<!-- Fog Effect Overlay -->
-<div class="absolute inset-0 opacity-60 mix-blend-screen pointer-events-none" style="background-image: radial-gradient(circle at center, transparent 0%, #334155 100%);"></div>
-<!-- Background Elements (Abstract Obstacles) -->
-<div class="absolute bottom-0 left-0 right-0 h-32 bg-slate-800/40 transform skew-y-2"></div>
-<!-- Distance Bars UI Layout -->
-<div class="absolute inset-0 flex flex-col justify-center items-center p-12 space-y-3">
-<!-- Distance Indicators (The "Dynamic Bars") -->
-<div class="w-full flex justify-between items-end gap-1.5 h-64">
-<!-- Green (Safe) -->
-<div class="flex-1 bg-scientific-green/20 border border-scientific-green/40 rounded-t-sm flex flex-col justify-end">
-<div class="h-[20%] bg-scientific-green shadow-[0_0_15px_rgba(138,179,46,0.5)]"></div>
-</div>
-<div class="flex-1 bg-scientific-green/20 border border-scientific-green/40 rounded-t-sm flex flex-col justify-end">
-<div class="h-[35%] bg-scientific-green shadow-[0_0_15px_rgba(138,179,46,0.5)]"></div>
-</div>
-<!-- Yellow (Warning) -->
-<div class="flex-1 bg-scientific-yellow/20 border border-scientific-yellow/40 rounded-t-sm flex flex-col justify-end">
-<div class="h-[55%] bg-scientific-yellow shadow-[0_0_15px_rgba(242,209,54,0.5)]"></div>
-</div>
-<div class="flex-1 bg-scientific-yellow/20 border border-scientific-yellow/40 rounded-t-sm flex flex-col justify-end">
-<div class="h-[70%] bg-scientific-yellow shadow-[0_0_15px_rgba(242,209,54,0.5)]"></div>
-</div>
-<!-- Red (Critical) -->
-<div class="flex-1 bg-scientific-red/30 border border-scientific-red/50 rounded-t-sm flex flex-col justify-end">
-<div class="h-[85%] bg-scientific-red shadow-[0_0_20px_rgba(225,58,58,0.6)]"></div>
-</div>
-<div class="flex-2 w-16 bg-scientific-red/30 border border-scientific-red/50 rounded-t-sm flex flex-col justify-end">
-<div class="h-[95%] bg-scientific-red shadow-[0_0_30px_rgba(225,58,58,0.8)]"></div>
-</div>
-<!-- Gradient Symmetry -->
-<div class="flex-1 bg-scientific-red/30 border border-scientific-red/50 rounded-t-sm flex flex-col justify-end">
-<div class="h-[85%] bg-scientific-red"></div>
-</div>
-<div class="flex-1 bg-scientific-yellow/20 border border-scientific-yellow/40 rounded-t-sm flex flex-col justify-end">
-<div class="h-[55%] bg-scientific-yellow"></div>
-</div>
-<div class="flex-1 bg-scientific-green/20 border border-scientific-green/40 rounded-t-sm flex flex-col justify-end">
-<div class="h-[25%] bg-scientific-green"></div>
-</div>
-</div>
-<!-- Distance Values -->
-<div class="w-full flex justify-between px-2 pt-2 text-[10px] font-mono text-gray-500">
-<span>50M</span>
-<span>40M</span>
-<span class="text-scientific-yellow">25M</span>
-<span class="text-scientific-red font-bold">08M (OBSTACLE)</span>
-<span class="text-scientific-yellow">25M</span>
-<span>50M</span>
-</div>
-</div>
-<!-- HUD Overlays -->
-<div class="absolute top-8 left-8 text-white/80 font-mono text-[9px] space-y-1">
-<div class="flex gap-4"><span>LAT: 40.7128° N</span><span>LON: 74.0060° W</span></div>
-<div>SPD: 24.2 KNTS</div>
-<div>VIS: 0.05 NM</div>
-</div>
-<div class="absolute bottom-8 right-8 border border-white/20 p-2 rounded bg-black/40 backdrop-blur-sm">
-<div class="text-[8px] text-gray-400 font-bold tracking-widest uppercase mb-1">Sensor Accuracy</div>
-<div class="h-1 w-24 bg-gray-700 rounded-full overflow-hidden">
-<div class="w-11/12 h-full bg-primary"></div>
-</div>
-</div>
-</div>
-<!-- Simulator Control Panel -->
-<div class="bg-gray-900 px-6 py-6 border-t border-gray-800">
-<div class="flex items-center justify-between gap-6">
-<div class="flex-1 space-y-2">
-<div class="flex justify-between text-[10px] font-bold text-gray-500 uppercase">
-<span>Fog Density Simulation</span>
-<span class="text-white">88%</span>
-</div>
-<div class="h-1.5 w-full bg-gray-800 rounded-full">
-<div class="h-full w-[88%] bg-primary"></div>
-</div>
-</div>
-<div class="flex gap-3">
-<button class="size-10 rounded border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
-<span class="material-symbols-outlined">refresh</span>
-</button>
-<button class="bg-primary text-white px-6 py-2 rounded text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">play_arrow</span>
-                                                Run Test
-                                            </button>
-</div>
-</div>
-</div>
-</div>
-<p class="mt-4 text-xs text-gray-500 italic text-center">
-                                Fig 3.2: Real-time spatial perception feedback loop showing obstacle proximity detected via lidar array.
-                            </p>
-</div>
-</div>
-<!-- Footer Details -->
-<div class="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-<div class="flex gap-12">
-<div>
-<p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Key Research Question</p>
-<p class="text-sm font-semibold italic">"Can chroma-encoded cues compensate for contrast reduction?"</p>
-</div>
-<div>
-<p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Technical Stack</p>
-<div class="flex gap-2">
-<span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">D3.JS</span>
-<span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">WEBGL</span>
-<span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">LIDAR-API</span>
-</div>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Share on</span>
-<div class="flex gap-2">
-<button class="size-8 rounded-full border border-gray-200 dark:border-gray-800 flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800">
-<span class="material-symbols-outlined text-sm">link</span>
-</button>
-<button class="size-8 rounded-full border border-gray-200 dark:border-gray-800 flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-800">
-<span class="material-symbols-outlined text-sm">mail</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-</body></html>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111617] dark:text-gray-100 antialiased">
+
+  <!-- REQUIRED: presentation.js injects layout here -->
+  <div id="presentation-shell"></div>
+
+  <!-- ========================= -->
+  <!-- SLIDE CONTENT (ONLY MAIN) -->
+  <!-- ========================= -->
+  <main class="flex-1 overflow-y-auto p-8 lg:p-12">
+
+    <div class="max-w-5xl mx-auto">
+
+      <!-- TITLE -->
+      <div class="mb-12">
+        <h4 class="text-primary font-bold text-sm tracking-[0.2em] uppercase mb-2">
+          Portfolio Presentation
+        </h4>
+        <h1 class="text-4xl md:text-5xl font-black tracking-tighter mb-4">
+          PROJECT 3 — FOG INTERFACE
+        </h1>
+        <div class="h-1.5 w-24 bg-primary"></div>
+      </div>
+
+      <!-- MAIN GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+        <!-- ANALYSIS COLUMN -->
+        <div class="lg:col-span-5 space-y-8">
+
+          <div class="bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm relative">
+            <div class="absolute top-0 right-0 w-1 h-full bg-primary/20"></div>
+
+            <h3 class="text-primary font-bold text-lg mb-6 flex items-center gap-2">
+              <span class="material-symbols-outlined">visibility_off</span>
+              Fog Distance Perception
+            </h3>
+
+            <div class="space-y-10">
+
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-primary/10 rounded text-primary">
+                  Problem
+                </span>
+                <p class="mt-3 text-lg font-medium leading-relaxed text-gray-700 dark:text-gray-300">
+                  Severe <span class="text-scientific-red font-bold underline">distance cue loss</span> in low-visibility environments causes spatial disorientation.
+                </p>
+              </div>
+
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-scientific-green/10 rounded text-scientific-green">
+                  Solution
+                </span>
+                <p class="mt-3 text-lg font-medium leading-relaxed text-gray-700 dark:text-gray-300">
+                  Augmented <span class="text-primary font-bold">dynamic visual bars</span> transitioning from green to red based on obstacle proximity.
+                </p>
+              </div>
+
+              <div class="pt-6 border-t border-gray-100 dark:border-gray-800 flex items-center gap-4">
+                <div class="size-12 rounded-lg bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-primary">terminal</span>
+                </div>
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-wider text-gray-400">
+                    Implementation
+                  </p>
+                  <p class="text-sm font-semibold">
+                    HTML / JS Prototype Engine
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- META -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
+                Methodology
+              </p>
+              <p class="text-sm font-bold">
+                Quantitative HCI
+              </p>
+            </div>
+            <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
+                Status
+              </p>
+              <p class="text-sm font-bold text-scientific-green">
+                Functional Prototype
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- VISUALIZATION COLUMN -->
+        <div class="lg:col-span-7">
+
+          <div class="bg-[#111617] rounded-xl overflow-hidden shadow-2xl border-4 border-gray-800">
+
+            <!-- SIM HEADER -->
+            <div class="bg-gray-800/50 px-6 py-4 flex justify-between border-b border-gray-700">
+              <span class="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
+                Prototype_Simulation_v3.2
+              </span>
+              <span class="text-[10px] font-mono text-scientific-green animate-pulse">
+                ● LIVE_FEED
+              </span>
+            </div>
+
+            <!-- SIM VIEW -->
+            <div class="aspect-video relative bg-slate-900 overflow-hidden">
+
+              <div class="absolute inset-0 opacity-60 mix-blend-screen pointer-events-none"
+                   style="background-image: radial-gradient(circle at center, transparent 0%, #334155 100%);">
+              </div>
+
+              <div class="absolute inset-0 flex items-center justify-center p-12">
+                <div class="w-full flex items-end gap-2 h-64">
+                  <div class="flex-1 bg-scientific-green h-[30%]"></div>
+                  <div class="flex-1 bg-scientific-yellow h-[60%]"></div>
+                  <div class="flex-1 bg-scientific-red h-[90%]"></div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="mt-4 text-xs text-gray-500 italic text-center">
+            Fig. Real-time spatial feedback encoding obstacle proximity in fog.
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- FOOTNOTES -->
+      <div class="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between gap-6">
+
+        <div>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
+            Key Research Question
+          </p>
+          <p class="text-sm font-semibold italic">
+            “Can chroma-encoded cues compensate for contrast reduction?”
+          </p>
+        </div>
+
+        <div>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
+            Technical Stack
+          </p>
+          <div class="flex gap-2">
+            <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">D3.js</span>
+            <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">WebGL</span>
+            <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-[10px] font-bold rounded">LiDAR API</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,191 +1,178 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Teleoperation Results - HCI Research | Hamza Mohsin</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#136986",
-                        "background-light": "#f8fafc",
-                        "background-dark": "#0f172a",
-                        "accent": "#0ea5e9"
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teleoperation Results - HCI Research | Hamza Mohsin</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#136986",
+            "background-light": "#f8fafc",
+            "background-dark": "#0f172a",
+            accent: "#0ea5e9"
+          },
+          fontFamily: {
+            display: ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          }
         }
-    </script>
-        <script src="./presentation.js"></script>
-<style type="text/tailwindcss">
-        @layer base {
-            body {
-                @apply font-display text-slate-900 dark:text-slate-100 bg-background-light dark:bg-background-dark;
-            }
-        }
-        .sidebar-active {
-            @apply bg-primary/10 border-r-4 border-primary text-primary;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-    </style>
+      }
+    };
+  </script>
+
+  <!-- Shared Presentation Engine -->
+  <script src="presentation.js" defer></script>
+
+  <style type="text/tailwindcss">
+    @layer base {
+      body {
+        @apply font-display text-slate-900 dark:text-slate-100 bg-background-light dark:bg-background-dark;
+      }
+    }
+  </style>
 </head>
-<body class="min-h-screen">
-<div class="flex h-screen overflow-hidden">
-    <div id="presentation-shell"></div>
-<div class="flex-1 flex flex-col min-w-0 bg-background-light dark:bg-background-dark">
 
-<main class="flex-1 overflow-y-auto p-8 lg:p-12">
-<div class="max-w-6xl mx-auto space-y-12">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-slate-200 dark:border-slate-800">
-<div class="space-y-4">
-<div class="inline-flex items-center px-2 py-1 bg-primary/5 text-primary text-[10px] font-black rounded uppercase tracking-[0.2em] border border-primary/10">
-                                Result Analysis
-                            </div>
-<h2 class="text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tighter uppercase">
-                                TELEOP - RESULTS
-                            </h2>
-<div class="flex items-center gap-3 text-xl font-medium text-slate-600 dark:text-slate-400">
-<span class="bg-primary/10 px-3 py-1 rounded-md text-primary font-bold">Audio-only RT</span>
-<span class="material-symbols-outlined">chevron_left</span>
-<span class="bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-md font-bold">Audio+Visual</span>
-</div>
-</div>
-<div class="flex flex-col gap-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-<div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-<span class="material-symbols-outlined text-sm">terminal</span>
-                                Methodology Notes
-                            </div>
-<p class="text-slate-700 dark:text-slate-300 font-bold italic">3D simulation + JS high-res timing</p>
-</div>
-</div>
-<div class="bg-primary rounded-2xl p-8 text-white relative overflow-hidden shadow-xl">
-<div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
-<div class="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
-<span class="material-symbols-outlined text-4xl text-sky-200">science</span>
-</div>
-<div class="space-y-1">
-<p class="text-sky-200 text-xs font-black uppercase tracking-[0.2em]">Key Finding</p>
-<h3 class="text-3xl font-black tracking-tight leading-tight">Modality count does not equal performance.</h3>
-<p class="text-sky-100/80 font-medium max-w-2xl">Sensory over-saturation increases cognitive load, resulting in significantly slower reaction times for multi-modal stimuli compared to isolated auditory cues.</p>
-</div>
-</div>
-<div class="absolute -bottom-10 -right-10 opacity-10">
-<span class="material-symbols-outlined text-[160px]">insights</span>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow">
-<p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Audio Only</p>
-<div class="flex items-baseline gap-2">
-<span class="text-4xl font-black text-primary">245ms</span>
-<span class="text-emerald-500 text-sm font-bold">Optimal</span>
-</div>
-<div class="mt-6 h-1 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[45%]"></div>
-</div>
-<p class="mt-4 text-xs text-slate-500 font-medium">Fastest response pathway via auditory cortex.</p>
-</div>
-<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow">
-<p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Audio + Visual</p>
-<div class="flex items-baseline gap-2">
-<span class="text-4xl font-black text-slate-900 dark:text-white">312ms</span>
-<span class="text-rose-500 text-sm font-bold">+27% Lag</span>
-</div>
-<div class="mt-6 h-1 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-<div class="bg-rose-500 h-full w-[65%]"></div>
-</div>
-<p class="mt-4 text-xs text-slate-500 font-medium">Cognitive overhead from multi-channel integration.</p>
-</div>
-<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow">
-<p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Visual Only</p>
-<div class="flex items-baseline gap-2">
-<span class="text-4xl font-black text-slate-900 dark:text-white">289ms</span>
-<span class="text-slate-400 text-sm font-bold">Baseline</span>
-</div>
-<div class="mt-6 h-1 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-<div class="bg-slate-400 h-full w-[55%]"></div>
-</div>
-<p class="mt-4 text-xs text-slate-500 font-medium">Standard baseline for visual-only reaction.</p>
-</div>
-</div>
-<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
-<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/50">
-<h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-sm">bar_chart</span>
-                                Comparative Latency Analysis
-                            </h3>
-<span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">n = 42 participants</span>
-</div>
-<div class="p-12">
-<div class="flex items-end justify-center gap-8 lg:gap-16 h-64 border-b border-slate-100 dark:border-slate-800">
-<div class="flex flex-col items-center gap-4 w-24">
-<div class="w-full bg-primary rounded-t-lg relative group transition-all" style="height: 60%;">
-<div class="absolute -top-10 left-1/2 -translate-x-1/2 font-black text-primary scale-0 group-hover:scale-100 transition-transform">245ms</div>
-</div>
-<span class="text-[10px] font-black text-slate-400 uppercase">Audio</span>
-</div>
-<div class="flex flex-col items-center gap-4 w-24">
-<div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-lg relative group transition-all" style="height: 85%;">
-<div class="absolute -top-10 left-1/2 -translate-x-1/2 font-black text-slate-900 dark:text-white scale-0 group-hover:scale-100 transition-transform">312ms</div>
-</div>
-<span class="text-[10px] font-black text-slate-400 uppercase">A+V</span>
-</div>
-<div class="flex flex-col items-center gap-4 w-24">
-<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-t-lg relative group transition-all" style="height: 72%;">
-<div class="absolute -top-10 left-1/2 -translate-x-1/2 font-black text-slate-900 dark:text-white scale-0 group-hover:scale-100 transition-transform">289ms</div>
-</div>
-<span class="text-[10px] font-black text-slate-400 uppercase">Visual</span>
-</div>
-</div>
-</div>
-</div>
-<div class="prose prose-slate dark:prose-invert max-w-none">
-<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            Contrary to common assumptions in interface design, increasing sensory modalities does not always yield superior results. In this HCI trial, the <strong>Audio-only</strong> condition provided a clearer, faster signal for human operators. This suggests that for high-speed teleoperation tasks, visual feedback may serve as a distractor rather than a complement, particularly when reaction thresholds are below 300ms.
-                        </p>
-</div>
-</div>
-</main>
-<footer class="h-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-8 flex items-center justify-between">
-<div class="flex items-center gap-4">
-<button class="flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-<span class="material-symbols-outlined text-base">arrow_back</span>
-                        Previous
-                    </button>
-<div class="w-[1px] h-4 bg-slate-200 dark:bg-slate-700"></div>
-<button class="flex items-center gap-2 text-sm font-bold text-primary hover:text-primary/80 transition-colors">
-                        Next
-                        <span class="material-symbols-outlined text-base">arrow_forward</span>
-</button>
-</div>
-<div class="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">
-                    Standard Layout v2.4 | Academic Presentation
-                </div>
-</footer>
-</div>
-</div>
+<body class="antialiased">
 
-</body></html>
+  <!-- REQUIRED: presentation.js injects layout here -->
+  <div id="presentation-shell"></div>
+
+  <!-- ========================= -->
+  <!-- SLIDE CONTENT (ONLY MAIN) -->
+  <!-- ========================= -->
+  <main class="flex-1 overflow-y-auto p-8 lg:p-12">
+
+    <div class="max-w-6xl mx-auto space-y-12">
+
+      <!-- TITLE -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-slate-200 dark:border-slate-800">
+        <div class="space-y-4">
+          <div class="inline-flex items-center px-2 py-1 bg-primary/5 text-primary text-[10px] font-black rounded uppercase tracking-[0.2em] border border-primary/10">
+            Result Analysis
+          </div>
+
+          <h1 class="text-5xl lg:text-6xl font-black tracking-tighter uppercase">
+            TELEOP – RESULTS
+          </h1>
+
+          <div class="flex items-center gap-3 text-xl font-medium text-slate-600 dark:text-slate-400">
+            <span class="bg-primary/10 px-3 py-1 rounded-md text-primary font-bold">
+              Audio-only RT
+            </span>
+            <span class="material-symbols-outlined">chevron_left</span>
+            <span class="bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-md font-bold">
+              Audio + Visual
+            </span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div class="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
+            <span class="material-symbols-outlined text-sm">terminal</span>
+            Methodology Notes
+          </div>
+          <p class="font-bold italic text-slate-700 dark:text-slate-300">
+            3D simulation + JS high-resolution timing
+          </p>
+        </div>
+      </div>
+
+      <!-- KEY FINDING -->
+      <div class="bg-primary rounded-2xl p-8 text-white relative overflow-hidden shadow-xl">
+        <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+          <div class="bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
+            <span class="material-symbols-outlined text-4xl text-sky-200">science</span>
+          </div>
+          <div class="space-y-2">
+            <p class="text-sky-200 text-xs font-black uppercase tracking-[0.2em]">
+              Key Finding
+            </p>
+            <h3 class="text-3xl font-black leading-tight">
+              Modality count does not equal performance
+            </h3>
+            <p class="text-sky-100/80 font-medium max-w-2xl">
+              Multi-modal stimuli increased cognitive load, resulting in slower reaction times compared to isolated auditory cues.
+            </p>
+          </div>
+        </div>
+        <div class="absolute -bottom-10 -right-10 opacity-10">
+          <span class="material-symbols-outlined text-[160px]">insights</span>
+        </div>
+      </div>
+
+      <!-- METRIC CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+          <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
+            Audio Only
+          </p>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-black text-primary">245ms</span>
+            <span class="text-emerald-500 text-sm font-bold">Optimal</span>
+          </div>
+          <p class="mt-4 text-xs text-slate-500 font-medium">
+            Fastest reaction via auditory-only pathway.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+          <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
+            Audio + Visual
+          </p>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-black">312ms</span>
+            <span class="text-rose-500 text-sm font-bold">+27%</span>
+          </div>
+          <p class="mt-4 text-xs text-slate-500 font-medium">
+            Multi-channel integration overhead.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+          <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
+            Visual Only
+          </p>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-black">289ms</span>
+            <span class="text-slate-400 text-sm font-bold">Baseline</span>
+          </div>
+          <p class="mt-4 text-xs text-slate-500 font-medium">
+            Standard visual reaction baseline.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- INTERPRETATION -->
+      <div class="prose prose-slate dark:prose-invert max-w-none">
+        <p>
+          Contrary to common interface design assumptions, increasing sensory modalities does not inherently improve performance.  
+          In this study, <strong>audio-only cues</strong> produced the fastest responses, suggesting that for time-critical teleoperation,
+          visual information may act as a distractor rather than a complement.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
