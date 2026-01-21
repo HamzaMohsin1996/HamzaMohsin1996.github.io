@@ -4,26 +4,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const slides = [
     { title: "Title Slide", file: "index.html" },
-  
+
     { title: "UAV Overview", file: "project1.html", confidential: true },
     { title: "UAV RQs", file: "uavRQ.html", confidential: true },
     { title: "UAV Methods", file: "uavMethodology.html", confidential: true },
     { title: "UAV Results", file: "uavresults.html", confidential: true },
     { title: "UAV Challenges", file: "uavchallanges.html", confidential: true },
-  
+
     { title: "Teleop Overview", file: "teleop.html" },
-    { title: "Teleop Challenges", file: "teleop-challenges.html" },
     { title: "Teleop Results", file: "teleop-results.html" },
-  
+    { title: "Teleop Challenges", file: "teleop-challenges.html" },
+
     { title: "Fog Interface", file: "fog-interface.html" },
-    { title: "Fog Challenges", file: "fog-challenges.html" },   // ✅ ADD THIS
-    { title: "Fog Results", file: "fog-results.html" },  
+    { title: "Fog Results", file: "fog-results.html" },
+    { title: "Fog Challenges", file: "fog-challenges.html" },
+
     { title: "Methods Matrix", file: "technicalProjects.html" }
   ];
-  
 
   // =========================
-  // CURRENT SLIDE DETECTION
+  // CURRENT SLIDE
   // =========================
   const currentFile =
     (location.pathname.split("/").pop() || "index.html").split("?")[0];
@@ -37,10 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // SHELL TARGET
   // =========================
   const shell = document.getElementById("presentation-shell");
-  if (!shell) {
-    console.warn("[presentation.js] Missing #presentation-shell");
-    return;
-  }
+  if (!shell) return;
 
   // =========================
   // GLOBAL LAYOUT
@@ -49,8 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="flex flex-1 overflow-hidden min-h-screen ${isConfidential ? "confidential-watermark" : ""}">
 
       <!-- SIDEBAR -->
-      <aside class="w-64 shrink-0 bg-sidebar-bg dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
-        <div class="p-4 border-b border-slate-200 dark:border-slate-800">
+      <aside class="w-64 shrink-0 bg-sidebar-bg border-r border-slate-200 flex flex-col">
+        <div class="p-4 border-b border-slate-200">
           <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">
             Slides
           </p>
@@ -59,10 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <nav class="flex-1 overflow-y-auto p-3 space-y-1">
           ${slides.map((s, i) => `
             <a href="${s.file}"
-              class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all
-              ${i === safeIndex
-                ? "bg-primary text-white shadow-md shadow-primary/20 font-semibold"
-                : "text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary"}">
+               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all
+               ${i === safeIndex
+                 ? "bg-primary text-white shadow-md shadow-primary/20 font-semibold"
+                 : "text-slate-500 hover:bg-slate-100 hover:text-primary"}">
               <span class="material-symbols-outlined text-sm">
                 ${i === safeIndex ? "radio_button_checked" : "chevron_right"}
               </span>
@@ -73,25 +70,25 @@ document.addEventListener("DOMContentLoaded", () => {
         </nav>
       </aside>
 
-      <!-- CONTENT + FOOTER -->
+      <!-- CONTENT -->
       <div class="flex-1 flex flex-col overflow-hidden">
 
-        <!-- CONTENT SLOT -->
         <main id="slide-content" class="flex-1 overflow-y-auto"></main>
 
         <!-- FOOTER -->
-        <footer class="h-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-8 flex items-center justify-between">
+        <footer class="h-16 bg-white border-t border-slate-200 px-8 flex items-center justify-between">
+
           <div class="flex items-center gap-4">
             <button id="prev-slide"
               class="flex items-center gap-2 text-sm font-bold transition-colors
               ${safeIndex <= 0
                 ? "text-slate-300 cursor-not-allowed"
-                : "text-slate-400 hover:text-slate-900 dark:hover:text-white"}">
-              <span class="material-symbols-outlined text-base">arrow_back</span>
+                : "text-slate-400 hover:text-slate-900"}">
+              <span class="material-symbols-outlined">arrow_back</span>
               Previous
             </button>
 
-            <div class="w-px h-4 bg-slate-200 dark:bg-slate-700"></div>
+            <div class="w-px h-4 bg-slate-200"></div>
 
             <button id="next-slide"
               class="flex items-center gap-2 text-sm font-bold transition-colors
@@ -99,21 +96,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? "text-slate-300 cursor-not-allowed"
                 : "text-primary hover:text-primary/80"}">
               Next
-              <span class="material-symbols-outlined text-base">arrow_forward</span>
+              <span class="material-symbols-outlined">arrow_forward</span>
             </button>
           </div>
 
-          ${
-            isConfidential
-              ? `<div class="text-[10px] font-black uppercase tracking-widest text-red-600">
-                   Confidential · Unpublished Master’s Thesis · Do Not Distribute
-                 </div>`
-              : `<div class="text-[10px] font-black uppercase tracking-widest text-slate-300">
-                   Public Presentation
-                 </div>`
-          }
+          <button id="fullscreen-toggle"
+            class="text-xs font-black uppercase tracking-widest px-3 py-1.5 rounded-md border border-slate-300 hover:bg-slate-100">
+            Fullscreen
+          </button>
 
-          <div class="text-[10px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">
+          <div class="text-[10px] font-black uppercase tracking-widest text-slate-300">
             Slide ${safeIndex + 1} / ${slides.length}
           </div>
         </footer>
@@ -127,13 +119,45 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const slideMain = document.querySelector("main:not(#slide-content)");
   const slot = document.getElementById("slide-content");
+  if (slideMain && slot) slot.appendChild(slideMain);
 
-  if (!slideMain || !slot) {
-    console.warn("[presentation.js] Slide <main> or slot missing.");
-    return;
+  // =========================
+  // FULLSCREEN LOGIC (PERSISTENT)
+  // =========================
+  const enterFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().then(() => {
+        sessionStorage.setItem("presentationMode", "true");
+      }).catch(() => {});
+    }
+  };
+
+  const exitFullscreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().then(() => {
+        sessionStorage.removeItem("presentationMode");
+      }).catch(() => {});
+    }
+  };
+
+  document.getElementById("fullscreen-toggle")?.addEventListener("click", () => {
+    document.fullscreenElement ? exitFullscreen() : enterFullscreen();
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement) {
+      sessionStorage.removeItem("presentationMode");
+    }
+  });
+
+  // 🔥 RESTORE FULLSCREEN AFTER NAVIGATION
+  if (sessionStorage.getItem("presentationMode") === "true") {
+    setTimeout(() => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+    }, 150);
   }
-
-  slot.appendChild(slideMain);
 
   // =========================
   // NAVIGATION
@@ -151,9 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
     goTo(safeIndex + 1);
   });
 
-  // =========================
-  // KEYBOARD NAVIGATION (PRESENTATION MODE)
-  // =========================
   document.addEventListener("keydown", (e) => {
     const tag = e.target?.tagName?.toLowerCase();
     if (["input", "textarea", "select"].includes(tag)) return;
@@ -169,12 +190,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowLeft") {
       goTo(safeIndex - 1);
     }
+
+    if (e.key === "f" || e.key === "F") {
+      document.fullscreenElement ? exitFullscreen() : enterFullscreen();
+    }
   });
 });
 
-/* =========================
-   CONFIDENTIAL WATERMARK
-   ========================= */
+// =========================
+// CONFIDENTIAL WATERMARK
+// =========================
 const style = document.createElement("style");
 style.innerHTML = `
   .confidential-watermark::after {
