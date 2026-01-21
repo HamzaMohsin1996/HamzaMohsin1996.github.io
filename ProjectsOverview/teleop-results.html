@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teleoperation Results - HCI Research | Hamza Mohsin</title>
 
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
+  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       darkMode: "class",
@@ -28,10 +31,12 @@
     };
   </script>
 
+  <!-- Presentation Engine -->
   <script src="presentation.js" defer></script>
 </head>
 
 <body class="antialiased bg-background-light dark:bg-background-dark">
+
 <div id="presentation-shell"></div>
 
 <!-- IMPORTANT: no overflow-y-auto here -->
@@ -39,7 +44,7 @@
 
 <div class="max-w-6xl mx-auto space-y-10">
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 <section class="border-l-4 border-primary pl-8 space-y-3">
   <span class="inline-block text-[10px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded">
     Quantitative & Qualitative Results
@@ -55,7 +60,7 @@
   </p>
 </section>
 
-<!-- KEY RESULT -->
+<!-- ================= KEY RESULT ================= -->
 <section class="bg-primary rounded-2xl p-8 text-white shadow-xl">
   <p class="text-xs font-black uppercase tracking-widest text-sky-200 mb-2">
     Primary Statistical Outcome
@@ -70,7 +75,55 @@
   </p>
 </section>
 
-<!-- TREND CARDS -->
+<!-- ================= FINAL INTERFACE DESIGNS ================= -->
+<section class="space-y-4">
+
+  <p class="text-xs font-black uppercase tracking-widest text-slate-400">
+    Final Interface Designs Evaluated in Study
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- AUDIO ONLY -->
+    <div class="bg-white dark:bg-slate-900 rounded-xl border p-4">
+      <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
+        Audio Only
+      </p>
+
+      <img
+        src="./images/audionly.png"
+        alt="Teleoperation interface with audio-only feedback"
+        class="w-full h-40 object-cover rounded-lg border"
+      />
+
+      <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+        Participants relied solely on auditory cues without competing visual information.
+      </p>
+    </div>
+
+    <!-- AUDIO TO VISUAL -->
+    <div class="bg-white dark:bg-slate-900 rounded-xl border p-4">
+      <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
+        Audio → Visual
+      </p>
+
+      <img
+        src="./images/audio&Visuals.png"
+        alt="Teleoperation interface with audio translated to visual alerts"
+        class="w-full h-40 object-cover rounded-lg border"
+      />
+
+      <p class="mt-2 text-xs text-slate-500 leading-relaxed">
+        Auditory events were translated into symbolic on-screen alerts.
+      </p>
+    </div>
+
+   
+
+  </div>
+</section>
+
+<!-- ================= TREND SUMMARY ================= -->
 <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
   <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
@@ -81,8 +134,7 @@
       Fastest trend
     </p>
     <p class="text-xs text-slate-500">
-      Participants responded more quickly when relying solely on auditory cues,
-      without competing visual information.
+      Clear auditory cues supported rapid responses with minimal cognitive overhead.
     </p>
   </div>
 
@@ -94,8 +146,7 @@
       Comparable trend
     </p>
     <p class="text-xs text-slate-500">
-      Converting audio cues into visual alerts showed similar response patterns,
-      without measurable performance gains.
+      Visual translation neither improved nor degraded performance significantly.
     </p>
   </div>
 
@@ -107,14 +158,13 @@
       Slower trend
     </p>
     <p class="text-xs text-slate-500">
-      Simultaneous multimodal cues increased cognitive demand,
-      often leading to delayed reactions.
+      Concurrent cues increased cognitive demand and delayed reactions.
     </p>
   </div>
 
 </section>
 
-<!-- QUALITATIVE INSIGHTS -->
+<!-- ================= QUALITATIVE INSIGHTS ================= -->
 <section class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
   <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">
     Qualitative Insights (Post-study Interviews)
@@ -122,17 +172,17 @@
 
   <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
     <li>• “Audio alone was enough to understand what was happening.”</li>
-    <li>• “With both audio and visuals, I sometimes didn’t know where to focus.”</li>
-    <li>• Participants reported information overload when multiple cues appeared simultaneously.</li>
+    <li>• “With both audio and visuals, I didn’t know where to focus.”</li>
+    <li>• Participants reported information overload with multimodal feedback.</li>
   </ul>
 </section>
 
-<!-- TAKEAWAY -->
+<!-- ================= TAKEAWAY ================= -->
 <section class="flex items-center gap-4 border-t pt-6">
   <span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
   <p class="text-lg font-semibold text-slate-700 dark:text-slate-200">
-    More information is not always better: <strong>audio-only cues can support faster,
-    clearer decisions in time-critical teleoperation.</strong>
+    More information is not always better:
+    <strong>audio-only feedback supported the clearest and fastest decisions.</strong>
   </p>
 </section>
 
