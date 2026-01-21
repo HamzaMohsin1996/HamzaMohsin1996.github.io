@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
-  // SLIDES CONFIG
-  // =========================
+  /* =========================
+     SLIDES CONFIG
+  ========================= */
   const slides = [
     { title: "Title Slide", file: "index.html" },
 
@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Methods Matrix", file: "technicalProjects.html" }
   ];
 
-  // =========================
-  // CURRENT SLIDE
-  // =========================
+  /* =========================
+     CURRENT SLIDE
+  ========================= */
   const currentFile =
     (location.pathname.split("/").pop() || "index.html").split("?")[0];
 
@@ -33,17 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isConfidential = slides[safeIndex]?.confidential === true;
 
-  // =========================
-  // SHELL TARGET
-  // =========================
+  /* =========================
+     SHELL TARGET
+  ========================= */
   const shell = document.getElementById("presentation-shell");
   if (!shell) return;
 
-  // =========================
-  // GLOBAL LAYOUT
-  // =========================
+  /* =========================
+     GLOBAL LAYOUT
+  ========================= */
   shell.innerHTML = `
-    <div class="flex flex-1 overflow-hidden min-h-screen ${isConfidential ? "confidential-watermark" : ""}">
+    <div class="flex flex-1 min-h-screen overflow-hidden ${isConfidential ? "confidential-watermark" : ""}">
 
       <!-- SIDEBAR -->
       <aside class="w-64 shrink-0 bg-sidebar-bg border-r border-slate-200 flex flex-col">
@@ -56,10 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <nav class="flex-1 overflow-y-auto p-3 space-y-1">
           ${slides.map((s, i) => `
             <a href="${s.file}"
-               class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all
-               ${i === safeIndex
-                 ? "bg-primary text-white shadow-md shadow-primary/20 font-semibold"
-                 : "text-slate-500 hover:bg-slate-100 hover:text-primary"}">
+              class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all
+              ${i === safeIndex
+                ? "bg-primary text-white shadow-md shadow-primary/20 font-semibold"
+                : "text-slate-500 hover:bg-slate-100 hover:text-primary"}">
               <span class="material-symbols-outlined text-sm">
                 ${i === safeIndex ? "radio_button_checked" : "chevron_right"}
               </span>
@@ -81,9 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="flex items-center gap-4">
             <button id="prev-slide"
               class="flex items-center gap-2 text-sm font-bold transition-colors
-              ${safeIndex <= 0
-                ? "text-slate-300 cursor-not-allowed"
-                : "text-slate-400 hover:text-slate-900"}">
+              ${safeIndex <= 0 ? "text-slate-300 cursor-not-allowed" : "text-slate-400 hover:text-slate-900"}">
               <span class="material-symbols-outlined">arrow_back</span>
               Previous
             </button>
@@ -92,9 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <button id="next-slide"
               class="flex items-center gap-2 text-sm font-bold transition-colors
-              ${safeIndex >= slides.length - 1
-                ? "text-slate-300 cursor-not-allowed"
-                : "text-primary hover:text-primary/80"}">
+              ${safeIndex >= slides.length - 1 ? "text-slate-300 cursor-not-allowed" : "text-primary hover:text-primary/80"}">
               Next
               <span class="material-symbols-outlined">arrow_forward</span>
             </button>
@@ -105,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Fullscreen
           </button>
 
-          <div class="text-[10px] font-black uppercase tracking-widest text-slate-300">
+          <div class="text-[10px] font-black uppercase tracking-widest text-slate-400">
             Slide ${safeIndex + 1} / ${slides.length}
           </div>
         </footer>
@@ -114,29 +110,33 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   `;
 
-  // =========================
-  // MOVE SLIDE CONTENT
-  // =========================
+  /* =========================
+     MOVE SLIDE CONTENT
+  ========================= */
   const slideMain = document.querySelector("main:not(#slide-content)");
   const slot = document.getElementById("slide-content");
   if (slideMain && slot) slot.appendChild(slideMain);
 
-  // =========================
-  // FULLSCREEN LOGIC (PERSISTENT)
-  // =========================
+  /* =========================
+     FULLSCREEN (LOCKED MODE)
+  ========================= */
+  let allowFullscreenExit = false;
+
   const enterFullscreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().then(() => {
-        sessionStorage.setItem("presentationMode", "true");
-      }).catch(() => {});
+      document.documentElement.requestFullscreen()
+        .then(() => {
+          sessionStorage.setItem("presentationMode", "true");
+          allowFullscreenExit = false;
+        })
+        .catch(() => {});
     }
   };
 
   const exitFullscreen = () => {
+    allowFullscreenExit = true;
     if (document.fullscreenElement) {
-      document.exitFullscreen().then(() => {
-        sessionStorage.removeItem("presentationMode");
-      }).catch(() => {});
+      document.exitFullscreen().catch(() => {});
     }
   };
 
@@ -145,23 +145,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("fullscreenchange", () => {
+    if (
+      sessionStorage.getItem("presentationMode") === "true" &&
+      !document.fullscreenElement &&
+      !allowFullscreenExit
+    ) {
+      setTimeout(() => {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }, 50);
+    }
+
     if (!document.fullscreenElement) {
       sessionStorage.removeItem("presentationMode");
     }
   });
 
-  // 🔥 RESTORE FULLSCREEN AFTER NAVIGATION
+  // Restore fullscreen after navigation
   if (sessionStorage.getItem("presentationMode") === "true") {
     setTimeout(() => {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
       }
-    }, 150);
+    }, 100);
   }
 
-  // =========================
-  // NAVIGATION
-  // =========================
+  /* =========================
+     NAVIGATION
+  ========================= */
   const goTo = (idx) => {
     if (idx < 0 || idx >= slides.length) return;
     location.href = slides[idx].file;
@@ -197,9 +207,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// =========================
-// CONFIDENTIAL WATERMARK
-// =========================
+/* =========================
+   CONFIDENTIAL WATERMARK
+========================= */
 const style = document.createElement("style");
 style.innerHTML = `
   .confidential-watermark::after {
@@ -210,7 +220,7 @@ style.innerHTML = `
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.18);
+    color: rgba(0,0,0,0.25);
     pointer-events: none;
     z-index: 9999;
   }
