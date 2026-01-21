@@ -148,3 +148,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "ArrowRight") goTo(safeIndex + 1);
   });
 });
+// =========================
+// KEYBOARD NAV (PRESENTATION MODE)
+// =========================
+document.addEventListener("keydown", (e) => {
+  // Ignore typing in form elements
+  const tag = e.target?.tagName?.toLowerCase();
+  if (["input", "textarea", "select"].includes(tag)) return;
+
+  // Prevent browser scrolling / navigation
+  if (
+    e.key === "ArrowLeft" ||
+    e.key === "ArrowRight" ||
+    e.key === " " ||
+    e.key === "Enter"
+  ) {
+    e.preventDefault();
+  }
+
+  switch (e.key) {
+    case "ArrowRight":
+    case " ":
+    case "Enter":
+      goTo(safeIndex + 1);
+      break;
+
+    case "ArrowLeft":
+      goTo(safeIndex - 1);
+      break;
+  }
+});
