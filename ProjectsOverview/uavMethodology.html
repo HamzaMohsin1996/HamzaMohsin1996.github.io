@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>UAV Methodology - Hamza Mohsin HCI Research</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#136986",
+            "background-light": "#f8fafc",
+            "background-dark": "#0f172a",
+            "accent-green": "#8AB32E",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+        },
+      },
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    body { font-family: 'Manrope', sans-serif; }
+
+    /* Keep your scrollbar style */
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 antialiased overflow-hidden">
+
+  <!-- ✅ REQUIRED: empty shell (JS injects sidebar + footer + nav) -->
+  <div id="presentation-shell"></div>
+
+  <!-- ✅ SLIDE CONTENT ONLY (keep your styling + cards) -->
+  <main class="custom-scrollbar bg-background-light dark:bg-background-dark">
+    <div class="max-w-6xl mx-auto p-8 md:p-12">
+
+      <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2 h-2 bg-primary rounded-full"></span>
+            <span class="text-[10px] font-bold text-primary uppercase tracking-widest">
+              Phase II: Evaluation Framework
+            </span>
+          </div>
+          <h2 class="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white uppercase">
+            UAV - METHODS
+          </h2>
+        </div>
+
+        <p class="text-sm text-slate-500 max-w-sm border-l-2 border-slate-200 pl-4 py-1">
+          Comprehensive assessment of operator performance across cognitive and usability dimensions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- SPAM -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex justify-between items-center mb-6">
+            <div class="w-10 h-10 bg-primary/5 text-primary rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined">target</span>
+            </div>
+            <span class="text-[9px] font-black uppercase bg-primary/10 text-primary px-2 py-1 rounded">Objective SA</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2">SPAM</h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-6">
+            Situation Present Assessment Method: Real-time probes evaluating objective situational awareness during flight tasks.
+          </p>
+          <div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Latency/Accuracy</span>
+            <span class="material-symbols-outlined text-slate-300 text-sm">trending_up</span>
+          </div>
+        </div>
+
+        <!-- DRT -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex justify-between items-center mb-6">
+            <div class="w-10 h-10 bg-accent-green/5 text-accent-green rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined">speed</span>
+            </div>
+            <span class="text-[9px] font-black uppercase bg-accent-green/10 text-accent-green px-2 py-1 rounded">Workload</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2">DRT</h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-6">
+            Detection Response Task: Assessing cognitive workload via response times to tactile or visual stimuli (ISO 17488).
+          </p>
+          <div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Attention Capacity</span>
+            <span class="material-symbols-outlined text-slate-300 text-sm">timer</span>
+          </div>
+        </div>
+
+        <!-- SART -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex justify-between items-center mb-6">
+            <div class="w-10 h-10 bg-primary/5 text-primary rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined">fact_check</span>
+            </div>
+            <span class="text-[9px] font-black uppercase bg-primary/10 text-primary px-2 py-1 rounded">Subjective SA</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2">SART</h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-6">
+            Situation Awareness Rating Technique: Post-trial 10-dimension scale for perceived task demand and operator understanding.
+          </p>
+          <div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Subjective Feedback</span>
+            <span class="material-symbols-outlined text-slate-300 text-sm">ballot</span>
+          </div>
+        </div>
+
+        <!-- SUS -->
+        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex justify-between items-center mb-6">
+            <div class="w-10 h-10 bg-accent-green/5 text-accent-green rounded-lg flex items-center justify-center">
+              <span class="material-symbols-outlined">recommend</span>
+            </div>
+            <span class="text-[9px] font-black uppercase bg-accent-green/10 text-accent-green px-2 py-1 rounded">Usability</span>
+          </div>
+          <h3 class="text-lg font-bold mb-2">SUS</h3>
+          <p class="text-xs text-slate-500 leading-relaxed mb-6">
+            System Usability Scale: Industry-standard 10-item questionnaire measuring effectiveness and efficiency.
+          </p>
+          <div class="pt-4 border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+            <span class="text-[10px] font-bold text-slate-400 uppercase">UX Standard</span>
+            <span class="material-symbols-outlined text-slate-300 text-sm">star</span>
+          </div>
+        </div>
+
+        <!-- Eye tracking big card -->
+        <div class="md:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow flex flex-col lg:flex-row gap-6">
+          <div class="lg:w-1/2">
+            <div class="flex justify-between items-center mb-6">
+              <div class="w-10 h-10 bg-primary/5 text-primary rounded-lg flex items-center justify-center">
+                <span class="material-symbols-outlined">visibility</span>
+              </div>
+              <span class="text-[9px] font-black uppercase bg-primary/10 text-primary px-2 py-1 rounded">Visual Attention</span>
+            </div>
+            <h3 class="text-lg font-bold mb-2">Eye-tracking (AOI)</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Areas of Interest (AOI) analysis focusing on flight telemetry and hazard detection clusters to map cognitive scanpaths.
+            </p>
+          </div>
+
+          <div class="lg:w-1/2 grid grid-cols-2 gap-3 self-center">
+            <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded border border-slate-100 dark:border-slate-700">
+              <p class="text-[8px] font-bold text-primary uppercase mb-1">Dwell Time</p>
+              <p class="text-[10px] text-slate-600 dark:text-slate-300">Total duration in AOIs</p>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded border border-slate-100 dark:border-slate-700">
+              <p class="text-[8px] font-bold text-primary uppercase mb-1">Fixation Count</p>
+              <p class="text-[10px] text-slate-600 dark:text-slate-300">Information processing</p>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded border border-slate-100 dark:border-slate-700">
+              <p class="text-[8px] font-bold text-primary uppercase mb-1">Scanpath</p>
+              <p class="text-[10px] text-slate-600 dark:text-slate-300">Searching strategy</p>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded border border-slate-100 dark:border-slate-700">
+              <p class="text-[8px] font-bold text-primary uppercase mb-1">TTFF</p>
+              <p class="text-[10px] text-slate-600 dark:text-slate-300">Time to first fixation</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ✅ IMPORTANT: load JS ONCE at the end -->
+  <script src="./presentation.js"></script>
+</body>
+</html>

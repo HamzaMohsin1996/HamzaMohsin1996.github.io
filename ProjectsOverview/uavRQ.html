@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>UAV Research Questions - Hamza Mohsin</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#136986",
+            "background-light": "#f8fafc",
+            "background-dark": "#0f172a",
+          },
+          fontFamily: {
+            sans: ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+        },
+      },
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-hidden">
+
+  <!-- REQUIRED EMPTY SHELL -->
+  <div id="presentation-shell"></div>
+
+  <!-- SLIDE CONTENT (DESIGN UNTOUCHED) -->
+  <main class="flex-1 overflow-y-auto">
+
+    <div class="max-w-6xl w-full mx-auto p-12 lg:p-16">
+
+      <!-- HEADER -->
+      <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full
+                    text-[10px] font-bold uppercase tracking-widest mb-6 border border-primary/20">
+          <span class="material-symbols-outlined text-base">psychology</span>
+          Mission Interruption Analysis
+        </div>
+
+        <h3 class="text-slate-900 dark:text-white text-5xl font-black leading-tight tracking-tight max-w-3xl">
+          RQ2: Re-engagement
+          <span class="text-slate-400 font-medium">after interruptions</span>
+        </h3>
+
+        <div class="mt-8 flex items-center gap-6">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-slate-400">layers</span>
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">
+              Within-subjects design
+            </span>
+          </div>
+
+          <div class="w-px h-4 bg-slate-200 dark:bg-slate-800"></div>
+
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-slate-400">group</span>
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">
+              N = 29 participants
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- HYPOTHESES -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- H2a -->
+        <div class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
+                    rounded-3xl p-10 transition-all hover:border-primary/30
+                    hover:shadow-xl hover:shadow-slate-200/50 overflow-hidden">
+
+          <div class="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl
+                      group-hover:bg-emerald-500/10 transition-all"></div>
+
+          <div class="flex items-start justify-between mb-8">
+            <div>
+              <p class="text-primary font-bold text-xs uppercase tracking-widest mb-2">
+                Hypothesis 2a
+              </p>
+              <h4 class="text-slate-900 dark:text-white font-extrabold text-2xl tracking-tight leading-snug">
+                SA accuracy will decrease post-interruption
+              </h4>
+            </div>
+
+            <div class="size-12 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10
+                        flex items-center justify-center text-emerald-600
+                        border border-emerald-100 dark:border-emerald-500/20">
+              <span class="material-symbols-outlined text-2xl">verified</span>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">
+                Statistical Significance
+              </p>
+              <div class="flex items-baseline gap-2">
+                <span class="text-slate-900 dark:text-white text-5xl font-black tracking-tighter">
+                  p = .005
+                </span>
+                <span class="text-emerald-600 text-xs font-black uppercase tracking-widest mb-1">
+                  SUPPORTED
+                </span>
+              </div>
+            </div>
+
+            <div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div class="h-full bg-emerald-500 w-full opacity-80"></div>
+            </div>
+
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+              Situational Awareness (SA) scores showed a marked decline when operators
+              re-engaged after a high-load secondary task.
+            </p>
+          </div>
+        </div>
+
+        <!-- H2b -->
+        <div class="group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
+                    rounded-3xl p-10 transition-all hover:border-primary/30
+                    hover:shadow-xl hover:shadow-slate-200/50 overflow-hidden">
+
+          <div class="absolute -top-12 -right-12 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl
+                      group-hover:bg-emerald-500/10 transition-all"></div>
+
+          <div class="flex items-start justify-between mb-8">
+            <div>
+              <p class="text-primary font-bold text-xs uppercase tracking-widest mb-2">
+                Hypothesis 2b
+              </p>
+              <h4 class="text-slate-900 dark:text-white font-extrabold text-2xl tracking-tight leading-snug">
+                Response time will increase significantly
+              </h4>
+            </div>
+
+            <div class="size-12 rounded-2xl bg-emerald-50 dark:bg-emerald-500/10
+                        flex items-center justify-center text-emerald-600
+                        border border-emerald-100 dark:border-emerald-500/20">
+              <span class="material-symbols-outlined text-2xl">verified</span>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <p class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">
+                Statistical Significance
+              </p>
+              <div class="flex items-baseline gap-2">
+                <span class="text-slate-900 dark:text-white text-5xl font-black tracking-tighter">
+                  p = .006
+                </span>
+                <span class="text-emerald-600 text-xs font-black uppercase tracking-widest mb-1">
+                  SUPPORTED
+                </span>
+              </div>
+            </div>
+
+            <div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div class="h-full bg-emerald-500 w-full opacity-80"></div>
+            </div>
+
+            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+              Reaction times to critical UAV alerts increased by an average of
+              450ms following the interruption phase.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- LOAD ONCE, AT END -->
+  <script src="./presentation.js"></script>
+
+</body>
+</html>

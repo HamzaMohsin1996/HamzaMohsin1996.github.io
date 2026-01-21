@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Technical Methods Matrix - Hamza Mohsin Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#136986",
+                        "background-light": "#f9fafb",
+                        "background-dark": "#22252a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+        <script src="./presentation.js"></script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .swiss-grid { background-image: radial-gradient(#e5e7eb 1px, transparent 1px); background-size: 24px 24px; }
+        .dark .swiss-grid { background-image: radial-gradient(#374151 1px, transparent 1px); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111617] dark:text-gray-100 transition-colors duration-200">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<div id="presentation-shell"></div>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto swiss-grid">
+<!-- Top Action Bar -->
+
+<!-- Page Content -->
+<div class="p-10 max-w-6xl mx-auto w-full flex flex-col gap-8">
+<!-- Page Heading -->
+<div class="space-y-2 border-l-4 border-primary pl-6">
+<h1 class="text-5xl font-black tracking-tighter text-gray-900 dark:text-white uppercase leading-none">Technical Methods</h1>
+<p class="text-gray-500 dark:text-gray-400 text-lg max-w-2xl font-light">
+                        A systematic synthesis of research methodologies and frameworks applied across three core HCI research studies.
+                    </p>
+</div>
+<!-- Matrix Table Card -->
+<div class="bg-white dark:bg-[#1a1d21] rounded-xl border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden mt-4">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b-2 border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30">
+<th class="px-8 py-6 text-xs font-extrabold text-gray-400 uppercase tracking-widest w-1/3">Core Methodology</th>
+<th class="px-8 py-6 text-xs font-extrabold text-gray-400 uppercase tracking-widest">Cross-Project Application</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+<!-- Row 1 -->
+<tr class="group hover:bg-primary/[0.02] transition-colors">
+<td class="px-8 py-10">
+<div class="flex items-start gap-4">
+<div class="mt-1 flex-shrink-0 size-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">science</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Experimental Design</h3>
+<p class="text-xs text-gray-400 mt-1">Controlled variables and hypothesis testing.</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-10">
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Alpha</span>
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Beta</span>
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Gamma</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-primary/[0.02] transition-colors">
+<td class="px-8 py-10">
+<div class="flex items-start gap-4">
+<div class="mt-1 flex-shrink-0 size-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Statistical Analysis</h3>
+<p class="text-xs text-gray-400 mt-1">ANOVA, regression, and significance modeling.</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-10">
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Alpha</span>
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Beta</span>
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Gamma</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-primary/[0.02] transition-colors">
+<td class="px-8 py-10">
+<div class="flex items-start gap-4">
+<div class="mt-1 flex-shrink-0 size-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Eye-tracking</h3>
+<p class="text-xs text-gray-400 mt-1">Gaze patterns and cognitive load assessment.</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-10">
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 rounded-lg bg-[#8AB32E] text-white text-[11px] font-bold uppercase tracking-wide flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">flight</span>
+                                                UAV Project
+                                            </span>
+<span class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 text-[11px] font-medium italic">Not applicable to others</span>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="group hover:bg-primary/[0.02] transition-colors border-b-0">
+<td class="px-8 py-10">
+<div class="flex items-start gap-4">
+<div class="mt-1 flex-shrink-0 size-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">draw</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-gray-900 dark:text-white">Prototyping</h3>
+<p class="text-xs text-gray-400 mt-1">Iterative wireframing and interactive fidelity.</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-10">
+<div class="flex flex-wrap gap-3">
+<div class="flex items-center gap-1 group/chip">
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Alpha</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Beta</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-4 py-2 rounded-lg bg-primary text-white text-[11px] font-bold uppercase tracking-wide">Project Gamma</span>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Contextual Legend -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+<div class="p-6 bg-white dark:bg-[#1a1d21] border border-gray-200 dark:border-gray-800 rounded-xl">
+<p class="text-[10px] font-bold text-primary uppercase mb-2">Study A</p>
+<h4 class="font-bold text-sm mb-1">Project Alpha</h4>
+<p class="text-xs text-gray-500 leading-relaxed">Focus on mobile interface latency and user frustration metrics.</p>
+</div>
+<div class="p-6 bg-white dark:bg-[#1a1d21] border border-gray-200 dark:border-gray-800 rounded-xl">
+<p class="text-[10px] font-bold text-primary uppercase mb-2">Study B</p>
+<h4 class="font-bold text-sm mb-1">Project Beta</h4>
+<p class="text-xs text-gray-500 leading-relaxed">Accessibility audit for neurodivergent populations in VR.</p>
+</div>
+<div class="p-6 bg-white dark:bg-[#1a1d21] border border-gray-200 dark:border-gray-800 rounded-xl">
+<p class="text-[10px] font-bold text-[#8AB32E] uppercase mb-2">Primary Case</p>
+<h4 class="font-bold text-sm mb-1">UAV Project (Gamma)</h4>
+<p class="text-xs text-gray-500 leading-relaxed">Human-AI collaboration in drone teleoperation and gaze steering.</p>
+</div>
+</div>
+<!-- Footer Info -->
+<footer class="mt-auto py-12 flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">
+<span>© 2024 Hamza Mohsin</span>
+<span class="flex items-center gap-4">
+<span class="text-primary">Research Methodologies</span>
+<span class="size-1 rounded-full bg-gray-300"></span>
+<span>Interaction Design Foundation</span>
+</span>
+</footer>
+</div>
+</main>
+</div>
+</body></html>
