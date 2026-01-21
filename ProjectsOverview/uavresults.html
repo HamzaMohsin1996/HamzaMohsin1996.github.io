@@ -2,233 +2,201 @@
 <html class="light" lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>UAV Results Visualization - Hamza Mohsin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UAV Results – Quantitative & Qualitative</title>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
-<script id="tailwind-config">
+<script>
 tailwind.config = {
   darkMode: "class",
   theme: {
     extend: {
       colors: {
         primary: "#136986",
-        "accent-success": "#8AB32E",
-        "accent-error": "#e73508",
-        "background-light": "#f8fafc",
-        "background-dark": "#0f172a",
-        "sidebar-light": "#ffffff",
-        "border-color": "#e2e8f0"
+        success: "#8AB32E",
+        neutral: "#94a3b8",
+        backgroundLight: "#f8fafc",
+        backgroundDark: "#0f172a",
+        borderColor: "#e2e8f0"
       },
       fontFamily: {
         display: ["Manrope", "sans-serif"]
-      },
-      borderRadius: {
-        DEFAULT: "0.25rem",
-        lg: "0.5rem",
-        xl: "0.75rem",
-        full: "9999px"
       }
     }
   }
 }
 </script>
 
-<style type="text/tailwindcss">
-@layer base {
-  body {
-    @apply font-display bg-background-light dark:bg-background-dark
-           text-slate-900 dark:text-slate-100;
-  }
-}
-.chart-grid {
-  background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
-  background-size: 16px 16px;
-}
+<style>
+body { font-family: "Manrope", sans-serif; }
 </style>
 </head>
 
-<body class="antialiased overflow-hidden">
+<body class="bg-backgroundLight dark:bg-backgroundDark text-slate-900 dark:text-slate-100 overflow-hidden">
 
-<!-- 🔹 REQUIRED EMPTY SHELL (SIDEBAR + FOOTER INJECTED BY JS) -->
+<!-- REQUIRED -->
 <div id="presentation-shell"></div>
 
-<!-- 🔹 SLIDE CONTENT ONLY -->
-<main class="flex-1 overflow-y-auto bg-[#f8fafc] dark:bg-slate-950 p-8">
+<main class="flex-1 overflow-y-auto p-8">
+<div class="max-w-6xl mx-auto space-y-12">
 
-<div class="max-w-6xl mx-auto space-y-8">
-
-<!-- HEADER -->
-<div class="flex flex-col gap-1">
-  <div class="flex items-center gap-2 mb-2">
-    <span class="h-1 w-8 bg-primary rounded-full"></span>
-    <span class="text-xs font-black text-primary uppercase tracking-widest">
-      Quantitative Analysis
-    </span>
-  </div>
-  <h1 class="text-4xl font-extrabold tracking-tight">
-    UAV – RESULTS
+<!-- ================= HEADER ================= -->
+<div>
+  <span class="text-xs font-black uppercase tracking-widest text-primary">
+    Results Overview
+  </span>
+  <h1 class="text-4xl font-extrabold mt-2">
+    UAV — Experimental Findings
   </h1>
-  <p class="text-slate-500 dark:text-slate-400 text-lg max-w-2xl font-medium">
-    Evaluating re-engagement efficiency and accuracy through standardized SPAM metrics.
+  <p class="text-slate-500 max-w-3xl mt-2">
+    Summary of quantitative outcomes supported by qualitative observations from post-study interviews.
   </p>
 </div>
 
-<!-- MAIN GRID -->
-<div class="grid grid-cols-12 gap-8">
+<!-- ================= QUANTITATIVE RESULTS ================= -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-<!-- LEFT -->
-<div class="col-span-12 lg:col-span-8 space-y-6">
+<!-- Task Performance -->
+<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
+  <h3 class="font-bold mb-2 flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary">checklist</span>
+    Task Performance
+  </h3>
+  <p class="text-sm text-slate-600 dark:text-slate-400">
+    Completion Time: 261.5s (WOIR) → 246.2s (WIR)
+  </p>
+  <p class="text-xs italic text-slate-500 mt-2">
+    No statistically significant difference (p = .164)
+  </p>
+</div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Cognitive Workload -->
+<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
+  <h3 class="font-bold mb-2 flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary">speed</span>
+    Cognitive Workload (DRT)
+  </h3>
+  <p class="text-sm text-slate-600 dark:text-slate-400">
+    Reaction Time: 766ms (WOIR) → 772ms (WIR)
+  </p>
+  <p class="text-xs italic text-slate-500 mt-2">
+    No statistically significant difference (p = .624)
+  </p>
+</div>
 
-<!-- SPAM ACCURACY -->
-<div class="bg-white dark:bg-slate-900 border border-border-color dark:border-slate-800 rounded-2xl p-6 shadow-sm">
-  <div class="flex justify-between items-start mb-6">
+<!-- SPAM RT -->
+<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
+  <h3 class="font-bold mb-2 flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary">timer</span>
+    Situational Awareness (SPAM RT)
+  </h3>
+  <p class="text-sm text-slate-600 dark:text-slate-400">
+    19.6s (WOIR) → 14.4s (WIR)
+  </p>
+  <p class="text-xs italic text-success mt-2">
+    Statistically significant improvement (p = .006)
+  </p>
+</div>
+
+<!-- SPAM Accuracy -->
+<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
+  <h3 class="font-bold mb-2 flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary">target</span>
+    Situational Awareness (SPAM Accuracy)
+  </h3>
+  <p class="text-sm text-slate-600 dark:text-slate-400">
+    32.3% (WOIR) → 47.6% (WIR)
+  </p>
+  <p class="text-xs italic text-success mt-2">
+    Statistically significant improvement (p = .005)
+  </p>
+</div>
+
+<!-- SART -->
+<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
+  <h3 class="font-bold mb-2 flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary">fact_check</span>
+    Subjective SA (SART)
+  </h3>
+  <p class="text-sm text-slate-600 dark:text-slate-400">
+    6.17 (WOIR) → 6.52 (WIR)
+  </p>
+  <p class="text-xs italic text-slate-500 mt-2">
+    Difference not statistically significant (p = .688)
+  </p>
+</div>
+
+<!-- SUS -->
+<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
+  <h3 class="font-bold mb-2 flex items-center gap-2">
+    <span class="material-symbols-outlined text-primary">recommend</span>
+    Usability (SUS)
+  </h3>
+  <p class="text-sm text-slate-600 dark:text-slate-400">
+    63.2 (WOIR) → 57.9 (WIR)
+  </p>
+  <p class="text-xs italic text-slate-500 mt-2">
+    Difference not statistically significant (p = .079)
+  </p>
+</div>
+
+</div>
+
+<!-- ================= QUALITATIVE SUMMARY ================= -->
+<div class="mt-10 bg-primary/5 border border-primary/20 rounded-2xl p-8">
+  <h3 class="font-bold text-lg mb-6 flex items-center gap-2 text-primary">
+    <span class="material-symbols-outlined">chat</span>
+    Qualitative Observations (Post-Study Interviews)
+  </h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
     <div>
-      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">SPAM Accuracy</p>
-      <h3 class="text-2xl font-black">47.6%</h3>
+      <p class="font-semibold text-sm mb-1">
+        Structured re-engagement after interruptions
+      </p>
+      <p class="text-xs italic text-slate-600 dark:text-slate-400">
+        “You just have everything at a glance what happened even if you were busy with something else.” (Expert 1)
+      </p>
     </div>
-    <div class="flex items-center gap-1 text-accent-success font-black text-xs bg-accent-success/10 px-2 py-1 rounded">
-      <span class="material-symbols-outlined text-sm">trending_up</span>
-      +15.3%
-    </div>
-  </div>
 
-  <div class="h-40 flex items-end justify-around gap-4 chart-grid border border-slate-50 dark:border-slate-800 rounded-xl pt-8 pb-2 px-4">
-    <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-      <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-md" style="height:32.3%"></div>
-      <span class="text-[9px] font-bold text-slate-400 uppercase">32.3%</span>
-    </div>
-    <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-      <div class="w-full bg-primary rounded-t-md shadow-lg shadow-primary/20" style="height:47.6%"></div>
-      <span class="text-[9px] font-bold text-primary uppercase">47.6%</span>
-    </div>
-  </div>
-
-  <p class="mt-4 text-[11px] italic text-slate-500">
-    Significant gain in mission accuracy during high-workload re-engagement phases.
-  </p>
-</div>
-
-<!-- RESPONSE TIME -->
-<div class="bg-white dark:bg-slate-900 border border-border-color dark:border-slate-800 rounded-2xl p-6 shadow-sm">
-  <div class="flex justify-between items-start mb-6">
     <div>
-      <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Response Time (s)</p>
-      <h3 class="text-2xl font-black">14.4s</h3>
+      <p class="font-semibold text-sm mb-1">
+        Reduced reliance on continuous video monitoring
+      </p>
+      <p class="text-xs italic text-slate-600 dark:text-slate-400">
+        “It’s better if the information is on the page, and not only in the video.” (Expert 2)
+      </p>
     </div>
-    <div class="flex items-center gap-1 text-accent-success font-black text-xs bg-accent-success/10 px-2 py-1 rounded">
-      <span class="material-symbols-outlined text-sm">speed</span>
-      −26%
-    </div>
-  </div>
 
-  <div class="h-40 flex items-end justify-around gap-4 chart-grid border border-slate-50 dark:border-slate-800 rounded-xl pt-8 pb-2 px-4">
-    <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-      <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-t-md" style="height:100%"></div>
-      <span class="text-[9px] font-bold text-slate-400 uppercase">19.6s</span>
+    <div>
+      <p class="font-semibold text-sm mb-1">
+        Information richness increases early effort
+      </p>
+      <p class="text-xs italic text-slate-600 dark:text-slate-400">
+        “There was so much to see that I didn’t even notice the information on the left side at first.” (Expert 1)
+      </p>
     </div>
-    <div class="flex flex-col items-center gap-2 w-full max-w-[60px]">
-      <div class="w-full bg-accent-success rounded-t-md shadow-lg shadow-accent-success/20" style="height:73%"></div>
-      <span class="text-[9px] font-bold text-accent-success uppercase">14.4s</span>
-    </div>
-  </div>
 
-  <p class="mt-4 text-[11px] italic text-slate-500">
-    Reduction in latency suggests optimized cognitive workload distribution.
-  </p>
-</div>
-
-</div>
-
-<!-- EYE TRACKING -->
-<div class="bg-primary/5 border border-primary/20 rounded-2xl p-8 flex items-center justify-between">
-  <div class="space-y-4 max-w-md">
-    <div class="flex items-center gap-2 text-primary">
-      <span class="material-symbols-outlined">visibility</span>
-      <h4 class="text-xs font-black uppercase tracking-widest">Eye-Tracking Finding</h4>
+    <div>
+      <p class="font-semibold text-sm mb-1">
+        Filtering and visual cues support prioritization
+      </p>
+      <p class="text-xs italic text-slate-600 dark:text-slate-400">
+        “If the information you missed is highlighted with a different colour, you immediately know something new happened.” (Expert 2)
+      </p>
     </div>
-    <p class="text-2xl font-bold leading-tight">
-      Participants prioritized the
-      <span class="text-primary underline decoration-2 underline-offset-4">
-        Timeline Over Video
-      </span>
-      for situational awareness.
-    </p>
-  </div>
 
-  <div class="hidden md:flex items-center gap-6">
-    <div class="flex flex-col items-center gap-1">
-      <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center font-bold">68%</div>
-      <span class="text-[9px] font-bold uppercase text-slate-400">Timeline</span>
-    </div>
-    <div class="flex flex-col items-center gap-1">
-      <div class="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-bold">24%</div>
-      <span class="text-[9px] font-bold uppercase text-slate-400">Video</span>
-    </div>
   </div>
 </div>
 
 </div>
-
-<!-- RIGHT -->
-<div class="col-span-12 lg:col-span-4">
-<div class="bg-white dark:bg-slate-900 border border-border-color dark:border-slate-800 rounded-2xl p-6 shadow-sm h-full">
-  <h4 class="text-xs font-black uppercase tracking-widest mb-6 border-b pb-4">Key Takeaways</h4>
-
-  <ul class="space-y-6">
-    <li class="flex gap-4">
-      <div class="h-8 w-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-        <span class="material-symbols-outlined">add_chart</span>
-      </div>
-      <div>
-        <p class="text-sm font-bold">Significant Performance Leap</p>
-        <p class="text-[11px] text-slate-500">47% relative accuracy increase.</p>
-      </div>
-    </li>
-
-    <li class="flex gap-4">
-      <div class="h-8 w-8 rounded-lg bg-accent-success/10 text-accent-success flex items-center justify-center">
-        <span class="material-symbols-outlined">timer</span>
-      </div>
-      <div>
-        <p class="text-sm font-bold">Cognitive Offloading</p>
-        <p class="text-[11px] text-slate-500">5.2s average recovery gain.</p>
-      </div>
-    </li>
-
-    <li class="flex gap-4">
-      <div class="h-8 w-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center">
-        <span class="material-symbols-outlined">psychology</span>
-      </div>
-      <div>
-        <p class="text-sm font-bold">Visual Verification</p>
-        <p class="text-[11px] text-slate-500">Timeline dominates gaze behavior.</p>
-      </div>
-    </li>
-  </ul>
-
-  <div class="mt-12 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-dashed">
-    <p class="text-[10px] font-bold uppercase italic mb-2">Design Recommendation</p>
-    <p class="text-xs font-medium">
-      Emphasize abstracted status over high-bandwidth video.
-    </p>
-  </div>
-</div>
-</div>
-
-</div>
-</div>
-
 </main>
 
-<!-- 🔹 GLOBAL SCRIPT -->
 <script src="./presentation.js"></script>
-
 </body>
 </html>
