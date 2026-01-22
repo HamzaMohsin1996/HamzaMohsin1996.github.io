@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html lang="en" class="light">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>UAV Results – Quantitative & Qualitative</title>
+<title>UAV Results – Key Findings</title>
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
 <script>
 tailwind.config = {
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
         primary: "#136986",
-        success: "#8AB32E",
-        neutral: "#94a3b8",
-        backgroundLight: "#f8fafc",
-        backgroundDark: "#0f172a",
-        borderColor: "#e2e8f0"
+        success: "#16a34a",
+        neutral: "#64748b"
       },
       fontFamily: {
         display: ["Manrope", "sans-serif"]
@@ -30,169 +26,148 @@ tailwind.config = {
   }
 }
 </script>
-
-<style>
-body { font-family: "Manrope", sans-serif; }
-</style>
 </head>
 
-<body class="bg-backgroundLight dark:bg-backgroundDark text-slate-900 dark:text-slate-100 overflow-hidden">
+<body class="bg-[#f8fafc] font-display overflow-hidden">
 
-<!-- REQUIRED -->
 <div id="presentation-shell"></div>
 
-<main class="flex-1 overflow-y-auto p-8">
-<div class="max-w-6xl mx-auto space-y-12">
+<main class="p-12">
+<div class="max-w-7xl mx-auto h-full flex flex-col justify-center space-y-12">
 
 <!-- ================= HEADER ================= -->
-<div>
+<section class="border-l-4 border-primary pl-10 space-y-4">
   <span class="text-xs font-black uppercase tracking-widest text-primary">
-    Results Overview
+    Experimental Results
   </span>
-  <h1 class="text-4xl font-extrabold mt-2">
-    UAV — Experimental Findings
+
+  <h1 class="text-6xl font-extrabold tracking-tight">
+    UAV Dispatcher — Key Findings
   </h1>
-  <p class="text-slate-500 max-w-3xl mt-2">
-    Summary of quantitative outcomes supported by qualitative observations from post-study interviews.
-  </p>
-</div>
 
-<!-- ================= QUANTITATIVE RESULTS ================= -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <p class="text-2xl text-slate-600 max-w-4xl">
+    Quantitative statistical results supported by qualitative validation from professional dispatchers.
+  </p>
+</section>
 
-<!-- Task Performance -->
-<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
-  <h3 class="font-bold mb-2 flex items-center gap-2">
-    <span class="material-symbols-outlined text-primary">checklist</span>
-    Task Performance
-  </h3>
-  <p class="text-sm text-slate-600 dark:text-slate-400">
-    Completion Time: 261.5s (WOIR) → 246.2s (WIR)
-  </p>
-  <p class="text-xs italic text-slate-500 mt-2">
-    No statistically significant difference (p = .164)
-  </p>
-</div>
+<!-- ================= MAIN RESULTS ================= -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-<!-- Cognitive Workload -->
-<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
-  <h3 class="font-bold mb-2 flex items-center gap-2">
-    <span class="material-symbols-outlined text-primary">speed</span>
-    Cognitive Workload (DRT)
-  </h3>
-  <p class="text-sm text-slate-600 dark:text-slate-400">
-    Reaction Time: 766ms (WOIR) → 772ms (WIR)
-  </p>
-  <p class="text-xs italic text-slate-500 mt-2">
-    No statistically significant difference (p = .624)
-  </p>
-</div>
+<!-- NEGATIVE RESULTS -->
+<div class="bg-white border rounded-2xl p-10 space-y-6 shadow-sm">
 
-<!-- SPAM RT -->
-<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
-  <h3 class="font-bold mb-2 flex items-center gap-2">
-    <span class="material-symbols-outlined text-primary">timer</span>
-    Situational Awareness (SPAM RT)
-  </h3>
-  <p class="text-sm text-slate-600 dark:text-slate-400">
-    19.6s (WOIR) → 14.4s (WIR)
-  </p>
-  <p class="text-xs italic text-success mt-2">
-    Statistically significant improvement (p = .006)
-  </p>
-</div>
-
-<!-- SPAM Accuracy -->
-<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
-  <h3 class="font-bold mb-2 flex items-center gap-2">
-    <span class="material-symbols-outlined text-primary">target</span>
-    Situational Awareness (SPAM Accuracy)
-  </h3>
-  <p class="text-sm text-slate-600 dark:text-slate-400">
-    32.3% (WOIR) → 47.6% (WIR)
-  </p>
-  <p class="text-xs italic text-success mt-2">
-    Statistically significant improvement (p = .005)
-  </p>
-</div>
-
-<!-- SART -->
-<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
-  <h3 class="font-bold mb-2 flex items-center gap-2">
-    <span class="material-symbols-outlined text-primary">fact_check</span>
-    Subjective SA (SART)
-  </h3>
-  <p class="text-sm text-slate-600 dark:text-slate-400">
-    6.17 (WOIR) → 6.52 (WIR)
-  </p>
-  <p class="text-xs italic text-slate-500 mt-2">
-    Difference not statistically significant (p = .688)
-  </p>
-</div>
-
-<!-- SUS -->
-<div class="bg-white dark:bg-slate-900 border rounded-2xl p-6">
-  <h3 class="font-bold mb-2 flex items-center gap-2">
-    <span class="material-symbols-outlined text-primary">recommend</span>
-    Usability (SUS)
-  </h3>
-  <p class="text-sm text-slate-600 dark:text-slate-400">
-    63.2 (WOIR) → 57.9 (WIR)
-  </p>
-  <p class="text-xs italic text-slate-500 mt-2">
-    Difference not statistically significant (p = .079)
-  </p>
-</div>
-
-</div>
-
-<!-- ================= QUALITATIVE SUMMARY ================= -->
-<div class="mt-10 bg-primary/5 border border-primary/20 rounded-2xl p-8">
-  <h3 class="font-bold text-lg mb-6 flex items-center gap-2 text-primary">
-    <span class="material-symbols-outlined">chat</span>
-    Qualitative Observations (Post-Study Interviews)
+  <h3 class="text-2xl font-extrabold flex items-center gap-3">
+    <span class="material-symbols-outlined text-neutral text-3xl">block</span>
+    No Performance or Workload Penalty
   </h3>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Responsive “label → result” grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-lg text-slate-600">
 
-    <div>
-      <p class="font-semibold text-sm mb-1">
-        Structured re-engagement after interruptions
-      </p>
-      <p class="text-xs italic text-slate-600 dark:text-slate-400">
-        “You just have everything at a glance what happened even if you were busy with something else.” (Expert 1)
-      </p>
+    <!-- Task Time -->
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-neutral">timer</span>
+      <span class="font-medium">Task Completion Time</span>
+    </div>
+    <div class="font-bold text-neutral">
+      No significant difference (t-test, p = .164)
     </div>
 
-    <div>
-      <p class="font-semibold text-sm mb-1">
-        Reduced reliance on continuous video monitoring
-      </p>
-      <p class="text-xs italic text-slate-600 dark:text-slate-400">
-        “It’s better if the information is on the page, and not only in the video.” (Expert 2)
-      </p>
+    <!-- Workload -->
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-neutral">speed</span>
+      <span class="font-medium">Cognitive Workload (DRT)</span>
+    </div>
+    <div class="font-bold text-neutral">
+      No significant difference (t-test, p = .624)
     </div>
 
-    <div>
-      <p class="font-semibold text-sm mb-1">
-        Information richness increases early effort
-      </p>
-      <p class="text-xs italic text-slate-600 dark:text-slate-400">
-        “There was so much to see that I didn’t even notice the information on the left side at first.” (Expert 1)
-      </p>
+    <!-- Subjective SA (SART) -->
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-neutral">fact_check</span>
+      <span class="font-medium">Subjective SA (SART)</span>
+    </div>
+    <div class="font-bold text-neutral">
+      No significant difference (t-test, p = .688)
     </div>
 
-    <div>
-      <p class="font-semibold text-sm mb-1">
-        Filtering and visual cues support prioritization
-      </p>
-      <p class="text-xs italic text-slate-600 dark:text-slate-400">
-        “If the information you missed is highlighted with a different colour, you immediately know something new happened.” (Expert 2)
-      </p>
+    <!-- Usability -->
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-neutral">recommend</span>
+      <span class="font-medium">Usability (SUS)</span>
+    </div>
+    <div class="font-bold text-neutral">
+      No significant difference (t-test, p = .079)
     </div>
 
   </div>
+
+  <p class="text-base text-slate-500 italic mt-4">
+    Adding structured UAV information did not increase workload, reduce subjective awareness,
+    or slow down dispatcher task performance.
+  </p>
+
 </div>
+
+<!-- POSITIVE RESULTS -->
+<div class="bg-success/5 border-2 border-success rounded-2xl p-10 space-y-6 shadow-md">
+
+  <h3 class="text-2xl font-extrabold flex items-center gap-3 text-success">
+    <span class="material-symbols-outlined text-3xl">check_circle</span>
+    Strong Re-engagement Improvements
+  </h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-lg">
+
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-success">timer</span>
+      <span class="font-medium">SPAM Response Time</span>
+    </div>
+    <div class="font-black text-success">
+      19.6s → 14.4s (t-test, p = .006)
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-success">target</span>
+      <span class="font-medium">SPAM Accuracy</span>
+    </div>
+    <div class="font-black text-success">
+      32.3% → 47.6% (t-test, p = .005)
+    </div>
+
+  </div>
+
+  <p class="text-base font-semibold text-success">
+    Statistically significant improvements in re-engagement after interruptions.
+  </p>
+
+</div>
+
+</section>
+
+<!-- ================= QUALITATIVE INSIGHTS ================= -->
+<section class="bg-primary/5 border border-primary/20 rounded-2xl p-10">
+
+  <h3 class="text-2xl font-extrabold mb-6 flex items-center gap-3 text-primary">
+    <span class="material-symbols-outlined">chat</span>
+    Qualitative Validation
+  </h3>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+
+    <p class="italic text-slate-600">
+      “You just have everything at a glance what happened even if you were busy with something else.”
+      <span class="block text-sm mt-2 text-slate-400">— Professional Dispatcher</span>
+    </p>
+
+    <p class="italic text-slate-600">
+      “If the missed information is highlighted, you immediately know something new happened.”
+      <span class="block text-sm mt-2 text-slate-400">— Professional Dispatcher</span>
+    </p>
+
+  </div>
+
+</section>
 
 </div>
 </main>

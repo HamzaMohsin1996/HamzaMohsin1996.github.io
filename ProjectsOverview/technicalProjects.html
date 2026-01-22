@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Technical Methods – Summary | Hamza Mohsin</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-  <!-- Global Config (matches all slides) -->
   <script>
     tailwind.config = {
       darkMode: "class",
@@ -21,11 +18,10 @@
           colors: {
             primary: "#136986",
             "background-light": "#f8fafc",
-            "background-dark": "#0f172a"
+            "background-dark": "#0f172a",
+            "border-light": "#e2e8f0"
           },
-          fontFamily: {
-            display: ["Manrope", "sans-serif"]
-          }
+          fontFamily: { display: ["Manrope", "sans-serif"] }
         }
       }
     };
@@ -35,77 +31,156 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+  <div id="presentation-shell"></div>
 
-<div id="presentation-shell"></div>
+  <main class="p-10">
+    <div class="max-w-6xl mx-auto w-full space-y-8">
 
-<main class="p-10 flex items-center">
-  <div class="max-w-6xl mx-auto w-full space-y-8">
+      <!-- TITLE -->
+      <section class="border-l-4 border-primary pl-6 space-y-2">
+        <h1 class="text-4xl font-black uppercase tracking-tight">
+          Methods Used (Step by Step)
+        </h1>
+        <p class="text-slate-500 dark:text-slate-400 text-base max-w-3xl">
+          Each method below is shown with where it was applied and what artifact it produced.
+        </p>
+      </section>
 
-    <!-- TITLE -->
-    <section class="border-l-4 border-primary pl-6 space-y-2">
-      <h1 class="text-4xl font-black uppercase tracking-tight">
-        Technical Methods Summary
-      </h1>
-      <p class="text-slate-500 dark:text-slate-400 text-base max-w-2xl">
-        Core HCI methods applied consistently across multiple safety-critical systems.
-      </p>
-    </section>
+      <!-- METHOD LIST (NO SCROLL) -->
+      <section class="space-y-4">
 
-    <!-- METHOD GRID -->
-    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- 1) Experimental Design -->
+        <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
+          <div class="flex items-start gap-4">
+            <div class="size-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined">science</span>
+            </div>
 
-      <div class="bg-white dark:bg-slate-900 border rounded-xl p-4 text-center">
-        <span class="material-symbols-outlined text-primary text-2xl">science</span>
-        <p class="mt-2 text-sm font-bold">Experimental Design</p>
-        <p class="text-xs text-slate-500">Hypothesis-driven studies</p>
-      </div>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-extrabold">Experimental Design</h3>
 
-      <div class="bg-white dark:bg-slate-900 border rounded-xl p-4 text-center">
-        <span class="material-symbols-outlined text-primary text-2xl">analytics</span>
-        <p class="mt-2 text-sm font-bold">Statistical Analysis</p>
-        <p class="text-xs text-slate-500">ANOVA, t-tests</p>
-      </div>
+                <div class="flex items-center gap-2 flex-wrap justify-end">
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
+                </div>
+              </div>
 
-      <div class="bg-white dark:bg-slate-900 border rounded-xl p-4 text-center">
-        <span class="material-symbols-outlined text-primary text-2xl">visibility</span>
-        <p class="mt-2 text-sm font-bold">Eye-Tracking</p>
-        <p class="text-xs text-slate-500">UAV project</p>
-      </div>
+              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                Designed controlled conditions and tasks to compare interface variants and user performance.
+              </p>
 
-      <div class="bg-white dark:bg-slate-900 border rounded-xl p-4 text-center">
-        <span class="material-symbols-outlined text-primary text-2xl">draw</span>
-        <p class="mt-2 text-sm font-bold">Prototyping</p>
-        <p class="text-xs text-slate-500">Iterative interfaces</p>
-      </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                <span class="font-black uppercase tracking-widest text-slate-400">Output:</span>
+                Study structure, conditions, scenarios, procedures
+              </p>
+            </div>
+          </div>
+        </div>
 
-    </section>
+        <!-- 2) Quantitative Metrics -->
+        <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
+          <div class="flex items-start gap-4">
+            <div class="size-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined">speed</span>
+            </div>
 
-    <!-- PROJECT LINE -->
-    <section class="flex flex-wrap gap-3">
-      <span class="px-3 py-1 bg-primary text-white text-xs font-bold rounded">
-        UAV Dispatching
-      </span>
-      <span class="px-3 py-1 bg-primary text-white text-xs font-bold rounded">
-        Teleoperation
-      </span>
-      <span class="px-3 py-1 bg-primary text-white text-xs font-bold rounded">
-        Fog Interface
-      </span>
-    </section>
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-extrabold">Performance Metrics</h3>
 
-    <!-- FINAL TAKEAWAY -->
-    <section class="border-t pt-6 max-w-3xl">
-      <p class="text-sm text-slate-600 dark:text-slate-400">
-        These projects demonstrate <strong>transferable HCI research skills</strong>:
-        rigorous experimentation, analytical decision-making, and interface design
-        under real-world constraints.
-      </p>
+                <div class="flex items-center gap-2 flex-wrap justify-end">
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary/10 text-primary border border-primary/20">UAV (task + SA)</span>
+                </div>
+              </div>
 
-     
-    </section>
+              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                Measured response time, errors, and task outcomes to evaluate interface impact.
+              </p>
 
-  </div>
-</main>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                <span class="font-black uppercase tracking-widest text-slate-400">Output:</span>
+                Logged events, RT tables, error counts, performance graphs
+              </p>
+            </div>
+          </div>
+        </div>
 
+        <!-- 3) Statistical Analysis -->
+        <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
+          <div class="flex items-start gap-4">
+            <div class="size-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined">analytics</span>
+            </div>
+
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-extrabold">Statistical Analysis</h3>
+
+                <div class="flex items-center gap-2 flex-wrap justify-end">
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
+                </div>
+              </div>
+
+              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                Tested hypotheses and compared conditions (t-tests / ANOVA depending on design).
+              </p>
+
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                <span class="font-black uppercase tracking-widest text-slate-400">Output:</span>
+                p-values, test statistics, result tables used in the slides
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4) Prototyping -->
+        <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
+          <div class="flex items-start gap-4">
+            <div class="size-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined">draw</span>
+            </div>
+
+            <div class="flex-1">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-extrabold">Prototyping & UI Iteration</h3>
+
+                <div class="flex items-center gap-2 flex-wrap justify-end">
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
+                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
+                </div>
+              </div>
+
+              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                Built and refined interfaces, then validated them through controlled evaluation loops.
+              </p>
+
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                <span class="font-black uppercase tracking-widest text-slate-400">Output:</span>
+                Final UI screens, tested variants, interaction flows
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- FINAL TAKEAWAY -->
+      <section class="border-t border-border-light/70 dark:border-white/10 pt-6">
+        <p class="text-sm text-slate-600 dark:text-slate-300 max-w-4xl">
+          This shows the methods as an end-to-end pipeline:
+          <strong>design → measure → test → iterate</strong>.
+          The same rigorous workflow was applied across three different safety-critical contexts.
+        </p>
+      </section>
+
+    </div>
+  </main>
 </body>
 </html>

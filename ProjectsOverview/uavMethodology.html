@@ -31,8 +31,6 @@
 
   <style>
     body { font-family: "Manrope", sans-serif; }
-    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
   </style>
 </head>
 
@@ -42,13 +40,13 @@
   <div id="presentation-shell"></div>
 
   <!-- SLIDE CONTENT -->
-  <main class="custom-scrollbar">
-    <div class="max-w-6xl mx-auto p-8 md:p-12 space-y-12">
+  <main>
+    <div class="max-w-6xl mx-auto p-8 space-y-10">
 
       <!-- HEADER -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5">
         <div>
-          <div class="flex items-center gap-2 mb-2">
+          <div class="flex items-center gap-2 mb-1">
             <span class="w-2 h-2 bg-primary rounded-full"></span>
             <span class="text-[10px] font-bold text-primary uppercase tracking-widest">
               Phase II · Experimental Evaluation
@@ -65,27 +63,27 @@
       </div>
 
       <!-- STUDY DESIGN -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border shadow-sm">
-          <span class="material-symbols-outlined text-primary mb-3">layers</span>
-          <h3 class="font-bold mb-1">Study Design</h3>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border shadow-sm">
+          <span class="material-symbols-outlined text-primary mb-2 text-2xl">layers</span>
+          <h3 class="font-bold text-base mb-1">Study Design</h3>
           <p class="text-xs text-slate-500">
             Within-subjects, counterbalanced order (WIR vs WOIR)
           </p>
         </div>
 
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border shadow-sm">
-          <span class="material-symbols-outlined text-primary mb-3">tune</span>
-          <h3 class="font-bold mb-1">Independent Variable</h3>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border shadow-sm">
+          <span class="material-symbols-outlined text-primary mb-2 text-2xl">tune</span>
+          <h3 class="font-bold text-base mb-1">Independent Variable</h3>
           <p class="text-xs text-slate-500">
             Interface condition: With vs Without Information Retrieval
           </p>
         </div>
 
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border shadow-sm">
-          <span class="material-symbols-outlined text-primary mb-3">bar_chart</span>
-          <h3 class="font-bold mb-1">Dependent Measures</h3>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border shadow-sm">
+          <span class="material-symbols-outlined text-primary mb-2 text-2xl">bar_chart</span>
+          <h3 class="font-bold text-base mb-1">Dependent Measures</h3>
           <p class="text-xs text-slate-500">
             Performance, situational awareness, workload, usability, gaze behavior
           </p>
@@ -93,58 +91,86 @@
 
       </div>
 
-      <!-- MEASURES GRID (UNCHANGED BUT CLARIFIED) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- SYSTEM ARCHITECTURE -->
+      <div class="bg-primary/5 border border-primary/20 rounded-xl p-6">
 
-        <!-- SPAM -->
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border shadow-sm">
-          <span class="material-symbols-outlined text-primary mb-2">target</span>
-          <h3 class="font-bold">SPAM</h3>
+        <h3 class="font-extrabold text-base uppercase tracking-wide mb-2 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">hub</span>
+          Experimental System Architecture
+        </h3>
+
+        <p class="text-sm text-slate-600 max-w-4xl leading-relaxed">
+          The experimental simulation environment was implemented using a
+          <strong>Unity-based UAV scenario engine</strong>, streamed in real time via
+          <strong>WebRTC</strong> to a custom-developed
+          <strong>web-based dispatcher interface</strong>, enabling synchronized UAV video,
+          event timelines, telemetry data, and full interaction logging.
+        </p>
+
+        <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+
+          <div class="bg-white p-3 rounded-lg border">
+            <p class="font-bold text-primary mb-0.5">Unity Simulation</p>
+            UAV physics, incidents, sensor events
+          </div>
+
+          <div class="bg-white p-3 rounded-lg border">
+            <p class="font-bold text-primary mb-0.5">WebRTC Streaming</p>
+            Real-time video + telemetry transport
+          </div>
+
+          <div class="bg-white p-3 rounded-lg border">
+            <p class="font-bold text-primary mb-0.5">Web Interface</p>
+            Timeline, logs, summaries, filters, controls
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MEASURES GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border shadow-sm">
+          <span class="material-symbols-outlined text-primary mb-1 text-2xl">target</span>
+          <h3 class="font-bold text-base">SPAM</h3>
           <p class="text-xs text-slate-500">
-            Objective situational awareness measured via real-time probe accuracy and response time.
+            Objective situational awareness via probe accuracy and response time.
           </p>
         </div>
 
-        <!-- DRT -->
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border shadow-sm">
-          <span class="material-symbols-outlined text-accent-green mb-2">speed</span>
-          <h3 class="font-bold">DRT</h3>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border shadow-sm">
+          <span class="material-symbols-outlined text-accent-green mb-1 text-2xl">speed</span>
+          <h3 class="font-bold text-base">DRT</h3>
           <p class="text-xs text-slate-500">
-            Cognitive workload assessed via reaction time to secondary stimuli (ISO 17488).
+            Cognitive workload (ISO 17488 secondary task).
           </p>
         </div>
 
-        <!-- SART -->
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border shadow-sm">
-          <span class="material-symbols-outlined text-primary mb-2">fact_check</span>
-          <h3 class="font-bold">SART</h3>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border shadow-sm">
+          <span class="material-symbols-outlined text-primary mb-1 text-2xl">fact_check</span>
+          <h3 class="font-bold text-base">SART</h3>
           <p class="text-xs text-slate-500">
-            Subjective situational awareness rated post-condition.
+            Subjective situational awareness rating.
           </p>
         </div>
 
-        <!-- SUS -->
-        <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border shadow-sm">
-          <span class="material-symbols-outlined text-accent-green mb-2">recommend</span>
-          <h3 class="font-bold">SUS</h3>
+        <div class="bg-white dark:bg-slate-900 p-5 rounded-xl border shadow-sm">
+          <span class="material-symbols-outlined text-accent-green mb-1 text-2xl">recommend</span>
+          <h3 class="font-bold text-base">SUS</h3>
           <p class="text-xs text-slate-500">
-            Standardized usability perception questionnaire.
+            Standardized usability questionnaire.
           </p>
         </div>
 
-        <!-- EYE TRACKING -->
-        <div class="md:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-xl border shadow-sm">
-          <span class="material-symbols-outlined text-primary mb-2">visibility</span>
-          <h3 class="font-bold mb-2">Eye Tracking (AOI)</h3>
+        <div class="md:col-span-2 bg-white dark:bg-slate-900 p-5 rounded-xl border shadow-sm">
+          <span class="material-symbols-outlined text-primary mb-1 text-2xl">visibility</span>
+          <h3 class="font-bold text-base mb-1">Eye Tracking (AOI)</h3>
           <p class="text-xs text-slate-500">
-            Eye-tracking was used to analyze fixation time within predefined Areas of Interest (AOIs), supporting the interpretation of interaction behavior across interface regions.
+            Fixation time analysis across predefined Areas of Interest to study visual attention distribution.
           </p>
         </div>
 
       </div>
-
-      <!-- LAB SETUP IMAGES -->
-     
 
     </div>
   </main>

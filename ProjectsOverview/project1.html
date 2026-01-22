@@ -5,23 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project 1 – UAV Dispatcher</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
             primary: "#136986",
-            "background-light": "#f8fafc",
-            "background-dark": "#0f172a"
+            bg: "#f8fafc"
           },
           fontFamily: {
             display: ["Manrope", "sans-serif"]
@@ -31,196 +26,106 @@
     };
   </script>
 
-  <!-- Presentation Engine -->
   <script src="presentation.js" defer></script>
-
-  <style>
-    body { font-family: "Manrope", sans-serif; }
-  </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark antialiased">
+<body class="bg-bg font-display overflow-hidden">
+<div id="presentation-shell"></div>
 
-  <!-- REQUIRED FOR PRESENTATION ENGINE -->
-  <div id="presentation-shell"></div>
+<main class="p-12">
+  <div class="max-w-7xl mx-auto h-full flex flex-col justify-center space-y-12">
 
-  <!-- ========================= -->
-  <!-- SLIDE CONTENT ONLY -->
-  <!-- ========================= -->
-  <main class="flex-1 overflow-y-auto p-12">
-
-    <div class="max-w-6xl mx-auto space-y-12">
-
-      <!-- HEADER -->
-      <div class="border-l-4 border-primary pl-8 space-y-4">
-        <div class="flex items-center gap-3">
-          <span class="px-2 py-0.5 rounded bg-primary text-white text-[10px] font-black uppercase tracking-wider">
-            Master’s Thesis
-          </span>
-          <span class="text-slate-400 text-xs font-medium">
-            HCI Research · 2025–2026
-          </span>
-        </div>
-
-        <h1 class="text-5xl font-extrabold tracking-tight leading-none text-slate-900 dark:text-white">
-          MASTER THESIS —
-          <span class="text-primary italic">UAV DISPATCHER</span>
-        </h1>
-
-        <p class="text-slate-600 dark:text-slate-400 text-xl font-medium max-w-3xl">
-          Designing and evaluating a UAV-based information retrieval interface for firefighting dispatchers during multitasking and interruptions.
-        </p>
+    <!-- HEADER -->
+    <section class="border-l-4 border-primary pl-10 space-y-4">
+      <div class="flex items-center gap-4">
+        <span class="px-3 py-1 rounded bg-primary text-white text-xs font-black uppercase tracking-wider">
+          Master’s Thesis
+        </span>
+        <span class="text-slate-400 text-sm font-semibold">
+          HCI Research · 2025–2026
+        </span>
       </div>
 
-      <!-- MAIN GRID -->
-      <div class="grid grid-cols-12 gap-10 items-start">
+      <h1 class="text-6xl font-extrabold tracking-tight leading-tight">
+        UAV Dispatcher Interface
+      </h1>
 
-        <!-- LEFT COLUMN -->
-        <div class="col-span-12 lg:col-span-4 space-y-6">
+      <p class="text-2xl text-slate-600 max-w-4xl font-medium">
+        Designing a <strong>UAV-based information retrieval interface</strong>
+        to support firefighting dispatchers during
+        <strong>multitasking and interruptions</strong>.
+      </p>
+    </section>
 
-          <!-- DOMAIN -->
-          <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="material-symbols-outlined text-primary text-2xl">
-                psychology
-              </span>
-              <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                  Domain Focus
-                </p>
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white">
-                  Multitasking & Interruptions
-                </h3>
-              </div>
-            </div>
-            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Emergency dispatchers make time-critical decisions while frequently switching tasks and recovering from interruptions.
-            </p>
+    <!-- MAIN GRID -->
+    <section class="grid grid-cols-12 gap-10 items-center">
+
+      <!-- LEFT -->
+      <div class="col-span-12 lg:col-span-5 space-y-6">
+
+        <div class="bg-white border rounded-2xl p-8 shadow-sm">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+            <h3 class="text-2xl font-extrabold">Research Focus</h3>
           </div>
-
-          <!-- PARTICIPANTS -->
-          <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="material-symbols-outlined text-primary text-2xl">
-                groups
-              </span>
-              <div>
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                  Participants
-                </p>
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white">
-                  N = 29
-                </h3>
-              </div>
-            </div>
-            <p class="text-sm text-slate-600 dark:text-slate-400">
-              Students, volunteers, and professional dispatchers
-            </p>
-          </div>
-
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Emergency dispatchers operate under
+            <strong>high workload</strong>, frequent
+            <strong>task switching</strong>, and
+            <strong>constant interruptions</strong>,
+            which significantly degrade situational awareness.
+          </p>
         </div>
 
-        <!-- RIGHT COLUMN -->
-        <div class="col-span-12 lg:col-span-8 space-y-6">
-
-          <!-- CONTEXT IMAGES -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-            <!-- IMAGE 1 -->
-            <figure class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
-              <img
-                src="https://www.eurofunk.com/wp-content/uploads/ILS_Allgaeu_WEB_05.jpg"
-                alt="Emergency dispatch control center"
-                class="w-full h-48 object-cover"
-                loading="lazy"
-              />
-              <figcaption class="p-2 text-[10px] text-slate-500 text-center">
-                Emergency dispatch control room<br />
-                <span class="italic">
-                  Source:
-                  <a href="https://www.eurofunk.com/portfolio/ils-muenchen/" target="_blank" rel="noopener noreferrer"
-                     class="underline hover:text-primary">
-                    Eurofunk
-                  </a>
-                </span>
-              </figcaption>
-            </figure>
-
-            <!-- IMAGE 2 -->
-            <figure class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
-              <img
-                src="https://www.eurofunk.com/wp-content/uploads/ILS_Allgaeu_WEB_01.jpg"
-                alt="Dispatcher workstation"
-                class="w-full h-48 object-cover"
-                loading="lazy"
-              />
-              <figcaption class="p-2 text-[10px] text-slate-500 text-center">
-                Dispatcher workstation with multiple information sources<br />
-                <span class="italic">
-                  Source:
-                  <a href="https://www.eurofunk.com/portfolio/ils-muenchen/" target="_blank" rel="noopener noreferrer"
-                     class="underline hover:text-primary">
-                    Eurofunk
-                  </a>
-                </span>
-              </figcaption>
-            </figure>
-
-            <!-- IMAGE 3 -->
-            <figure class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800">
-              <img
-                src="https://www.symmetryelectronics.com/getmedia/8fcb07f1-8cf8-443b-8840-44522399c98c/iStock-1022533074.jpg"
-                alt="UAV aerial emergency response"
-                class="w-full h-48 object-cover"
-                loading="lazy"
-              />
-              <figcaption class="p-2 text-[10px] text-slate-500 text-center">
-                UAV providing aerial situational awareness<br />
-                <span class="italic">
-                  Source:
-                  <a href="https://www.symmetryelectronics.com/getmedia/8fcb07f1-8cf8-443b-8840-44522399c98c/iStock-1022533074.jpg" target="_blank" rel="noopener noreferrer"
-                     class="underline hover:text-primary">
-                    Symmetry Electronics / iStock
-                  </a>
-                </span>
-              </figcaption>
-            </figure>
-
+        <div class="bg-white border rounded-2xl p-8 shadow-sm">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="material-symbols-outlined text-primary text-3xl">groups</span>
+            <h3 class="text-2xl font-extrabold">Participants</h3>
           </div>
-
-          <!-- CONTEXT EXPLANATION -->
-          <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="material-symbols-outlined text-primary">
-                flight
-              </span>
-              <h3 class="font-bold text-lg text-slate-900 dark:text-white">
-                Research Context
-              </h3>
-            </div>
-
-            <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
-              <li class="flex gap-2">
-                <span class="material-symbols-outlined text-slate-400 text-base">call</span>
-                Dispatchers coordinate emergency response via emergency calls (112 / 911)
-              </li>
-              <li class="flex gap-2">
-                <span class="material-symbols-outlined text-slate-400 text-base">visibility</span>
-                UAVs provide early aerial situational awareness
-              </li>
-              <li class="flex gap-2">
-                <span class="material-symbols-outlined text-slate-400 text-base">warning</span>
-                Existing UAV interfaces primarily target field responders rather than dispatchers
-              </li>
-            </ul>
-          </div>
-
+          <p class="text-4xl font-extrabold text-primary">N = 29</p>
+          <p class="text-lg text-slate-600 mt-1">
+            Students, volunteers, and professional dispatchers
+          </p>
         </div>
 
       </div>
 
-    </div>
-  </main>
+      <!-- RIGHT -->
+      <div class="col-span-12 lg:col-span-7 space-y-6">
+
+        <!-- IMAGES -->
+        <div class="grid grid-cols-3 gap-4">
+
+          <img src="https://www.eurofunk.com/wp-content/uploads/ILS_Allgaeu_WEB_05.jpg"
+               class="rounded-xl h-52 w-full object-cover border"/>
+
+          <img src="https://www.eurofunk.com/wp-content/uploads/ILS_Allgaeu_WEB_01.jpg"
+               class="rounded-xl h-52 w-full object-cover border"/>
+
+          <img src="https://www.symmetryelectronics.com/getmedia/8fcb07f1-8cf8-443b-8840-44522399c98c/iStock-1022533074.jpg"
+               class="rounded-xl h-52 w-full object-cover border"/>
+        </div>
+
+        <!-- CONTEXT -->
+        <div class="bg-white border rounded-2xl p-8 shadow-sm">
+          <div class="flex items-center gap-4 mb-4">
+            <span class="material-symbols-outlined text-primary text-3xl">flight</span>
+            <h3 class="text-2xl font-extrabold">System Context</h3>
+          </div>
+
+          <ul class="space-y-3 text-lg text-slate-600">
+            <li>• Dispatchers manage emergency calls and resource allocation</li>
+            <li>• UAVs provide <strong>early aerial situational awareness</strong></li>
+            <li>• Existing UAV interfaces are designed for <strong>field responders</strong>, not dispatchers</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+</main>
 
 </body>
 </html>
