@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technical Methods – Summary | Hamza Mohsin</title>
+  <title>Technical Methods – Research Pipeline | Hamza Mohsin</title>
 
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
@@ -19,7 +19,8 @@
             primary: "#136986",
             "background-light": "#f8fafc",
             "background-dark": "#0f172a",
-            "border-light": "#e2e8f0"
+            "border-light": "#e2e8f0",
+            "accent": "#0ea5e9"
           },
           fontFamily: { display: ["Manrope", "sans-serif"] }
         }
@@ -31,156 +32,162 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
-  <div id="presentation-shell"></div>
+<div id="presentation-shell"></div>
 
-  <main class="p-10">
-    <div class="max-w-6xl mx-auto w-full space-y-8">
+<main class="p-10">
+<div class="max-w-6xl mx-auto w-full space-y-8">
 
-      <!-- TITLE -->
-      <section class="border-l-4 border-primary pl-6 space-y-2">
-        <h1 class="text-4xl font-black uppercase tracking-tight">
-          Methods Used (Step by Step)
-        </h1>
-        <p class="text-slate-500 dark:text-slate-400 text-base max-w-3xl">
-          Each method below is shown with where it was applied and what artifact it produced.
-        </p>
-      </section>
+  <!-- TITLE -->
+  <section class="border-l-4 border-primary pl-6 space-y-2">
+    <h1 class="text-4xl font-black uppercase tracking-tight">
+      HCI Research Methods — End-to-End Pipeline
+    </h1>
+    <p class="text-slate-500 dark:text-slate-400 text-base max-w-3xl">
+      A consistent experimental workflow applied across three safety-critical domains:
+      UAV dispatching, vehicle teleoperation, and automotive perception.
+    </p>
+  </section>
 
-      <!-- METHOD LIST (NO SCROLL) -->
-      <section class="space-y-4">
+  <!-- PIPELINE -->
+  <section class="space-y-4">
 
-        <!-- 1) Experimental Design -->
-        <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
-          <div class="flex items-start gap-4">
-            <div class="size-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined">science</span>
-            </div>
-
-            <div class="flex-1">
-              <div class="flex items-center justify-between gap-4">
-                <h3 class="text-lg font-extrabold">Experimental Design</h3>
-
-                <div class="flex items-center gap-2 flex-wrap justify-end">
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
-                </div>
-              </div>
-
-              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                Designed controlled conditions and tasks to compare interface variants and user performance.
-              </p>
-
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                <span class="font-black uppercase tracking-widest text-slate-400">Output:</span>
-                Study structure, conditions, scenarios, procedures
-              </p>
-            </div>
-          </div>
+    <!-- 1) Experimental Design -->
+    <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
+      <div class="flex items-start gap-4">
+        <div class="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined">science</span>
         </div>
 
-        <!-- 2) Quantitative Metrics -->
-        <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
-          <div class="flex items-start gap-4">
-            <div class="size-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined">speed</span>
-            </div>
+        <div class="flex-1 space-y-1">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-lg font-extrabold">Experimental Design</h3>
 
-            <div class="flex-1">
-              <div class="flex items-center justify-between gap-4">
-                <h3 class="text-lg font-extrabold">Performance Metrics</h3>
-
-                <div class="flex items-center gap-2 flex-wrap justify-end">
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary/10 text-primary border border-primary/20">UAV (task + SA)</span>
-                </div>
-              </div>
-
-              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                Measured response time, errors, and task outcomes to evaluate interface impact.
-              </p>
-
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                <span class="font-black uppercase tracking-widest text-slate-400">Output:</span>
-                Logged events, RT tables, error counts, performance graphs
-              </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
             </div>
           </div>
+
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Designed controlled experiments with counterbalanced conditions, realistic tasks,
+            and reproducible protocols.
+          </p>
+
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            <span class="font-black uppercase tracking-widest text-slate-400">Artifact:</span>
+            Study design · task scenarios · procedures · hypotheses
+          </p>
         </div>
-
-        <!-- 3) Statistical Analysis -->
-        <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
-          <div class="flex items-start gap-4">
-            <div class="size-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined">analytics</span>
-            </div>
-
-            <div class="flex-1">
-              <div class="flex items-center justify-between gap-4">
-                <h3 class="text-lg font-extrabold">Statistical Analysis</h3>
-
-                <div class="flex items-center gap-2 flex-wrap justify-end">
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
-                </div>
-              </div>
-
-              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                Tested hypotheses and compared conditions (t-tests / ANOVA depending on design).
-              </p>
-
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                <span class="font-black uppercase tracking-widest text-slate-400">Output:</span>
-                p-values, test statistics, result tables used in the slides
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4) Prototyping -->
-        <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
-          <div class="flex items-start gap-4">
-            <div class="size-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-              <span class="material-symbols-outlined">draw</span>
-            </div>
-
-            <div class="flex-1">
-              <div class="flex items-center justify-between gap-4">
-                <h3 class="text-lg font-extrabold">Prototyping & UI Iteration</h3>
-
-                <div class="flex items-center gap-2 flex-wrap justify-end">
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
-                  <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
-                </div>
-              </div>
-
-              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
-                Built and refined interfaces, then validated them through controlled evaluation loops.
-              </p>
-
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                <span class="font-black uppercase tracking-widest text-slate-400">Output:</span>
-                Final UI screens, tested variants, interaction flows
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- FINAL TAKEAWAY -->
-      <section class="border-t border-border-light/70 dark:border-white/10 pt-6">
-        <p class="text-sm text-slate-600 dark:text-slate-300 max-w-4xl">
-          This shows the methods as an end-to-end pipeline:
-          <strong>design → measure → test → iterate</strong>.
-          The same rigorous workflow was applied across three different safety-critical contexts.
-        </p>
-      </section>
-
+      </div>
     </div>
-  </main>
+
+    <!-- 2) Quantitative Measurement -->
+    <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
+      <div class="flex items-start gap-4">
+        <div class="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined">speed</span>
+        </div>
+
+        <div class="flex-1 space-y-1">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-lg font-extrabold">Quantitative Measurement</h3>
+
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary/10 text-primary border border-primary/20">UAV (Task + SA)</span>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Collected behavioral, performance, and situational awareness metrics
+            under realistic multitasking and time pressure.
+          </p>
+
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            <span class="font-black uppercase tracking-widest text-slate-400">Artifact:</span>
+            Event logs · RT datasets · workload measures · SA probes
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3) Statistical Analysis -->
+    <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
+      <div class="flex items-start gap-4">
+        <div class="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined">analytics</span>
+        </div>
+
+        <div class="flex-1 space-y-1">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-lg font-extrabold">Statistical Analysis</h3>
+
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Applied hypothesis-driven statistical testing (paired t-tests, ANOVA, nonparametrics)
+            to compare interface conditions.
+          </p>
+
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            <span class="font-black uppercase tracking-widest text-slate-400">Artifact:</span>
+            p-values · effect sizes · confidence intervals · result plots
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4) Prototyping -->
+    <div class="bg-white dark:bg-slate-900 border border-border-light/70 dark:border-white/10 rounded-2xl p-5">
+      <div class="flex items-start gap-4">
+        <div class="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined">draw</span>
+        </div>
+
+        <div class="flex-1 space-y-1">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-lg font-extrabold">High-Fidelity Prototyping & Iteration</h3>
+
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">UAV</span>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Teleop</span>
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-black bg-primary text-white">Fog</span>
+            </div>
+          </div>
+
+          <p class="text-sm text-slate-600 dark:text-slate-300">
+            Built interactive prototypes, refined through user testing,
+            and validated through controlled experimental loops.
+          </p>
+
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            <span class="font-black uppercase tracking-widest text-slate-400">Artifact:</span>
+            Final interfaces · interaction flows · evaluation-ready systems
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FINAL MESSAGE -->
+  <section class="border-t border-border-light/70 dark:border-white/10 pt-6">
+    <p class="text-sm text-slate-600 dark:text-slate-300 max-w-4xl">
+      This represents a complete HCI research pipeline:
+      <strong>design → measure → analyze → iterate</strong>.
+      The same rigorous methodology was applied consistently across three
+      high-stakes application domains.
+    </p>
+  </section>
+
+</div>
+</main>
 </body>
 </html>

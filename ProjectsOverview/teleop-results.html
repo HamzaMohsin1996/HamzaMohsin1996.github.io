@@ -1,193 +1,198 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Teleoperation Results - HCI Research | Hamza Mohsin</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Teleoperation Results – HCI Research | Hamza Mohsin</title>
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 
-  <!-- Tailwind Config -->
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            primary: "#136986",
-            "background-light": "#f8fafc",
-            "background-dark": "#0f172a",
-          },
-          fontFamily: {
-            display: ["Manrope", "sans-serif"]
-          }
-        }
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: "#136986",
+        success: "#16a34a",
+        neutral: "#64748b"
+      },
+      fontFamily: {
+        display: ["Manrope", "sans-serif"]
       }
-    };
-  </script>
-
-  <!-- Presentation Engine -->
-  <script src="presentation.js" defer></script>
+    }
+  }
+}
+</script>
 </head>
 
-<body class="antialiased bg-background-light dark:bg-background-dark">
+<body class="bg-[#f8fafc] font-display overflow-hidden">
 
 <div id="presentation-shell"></div>
 
-<!-- IMPORTANT: no overflow-y-auto here -->
-<main class="p-8 lg:p-12">
+<main class="p-8 h-screen flex items-center">
+<div class="max-w-7xl mx-auto w-full grid grid-rows-[auto_1fr_auto] gap-6">
 
-<div class="max-w-6xl mx-auto space-y-10">
-
-<!-- ================= HEADER ================= -->
-<section class="border-l-4 border-primary pl-8 space-y-3">
-  <span class="inline-block text-[10px] font-black uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded">
-    Quantitative & Qualitative Results
+<!-- HEADER -->
+<section class="border-l-4 border-primary pl-6">
+  <span class="text-xs font-black uppercase tracking-widest text-primary">
+    Project 2 · Experimental Results
   </span>
-
-  <h1 class="text-5xl font-extrabold tracking-tight uppercase">
-    Teleoperation – Results
+  <h1 class="text-4xl font-extrabold tracking-tight mt-1">
+    Teleoperation — Results
   </h1>
-
-  <p class="text-lg text-slate-600 max-w-3xl font-medium">
-    Impact of auditory, audio-to-visual, and combined feedback on response time,
-    errors, and situational awareness during emergency takeover.
+  <p class="text-base text-slate-600 max-w-3xl">
+    Impact of auditory and multimodal feedback on emergency takeover decisions.
   </p>
 </section>
 
-<!-- ================= KEY RESULT ================= -->
-<section class="bg-primary rounded-2xl p-8 text-white shadow-xl">
-  <p class="text-xs font-black uppercase tracking-widest text-sky-200 mb-2">
-    Primary Statistical Outcome
-  </p>
-  <h2 class="text-3xl font-black mb-3">
-    No statistically significant differences observed
-  </h2>
-  <p class="text-sky-100 max-w-3xl font-medium">
-    One-way ANOVA revealed no significant effect of feedback modality on response time
-    (<strong>F = 0.27, p = .76</strong>). However, consistent performance trends emerged
-    across conditions.
-  </p>
-</section>
+<!-- MAIN GRID -->
+<section class="grid grid-cols-12 gap-6 items-center">
 
-<!-- ================= FINAL INTERFACE DESIGNS ================= -->
-<section class="space-y-4">
+  <!-- LEFT: INTERFACE VISUALS -->
+  <div class="col-span-12 lg:col-span-7 grid grid-cols-2 gap-4">
 
-  <p class="text-xs font-black uppercase tracking-widest text-slate-400">
-    Final Interface Designs Evaluated in Study
-  </p>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-    <!-- AUDIO ONLY -->
-    <div class="bg-white dark:bg-slate-900 rounded-xl border p-4">
-      <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
+    <!-- AUDIO -->
+    <div class="bg-white rounded-xl border p-3 shadow-sm">
+      <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">
         Audio Only
       </p>
-
-      <img
-        src="./images/audionly.png"
-        alt="Teleoperation interface with audio-only feedback"
-        class="w-full h-40 object-cover rounded-lg border"
-      />
-
-      <p class="mt-2 text-xs text-slate-500 leading-relaxed">
-        Participants relied solely on auditory cues without competing visual information.
+      <img src="./images/audionly.png"
+           class="w-full h-36 object-cover rounded-lg border" />
+      <p class="text-xs text-slate-500 mt-1 text-center">
+        Pure auditory feedback
       </p>
     </div>
 
-    <!-- AUDIO TO VISUAL -->
-    <div class="bg-white dark:bg-slate-900 rounded-xl border p-4">
-      <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
+    <!-- AUDIO → VISUAL -->
+    <div class="bg-white rounded-xl border p-3 shadow-sm">
+      <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">
         Audio → Visual
       </p>
-
-      <img
-        src="./images/audio&Visuals.png"
-        alt="Teleoperation interface with audio translated to visual alerts"
-        class="w-full h-40 object-cover rounded-lg border"
-      />
-
-      <p class="mt-2 text-xs text-slate-500 leading-relaxed">
-        Auditory events were translated into symbolic on-screen alerts.
+      <img src="./images/audio&Visuals.png"
+           class="w-full h-36 object-cover rounded-lg border" />
+      <p class="text-xs text-slate-500 mt-1 text-center">
+        Symbolic on-screen alerts
       </p>
     </div>
 
-   
 
   </div>
+
+  <!-- RIGHT: STATISTICS + TRENDS -->
+  <div class="col-span-12 lg:col-span-5 space-y-4">
+
+    <!-- MAIN STAT -->
+    <div class="bg-primary text-white rounded-xl p-5 shadow-xl">
+      <p class="text-[10px] uppercase tracking-widest text-sky-200 font-black mb-1">
+        Primary Statistical Result
+      </p>
+      <p class="text-xl font-black">
+        No statistically significant differences
+      </p>
+      <p class="text-sm text-sky-100 mt-1">
+        One-way ANOVA:
+        <strong>F = 0.27</strong>,
+        <strong>p = .76</strong>
+      </p>
+    </div>
+
+    <!-- METRICS GRID -->
+    <div class="grid grid-cols-2 gap-3">
+
+      <div class="bg-white rounded-xl border p-4 text-center">
+        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-black">
+          Response Time
+        </p>
+        <p class="text-lg font-black text-neutral">n.s.</p>
+        <p class="text-xs text-slate-500">ANOVA</p>
+      </div>
+
+      <div class="bg-white rounded-xl border p-4 text-center">
+        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-black">
+          Errors
+        </p>
+        <p class="text-lg font-black text-neutral">n.s.</p>
+        <p class="text-xs text-slate-500">ANOVA</p>
+      </div>
+
+      <div class="bg-white rounded-xl border p-4 text-center">
+        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-black">
+          SART
+        </p>
+        <p class="text-lg font-black text-neutral">n.s.</p>
+        <p class="text-xs text-slate-500">ANOVA</p>
+      </div>
+
+      <div class="bg-white rounded-xl border p-4 text-center">
+        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-black">
+          Overall Effect
+        </p>
+        <p class="text-lg font-black text-primary">Trends</p>
+        <p class="text-xs text-slate-500">no sig.</p>
+      </div>
+
+    </div>
+
+    <!-- TREND SUMMARY -->
+    <div class="grid grid-cols-3 gap-3">
+
+      <div class="bg-white rounded-xl border p-3 text-center">
+        <span class="material-symbols-outlined text-primary">volume_up</span>
+        <p class="text-sm font-bold">Fastest</p>
+        <p class="text-[11px] text-slate-500">Audio only</p>
+      </div>
+
+      <div class="bg-white rounded-xl border p-3 text-center">
+        <span class="material-symbols-outlined text-primary">visibility</span>
+        <p class="text-sm font-bold">Comparable</p>
+        <p class="text-[11px] text-slate-500">Audio → visual</p>
+      </div>
+
+      <div class="bg-white rounded-xl border p-3 text-center">
+        <span class="material-symbols-outlined text-primary">dashboard</span>
+        <p class="text-sm font-bold">Slowest</p>
+        <p class="text-[11px] text-slate-500">Audio + visual</p>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
-<!-- ================= TREND SUMMARY ================= -->
-<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- BOTTOM: QUAL + TAKEAWAY -->
+<section class="grid grid-cols-12 gap-4 items-center">
 
-  <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
-    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
-      Audio Only
+  <div class="col-span-12 lg:col-span-7 bg-white rounded-xl border p-5">
+    <p class="text-[10px] uppercase tracking-widest text-slate-400 font-black mb-2">
+      Qualitative Insights
     </p>
-    <p class="text-3xl font-black text-primary mb-2">
-      Fastest trend
-    </p>
-    <p class="text-xs text-slate-500">
-      Clear auditory cues supported rapid responses with minimal cognitive overhead.
-    </p>
+    <div class="grid grid-cols-2 gap-4 text-sm italic text-slate-600">
+      <p>“Audio alone was enough to understand what was happening.”</p>
+      <p>“With both audio and visuals, I didn’t know where to focus.”</p>
+    </div>
   </div>
 
-  <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
-    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
-      Audio → Visual
-    </p>
-    <p class="text-3xl font-black mb-2">
-      Comparable trend
-    </p>
-    <p class="text-xs text-slate-500">
-      Visual translation neither improved nor degraded performance significantly.
-    </p>
+  <div class="col-span-12 lg:col-span-5 bg-primary/5 border border-primary/30 rounded-xl p-5">
+    <div class="flex items-center gap-3">
+      <span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
+      <p class="text-lg font-extrabold leading-tight">
+        More information is not always better:
+        <span class="text-primary">
+          audio-only feedback enabled the clearest and fastest decisions.
+        </span>
+      </p>
+    </div>
   </div>
 
-  <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
-    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">
-      Audio + Visual
-    </p>
-    <p class="text-3xl font-black mb-2">
-      Slower trend
-    </p>
-    <p class="text-xs text-slate-500">
-      Concurrent cues increased cognitive demand and delayed reactions.
-    </p>
-  </div>
-
-</section>
-
-<!-- ================= QUALITATIVE INSIGHTS ================= -->
-<section class="bg-white dark:bg-slate-900 p-6 rounded-xl border">
-  <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">
-    Qualitative Insights (Post-study Interviews)
-  </p>
-
-  <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
-    <li>• “Audio alone was enough to understand what was happening.”</li>
-    <li>• “With both audio and visuals, I didn’t know where to focus.”</li>
-    <li>• Participants reported information overload with multimodal feedback.</li>
-  </ul>
-</section>
-
-<!-- ================= TAKEAWAY ================= -->
-<section class="flex items-center gap-4 border-t pt-6">
-  <span class="material-symbols-outlined text-primary text-3xl">lightbulb</span>
-  <p class="text-lg font-semibold text-slate-700 dark:text-slate-200">
-    More information is not always better:
-    <strong>audio-only feedback supported the clearest and fastest decisions.</strong>
-  </p>
 </section>
 
 </div>
 </main>
 
+<script src="./presentation.js"></script>
 </body>
 </html>

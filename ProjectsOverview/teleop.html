@@ -29,10 +29,10 @@ tailwind.config = {
 </script>
 
 <style>
-body { font-family: "Manrope", sans-serif; }
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
+  body { font-family: "Manrope", sans-serif; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
 </style>
 </head>
 
@@ -42,137 +42,139 @@ body { font-family: "Manrope", sans-serif; }
 <div id="presentation-shell"></div>
 
 <!-- IMPORTANT: presentation.js controls scrolling -->
-<main class="p-10 lg:p-14">
+<main class="p-8 lg:p-10">
+  <div class="max-w-6xl mx-auto space-y-8 lg:space-y-10">
 
-<div class="max-w-6xl mx-auto space-y-12">
+    <!-- HEADER -->
+    <section class="border-l-4 border-primary pl-6 lg:pl-8 space-y-3">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="px-3 py-1 rounded bg-primary text-white text-[10px] font-black uppercase tracking-wider">
+          Project 2
+        </span>
+        <span class="text-slate-400 text-xs font-semibold uppercase tracking-widest">
+          Remote Vehicle Teleoperation
+        </span>
+      </div>
 
-<!-- HEADER -->
-<section class="border-l-4 border-primary pl-8 space-y-4">
-  <div class="flex flex-wrap items-center gap-3">
-    <span class="px-3 py-1 rounded bg-primary text-white text-[10px] font-black uppercase tracking-wider">
-      Project 2
-    </span>
-    <span class="text-slate-400 text-xs font-semibold uppercase tracking-widest">
-      Remote Vehicle Teleoperation
-    </span>
+      <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05] uppercase text-slate-900">
+        Teleoperation Audio Feedback
+      </h1>
+
+      <p class="text-base lg:text-lg text-slate-600 max-w-3xl font-medium leading-relaxed">
+        Investigating how <span class="text-primary font-extrabold">audio</span>,
+        <span class="text-primary font-extrabold">audio-to-visual</span>, and
+        <span class="text-primary font-extrabold">audio + visual</span> feedback
+        influence <strong>remote vehicle takeover decisions</strong>.
+      </p>
+    </section>
+
+    <!-- IMAGE + CONTEXT -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+
+      <!-- IMAGE -->
+      <div class="lg:col-span-7">
+        <figure class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm bg-white">
+          <img
+            src="https://www.dlr.de/en/images/2022/02/teleoperation-workstation/@@images/image-1000-d0e5478f6466c33e2cba6cacedf0520c.jpeg"
+            alt="Remote vehicle teleoperation workstation"
+            class="w-full h-[260px] md:h-[300px] lg:h-[320px] object-cover"
+            loading="lazy"
+          />
+          <figcaption class="px-4 py-2 text-[11px] text-slate-500 text-center">
+            Remote vehicle teleoperation workstation for monitoring and manual takeover
+            <span class="italic">
+              · Source:
+              <a href="https://www.dlr.de/en/images/2022/02/teleoperation-workstation/@@images/image-1000-d0e5478f6466c33e2cba6cacedf0520c.jpeg"
+                 target="_blank" rel="noopener noreferrer"
+                 class="underline hover:text-primary">
+                DLR
+              </a>
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- CONTEXT TEXT -->
+      <div class="lg:col-span-5 space-y-4 lg:space-y-5">
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 lg:p-6">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="material-symbols-outlined text-primary">warning</span>
+            <h3 class="font-extrabold uppercase text-[12px] tracking-widest text-slate-900">
+              Why this matters
+            </h3>
+          </div>
+          <p class="text-sm lg:text-[15px] text-slate-600 leading-relaxed">
+            In teleoperation, operators are physically separated from the vehicle and must rely
+            entirely on mediated sensory feedback. In safety critical situations,
+            delayed or overloaded feedback can reduce decision quality.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 lg:p-6">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="material-symbols-outlined text-primary">tune</span>
+            <h3 class="font-extrabold uppercase text-[12px] tracking-widest text-slate-900">
+              What we compared
+            </h3>
+          </div>
+
+          <ul class="space-y-2.5 text-sm lg:text-[15px] text-slate-600">
+            <li class="flex gap-2.5">
+              <span class="material-symbols-outlined text-slate-400 text-[18px] leading-none mt-0.5">volume_up</span>
+              <span>Audio only cues (sirens, approaching vehicles)</span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="material-symbols-outlined text-slate-400 text-[18px] leading-none mt-0.5">visibility</span>
+              <span>Audio to visual conversion using on screen alerts</span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="material-symbols-outlined text-slate-400 text-[18px] leading-none mt-0.5">dashboard</span>
+              <span>Combined audio + visual feedback during takeover</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STUDY SNAPSHOT -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+      <div class="bg-white p-4 lg:p-5 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Participants</p>
+        <p class="text-sm lg:text-base font-extrabold text-slate-900">N = 15</p>
+      </div>
+
+      <div class="bg-white p-4 lg:p-5 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Design</p>
+        <p class="text-sm lg:text-base font-extrabold text-slate-900">Between group</p>
+      </div>
+
+      <div class="bg-white p-4 lg:p-5 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Scenarios</p>
+        <p class="text-sm lg:text-base font-extrabold text-slate-900">4 situations</p>
+      </div>
+
+      <div class="bg-white p-4 lg:p-5 rounded-xl border border-slate-200 shadow-sm">
+        <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Measures</p>
+        <p class="text-sm lg:text-base font-extrabold text-slate-900">RT · Errors · SART</p>
+      </div>
+    </section>
+
+    <!-- RESEARCH QUESTIONS -->
+    <section class="bg-slate-900 text-white rounded-2xl p-6 lg:p-7 shadow-xl">
+      <p class="text-[10px] font-black uppercase tracking-widest text-slate-300 mb-2">
+        Research focus
+      </p>
+      <p class="text-sm lg:text-[15px] leading-relaxed text-slate-100">
+        How do different feedback modalities influence
+        <strong>teleoperator performance</strong> (RQ1)
+        and <strong>situational awareness</strong> (RQ2)
+        during remote vehicle takeover?
+      </p>
+    </section>
+
   </div>
-
-  <h1 class="text-5xl font-extrabold tracking-tight leading-none uppercase text-slate-900">
-    Teleoperation Audio Feedback
-  </h1>
-
-  <p class="text-lg text-slate-600 max-w-3xl font-medium">
-    Investigating how <span class="text-primary font-extrabold">audio</span>,
-    <span class="text-primary font-extrabold">audio-to-visual</span>, and
-    <span class="text-primary font-extrabold">audio + visual</span> feedback
-    influence <strong>remote vehicle takeover decisions</strong>.
-  </p>
-</section>
-
-<!-- IMAGE + CONTEXT -->
-<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-
-<!-- IMAGE -->
-<div class="lg:col-span-7">
-  <figure class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
-    <img
-      src="https://www.dlr.de/en/images/2022/02/teleoperation-workstation/@@images/image-1000-d0e5478f6466c33e2cba6cacedf0520c.jpeg"
-      alt="Remote vehicle teleoperation workstation"
-      class="w-full h-[360px] object-cover"
-      loading="lazy"
-    />
-    <figcaption class="p-3 text-[11px] text-slate-500 text-center bg-white">
-      Remote vehicle teleoperation workstation used for monitoring and manual takeover of autonomous vehicles
-      <span class="italic">
-        Source:
-        <a href="https://www.dlr.de/en/images/2022/02/teleoperation-workstation/@@images/image-1000-d0e5478f6466c33e2cba6cacedf0520c.jpeg" target="_blank" rel="noopener noreferrer"
-           class="underline hover:text-primary">
-          DLR
-        </a>
-      </span>
-    </figcaption>
-  </figure>
-</div>
-
-<!-- CONTEXT TEXT -->
-<div class="lg:col-span-5 space-y-6">
-
-  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-    <div class="flex items-center gap-3 mb-3">
-      <span class="material-symbols-outlined text-primary">warning</span>
-      <h3 class="font-extrabold uppercase text-sm">Why this matters</h3>
-    </div>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      In teleoperation, operators are physically separated from the vehicle and must rely
-      entirely on mediated sensory feedback. During emergency or safety-critical situations,
-      delayed or overloaded feedback can directly affect decision quality.
-    </p>
-  </div>
-
-  <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-    <div class="flex items-center gap-3 mb-3">
-      <span class="material-symbols-outlined text-primary">tune</span>
-      <h3 class="font-extrabold uppercase text-sm">What we compared</h3>
-    </div>
-
-    <ul class="space-y-3 text-sm text-slate-600">
-      <li class="flex gap-2">
-        <span class="material-symbols-outlined text-slate-400 text-base">volume_up</span>
-        Audio-only cues (e.g., sirens, approaching vehicles)
-      </li>
-      <li class="flex gap-2">
-        <span class="material-symbols-outlined text-slate-400 text-base">visibility</span>
-        Audio-to-visual conversion using on-screen alerts
-      </li>
-      <li class="flex gap-2">
-        <span class="material-symbols-outlined text-slate-400 text-base">dashboard</span>
-        Combined audio + visual feedback during takeover
-      </li>
-    </ul>
-  </div>
-
-</div>
-</section>
-
-<!-- STUDY SNAPSHOT -->
-<section class="grid grid-cols-1 md:grid-cols-4 gap-6">
-
-<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-  <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Participants</p>
-  <p class="text-sm font-extrabold">N = 15</p>
-</div>
-
-<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-  <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Design</p>
-  <p class="text-sm font-extrabold">Between-group</p>
-</div>
-
-<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-  <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Scenarios</p>
-  <p class="text-sm font-extrabold">4 driving situations</p>
-</div>
-
-<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-  <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Measures</p>
-  <p class="text-sm font-extrabold">RT · Errors · SART</p>
-</div>
-
-</section>
-
-<!-- RESEARCH QUESTIONS -->
-<section class="bg-slate-900 text-white rounded-2xl p-8 shadow-xl">
-  <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">
-    Research focus
-  </p>
-  <p class="text-sm leading-relaxed">
-    How do different feedback modalities influence
-    <strong>teleoperator performance</strong> (RQ1)
-    and <strong>situational awareness</strong> (RQ2)
-    during remote vehicle takeover?
-  </p>
-</section>
-
-</div>
 </main>
 
 <script src="./presentation.js"></script>

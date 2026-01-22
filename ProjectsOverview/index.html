@@ -22,12 +22,9 @@
             primary: "#136986",
             "background-light": "#f8fafb",
             "background-dark": "#111827",
-            "accent-grey": "#647e87",
             "border-light": "#e2e8f0"
           },
-          fontFamily: {
-            display: ["Manrope", "sans-serif"]
-          }
+          fontFamily: { display: ["Manrope", "sans-serif"] }
         }
       }
     };
@@ -38,92 +35,113 @@
 
 <div id="presentation-shell"></div>
 
-<main class="p-10 flex items-center">
-  <div class="max-w-6xl mx-auto w-full">
+<main class="p-12 flex items-center">
+<div class="max-w-6xl mx-auto w-full space-y-12">
 
-    <!-- HEADER -->
-    <section class="mb-10 border-l-4 border-primary pl-6">
-      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
-        Background & Professional Journey
-      </h1>
-      <p class="text-slate-500 mt-2 text-lg max-w-3xl">
-        From front-end engineering to UX research in safety-critical systems.
+  <!-- HEADER -->
+  <section class="border-l-4 border-primary pl-6 space-y-3">
+    <h1 class="text-5xl font-extrabold tracking-tight">
+      Hamza Mohsin
+    </h1>
+
+    <p class="text-primary font-bold uppercase tracking-widest text-xs">
+      Front-End Engineer · UX Researcher · HCI Specialist
+    </p>
+
+    <p class="text-slate-500 text-lg max-w-3xl">
+      A professional journey bridging <strong>industry-grade software engineering</strong>
+      and <strong>human-centered research in safety-critical systems</strong>.
+    </p>
+  </section>
+
+  <!-- CAREER FLOW -->
+  <section class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+    <!-- BACHELORS -->
+    <div class="bg-white dark:bg-slate-900 border rounded-2xl p-6 text-center shadow-sm">
+      <span class="material-symbols-outlined text-primary text-3xl">school</span>
+      <h3 class="mt-3 font-bold">Bachelor’s</h3>
+      <p class="text-sm text-slate-500">
+        Information Technology
       </p>
-    </section>
-
-    <!-- TIMELINE -->
-    <section class="grid grid-cols-1 lg:grid-cols-5 gap-5">
-
-      <!-- BACHELORS -->
-      <div class="bg-white dark:bg-slate-900 border rounded-xl p-5 text-center">
-        <span class="material-symbols-outlined text-primary text-3xl">school</span>
-        <h3 class="mt-3 font-bold">Bachelor’s Degree</h3>
-        <p class="text-sm text-slate-500 mt-1">
-          Information Technology
-        </p>
-        <p class="text-xs text-slate-400 mt-2">
-          BZU Multan(Pakistan)<br/>2014 – 2018
-        </p>
-      </div>
-
-      <!-- TECHVERX -->
-      <div class="bg-white dark:bg-slate-900 border rounded-xl p-5 text-center">
-        <span class="material-symbols-outlined text-primary text-3xl">code</span>
-        <h3 class="mt-3 font-bold">Front-End Developer</h3>
-        <p class="text-sm text-slate-500 mt-1">
-          Enterprise Web Applications
-        </p>
-        <p class="text-xs text-slate-400 mt-2">
-          Techverx(Pakistan)<br/>2018 – 2023
-        </p>
-      </div>
-
-      <!-- MASTERS -->
-      <div class="bg-white dark:bg-slate-900 border rounded-xl p-5 text-center">
-        <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
-        <h3 class="mt-3 font-bold">Master’s Degree</h3>
-        <p class="text-sm text-slate-500 mt-1">
-          User Experience Design
-        </p>
-        <p class="text-xs text-slate-400 mt-2">
-          THI Ingolstadt(Germany)<br/>2023 – 2026
-        </p>
-      </div>
-
-      <!-- KEYSIGHT -->
-      <div class="bg-emerald-600 text-white rounded-xl p-5 text-center shadow-lg ring-2 ring-emerald-400/40">
-        <span class="material-symbols-outlined text-white text-3xl">
-          engineering
-        </span>
-      
-        <h3 class="mt-3 font-bold">
-          Working Student
-        </h3>
-      
-        <p class="text-sm text-white/90 mt-1">
-          Web GUI(Graphical User Interface)
-        </p>
-      
-        <p class="text-xs text-white/80 mt-2">
-          Keysight Technologies(Germany)<br/>
-          Mar 2025 – Present
-        </p>
-      </div>
-      
-      <!-- CURRENT -->
-     
-    </section>
-
-    <!-- TAKEAWAY -->
-    <section class="mt-10 max-w-3xl">
-      <p class="text-sm text-slate-600 dark:text-slate-400">
-        My background combines <strong>5+ years of industry front-end engineering</strong>
-        with <strong>rigorous HCI research</strong>, enabling me to design and evaluate
-        complex interactive systems grounded in real-world constraints.
+      <p class="text-xs text-slate-400 mt-2">
+        BZU Multan · Pakistan<br/>2014 – 2018
       </p>
-    </section>
+    </div>
 
-  </div>
+    <!-- TECHVERX -->
+    <div class="bg-white dark:bg-slate-900 border rounded-2xl p-6 text-center shadow-sm">
+      <span class="material-symbols-outlined text-primary text-3xl">code</span>
+      <h3 class="mt-3 font-bold">Front-End Engineer</h3>
+      <p class="text-sm text-slate-500">
+        Enterprise UI Systems
+      </p>
+      <p class="text-xs text-slate-400 mt-2">
+        Techverx · Pakistan<br/>2018 – 2023
+      </p>
+    </div>
+
+    <!-- MASTERS -->
+    <div class="bg-white dark:bg-slate-900 border rounded-2xl p-6 text-center shadow-sm">
+      <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+      <h3 class="mt-3 font-bold">Master’s</h3>
+      <p class="text-sm text-slate-500">
+        User Experience Design
+      </p>
+      <p class="text-xs text-slate-400 mt-2">
+        THI Ingolstadt · Germany<br/>2023 – 2026
+      </p>
+    </div>
+
+    <!-- KEYSIGHT -->
+    <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 text-white rounded-2xl p-6 text-center shadow-lg ring-2 ring-emerald-400/30">
+      <span class="material-symbols-outlined text-white text-3xl">
+        engineering
+      </span>
+    
+      <h3 class="mt-3 font-bold">
+        Working Student
+      </h3>
+    
+      <p class="text-sm text-white/90">
+        UI Engineering & UX
+      </p>
+    
+      <p class="text-xs text-white/80 mt-2">
+        Keysight Technologies · Germany<br/>
+        Mar 2025 – Present
+      </p>
+    </div>
+
+    <!-- FUTURE -->
+    <div class="bg-primary/5 border-2 border-primary/20 rounded-2xl p-6 text-center">
+      <span class="material-symbols-outlined text-primary text-3xl">
+        school
+      </span>
+      <h3 class="mt-3 font-bold">
+        Next Step
+      </h3>
+      <p class="text-sm text-slate-500">
+        PhD / Research Role
+      </p>
+      <p class="text-xs text-slate-400 mt-2">
+        Human–AI Collaboration<br/>
+        Safety-Critical Systems
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ONE-LINE TAKEAWAY -->
+  <section class="border-t pt-6 max-w-4xl">
+    <p class="text-base text-slate-600 dark:text-slate-400">
+      I combine <strong>5+ years of professional front-end engineering</strong> with
+      <strong>experimental HCI research</strong> to design, implement, and evaluate
+      intelligent interfaces for high-risk decision-making environments.
+    </p>
+  </section>
+
+</div>
 </main>
 
 <script src="./presentation.js"></script>
