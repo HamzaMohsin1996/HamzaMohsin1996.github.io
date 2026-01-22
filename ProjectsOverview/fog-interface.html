@@ -11,15 +11,11 @@
 
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
             primary: "#136986",
-            "background-light": "#f8fafb",
-            "background-dark": "#111827",
-            "accent-grey": "#647e87",
-            "border-light": "#e2e8f0"
+            bg: "#f8fafc"
           },
           fontFamily: {
             display: ["Manrope", "sans-serif"]
@@ -28,83 +24,106 @@
       }
     };
   </script>
+
+  <!-- PRESENTATION TYPOGRAPHY -->
+  <style>
+    :root {
+      --h1: clamp(40px, 4vw, 64px);
+      --h2: clamp(24px, 2.6vw, 38px);
+      --body: clamp(18px, 1.6vw, 22px);
+      --small: clamp(14px, 1.2vw, 16px);
+    }
+
+    h1 { font-size: var(--h1); line-height: 1.05; }
+    h2 { font-size: var(--h2); line-height: 1.15; }
+    p  { font-size: var(--body); line-height: 1.4; }
+
+    .small-text { font-size: var(--small); }
+  </style>
 </head>
 
 <body class="bg-bg font-display overflow-hidden">
 <div id="presentation-shell"></div>
 
-<main class="p-10">
-  <div class="max-w-6xl mx-auto space-y-10">
+<!-- FIXED SLIDE HEIGHT — NO SCROLL -->
+<main class="h-[calc(100vh-64px)] px-16 py-14 flex items-center">
+  <div class="w-full max-w-7xl mx-auto space-y-12">
 
     <!-- HEADER -->
-    <section class="border-l-4 border-primary pl-8">
-      <span class="text-[10px] font-black uppercase tracking-widest text-primary">
+    <section class="border-l-4 border-primary pl-8 space-y-3">
+      <span class="small-text font-black uppercase tracking-widest text-primary">
         Project 3 · Automotive HCI
       </span>
-      <h1 class="text-5xl font-extrabold uppercase tracking-tight mt-2">
+
+      <h1 class="font-extrabold uppercase tracking-tight">
         Fog Distance Perception Interface
       </h1>
-      <p class="text-lg text-slate-600 max-w-3xl mt-2">
+
+      <p class="text-slate-600 max-w-4xl">
         Supporting driver distance perception in foggy conditions using
-        abstract visual cues when natural visibility breaks down.
+        <strong>abstract visual cues</strong> when natural visibility breaks down.
       </p>
     </section>
 
     <!-- CORE STORY -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-      <div class="bg-white border rounded-xl p-6">
-        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+      <div class="bg-white border rounded-2xl p-8 shadow-sm">
+        <h2 class="font-extrabold uppercase tracking-widest text-slate-400 mb-3 small-text">
           Problem
-        </h3>
-        <p class="text-sm text-slate-600">
+        </h2>
+        <p class="text-slate-700">
           Fog removes reliable depth cues.
-          Existing vehicle interfaces do not compensate,
-          increasing accident risk in low visibility.
+          Existing vehicle interfaces fail to compensate, increasing
+          accident risk in low-visibility environments.
         </p>
       </div>
 
-      <div class="bg-white border rounded-xl p-6">
-        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+      <div class="bg-white border rounded-2xl p-8 shadow-sm">
+        <h2 class="font-extrabold uppercase tracking-widest text-slate-400 mb-3 small-text">
           Research Question
-        </h3>
-        <p class="text-sm text-slate-600">
-          How can visual distance cues in automotive interfaces
-          improve driver understanding of surrounding vehicles in fog?
+        </h2>
+        <p class="text-slate-700">
+          How can visual distance cues improve driver understanding
+          of surrounding vehicles under fog conditions?
         </p>
       </div>
 
-      <div class="bg-white border rounded-xl p-6">
-        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+      <div class="bg-white border rounded-2xl p-8 shadow-sm">
+        <h2 class="font-extrabold uppercase tracking-widest text-slate-400 mb-3 small-text">
           Study Approach
-        </h3>
-        <p class="text-sm text-slate-600">
-          Controlled lab experiment comparing
-          driving with and without abstract visual distance cues
-          in simulated fog scenarios.
+        </h2>
+        <p class="text-slate-700">
+          Controlled laboratory experiment comparing driving
+          with and without abstract visual cues in simulated fog.
         </p>
       </div>
 
     </section>
 
     <!-- STUDY SNAPSHOT -->
-    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="bg-slate-50 border rounded-xl p-4">
-        <p class="text-[10px] font-black uppercase text-slate-400">Participants</p>
-        <p class="font-extrabold">N = 18</p>
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+
+      <div class="bg-slate-50 border rounded-2xl p-6 text-center">
+        <p class="small-text uppercase font-black text-slate-400 mb-1">Participants</p>
+        <p class="text-3xl font-black">18</p>
       </div>
-      <div class="bg-slate-50 border rounded-xl p-4">
-        <p class="text-[10px] font-black uppercase text-slate-400">Design</p>
-        <p class="font-extrabold">Between-group</p>
+
+      <div class="bg-slate-50 border rounded-2xl p-6 text-center">
+        <p class="small-text uppercase font-black text-slate-400 mb-1">Design</p>
+        <p class="text-3xl font-black">Between</p>
       </div>
-      <div class="bg-slate-50 border rounded-xl p-4">
-        <p class="text-[10px] font-black uppercase text-slate-400">Scenarios</p>
-        <p class="font-extrabold">2 emergency cases</p>
+
+      <div class="bg-slate-50 border rounded-2xl p-6 text-center">
+        <p class="small-text uppercase font-black text-slate-400 mb-1">Scenarios</p>
+        <p class="text-3xl font-black">2</p>
       </div>
-      <div class="bg-slate-50 border rounded-xl p-4">
-        <p class="text-[10px] font-black uppercase text-slate-400">Measures</p>
-        <p class="font-extrabold">RT, Errors, UEQ</p>
+
+      <div class="bg-slate-50 border rounded-2xl p-6 text-center">
+        <p class="small-text uppercase font-black text-slate-400 mb-1">Measures</p>
+        <p class="text-3xl font-black">RT · UEQ</p>
       </div>
+
     </section>
 
   </div>

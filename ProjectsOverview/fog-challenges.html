@@ -11,15 +11,11 @@
 
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
             primary: "#136986",
-            "background-light": "#f8fafb",
-            "background-dark": "#111827",
-            "accent-grey": "#647e87",
-            "border-light": "#e2e8f0"
+            bg: "#f8fafc"
           },
           fontFamily: {
             display: ["Manrope", "sans-serif"]
@@ -28,69 +24,97 @@
       }
     };
   </script>
+
+  <!-- PRESENTATION TYPOGRAPHY -->
+  <style>
+    :root {
+      --h1: clamp(40px, 4vw, 64px);
+      --h2: clamp(22px, 2.5vw, 34px);
+      --body: clamp(18px, 1.6vw, 22px);
+      --small: clamp(14px, 1.2vw, 16px);
+    }
+
+    h1 { font-size: var(--h1); line-height: 1.05; }
+    h2 { font-size: var(--h2); line-height: 1.15; }
+    p  { font-size: var(--body); line-height: 1.45; }
+    .small-text { font-size: var(--small); }
+  </style>
 </head>
 
 <body class="bg-bg font-display overflow-hidden">
 <div id="presentation-shell"></div>
 
-<main class="p-10">
-  <div class="max-w-5xl mx-auto space-y-10">
+<!-- FIXED FULLSCREEN SLIDE -->
+<main class="h-[calc(100vh-64px)] px-16 py-14 flex items-center">
+  <div class="w-full max-w-7xl mx-auto space-y-12">
 
     <!-- HEADER -->
-    <section>
-      <span class="text-[10px] font-black uppercase tracking-widest text-primary">
+    <section class="border-l-4 border-primary pl-8 space-y-3">
+      <span class="small-text font-black uppercase tracking-widest text-primary">
         Design Reflection
       </span>
-      <h1 class="text-4xl font-extrabold uppercase tracking-tight mt-2">
+
+      <h1 class="font-extrabold uppercase tracking-tight">
         Fog Interface — Challenges & Decisions
       </h1>
     </section>
 
-    <!-- CHALLENGE FLOW -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- MAIN FLOW -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-      <div class="bg-white border rounded-xl p-6">
-        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+      <!-- CHALLENGE -->
+      <div class="bg-white border rounded-2xl p-8 shadow-sm space-y-3">
+        <h2 class="small-text font-black uppercase tracking-widest text-slate-400">
           Challenge
-        </h3>
-        <p class="text-sm text-slate-600">
-          Fog removes depth perception.
-          Overly precise visuals risk distraction in already stressful conditions.
+        </h2>
+
+        <p class="text-slate-700">
+          Fog eliminates reliable depth cues.
+          Overly precise or dense visualizations risk
+          <strong>increasing cognitive load</strong>
+          and distracting drivers in already stressful situations.
         </p>
       </div>
 
-      <div class="bg-primary text-white rounded-xl p-6">
-        <h3 class="text-xs font-black uppercase tracking-widest text-white/70 mb-2">
+      <!-- DESIGN DECISION -->
+      <div class="bg-primary text-white rounded-2xl p-8 shadow-lg space-y-3">
+        <h2 class="small-text font-black uppercase tracking-widest text-white/80">
           Design Decision
-        </h3>
-        <p class="text-sm">
-          Abstract distance bars and a vehicle-centric icon
-          were used instead of numeric distances
-          to reduce cognitive load.
+        </h2>
+
+        <p class="text-white">
+          Replace numeric distance values with
+          <strong>abstract distance bars</strong> and a
+          <strong>vehicle-centric icon</strong> to communicate
+          proximity intuitively while minimizing cognitive effort.
         </p>
       </div>
 
-      <div class="bg-white border rounded-xl p-6">
-        <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+      <!-- EVALUATION INSIGHT -->
+      <div class="bg-white border rounded-2xl p-8 shadow-sm space-y-3">
+        <h2 class="small-text font-black uppercase tracking-widest text-slate-400">
           Evaluation Insight
-        </h3>
-        <p class="text-sm text-slate-600">
-          Non-significant results reflected limitations of sample size
-          and lab realism rather than interface irrelevance.
+        </h2>
+
+        <p class="text-slate-700">
+          Non-significant statistics mainly reflected
+          <strong>sample size and lab realism limitations</strong>,
+          rather than lack of interface usefulness.
         </p>
       </div>
 
     </section>
 
     <!-- TAKEAWAYS -->
-    <section class="bg-slate-50 border rounded-xl p-6">
-      <h3 class="text-xs font-black uppercase tracking-widest mb-2">
+    <section class="bg-slate-50 border rounded-2xl p-8">
+      <h2 class="small-text font-black uppercase tracking-widest text-slate-500 mb-4">
         Key Takeaways
-      </h3>
-      <ul class="text-sm text-slate-600 list-disc list-inside space-y-1">
-        <li>Abstraction is critical in degraded perception environments</li>
-        <li>Design value can exist without statistical significance</li>
-        <li>Future work requires real-world driving contexts</li>
+      </h2>
+
+      <ul class="grid grid-cols-1 lg:grid-cols-3 gap-6 text-slate-700">
+        <li>• Abstraction is essential in degraded perception environments</li>
+        <li>• Design value can exist beyond statistical significance</li>
+        <li>• Real-world driving contexts are critical for future validation</li>
       </ul>
     </section>
 

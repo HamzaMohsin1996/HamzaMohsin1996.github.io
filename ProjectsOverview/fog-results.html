@@ -5,23 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fog Interface – Results | Hamza Mohsin</title>
 
-  <!-- Tailwind -->
- 
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
           colors: {
             primary: "#136986",
-            "background-light": "#f8fafb",
-            "background-dark": "#111827",
-            "accent-grey": "#647e87",
-            "border-light": "#e2e8f0"
+            bg: "#f8fafc"
           },
           fontFamily: {
             display: ["Manrope", "sans-serif"]
@@ -30,31 +24,47 @@
       }
     };
   </script>
+
+  <!-- PRESENTATION TYPOGRAPHY -->
+  <style>
+    :root {
+      --h1: clamp(40px, 4vw, 64px);
+      --h2: clamp(22px, 2.5vw, 34px);
+      --body: clamp(18px, 1.6vw, 22px);
+      --small: clamp(14px, 1.2vw, 16px);
+    }
+
+    h1 { font-size: var(--h1); line-height: 1.05; }
+    h2 { font-size: var(--h2); line-height: 1.15; }
+    p  { font-size: var(--body); line-height: 1.4; }
+    .small-text { font-size: var(--small); }
+  </style>
 </head>
 
 <body class="bg-bg font-display overflow-hidden">
-
 <div id="presentation-shell"></div>
 
-<main class="p-10">
-  <div class="max-w-6xl mx-auto space-y-8">
+<!-- FIXED SLIDE HEIGHT -->
+<main class="h-[calc(100vh-64px)] px-16 py-14 flex items-center">
+  <div class="w-full max-w-7xl mx-auto space-y-12">
 
     <!-- HEADER -->
-    <section class="border-l-4 border-primary pl-8">
-      <span class="text-[10px] font-black uppercase tracking-widest text-primary">
+    <section class="border-l-4 border-primary pl-8 space-y-3">
+      <span class="small-text font-black uppercase tracking-widest text-primary">
         Project 3 · Automotive HCI
       </span>
-      <h1 class="text-4xl font-extrabold uppercase tracking-tight mt-2">
+
+      <h1 class="font-extrabold uppercase tracking-tight">
         Fog Interface — Results
       </h1>
     </section>
 
-    <!-- KEY RESULT -->
-    <section class="bg-primary/5 border border-primary/20 rounded-xl p-6">
-      <p class="text-xs font-black uppercase tracking-widest text-primary mb-2">
+    <!-- MAIN RESULT -->
+    <section class="bg-primary/5 border border-primary/20 rounded-2xl p-8">
+      <p class="small-text font-black uppercase tracking-widest text-primary mb-3">
         Main Finding
       </p>
-      <p class="text-sm text-slate-700 max-w-4xl">
+      <p class="text-slate-700 max-w-5xl">
         Visual distance cues showed <strong>behavioral trends toward faster reactions</strong>,
         but differences between conditions were
         <strong>not statistically significant</strong>
@@ -63,54 +73,59 @@
     </section>
 
     <!-- INTERFACE COMPARISON -->
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
       <!-- WITH VISUAL -->
-      <div>
-        <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+      <div class="space-y-4">
+        <h2 class="small-text font-black uppercase tracking-widest text-slate-400">
           With Visual Distance Cues
-        </p>
-        <div class="bg-white border border-borderLight rounded-xl overflow-hidden shadow-sm">
+        </h2>
+
+        <div class="bg-white border rounded-2xl overflow-hidden shadow-sm">
           <img
             src="./images/withvisuals.png"
-            alt="Fog interface with abstract distance bars and vehicle icon"
-            class="w-full h-48 object-cover"
+            alt="Fog interface with abstract distance bars"
+            class="w-full h-[280px] object-cover"
           />
         </div>
-        <p class="text-xs text-slate-500 mt-2">
-          Abstract bars and a vehicle-centric icon conveyed relative distance
-          without numeric precision.
+
+        <p class="text-slate-600 max-w-xl">
+          Abstract distance bars and a vehicle-centric icon conveyed
+          relative proximity without numeric overload.
         </p>
       </div>
 
       <!-- WITHOUT VISUAL -->
-      <div>
-        <p class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+      <div class="space-y-4">
+        <h2 class="small-text font-black uppercase tracking-widest text-slate-400">
           Without Visual Cues
-        </p>
-        <div class="bg-white border border-borderLight rounded-xl overflow-hidden shadow-sm">
+        </h2>
+
+        <div class="bg-white border rounded-2xl overflow-hidden shadow-sm">
           <img
             src="./images/withoutvisuals.png"
-            alt="Fog driving scenario without visual distance cues"
-            class="w-full h-48 object-cover"
+            alt="Fog driving without visual cues"
+            class="w-full h-[280px] object-cover"
           />
         </div>
-        <p class="text-xs text-slate-500 mt-2">
-          Baseline condition relying solely on degraded natural visibility in fog.
+
+        <p class="text-slate-600 max-w-xl">
+          Baseline condition relying solely on degraded natural visibility
+          under fog.
         </p>
       </div>
 
     </section>
 
     <!-- INTERPRETATION -->
-    <section class="bg-white border border-borderLight rounded-xl p-6">
-      <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
+    <section class="bg-white border rounded-2xl p-8">
+      <h2 class="small-text font-black uppercase tracking-widest text-slate-400 mb-3">
         Interpretation
-      </h3>
-      <p class="text-sm text-slate-600 max-w-4xl">
-        Although statistical significance was not reached, the results provide
-        <strong>design insights</strong> into how abstraction can support perception
-        under degraded visual conditions.
+      </h2>
+      <p class="text-slate-700 max-w-5xl">
+        While statistical significance was not achieved, the results provide
+        <strong>important design insights</strong> into how abstraction can
+        support perception and confidence in degraded visual environments.
       </p>
     </section>
 
