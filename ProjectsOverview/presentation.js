@@ -216,11 +216,11 @@ style.innerHTML = `
     content: "CONFIDENTIAL · UNPUBLISHED MASTER’S THESIS";
     position: fixed;
     bottom: 22px;
-    right: 28px;
+    right: 128px;
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(0,0,0,0.25);
+    color: red;
     pointer-events: none;
     z-index: 9999;
   }
