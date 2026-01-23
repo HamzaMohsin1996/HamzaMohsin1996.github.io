@@ -32,113 +32,108 @@ tailwind.config = {
 
 <div id="presentation-shell"></div>
 
-<main class="p-12">
-<div class="max-w-7xl mx-auto h-full flex flex-col justify-center space-y-12">
+<!-- FULL HEIGHT SLIDE -->
+<main class="h-[calc(100vh-64px)] px-12 py-10 flex items-center">
+<div class="max-w-7xl mx-auto w-full space-y-8">
 
 <!-- ================= HEADER ================= -->
-<section class="border-l-4 border-primary pl-10 space-y-4">
-  <span class="text-xs font-black uppercase tracking-widest text-primary">
+<section class="border-l-4 border-primary pl-8 space-y-2">
+  <span class="text-[11px] font-black uppercase tracking-widest text-primary">
     Experimental Results
   </span>
 
-  <h1 class="text-6xl font-extrabold tracking-tight">
+  <h1 class="text-5xl font-extrabold tracking-tight">
     UAV Dispatcher — Key Findings
   </h1>
 
-  <p class="text-2xl text-slate-600 max-w-4xl">
+  <p class="text-lg text-slate-600 max-w-4xl">
     Quantitative statistical results supported by qualitative validation from professional dispatchers.
   </p>
 </section>
 
 <!-- ================= MAIN RESULTS ================= -->
-<section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
 <!-- NEGATIVE RESULTS -->
-<div class="bg-white border rounded-2xl p-10 space-y-6 shadow-sm">
+<div class="bg-white border rounded-2xl p-7 space-y-4 shadow-sm">
 
-  <h3 class="text-2xl font-extrabold flex items-center gap-3">
-    <span class="material-symbols-outlined text-neutral text-3xl">block</span>
+  <h3 class="text-xl font-extrabold flex items-center gap-3">
+    <span class="material-symbols-outlined text-neutral text-2xl">block</span>
     No Performance or Workload Penalty
   </h3>
 
-  <!-- Responsive “label → result” grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-lg text-slate-600">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3 text-base text-slate-600">
 
-    <!-- Task Time -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
       <span class="material-symbols-outlined text-neutral">timer</span>
-      <span class="font-medium">Task Completion Time</span>
+      <span class="font-medium">Task Time</span>
     </div>
     <div class="font-bold text-neutral">
-      No significant difference (t-test, p = .164)
+      n.s. (t-test, p = .164)
     </div>
 
-    <!-- Workload -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
       <span class="material-symbols-outlined text-neutral">speed</span>
-      <span class="font-medium">Cognitive Workload (DRT)</span>
+      <span class="font-medium">Workload (DRT)</span>
     </div>
     <div class="font-bold text-neutral">
-      No significant difference (t-test, p = .624)
+      n.s. (t-test, p = .624)
     </div>
 
-    <!-- Subjective SA (SART) -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
       <span class="material-symbols-outlined text-neutral">fact_check</span>
-      <span class="font-medium">Subjective SA (SART)</span>
+      <span class="font-medium">SART</span>
     </div>
     <div class="font-bold text-neutral">
-      No significant difference (t-test, p = .688)
+      n.s. (t-test, p = .688)
     </div>
 
-    <!-- Usability -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
       <span class="material-symbols-outlined text-neutral">recommend</span>
-      <span class="font-medium">Usability (SUS)</span>
+      <span class="font-medium">SUS</span>
     </div>
     <div class="font-bold text-neutral">
-      No significant difference (t-test, p = .079)
+      n.s. (t-test, p = .079)
     </div>
 
   </div>
 
-  <p class="text-base text-slate-500 italic mt-4">
-    Adding structured UAV information did not increase workload, reduce subjective awareness,
-    or slow down dispatcher task performance.
+  <p class="text-sm text-slate-500 italic">
+    Structured UAV information did <strong>not</strong> slow dispatchers or increase workload.
   </p>
 
 </div>
 
 <!-- POSITIVE RESULTS -->
-<div class="bg-success/5 border-2 border-success rounded-2xl p-10 space-y-6 shadow-md">
+<div class="bg-success/5 border-2 border-success rounded-2xl p-7 space-y-4 shadow-md">
 
-  <h3 class="text-2xl font-extrabold flex items-center gap-3 text-success">
-    <span class="material-symbols-outlined text-3xl">check_circle</span>
-    Strong Re-engagement Improvements
+  <h3 class="text-xl font-extrabold flex items-center gap-3 text-success">
+    <span class="material-symbols-outlined text-2xl">check_circle</span>
+    Re-engagement Improvements
   </h3>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-lg">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3 text-base">
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
       <span class="material-symbols-outlined text-success">timer</span>
-      <span class="font-medium">SPAM Response Time</span>
+      <span class="font-medium">SPAM RT</span>
     </div>
     <div class="font-black text-success">
-      19.6s → 14.4s (t-test, p = .006)
+      19.6s → 14.4s (p = .006)
     </div>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2">
       <span class="material-symbols-outlined text-success">target</span>
       <span class="font-medium">SPAM Accuracy</span>
     </div>
     <div class="font-black text-success">
-      32.3% → 47.6% (t-test, p = .005)
+      32.3% → 47.6% (p = .005)
     </div>
 
   </div>
 
-  <p class="text-base font-semibold text-success">
-    Statistically significant improvements in re-engagement after interruptions.
+  <p class="text-sm font-semibold text-success">
+    Significant improvement in re-engagement after interruptions.
   </p>
 
 </div>
@@ -146,23 +141,23 @@ tailwind.config = {
 </section>
 
 <!-- ================= QUALITATIVE INSIGHTS ================= -->
-<section class="bg-primary/5 border border-primary/20 rounded-2xl p-10">
+<section class="bg-primary/5 border border-primary/20 rounded-2xl p-7">
 
-  <h3 class="text-2xl font-extrabold mb-6 flex items-center gap-3 text-primary">
+  <h3 class="text-xl font-extrabold mb-4 flex items-center gap-3 text-primary">
     <span class="material-symbols-outlined">chat</span>
     Qualitative Validation
   </h3>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-base">
 
     <p class="italic text-slate-600">
       “You just have everything at a glance what happened even if you were busy with something else.”
-      <span class="block text-sm mt-2 text-slate-400">— Professional Dispatcher</span>
+      <span class="block text-xs mt-2 text-slate-400">— Professional Dispatcher</span>
     </p>
 
     <p class="italic text-slate-600">
       “If the missed information is highlighted, you immediately know something new happened.”
-      <span class="block text-sm mt-2 text-slate-400">— Professional Dispatcher</span>
+      <span class="block text-xs mt-2 text-slate-400">— Professional Dispatcher</span>
     </p>
 
   </div>

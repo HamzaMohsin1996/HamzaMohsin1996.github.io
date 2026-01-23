@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- CONTENT -->
       <div class="flex-1 flex flex-col overflow-hidden">
 
-        <main id="slide-content" class="flex-1 overflow-y-auto"></main>
+        <main id="slide-content" class="h-[calc(100vh-64px)] px-12 py-10 flex items-center justify-center"></main>
 
         <!-- FOOTER -->
         <footer class="h-16 bg-white border-t border-slate-200 px-8 flex items-center justify-between">
