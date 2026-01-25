@@ -68,6 +68,19 @@ const slides = [
   {
     file: "technicalProjects.html",
     notes: "Summarize methods across projects and position your research profile."
+  },
+
+  {
+    file: "soc-analyst.html",
+    notes: [
+      "Problem context: SOC alert triage as a sensemaking task.",
+      "Why triage is difficult: fragmented information and changing information needs.",
+      "Current role of AI in SOCs.",
+      "Research gap.",
+      "Research questions.",
+      "Methodology.",
+      "Full proposal and Overleaf link."
+    ]
   }
 ];
 
@@ -89,7 +102,9 @@ const slides = [
     const filePath = `file://${path.resolve(slideConfig.file)}`;
     await page.goto(filePath, { waitUntil: "networkidle0" });
 
-    // EXPORT-ONLY STYLES
+    /* =========================
+       EXPORT-ONLY STYLES
+    ========================= */
     await page.addStyleTag({
       content: `
         aside, footer {
@@ -98,29 +113,66 @@ const slides = [
 
         body {
           margin: 0 !important;
-          overflow: hidden !important;
           background: white !important;
         }
 
-        main,
-        #slide-content,
-        main > div {
-          width: 100% !important;
-          max-width: 100% !important;
-          margin: 0 !important;
-          padding: 64px !important;
-          box-sizing: border-box !important;
+        main {
+          padding: 0 !important;
         }
       `
     });
 
     await delay(300);
 
+    /* =========================
+       SOC ANALYST: MULTI-SLIDE
+    ========================= */
+    if (slideConfig.file === "soc-analyst.html") {
+      const sections = await page.$$("main > section");
+
+      for (let i = 0; i < sections.length; i++) {
+        const section = sections[i];
+
+        const box = await section.boundingBox();
+        if (!box) continue;
+
+        const screenshot = await page.screenshot({
+          clip: {
+            x: Math.max(box.x, 0),
+            y: Math.max(box.y, 0),
+            width: Math.min(box.width, 1920),
+            height: Math.min(box.height, 1080)
+          }
+        });
+
+        const slide = pptx.addSlide();
+
+        slide.addImage({
+          data: "data:image/png;base64," + screenshot.toString("base64"),
+          x: 0,
+          y: 0,
+          w: 13.33,
+          h: 7.5
+        });
+
+        const note =
+          slideConfig.notes && slideConfig.notes[i]
+            ? slideConfig.notes[i]
+            : `SOC proposal section ${i + 1}`;
+
+        slide.addNotes(note);
+      }
+
+      continue;
+    }
+
+    /* =========================
+       NORMAL SINGLE-SLIDE EXPORT
+    ========================= */
     const screenshot = await page.screenshot({ type: "png" });
 
     const slide = pptx.addSlide();
 
-    // MAIN IMAGE
     slide.addImage({
       data: "data:image/png;base64," + screenshot.toString("base64"),
       x: 0.25,
@@ -129,7 +181,6 @@ const slides = [
       h: 7.0
     });
 
-    // CONFIDENTIAL LABEL (UAV ONLY)
     if (slideConfig.confidential) {
       slide.addText(
         "CONFIDENTIAL · UNPUBLISHED MASTER’S THESIS",
@@ -146,10 +197,9 @@ const slides = [
       );
     }
 
-    // SPEAKER NOTES
     let notesText = slideConfig.notes || "";
     if (slideConfig.confidential) {
-      notesText += "\n\n⚠️ This slide contains confidential, unpublished thesis work.";
+      notesText += "\n\nConfidential unpublished work.";
     }
 
     slide.addNotes(notesText);

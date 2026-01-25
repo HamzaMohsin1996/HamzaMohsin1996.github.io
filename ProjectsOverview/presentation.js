@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Fog Results", file: "fog-results.html" },
     { title: "Fog Challenges", file: "fog-challenges.html" },
 
-    { title: "Methods Matrix", file: "technicalProjects.html" }
+    { title: "Methods Matrix", file: "technicalProjects.html" },
+    { title: "PhD Proposal", file: "soc-analyst.html" }
   ];
 
   /* =========================
@@ -34,6 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const isConfidential = slides[safeIndex]?.confidential === true;
 
   /* =========================
+     SCROLLABLE SLIDE CHECK
+     (Only PhD proposal)
+  ========================= */
+  const isScrollableSlide = currentFile === "soc-analyst.html";
+
+  /* =========================
      SHELL TARGET
   ========================= */
   const shell = document.getElementById("presentation-shell");
@@ -43,7 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
      GLOBAL LAYOUT
   ========================= */
   shell.innerHTML = `
-    <div class="flex flex-1 min-h-screen overflow-hidden ${isConfidential ? "confidential-watermark" : ""}">
+    <div class="flex flex-1 min-h-screen
+      ${isScrollableSlide ? "overflow-auto" : "overflow-hidden"}
+      ${isConfidential ? "confidential-watermark" : ""}">
 
       <!-- SIDEBAR -->
       <aside class="w-64 shrink-0 bg-sidebar-bg border-r border-slate-200 flex flex-col">
@@ -64,7 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${i === safeIndex ? "radio_button_checked" : "chevron_right"}
               </span>
               <span>${s.title}</span>
-              ${s.confidential ? `<span class="ml-auto text-[9px] bg-red-600 text-white px-2 py-0.5 rounded font-black uppercase">Conf.</span>` : ""}
+              ${s.confidential
+                ? `<span class="ml-auto text-[9px] bg-red-600 text-white px-2 py-0.5 rounded font-black uppercase">Conf.</span>`
+                : ""}
             </a>
           `).join("")}
         </nav>
@@ -73,7 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
       <!-- CONTENT -->
       <div class="flex-1 flex flex-col overflow-hidden">
 
-        <main id="slide-content" class="h-[calc(100vh-64px)] px-12 py-10 flex items-center justify-center"></main>
+        <main id="slide-content"
+          class="
+            px-12 py-10
+            ${isScrollableSlide
+              ? "overflow-y-auto items-start justify-start"
+              : "h-[calc(100vh-64px)] flex items-center justify-center"}
+          ">
+        </main>
 
         <!-- FOOTER -->
         <footer class="h-16 bg-white border-t border-slate-200 px-8 flex items-center justify-between">
@@ -81,7 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="flex items-center gap-4">
             <button id="prev-slide"
               class="flex items-center gap-2 text-sm font-bold transition-colors
-              ${safeIndex <= 0 ? "text-slate-300 cursor-not-allowed" : "text-slate-400 hover:text-slate-900"}">
+              ${safeIndex <= 0
+                ? "text-slate-300 cursor-not-allowed"
+                : "text-slate-400 hover:text-slate-900"}">
               <span class="material-symbols-outlined">arrow_back</span>
               Previous
             </button>
@@ -90,7 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <button id="next-slide"
               class="flex items-center gap-2 text-sm font-bold transition-colors
-              ${safeIndex >= slides.length - 1 ? "text-slate-300 cursor-not-allowed" : "text-primary hover:text-primary/80"}">
+              ${safeIndex >= slides.length - 1
+                ? "text-slate-300 cursor-not-allowed"
+                : "text-primary hover:text-primary/80"}">
               Next
               <span class="material-symbols-outlined">arrow_forward</span>
             </button>
@@ -160,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Restore fullscreen after navigation
   if (sessionStorage.getItem("presentationMode") === "true") {
     setTimeout(() => {
       if (!document.fullscreenElement) {
