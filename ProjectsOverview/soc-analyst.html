@@ -34,198 +34,128 @@
 
 <main class="px-12 py-20 space-y-40 max-w-7xl mx-auto">
 
+    <!-- =========================
+     PROPOSAL – SOC PRIMER
+========================= -->
+<section class="space-y-8" data-slide>
+    <span class="text-xs font-black uppercase tracking-widest text-primary">
+      Proposal · Context
+    </span>
+  
+    <h1 class="text-6xl font-extrabold tracking-tight">
+      What Is a SOC?
+    </h1>
+  
+    <p class="text-2xl text-slate-600 max-w-6xl">
+      A Security Operations Center (SOC) monitors systems and investigates security alerts.
+      Analysts perform <strong>alert triage</strong>: deciding whether to dismiss, escalate,
+      or initiate containment under time pressure and accountability.
+    </p>
+  
+    <div class="grid grid-cols-12 gap-8 items-center">
+      <div class="col-span-12 lg:col-span-8">
+        <div class="bg-white border rounded-2xl p-8 shadow-sm">
+          <div class="grid grid-cols-3 gap-6 text-center">
+            <div class="rounded-2xl border border-slate-200 p-6">
+              <span class="material-symbols-outlined text-primary text-3xl">notifications_active</span>
+              <p class="mt-3 font-extrabold text-xl">1. Alert arrives</p>
+              <p class="text-slate-600 mt-2">SIEM/EDR triggers</p>
+            </div>
+  
+            <div class="rounded-2xl border border-slate-200 p-6">
+              <span class="material-symbols-outlined text-primary text-3xl">manage_search</span>
+              <p class="mt-3 font-extrabold text-xl">2. Triage</p>
+              <p class="text-slate-600 mt-2">Logs + context + hypothesis</p>
+            </div>
+  
+            <div class="rounded-2xl border border-slate-200 p-6">
+              <span class="material-symbols-outlined text-primary text-3xl">published_with_changes</span>
+              <p class="mt-3 font-extrabold text-xl">3. Action</p>
+              <p class="text-slate-600 mt-2">Dismiss · Escalate · Contain</p>
+            </div>
+          </div>
+  
+          <div class="mt-6 pt-5 border-t text-sm text-slate-500 flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">gavel</span>
+            <span>
+              High-stakes: early triage decisions shape downstream response and must be justified.
+            </span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-span-12 lg:col-span-4 bg-white border rounded-2xl p-6 shadow-sm">
+        <span class="material-symbols-outlined text-primary text-4xl">info</span>
+        <p class="mt-4 text-lg text-slate-700">
+          In this proposal, the focus is not detection accuracy alone,
+          but how analysts and AI <strong>collaborate</strong> in forming and defending early decisions.
+        </p>
+      </div>
+    </div>
+  
+    <div class="pt-6 border-t border-slate-200 text-xs text-slate-400 flex flex-wrap gap-x-4">
+      <span>Key references:</span>
+      <a href="https://www.nist.gov/publications/computer-security-incident-handling-guide" target="_blank" class="underline">
+        NIST SP 800-61
+      </a>
+      <a href="https://arxiv.org/abs/2107.02941" target="_blank" class="underline">
+        Lakshmi et al. 2021
+      </a>
+    </div>
+  </section>
+  
+
 <!-- =========================
-     PROBLEM CONTEXT
+     PROPOSAL – GAP
 ========================= -->
 <section class="space-y-8" data-slide>
   <span class="text-xs font-black uppercase tracking-widest text-primary">
-    Problem Context
+    Proposal · Research Gap
   </span>
 
   <h1 class="text-6xl font-extrabold tracking-tight">
-    SOC Alert Triage
+    Why Current AI Support Falls Short
   </h1>
 
-  <p class="text-2xl text-slate-600 max-w-5xl">
-    Security Operations Center analysts make early incident response decisions
-    by interpreting alerts, logs, and system context under time pressure
-    and accountability constraints.
-  </p>
-
-  <div class="grid grid-cols-12 gap-8 items-center">
-    <div class="col-span-12 lg:col-span-6">
-
-      
-      <figure class="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden">
-        <img
-         src="./images/alert-triage.jpg"
-          alt="SOC control room"
-          class="w-full h-48 object-cover"
-          loading="lazy"
-        />
-        <figcaption class="px-3 py-2 bg-slate-50 text-center border-t border-slate-200">
-          <p class="text-[11px] text-slate-600 leading-snug">
-            SOC control room
-          </p>
-          <p class="text-[10px] text-slate-400 italic mt-1">
-            Source:
-            <a href="https://cybersecuritycareer.academy/what-is-alert-triage-key-steps-explained/" target="_blank" rel="noopener noreferrer"
-               class="underline hover:text-primary">Cybersecurity</a>
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-
-    <div class="col-span-12 lg:col-span-6 space-y-4 text-lg text-slate-700">
+  <div class="grid grid-cols-12 gap-10 items-center">
+    <div class="col-span-12 lg:col-span-7 space-y-5 text-xl text-slate-700">
       <p>
-        Incident response requires analysts to construct and revise
-        interpretations from incomplete and heterogeneous information.
+        SOC alert triage is a <strong>sensemaking process</strong> in which analysts
+        construct and revise incident interpretations under time pressure.
       </p>
       <p>
-        Early triage decisions shape downstream technical
-        and organizational outcomes.
+        Existing AI systems optimize <strong>throughput and classification</strong>,
+        but do not support how analysts reason, negotiate decisions, or retain responsibility.
+      </p>
+      <p>
+        As a result, there is <strong>no empirical model</strong> of analyst–AI interaction,
+        decision boundaries, or accountability during triage.
+      </p>
+    </div>
+
+    <div class="col-span-12 lg:col-span-5 bg-white border rounded-2xl p-6 shadow-sm">
+      <span class="material-symbols-outlined text-primary text-4xl">warning</span>
+      <p class="mt-4 text-lg text-slate-600">
+        Gap: AI is evaluated as output quality, not as a
+        <strong>collaborative decision partner</strong>.
       </p>
     </div>
   </div>
 
-  <div class="pt-6 border-t border-slate-200 text-sm text-slate-400">
-    References:
-    <a href="https://arxiv.org/abs/2107.02941" target="_blank" class="underline hover:text-primary">
-      Lakshmi et al. 2021
-    </a>
+  <div class="pt-6 border-t border-slate-200 text-xs text-slate-400 flex flex-wrap gap-x-4">
+    <span>Key references:</span>
+    <a href="https://arxiv.org/abs/2107.02941" target="_blank" class="underline">Lakshmi et al. 2021</a>
+    <a href="https://doi.org/10.1177/14738716231189220" target="_blank" class="underline">De Valk & Elmqvist 2024</a>
+    <a href="https://arxiv.org/abs/2412.10380" target="_blank" class="underline">Bansal et al. 2024</a>
   </div>
 </section>
 
 <!-- =========================
-     CORE CHALLENGE
-========================= -->
-<section class="space-y-8" data-slide>
-  <span class="text-xs font-black uppercase tracking-widest text-primary">
-    Core Challenge
-  </span>
-
-  <h2 class="text-5xl font-extrabold">
-    Why Triage Is Hard
-  </h2>
-
-  <div class="grid grid-cols-12 gap-8 items-center">
-    <div class="col-span-12 lg:col-span-7 space-y-4 text-lg text-slate-700">
-      <p>
-        Analysts must integrate alerts, logs, and telemetry to form
-        incident interpretations during early-stage triage.
-      </p>
-      <p>
-        Existing SOC tools fragment information across views,
-        increasing cognitive effort and reducing situational awareness.
-      </p>
-      <p>
-        Information needs evolve over time, but representations remain static.
-      </p>
-    </div>
-
-    <div class="col-span-12 lg:col-span-5">
-      <img
-        src="https://www.symmetryelectronics.com/getmedia/8fcb07f1-8cf8-443b-8840-44522399c98c/iStock-1022533074.jpg"
-        class="rounded-2xl border shadow-sm"
-        alt="Complex information environment"
-      />
-    </div>
-  </div>
-
-  <div class="pt-6 border-t border-slate-200 text-sm text-slate-400">
-    References:
-    <a href="https://doi.org/10.1177/14738716231189220" target="_blank" class="underline hover:text-primary">
-      De Valk & Elmqvist 2024
-    </a>
-  </div>
-</section>
-
-<!-- =========================
-     AI IN PRACTICE
-========================= -->
-<section class="space-y-8" data-slide>
-  <span class="text-xs font-black uppercase tracking-widest text-primary">
-    AI in Practice
-  </span>
-
-  <h2 class="text-5xl font-extrabold">
-    What AI Supports Today
-  </h2>
-
-  <p class="text-xl text-slate-600 max-w-5xl">
-    Current SOC platforms apply machine learning primarily to
-    improve detection throughput, while interpretation
-    and responsibility remain human.
-  </p>
-
-  <div class="grid grid-cols-3 gap-6 text-lg">
-    <div class="bg-white border rounded-2xl p-6 text-center">
-      Alert prioritization
-    </div>
-    <div class="bg-white border rounded-2xl p-6 text-center">
-      Event correlation
-    </div>
-    <div class="bg-white border rounded-2xl p-6 text-center">
-      Investigation summaries
-    </div>
-  </div>
-
-  <p class="text-lg text-slate-700 max-w-5xl">
-    Analysts are positioned mainly as evaluators of AI output,
-    not collaborators in constructing understanding.
-  </p>
-
-  <div class="pt-6 border-t border-slate-200 text-sm text-slate-400 flex flex-wrap gap-x-4">
-    <span>References:</span>
-    <a href="https://www.nist.gov/publications/computer-security-incident-handling-guide" target="_blank" class="underline hover:text-primary">
-      NIST SP 800-61
-    </a>
-    <a href="https://doi.org/10.1109/ACCESS.2022.3178195" target="_blank" class="underline hover:text-primary">
-      Jiang et al. 2022
-    </a>
-    <a href="https://radiantsecurity.ai/learn/ai-agents/" target="_blank" class="underline hover:text-primary">
-      Radiant Security 2025
-    </a>
-  </div>
-</section>
-
-<!-- =========================
-     RESEARCH GAP
-========================= -->
-<section class="space-y-8" data-slide>
-  <span class="text-xs font-black uppercase tracking-widest text-primary">
-    Research Gap
-  </span>
-
-  <h2 class="text-5xl font-extrabold">
-    What Is Missing
-  </h2>
-
-  <ul class="text-xl text-slate-700 space-y-3 max-w-6xl">
-    <li><strong>No models of analyst–AI interaction.</strong></li>
-    <li><strong>Unclear decision boundaries and responsibility shifts.</strong></li>
-    <li><strong>Limited interaction design for collaboration.</strong></li>
-    <li><strong>Missing accountability over time.</strong></li>
-    <li><strong>No empirical evaluation of co-constructive interfaces.</strong></li>
-  </ul>
-
-  <div class="pt-6 border-t border-slate-200 text-sm text-slate-400 flex flex-wrap gap-x-4">
-    <span>References:</span>
-    <a href="https://arxiv.org/abs/2412.10380" target="_blank" class="underline hover:text-primary">
-      Bansal et al. 2024
-    </a>
-    <a href="https://arxiv.org/abs/2405.17713" target="_blank" class="underline hover:text-primary">
-      Carroll et al. 2024
-    </a>
-  </div>
-</section>
-
-<!-- =========================
-     RESEARCH QUESTIONS
+     PROPOSAL – RQs
 ========================= -->
 <section class="space-y-10" data-slide>
   <span class="text-xs font-black uppercase tracking-widest text-primary">
-    Research Questions
+    Proposal · Research Questions
   </span>
 
   <h2 class="text-5xl font-extrabold">
@@ -235,86 +165,130 @@
   <div class="grid grid-cols-3 gap-8">
     <div class="bg-white border rounded-2xl p-8 space-y-4">
       <span class="material-symbols-outlined text-primary text-3xl">search</span>
-      <h3 class="text-2xl font-extrabold">RQ1</h3>
+      <h3 class="text-2xl font-extrabold">RQ1 · Analysis</h3>
       <p class="text-lg text-slate-600">
-        How do analysts interact with AI systems during early alert triage?
+        Where do cognitive bottlenecks, decision boundaries, and responsibility shifts
+        occur when analysts use AI during alert triage?
       </p>
     </div>
 
     <div class="bg-white border rounded-2xl p-8 space-y-4">
-      <span class="material-symbols-outlined text-primary text-3xl">design_services</span>
-      <h3 class="text-2xl font-extrabold">RQ2</h3>
+      <span class="material-symbols-outlined text-primary text-3xl">sync_alt</span>
+      <h3 class="text-2xl font-extrabold">RQ2 · Design</h3>
       <p class="text-lg text-slate-600">
-        How can interfaces support analyst control and collaboration?
+        What interaction mechanisms enable analysts to co-construct
+        incident interpretations with AI while retaining control?
       </p>
     </div>
 
     <div class="bg-white border rounded-2xl p-8 space-y-4">
-      <span class="material-symbols-outlined text-primary text-3xl">science</span>
-      <h3 class="text-2xl font-extrabold">RQ3</h3>
+      <span class="material-symbols-outlined text-primary text-3xl">fact_check</span>
+      <h3 class="text-2xl font-extrabold">RQ3 · Evaluation</h3>
       <p class="text-lg text-slate-600">
-        How do co-constructive interfaces affect decision quality?
+        Do co-constructive interfaces improve decision quality,
+        situational awareness, and justification?
       </p>
     </div>
   </div>
 </section>
 
 <!-- =========================
-     METHODOLOGY
+     PROPOSAL – METHODOLOGY
 ========================= -->
 <section class="space-y-10" data-slide>
   <span class="text-xs font-black uppercase tracking-widest text-primary">
-    Methodology
+    Proposal · Methodology
   </span>
 
   <h2 class="text-5xl font-extrabold">
-    How the Research Is Conducted
+    Research Design
   </h2>
 
+  <p class="text-xl text-slate-600 max-w-5xl">
+    The methodology follows a structured HCI pipeline in which
+    each phase produces artifacts that directly constrain the next.
+  </p>
+
   <div class="grid grid-cols-3 gap-8">
-    <div class="bg-white border rounded-2xl p-8 space-y-4">
+
+    <div class="bg-white border rounded-2xl p-8 space-y-5">
       <span class="material-symbols-outlined text-primary text-3xl">visibility</span>
-      <h3 class="text-2xl font-extrabold">Workflow Analysis</h3>
-      <p class="text-slate-600">Observation, task analysis, interviews.</p>
-      <p class="text-sm text-slate-500">Addresses RQ1</p>
+      <h3 class="text-2xl font-extrabold">Phase 1 · Analysis</h3>
+      <p class="text-slate-700">
+        Empirical study of analyst–AI interaction through observation,
+        task analysis, and interviews.
+      </p>
+      <p class="text-sm text-slate-500 border-t pt-3">
+        Output: workflow and decision-boundary model
+      </p>
     </div>
 
-    <div class="bg-white border rounded-2xl p-8 space-y-4">
+    <div class="bg-white border rounded-2xl p-8 space-y-5">
       <span class="material-symbols-outlined text-primary text-3xl">architecture</span>
-      <h3 class="text-2xl font-extrabold">Interaction Design</h3>
-      <p class="text-slate-600">Co-constructive interface development.</p>
-      <p class="text-sm text-slate-500">Addresses RQ2</p>
+      <h3 class="text-2xl font-extrabold">Phase 2 · Design</h3>
+      <p class="text-slate-700">
+        Design of co-constructive interaction mechanisms
+        that allow analyst feedback and influence.
+      </p>
+      <p class="text-sm text-slate-500 border-t pt-3">
+        Output: interactive triage interface
+      </p>
     </div>
 
-    <div class="bg-white border rounded-2xl p-8 space-y-4">
+    <div class="bg-white border rounded-2xl p-8 space-y-5">
       <span class="material-symbols-outlined text-primary text-3xl">analytics</span>
-      <h3 class="text-2xl font-extrabold">Evaluation</h3>
-      <p class="text-slate-600">Controlled studies in simulated SOC settings.</p>
-      <p class="text-sm text-slate-500">Addresses RQ3</p>
+      <h3 class="text-2xl font-extrabold">Phase 3 · Evaluation</h3>
+      <p class="text-slate-700">
+        Controlled studies comparing baseline AI support
+        with co-construction.
+      </p>
+      <p class="text-sm text-slate-500 border-t pt-3">
+        Output: empirical evidence across conditions
+      </p>
     </div>
+
   </div>
 </section>
 
 <!-- =========================
-     FULL PROPOSAL
+     PROPOSAL – EVALUATION
 ========================= -->
-<section class="space-y-6 text-center" data-slide>
-  <h2 class="text-4xl font-extrabold">
-    Full Proposal
+<section class="space-y-10" data-slide>
+  <span class="text-xs font-black uppercase tracking-widest text-primary">
+    Proposal · Evaluation & Contribution
+  </span>
+
+  <h2 class="text-5xl font-extrabold">
+    Evaluation Logic & Contribution
   </h2>
 
-  <p class="text-lg text-slate-600">
-    The complete proposal is available online.
-  </p>
+  <div class="grid grid-cols-2 gap-12">
 
-  <a
-    href="https://www.overleaf.com/project/6947fc8704a0136684e46fc5"
-    target="_blank"
-    class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-white font-bold hover:bg-primary/90"
-  >
-    <span class="material-symbols-outlined">description</span>
-    View on Overleaf
-  </a>
+    <div class="space-y-4 text-lg text-slate-700">
+      <h3 class="text-2xl font-extrabold">Evaluation Focus</h3>
+      <ul class="space-y-2">
+        <li>• Decision accuracy and escalation quality</li>
+        <li>• Situational awareness during triage</li>
+        <li>• Analyst ability to justify decisions</li>
+        <li>• Change in system behavior over time</li>
+      </ul>
+    </div>
+
+    <div class="space-y-4 text-lg text-slate-700">
+      <h3 class="text-2xl font-extrabold">Scientific Contribution</h3>
+      <ul class="space-y-2">
+        <li>• Empirical model of analyst–AI triage interaction</li>
+        <li>• Interaction design principles for co-construction</li>
+        <li>• Evidence for accountability-preserving AI support</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="pt-6 border-t border-slate-200 text-sm text-slate-500">
+    Contribution focus: improving <strong>human–AI interaction</strong>,
+    not automation performance.
+  </div>
 </section>
 
 </main>
