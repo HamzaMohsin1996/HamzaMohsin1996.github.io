@@ -41,11 +41,6 @@ const VIEWPORT_HEIGHT = 1080;
         background: white !important;
       }
 
-      * {
-        -webkit-font-smoothing: antialiased !important;
-        text-rendering: geometricPrecision !important;
-      }
-
       section[data-slide] {
         width: 1920px !important;
         height: 1080px !important;
@@ -65,7 +60,9 @@ const VIEWPORT_HEIGHT = 1080;
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
 
-    await section.evaluate(el => el.scrollIntoView({ block: "start" }));
+    await section.evaluate(el =>
+      el.scrollIntoView({ block: "start", behavior: "instant" })
+    );
     await delay(200);
 
     /* =========================
@@ -87,41 +84,43 @@ const VIEWPORT_HEIGHT = 1080;
     });
 
     /* =========================
-       EXTRACT LINKS
+       EXTRACT LINKS (FIXED)
     ========================= */
-    const links = await section.evaluate(() => {
-      const anchors = Array.from(document.querySelectorAll("a[href]"));
+    const links = await section.evaluate((sectionEl) => {
+      const sectionRect = sectionEl.getBoundingClientRect();
+      const anchors = Array.from(sectionEl.querySelectorAll("a[href]"));
+
       return anchors.map(a => {
         const r = a.getBoundingClientRect();
         return {
           href: a.href,
-          text: a.innerText,
-          x: r.left,
-          y: r.top,
+          x: r.left - sectionRect.left,
+          y: r.top - sectionRect.top,
           w: r.width,
           h: r.height
         };
       });
-    });
+    }, section);
 
     /* =========================
        ADD CLICKABLE OVERLAYS
     ========================= */
     for (const link of links) {
-      if (!link.href || link.w < 5 || link.h < 5) continue;
+      if (!link.href || link.w < 6 || link.h < 6) continue;
 
       const x = (link.x / VIEWPORT_WIDTH) * PPT_WIDTH;
       const y = (link.y / VIEWPORT_HEIGHT) * PPT_HEIGHT;
       const w = (link.w / VIEWPORT_WIDTH) * PPT_WIDTH;
       const h = (link.h / VIEWPORT_HEIGHT) * PPT_HEIGHT;
 
-      slide.addText(" ", {
+      slide.addText("", {
         x,
         y,
         w,
         h,
         link: { url: link.href },
-        fill: { color: "FFFFFF", transparency: 100 }
+        fill: { color: "FFFFFF", transparency: 100 },
+        line: { color: "FFFFFF", transparency: 100 }
       });
     }
 
@@ -129,7 +128,7 @@ const VIEWPORT_HEIGHT = 1080;
        SPEAKER NOTES
     ========================= */
     slide.addNotes(
-      `SOC PhD Proposal – Slide ${i + 1}\n\nExplain this section as shown.\nLinks are clickable in presentation mode.`
+      `SOC PhD Proposal – Slide ${i + 1}\nClickable reference links preserved.\n`
     );
   }
 
