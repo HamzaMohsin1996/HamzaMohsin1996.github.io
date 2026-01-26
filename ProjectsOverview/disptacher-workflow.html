@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master’s Thesis – UAV Dispatcher Interface</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#136986",
+            bg: "#f8fafc",
+            success: "#16a34a"
+          },
+          fontFamily: {
+            display: ["Manrope", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <script src="./presentation.js" defer></script>
+</head>
+
+<body class="bg-bg font-display overflow-hidden">
+<div id="presentation-shell"></div>
+
+<main class="h-[calc(100vh-64px)] px-12 py-10 flex items-center">
+
+<div class="max-w-7xl mx-auto space-y-32">
+
+<!-- ================================================= -->
+<!-- SLIDE 1 · CONTEXT & PROBLEM -->
+<!-- ================================================= -->
+<section class="space-y-8" data-slide>
+  <span class="text-xs font-black uppercase tracking-widest text-primary">
+    Master’s Thesis · Context
+  </span>
+
+  <h1 class="text-6xl font-extrabold tracking-tight">
+    UAVs in Emergency Dispatch
+  </h1>
+
+  <p class="text-2xl text-slate-600 max-w-5xl">
+    Emergency dispatchers coordinate incidents under
+    <strong>high workload</strong>,
+    <strong>frequent interruptions</strong>,
+    and <strong>time pressure</strong>,
+    requiring rapid re-engagement with evolving incident information.
+  </p>
+
+  <div class="grid grid-cols-12 gap-8 items-center">
+
+    <!-- IMAGE -->
+    <div class="col-span-12 lg:col-span-5">
+      <figure class="bg-white rounded-2xl border border-slate-200 shadow-md overflow-hidden">
+        <img
+          src="https://www.eurofunk.com/wp-content/uploads/ILS_Allgaeu_WEB_01.jpg"
+          alt="Dispatcher workstation"
+          class="w-full h-64 object-cover"
+          loading="lazy"
+        />
+        <figcaption class="px-3 py-2 bg-slate-50 text-center border-t border-slate-200">
+          <p class="text-[11px] text-slate-600">
+            Dispatcher workstation with multiple information sources
+          </p>
+          <p class="text-[10px] text-slate-400 italic">
+            Source:
+            <a href="https://www.eurofunk.com/portfolio/ils-muenchen/"
+               target="_blank"
+               class="underline hover:text-primary">Eurofunk</a>
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- PROBLEM -->
+    <div class="col-span-12 lg:col-span-7 space-y-6">
+      <div class="bg-white border rounded-2xl p-8 shadow-sm">
+        <h3 class="text-2xl font-extrabold mb-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">warning</span>
+          Core Problem
+        </h3>
+        <p class="text-lg text-slate-600">
+          UAVs provide early aerial information, but existing UAV interfaces are designed
+          for <strong>field responders</strong>, not for dispatchers who must
+          <strong>re-engage</strong> with incidents after interruptions.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================= -->
+<!-- SLIDE 2 · STUDY DESIGN -->
+<!-- ================================================= -->
+<section class="space-y-8" data-slide>
+  <span class="text-xs font-black uppercase tracking-widest text-primary">
+    Master’s Thesis · Study Design
+  </span>
+
+  <h2 class="text-5xl font-extrabold">
+    Experimental Design
+  </h2>
+
+  <div class="grid grid-cols-12 gap-8">
+
+    <div class="col-span-12 lg:col-span-4 bg-white border rounded-2xl p-8 shadow-sm">
+      <h3 class="text-2xl font-extrabold mb-3">Design</h3>
+      <ul class="space-y-2 text-lg text-slate-600">
+        <li>• Within-subjects design</li>
+        <li>• Counterbalanced conditions</li>
+        <li>• N = 29 participants</li>
+      </ul>
+    </div>
+
+    <div class="col-span-12 lg:col-span-4 bg-white border rounded-2xl p-8 shadow-sm">
+      <h3 class="text-2xl font-extrabold mb-3">Task</h3>
+      <p class="text-lg text-slate-600">
+        Simulated emergency dispatching task involving
+        multitasking, enforced interruptions,
+        and later re-engagement with ongoing incidents.
+      </p>
+    </div>
+
+    <div class="col-span-12 lg:col-span-4 bg-white border rounded-2xl p-8 shadow-sm">
+      <h3 class="text-2xl font-extrabold mb-3">Independent Variable</h3>
+      <p class="text-lg text-slate-600">
+        Interface condition:
+        <strong>with</strong> vs <strong>without</strong>
+        structured UAV information support.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================= -->
+<!-- SLIDE 3 · MEASURES -->
+<!-- ================================================= -->
+<section class="space-y-8" data-slide>
+  <span class="text-xs font-black uppercase tracking-widest text-primary">
+    Master’s Thesis · Measures
+  </span>
+
+  <h2 class="text-5xl font-extrabold">
+    Outcome Measures
+  </h2>
+
+  <div class="grid grid-cols-12 gap-8">
+
+    <div class="col-span-12 lg:col-span-6 bg-white border rounded-2xl p-8 shadow-sm">
+      <h3 class="text-2xl font-extrabold mb-4">Primary Measures</h3>
+      <ul class="space-y-2 text-lg text-slate-600">
+        <li>
+          • <strong>Situational Awareness (SPAM)</strong><br/>
+          Probe accuracy and response time
+        </li>
+        <li>
+          • <strong>Re-engagement Speed</strong><br/>
+          Time to correctly respond after interruption
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-span-12 lg:col-span-6 bg-white border rounded-2xl p-8 shadow-sm">
+      <h3 class="text-2xl font-extrabold mb-4">Secondary Measures</h3>
+      <ul class="space-y-2 text-lg text-slate-600">
+        <li>• Cognitive workload (DRT)</li>
+        <li>• Subjective situational awareness (SART)</li>
+        <li>• Usability (SUS)</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================= -->
+<!-- SLIDE 4 · FINDINGS & INSIGHT -->
+<!-- ================================================= -->
+<section class="space-y-8" data-slide>
+  <span class="text-xs font-black uppercase tracking-widest text-primary">
+    Master’s Thesis · Findings
+  </span>
+
+  <h2 class="text-5xl font-extrabold">
+    Key Findings & Insight
+  </h2>
+
+  <div class="grid grid-cols-12 gap-8 items-center">
+
+    <div class="col-span-12 lg:col-span-6 bg-success/5 border-2 border-success rounded-2xl p-8 shadow-md">
+      <h3 class="text-2xl font-extrabold text-success mb-4 flex items-center gap-2">
+        <span class="material-symbols-outlined">check_circle</span>
+        Key Result
+      </h3>
+      <p class="text-lg text-slate-700">
+        Structured UAV information significantly improved
+        <strong>re-engagement accuracy</strong>
+        and <strong>response time</strong>
+        after interruptions,
+        without increasing workload or task time.
+      </p>
+    </div>
+
+    <div class="col-span-12 lg:col-span-6 bg-white border rounded-2xl p-8 shadow-sm">
+      <h3 class="text-2xl font-extrabold mb-4 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary">insights</span>
+        Design Insight
+      </h3>
+      <p class="text-lg text-slate-600">
+        Continuous video alone is insufficient.
+        <strong>Interaction design</strong> determines whether information
+        supports or hinders dispatcher sensemaking
+        during re-engagement.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="pt-6 border-t border-slate-200 text-lg text-slate-600 max-w-5xl">
+    This insight directly motivated my PhD proposal on
+    <strong>human–AI collaboration</strong> in high-stakes decision making.
+  </div>
+</section>
+
+</div>
+</main>
+
+</body>
+</html>
