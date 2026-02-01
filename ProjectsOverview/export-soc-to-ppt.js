@@ -78,10 +78,21 @@ Second, I ask how interaction design can support collaboration while keeping hum
 Third, I evaluate whether these designs improve decision quality and understanding.`,
 
   // SLIDE 11 — METHODOLOGY
-  `The research follows three phases.
-First, I analyze current analyst–AI interaction.
-Second, I design interaction mechanisms based on this analysis.
-Third, I evaluate these designs in controlled studies.`,
+  `This slide explains how the PhD research is structured.
+
+The work follows three phases.
+
+In the first phase, I study how analysts currently work with AI during alert triage.
+I observe workflows, analyze tasks, and conduct interviews to understand where decisions are made and where responsibility shifts.
+
+In the second phase, I design interface mechanisms based on these findings.
+The goal is to let analysts give input, question the AI, and influence the system while staying in control.
+
+In the third phase, I evaluate these interfaces in controlled studies.
+I compare baseline AI support with co-constructive interaction and measure decision quality, situational awareness, and justification.
+
+Each phase produces outputs that guide the next phase.
+`,
 
   // SLIDE 12 — EVALUATION & CONTRIBUTION
   `I evaluate decision quality, situational awareness, and the ability to justify decisions.
