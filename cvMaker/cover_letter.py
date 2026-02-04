@@ -1,58 +1,119 @@
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
 
-file_name = "Hamza_Mohsin_Motivation_Letter_NTNU.pdf"
+file_name = "Hamza_Mohsin_FLYERALARM_Cover_Letter.pdf"
 
 doc = SimpleDocTemplate(
     file_name,
     pagesize=A4,
-    rightMargin=40,
-    leftMargin=40,
-    topMargin=40,
-    bottomMargin=40
+    rightMargin=50,
+    leftMargin=50,
+    topMargin=50,
+    bottomMargin=50
 )
 
 styles = getSampleStyleSheet()
 
 styles.add(ParagraphStyle(
-    name="Title",
-    fontSize=14,
-    leading=18,
-    spaceAfter=12,
-    fontName="Helvetica-Bold"
+    name="Name",
+    fontSize=16,
+    leading=20,
+    fontName="Helvetica-Bold",
+    spaceAfter=6
+))
+
+styles.add(ParagraphStyle(
+    name="HeaderSmall",
+    fontSize=9,
+    leading=12
 ))
 
 styles.add(ParagraphStyle(
     name="Body",
     fontSize=10,
     leading=14,
-    spaceAfter=10
+    spaceAfter=12
 ))
 
 content = []
 
-content.append(Paragraph("Motivation Letter", styles["Title"]))
+# Header
+header = Table(
+    [[
+        Paragraph("Hamza Mohsin", styles["Name"]),
+        Paragraph(
+            "Germany<br/>"
+            "hamzamohsin.work@gmail.com<br/>"
+            "linkedin.com/in/hamzamohsin<br/>"
+            "github.com/HamzaMohsin1996<br/>"
+            "hamzamohsin1996.github.io",
+            styles["HeaderSmall"]
+        )
+    ]],
+    colWidths=[300, 200]
+)
 
-letter_paragraphs = [
-    "I am applying for the PhD position in Cybersecurity and Human AI Teaming within the HAT CI project at the Norwegian University of Science and Technology. I am interested in doctoral research that examines how humans and AI systems work together in Security Operations Centers, particularly in contexts where decisions affect critical infrastructure systems and require clear responsibility and oversight.",
+header.setStyle(TableStyle([
+    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+    ("ALIGN", (1, 0), (1, 0), "RIGHT")
+]))
 
-    "I completed a Master’s degree in User Experience Design at Technische Hochschule Ingolstadt. My Master’s thesis focused on human AI decision support in safety critical environments. The work examined how information retrieval interfaces support re engagement, situational awareness, and decision making during interruptions. I conducted controlled experiments, eye tracking studies, and qualitative interviews. This work provided experience with experimental design, mixed methods analysis, and evaluation of AI supported interfaces.",
+content.append(header)
+content.append(Spacer(1, 28))
 
-    "My research interests focus on human AI collaboration in cybersecurity operations. I am interested in how analysts interact with AI support during alert triage, how decisions such as dismissal or escalation are made, and how responsibility and decision authority are maintained when AI recommendations are present. I am also interested in how interaction design can support understanding of system behavior rather than replacing human judgment. These interests align with the goals of the HAT CI project, which focuses on human AI teaming in Security Operations Centers that protect critical infrastructure.",
+# Greeting
+content.append(Paragraph("Dear Hiring Team,", styles["Body"]))
 
-    "The proposed PhD project builds on my previous research experience and methodological background. I plan to study analyst workflows through observation and interviews, to design interaction mechanisms that allow analysts to influence and interpret AI output, and to evaluate these mechanisms through controlled studies. My experience with interface prototyping using React and with designing information dense systems is relevant for developing and testing research prototypes in this context.",
+# Paragraph 1
+content.append(Paragraph(
+    "I am applying for the Frontend Software Developer position at FLYERALARM. "
+    "I have experience working on customer facing web applications in production environments "
+    "and contributing to frontend systems used in both long lived products and shorter delivery focused projects.",
+    styles["Body"]
+))
 
-    "I am applying to NTNU because of its research focus on cybersecurity, human computer interaction, and applied research. The collaboration between NTNU, the Institute for Energy Technology, and industry partners within the HAT CI project provides an opportunity to study operational challenges in Security Operations Centers. I am interested in contributing to research that informs the design of SOC tools while keeping human responsibility and governance central.",
+# Paragraph 2
+content.append(Paragraph(
+    "In my professional experience, I have worked primarily with JavaScript and TypeScript based frontend "
+    "applications, collaborating closely with backend engineers, designers, and product stakeholders. "
+    "My work includes implementing frontend features, maintaining existing codebases, and refining "
+    "interfaces based on team feedback and evolving requirements.",
+    styles["Body"]
+))
 
-    "Through doctoral training at NTNU, I aim to develop the skills required to conduct independent research on human AI collaboration in cybersecurity. I am motivated to participate actively in the PhD programme and to contribute to the HAT CI research activities.",
+# Paragraph 3
+content.append(Paragraph(
+    "I have worked mainly with React and TypeScript and have exposure to VueJS through learning and project work. "
+    "I am familiar with clean code practices, component based architectures, and structured code organisation, "
+    "and I have worked in teams where testing, continuous integration, and code reviews are part of the development process.",
+    styles["Body"]
+))
 
-    "Sincerely,<br/>Hamza Mohsin"
-]
+# Paragraph 4
+content.append(Paragraph(
+    "I am interested in FLYERALARM because of its focus on large scale e commerce systems, "
+    "complex product configurators, and long term software development. "
+    "I am motivated to contribute to stable and maintainable frontend systems while continuing to deepen "
+    "my experience with VueJS, testing practices, and DevOps topics in a production setting.",
+    styles["Body"]
+))
 
-for para in letter_paragraphs:
-    content.append(Paragraph(para, styles["Body"]))
+# Closing
+content.append(Paragraph(
+    "Thank you for considering my application. I would welcome the opportunity to discuss how my experience "
+    "and approach to frontend development could fit the needs of your teams.",
+    styles["Body"]
+))
+
+content.append(Spacer(1, 18))
+
+content.append(Paragraph(
+    "Kind regards,<br/>Hamza Mohsin",
+    styles["Body"]
+))
 
 doc.build(content)
 
-print("Motivation letter PDF generated successfully.")
+print("FLYERALARM cover letter generated successfully")
