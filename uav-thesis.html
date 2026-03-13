@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>UAV Interface for Firefighting Dispatchers | Master Thesis</title>
+
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/custom.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+<style>
+
+.hero{
+padding:120px 0;
+background:linear-gradient(135deg,#1b2a38,#203a43,#2c5364);
+color:white;
+text-align:center;
+}
+
+.metric{
+font-size:42px;
+font-weight:700;
+}
+
+.figure img{
+width:100%;
+border-radius:8px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.interface-img{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.repo-card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.05);
+height:100%;
+}
+
+.repo-card a{
+font-weight:600;
+text-decoration:none;
+}
+
+.section-padding{
+padding:90px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Designing a Web-Based UAV Interface for Firefighting Dispatchers</h1>
+
+<p class="mt-3">
+Supporting Information Retrieval During Multitasking
+</p>
+
+<p>
+Master Thesis · Technische Hochschule Ingolstadt
+</p>
+
+<p>N = 29 Experimental Study</p>
+
+</div>
+
+</section>
+
+<!-- PROBLEM -->
+
+<section class="section-padding">
+
+<div class="container">
+
+<h2>Problem</h2>
+
+<p>
+
+Emergency dispatchers operate in interruption-prone environments where
+incident information evolves continuously. When operators return to an
+incident after an interruption they must reconstruct the situation from
+multiple information sources.
+
+Most UAV monitoring systems focus on video feeds and telemetry,
+but provide little support for identifying updates that occurred during
+absence.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- RESEARCH QUESTION -->
+
+<section class="section-padding bg-light">
+
+<div class="container">
+
+<h2>Research Question</h2>
+
+<p>
+
+Can structured information retrieval improve dispatcher
+situational awareness after interruptions during UAV monitoring tasks?
+
+</p>
+
+</div>
+
+</section>
+
+<!-- INTERFACE DESIGN -->
+
+<section class="section-padding">
+
+<div class="container">
+
+<h2>Interface Design</h2>
+
+<p>
+Two interface conditions were implemented to isolate the effect of
+structured retrieval support.
+</p>
+
+<div class="row mt-5 g-4">
+
+<div class="col-md-6">
+
+<div class="card border-0 shadow-sm">
+
+<img src="images/WIOR.png" class="interface-img">
+
+<div class="card-body text-center">
+
+<h5>WOIR – Without Information Retrieval</h5>
+
+<p>
+Timeline only. Dispatchers manually reconstruct
+incident updates after interruptions.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card border-0 shadow-sm">
+
+<img src="images/WIR.png" class="interface-img">
+
+<div class="card-body text-center">
+
+<h5>WIR – With Information Retrieval</h5>
+
+<p>
+Event feed, filtering, and re-engagement summary
+support incident reconstruction.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SYSTEM ARCHITECTURE -->
+
+<section class="section-padding bg-light">
+
+<div class="container">
+
+<h2>System Architecture</h2>
+
+<p>
+
+The experimental platform integrates three systems used to simulate
+dispatcher monitoring workflows.
+
+</p>
+
+<ul>
+
+<li>Unity simulation generating UAV and incident events</li>
+
+<li>Web-based monitoring interface for dispatcher interaction</li>
+
+<li>Interaction logging for experiment analysis</li>
+
+</ul>
+
+<div class="figure text-center mt-5">
+
+<img src="images/architecture.png">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- EXPERIMENT DESIGN -->
+
+<section class="section-padding">
+
+<div class="container">
+
+<h2>Experiment Design</h2>
+
+<ul>
+
+<li>Within-subject experiment</li>
+
+<li>29 participants</li>
+
+<li>Simulated firefighting dispatcher monitoring tasks</li>
+
+<li>Interruptions introduced during monitoring</li>
+
+</ul>
+
+<p>
+
+Participants monitored UAV information streams, experienced
+interruptions, and then reconstructed incident state using the
+interface.
+
+</p>
+
+<div class="figure text-center mt-5">
+
+<img src="images/experimental_flow.png">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MEASURES -->
+
+<section class="section-padding bg-light">
+
+<div class="container">
+
+<h2>Measures</h2>
+
+<ul>
+
+<li>Task completion time</li>
+
+<li>Detection Response Task (DRT) reaction time</li>
+
+<li>SPAM situational awareness probes</li>
+
+<li>Eye-tracking gaze distribution</li>
+
+<li>System Usability Scale (SUS)</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<!-- RESULTS -->
+
+<section class="section-padding">
+
+    <div class="container">
+    
+    <h2 class="text-center mb-5">Results</h2>
+    
+    <!-- METRICS -->
+    
+    <div class="row text-center mb-5">
+    
+    <div class="col-md-4">
+    
+    <div class="result-box">
+    
+    <div class="metric">+15%</div>
+    
+    <p>Higher SPAM situational awareness accuracy</p>
+    
+    </div>
+    
+    </div>
+    
+    
+    <div class="col-md-4">
+    
+    <div class="result-box">
+    
+    <div class="metric">−26%</div>
+    
+    <p>Faster SPAM response time</p>
+    
+    </div>
+    
+    </div>
+    
+    
+    <div class="col-md-4">
+    
+    <div class="result-box">
+    
+    <div class="metric">N = 29</div>
+    
+    <p>Participants in controlled experiment</p>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    
+    <!-- CHARTS -->
+    
+    <div class="row g-4">
+    
+    <div class="col-md-6">
+    
+    <div class="figure">
+    
+    <img src="images/accuracy_mean_plot.png" class="chart-img">
+    
+    <p class="text-center mt-2">
+    SPAM Situational Awareness Accuracy
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    
+    <div class="col-md-6">
+    
+    <div class="figure">
+    
+    <img src="images/response_time_mean_plot.png" class="chart-img">
+    
+    <p class="text-center mt-2">
+    SPAM Response Time
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    </section>
+
+<!-- EYE TRACKING -->
+
+<section class="section-padding bg-light">
+
+<div class="container">
+
+<h2>Eye-Tracking Insights</h2>
+
+<p>
+
+Eye-tracking analysis showed increased fixation on retrieval
+components such as event feeds and summaries when structured
+information retrieval was available.
+
+</p>
+
+<div class="figure text-center mt-5">
+
+<img src="images/WIR_vs_WIOR_group_gaze_density.png">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- REPOSITORIES -->
+
+<section class="section-padding">
+
+<div class="container">
+
+<h2>Project Repositories</h2>
+
+<div class="row g-4 mt-4">
+
+<div class="col-md-4">
+
+<div class="repo-card">
+
+<h5>Frontend Interface</h5>
+
+<p>
+Web-based dispatcher interface used in the experiment.
+</p>
+
+<a href="https://github.com/TTZ-Unbemannte-Flugsysteme/uav-info-retrieval-interface.git" target="_blank">
+
+<i class="fa-brands fa-github"></i>
+View Repository
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="repo-card">
+
+<h5>Unity Simulation</h5>
+
+<p>
+Unity simulation environment generating UAV monitoring scenarios.
+</p>
+
+<a href="https://github.com/TTZ-Unbemannte-Flugsysteme/uav-info-retrieval-unity.git" target="_blank">
+
+<i class="fa-brands fa-github"></i>
+View Repository
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="repo-card">
+
+<h5>Data Analysis</h5>
+
+<p>
+Python scripts used for experiment evaluation and statistical analysis.
+</p>
+
+<a href="https://github.com/HamzaMohsin1996/data-analysis-uav-interface.git" target="_blank">
+
+<i class="fa-brands fa-github"></i>
+View Repository
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONCLUSION -->
+
+<section class="section-padding bg-light">
+
+<div class="container">
+
+<h2>Conclusion</h2>
+
+<p>
+
+Structured retrieval components such as event logs, filtering,
+and re-engagement summaries improved dispatcher situational
+awareness after interruptions.
+
+Task completion time and cognitive workload remained stable,
+indicating that structured information access supports
+re-engagement without increasing cognitive demand.
+
+</p>
+
+</div>
+
+</section>
+
+</body>
+</html>
