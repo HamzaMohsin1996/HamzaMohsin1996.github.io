@@ -21,6 +21,833 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 
   <link href="./css/custom.css" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       HOME PAGE CASE STUDY SECTIONS
+       ========================================================= */
+
+    :root {
+      --case-primary: #141b2d;
+      --case-text: #475467;
+      --case-accent: #5c6ac4;
+      --case-accent-dark: #414c9a;
+      --case-green: #6b8e23;
+      --case-green-soft: #eef6df;
+      --case-purple-soft: #eef0ff;
+      --case-surface: #ffffff;
+      --case-surface-soft: #f7f8fc;
+      --case-border: #e4e7ec;
+      --case-radius: 24px;
+      --case-shadow: 0 22px 60px rgba(20, 27, 45, 0.10);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .featured-case-study-section {
+      position: relative;
+      overflow: hidden;
+      padding: 110px 0;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(92, 106, 196, 0.12), transparent 34%),
+        radial-gradient(circle at 88% 82%, rgba(149, 191, 71, 0.16), transparent 30%),
+        #f8fafc;
+    }
+
+    .featured-case-study-section::before {
+      position: absolute;
+      top: -130px;
+      right: -120px;
+      width: 340px;
+      height: 340px;
+      border: 1px solid rgba(92, 106, 196, 0.12);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .featured-case-study-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .featured-case-eyebrow,
+    .case-grid-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--case-accent-dark);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .featured-case-eyebrow::before,
+    .case-grid-eyebrow::before {
+      width: 28px;
+      height: 2px;
+      background: var(--case-accent);
+      content: "";
+    }
+
+    .featured-case-title {
+      max-width: 760px;
+      margin-bottom: 22px;
+      color: var(--case-primary);
+      font-size: clamp(2.3rem, 5vw, 4.7rem);
+      line-height: 1.03;
+      letter-spacing: -0.045em;
+    }
+
+    .featured-case-description {
+      max-width: 720px;
+      margin-bottom: 28px;
+      color: var(--case-text);
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .featured-case-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 32px;
+    }
+
+    .featured-case-tags span {
+      padding: 8px 12px;
+      border: 1px solid var(--case-border);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--case-primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .featured-case-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .featured-case-primary-btn,
+    .featured-case-secondary-btn {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+    }
+
+    .featured-case-primary-btn {
+      background: var(--case-primary);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(20, 27, 45, 0.18);
+    }
+
+    .featured-case-primary-btn:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(20, 27, 45, 0.23);
+    }
+
+    .featured-case-secondary-btn {
+      border: 1px solid var(--case-border);
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--case-primary);
+    }
+
+    .featured-case-secondary-btn:hover {
+      background: #fff;
+      color: var(--case-primary);
+      transform: translateY(-2px);
+    }
+
+    .featured-case-visual {
+      position: relative;
+      padding: 30px 0 30px 32px;
+    }
+
+    .featured-system-card {
+      overflow: hidden;
+      border: 1px solid rgba(20, 27, 45, 0.08);
+      border-radius: 30px;
+      background: #fff;
+      box-shadow: var(--case-shadow);
+      transform: rotate(1.5deg);
+    }
+
+    .featured-system-card-header {
+      display: flex;
+      gap: 8px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--case-border);
+      background: #f8fafc;
+    }
+
+    .featured-system-card-header span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #d0d5dd;
+    }
+
+    .featured-system-card-header span:first-child {
+      background: #f97066;
+    }
+
+    .featured-system-card-header span:nth-child(2) {
+      background: #fdb022;
+    }
+
+    .featured-system-card-header span:nth-child(3) {
+      background: #32d583;
+    }
+
+    .featured-system-card-body {
+      padding: 24px;
+    }
+
+    .featured-flow-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--case-border);
+      border-radius: 16px;
+    }
+
+    .featured-flow-item + .featured-flow-line {
+      width: 2px;
+      height: 24px;
+      margin-left: 37px;
+      background: repeating-linear-gradient(
+        to bottom,
+        #d0d5dd,
+        #d0d5dd 5px,
+        transparent 5px,
+        transparent 10px
+      );
+    }
+
+    .featured-flow-icon {
+      display: flex;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: var(--case-purple-soft);
+      color: var(--case-accent);
+      font-size: 1.05rem;
+    }
+
+    .featured-flow-item.shopify .featured-flow-icon {
+      background: var(--case-green-soft);
+      color: #63851d;
+    }
+
+    .featured-flow-item.issue {
+      border-color: #f2b8b5;
+      background: #fff8f7;
+    }
+
+    .featured-flow-item.issue .featured-flow-icon {
+      background: #fee4e2;
+      color: #b42318;
+    }
+
+    .featured-flow-copy small {
+      display: block;
+      margin-bottom: 3px;
+      color: #667085;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .featured-flow-copy strong {
+      color: var(--case-primary);
+      font-size: 0.92rem;
+    }
+
+    .featured-flow-status {
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #ecfdf3;
+      color: #027a48;
+      font-size: 0.65rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .featured-flow-item.issue .featured-flow-status {
+      background: #fee4e2;
+      color: #b42318;
+    }
+
+    .featured-resolution-note {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      margin-top: 22px;
+      padding: 17px;
+      border-radius: 15px;
+      background: #ecfdf3;
+      color: #027a48;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .featured-case-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .featured-case-stat {
+      padding: 16px;
+      border: 1px solid rgba(20, 27, 45, 0.08);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.88);
+      text-align: center;
+    }
+
+    .featured-case-stat strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--case-primary);
+      font-size: 1.05rem;
+    }
+
+    .featured-case-stat span {
+      color: #667085;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .home-case-studies-section {
+      padding: 105px 0;
+      background-color: #fff;
+    }
+
+    .home-case-studies-header {
+      display: flex;
+      gap: 28px;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 45px;
+    }
+
+    .home-case-studies-header h2 {
+      max-width: 700px;
+      margin-bottom: 10px;
+      color: var(--case-primary);
+      font-size: clamp(2rem, 4vw, 3.7rem);
+      letter-spacing: -0.035em;
+    }
+
+    .home-case-studies-header p {
+      max-width: 700px;
+      margin: 0;
+      color: var(--case-text);
+      line-height: 1.75;
+    }
+
+    .home-case-count {
+      flex-shrink: 0;
+      padding: 10px 14px;
+      border: 1px solid var(--case-border);
+      border-radius: 999px;
+      color: var(--case-text);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .home-case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .home-case-card {
+      position: relative;
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--case-border);
+      border-radius: var(--case-radius);
+      background: var(--case-surface);
+      color: inherit;
+      text-decoration: none;
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    .home-case-card:hover {
+      border-color: rgba(92, 106, 196, 0.35);
+      color: inherit;
+      transform: translateY(-7px);
+      box-shadow: var(--case-shadow);
+    }
+
+    .home-case-card-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: #edf0f5;
+    }
+
+    .home-case-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .home-case-card:hover .home-case-card-image img {
+      transform: scale(1.035);
+    }
+
+    .home-case-card-label {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(20, 27, 45, 0.86);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .home-case-card-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 27px;
+    }
+
+    .home-case-card-meta {
+      margin-bottom: 9px;
+      color: var(--case-accent);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .home-case-card h3 {
+      margin-bottom: 12px;
+      color: var(--case-primary);
+      font-size: 1.45rem;
+      line-height: 1.3;
+    }
+
+    .home-case-card p {
+      margin-bottom: 24px;
+      color: var(--case-text);
+      line-height: 1.7;
+    }
+
+    .home-case-card-footer {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 19px;
+      border-top: 1px solid var(--case-border);
+    }
+
+    .home-case-card-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .home-case-card-skills span {
+      color: #667085;
+      font-size: 0.69rem;
+      font-weight: 700;
+    }
+
+    .home-case-card-link {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      color: var(--case-primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .home-case-card-link i {
+      transition: transform 0.2s ease;
+    }
+
+    .home-case-card:hover .home-case-card-link i {
+      transform: translateX(4px);
+    }
+
+    .home-case-placeholder {
+      border-style: dashed;
+      background: var(--case-surface-soft);
+    }
+
+    .home-case-placeholder .home-case-card-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(135deg, rgba(92, 106, 196, 0.08), rgba(149, 191, 71, 0.09));
+    }
+
+    .home-case-placeholder-icon {
+      display: flex;
+      width: 74px;
+      height: 74px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--case-border);
+      border-radius: 22px;
+      background: #fff;
+      color: var(--case-accent);
+      font-size: 1.45rem;
+      box-shadow: 0 14px 35px rgba(20, 27, 45, 0.08);
+    }
+
+    @media (max-width: 991px) {
+      .featured-case-study-section,
+      .home-case-studies-section {
+        padding: 85px 0;
+      }
+
+      .featured-case-visual {
+        max-width: 690px;
+        margin: 40px auto 0;
+        padding: 0;
+      }
+
+      .featured-system-card {
+        transform: none;
+      }
+
+      .home-case-studies-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .featured-case-title {
+        font-size: 2.55rem;
+      }
+
+      .featured-case-stat-row,
+      .home-case-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-flow-item {
+        grid-template-columns: auto 1fr;
+      }
+
+      .featured-flow-status {
+        grid-column: 2;
+        width: fit-content;
+      }
+
+      .home-case-card-content {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .featured-case-study-section,
+      .home-case-studies-section {
+        padding: 70px 0;
+      }
+
+      .featured-case-title {
+        font-size: 2.2rem;
+      }
+
+      .featured-case-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .featured-case-primary-btn,
+      .featured-case-secondary-btn {
+        width: 100%;
+      }
+
+      .featured-system-card-body {
+        padding: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .home-case-card,
+      .home-case-card-image img,
+      .home-case-card-link i,
+      .featured-case-primary-btn,
+      .featured-case-secondary-btn {
+        transition: none;
+      }
+
+      .home-case-card:hover,
+      .featured-case-primary-btn:hover,
+      .featured-case-secondary-btn:hover {
+        transform: none;
+      }
+    }
+  
+    .generated-case-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(92, 106, 196, 0.18), transparent 32%),
+        radial-gradient(circle at 85% 80%, rgba(18, 183, 106, 0.16), transparent 30%),
+        #f7f9fc;
+    }
+
+    .generated-preview-window {
+      width: min(100%, 380px);
+      overflow: hidden;
+      border: 1px solid rgba(20, 27, 45, 0.10);
+      border-radius: 20px;
+      background: #ffffff;
+      box-shadow: 0 18px 45px rgba(20, 27, 45, 0.12);
+    }
+
+    .generated-preview-bar {
+      display: flex;
+      gap: 6px;
+      padding: 13px 15px;
+      border-bottom: 1px solid #e4e7ec;
+      background: #f8fafc;
+    }
+
+    .generated-preview-bar span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #d0d5dd;
+    }
+
+    .generated-preview-bar span:first-child {
+      background: #f97066;
+    }
+
+    .generated-preview-bar span:nth-child(2) {
+      background: #fdb022;
+    }
+
+    .generated-preview-bar span:nth-child(3) {
+      background: #32d583;
+    }
+
+    .generated-preview-body {
+      padding: 17px;
+    }
+
+    .generated-preview-node {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid #e4e7ec;
+      border-radius: 12px;
+      color: #344054;
+    }
+
+    .generated-preview-node i {
+      display: flex;
+      width: 32px;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+      background: #eef0ff;
+      color: #5c6ac4;
+    }
+
+    .generated-preview-node span {
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .generated-preview-node strong {
+      padding: 5px 7px;
+      border-radius: 999px;
+      background: #ecfdf3;
+      color: #027a48;
+      font-size: 0.58rem;
+      white-space: nowrap;
+    }
+
+    .generated-preview-node.warning {
+      border-color: #fecdca;
+      background: #fff8f7;
+    }
+
+    .generated-preview-node.warning i,
+    .generated-preview-node.warning strong {
+      background: #fee4e2;
+      color: #b42318;
+    }
+
+    .generated-preview-node.success {
+      border-color: #abefc6;
+      background: #f6fef9;
+    }
+
+    .generated-preview-node.success i {
+      background: #d1fadf;
+      color: #027a48;
+    }
+
+    .generated-preview-arrow {
+      padding: 5px 0;
+      color: #98a2b3;
+      text-align: center;
+      font-size: 0.72rem;
+    }
+
+    @media (max-width: 575px) {
+      .generated-case-preview {
+        padding: 18px;
+      }
+
+      .generated-preview-node {
+        grid-template-columns: auto 1fr;
+      }
+
+      .generated-preview-node strong {
+        grid-column: 2;
+        width: fit-content;
+      }
+    }
+
+  
+    .confidential-case-card {
+      padding: 0;
+    }
+
+    .confidential-card-button {
+      display: flex;
+      width: 100%;
+      min-height: 100%;
+      flex-direction: column;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .confidential-access-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(10, 15, 28, 0.78);
+      backdrop-filter: blur(10px);
+    }
+
+    .confidential-access-modal.is-open {
+      display: grid;
+    }
+
+    .confidential-access-card {
+      width: min(100%, 510px);
+      padding: 32px;
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 28px 90px rgba(0,0,0,0.30);
+    }
+
+    .confidential-access-card h2 {
+      margin-bottom: 12px;
+      color: var(--case-primary);
+    }
+
+    .confidential-access-card p {
+      color: var(--case-text);
+      line-height: 1.7;
+    }
+
+    .confidential-access-card a {
+      color: var(--case-accent-dark);
+      font-weight: 800;
+    }
+
+    .confidential-access-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .confidential-access-actions a,
+    .confidential-access-actions button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .confidential-access-actions a {
+      background: var(--case-primary);
+      color: #ffffff;
+    }
+
+    .confidential-access-actions button {
+      border: 1px solid var(--case-border);
+      background: #ffffff;
+      color: var(--case-primary);
+    }
+
+  </style>
+
 </head>
 
 <body>
@@ -61,7 +888,7 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="#recent-work">Case Studies</a>
+                  <a class="nav-link" href="#case-study-library">Case Studies</a>
                 </li>
 
                 <li class="nav-item">
@@ -102,7 +929,7 @@
                 <p>
                   I design and develop React based interfaces for ecommerce platforms,
                   operational systems, dashboards, and AI assisted workflows. My work combines
-                  frontend development, Shopify customization, UX research, and interface systems.
+                  frontend development, Ecommerce customization, UX research, and interface systems.
                 </p>
               </div>
             </div>
@@ -165,11 +992,11 @@
         <i class="fa fa-store icon"></i>
         <h3>Ecommerce</h3>
         <ul class="custom-ul-list">
-          <li>Shopify</li>
-          <li>Shopify Themes</li>
+          <li>Ecommerce</li>
+          <li>Ecommerce Themes</li>
           <li>Cart Customization</li>
           <li>Multilingual Storefronts</li>
-          <li>Odoo</li>
+          <li>ERP</li>
           <li>Ecommerce Workflows</li>
         </ul>
       </div>
@@ -242,15 +1069,15 @@
         <div class="d-flex align-content-center justify-content-between">
           <div>
             <h3 class="job-title">Frontend Engineer & Product Designer</h3>
-            <p class="company-name">IQ DogSport · Pfaffenhofen an der Ilm, Germany</p>
+            <p class="company-name">Confidential employer · Germany</p>
           </div>
           <p class="employment-duration">Mar 2026 – Present</p>
         </div>
 
         <ul class="custom-ul-list">
-          <li>Built Shopify storefront interfaces and cart workflows for ecommerce systems.</li>
+          <li>Built Ecommerce storefront interfaces and cart workflows for ecommerce systems.</li>
           <li>Worked on cart drawer logic including shipping workflows, messaging states, and layout behavior.</li>
-          <li>Handled Brevo and Shopify integration including newsletter sync, subscriber validation, and data flow.</li>
+          <li>Handled Brevo and Ecommerce integration including newsletter sync, subscriber validation, and data flow.</li>
           <li>Developed localized content and interface messaging for German and English systems.</li>
           <li>Worked on UI structure and frontend updates across ecommerce pages.</li>
           <li>Performed testing and validation across storefront workflows and systems.</li>
@@ -263,7 +1090,7 @@
         <div class="d-flex align-content-center justify-content-between">
           <div>
             <h3 class="job-title">Web GUI Developer</h3>
-            <p class="company-name">Keysight Technologies · Böblingen, Germany</p>
+            <p class="company-name">Technology company · Germany</p>
           </div>
           <p class="employment-duration">Mar 2025 – Mar 2026</p>
         </div>
@@ -284,7 +1111,7 @@
         <div class="d-flex align-content-center justify-content-between">
           <div>
             <h3 class="job-title">Senior Frontend Developer</h3>
-            <p class="company-name">Techverx · Lahore, Pakistan</p>
+            <p class="company-name">Software company · Pakistan</p>
           </div>
           <p class="employment-duration">Nov 2018 – Sep 2023</p>
         </div>
@@ -312,7 +1139,7 @@
         <div class="d-flex align-content-center justify-content-between">
           <div>
             <h3 class="job-title">Master of Science, User Experience Design</h3>
-            <p class="company-name">Technische Hochschule Ingolstadt · Germany</p>
+            <p class="company-name">University · Germany</p>
           </div>
           <p class="employment-duration">Oct 2023 – Feb 2026</p>
         </div>
@@ -330,7 +1157,7 @@
         <div class="d-flex align-content-center justify-content-between">
           <div>
             <h3 class="job-title">Bachelor of Science, Information Technology</h3>
-            <p class="company-name">Bahauddin Zakariya University · Pakistan</p>
+            <p class="company-name">University · Pakistan</p>
           </div>
           <p class="employment-duration">Sept 2014 – Nov 2018</p>
         </div>
@@ -345,46 +1172,175 @@
   </div>
 </section>
 
-<section id="recent-work" class="portfolio-sec light-bg" style="background-image: url('./images/my-work.svg');">
+
+
+<section id="case-study-library" class="home-case-studies-section">
   <div class="container">
-    <div class="row">
 
-      <div class="col-lg-12">
-        <div class="d-flex justify-content-between align-content-center">
-          <div class="portfolio-text">
-            <h2 class="sec-subtitle">Case Studies</h2>
-            <h3 class="sec-title">UX, Interaction, and Product Design Work</h3>
-          </div>
-        </div>
+    <div class="home-case-studies-header">
+      <div>
+        <div class="case-grid-eyebrow">Case Study Library</div>
+
+        <h2>
+          UX research, product design, and technical problem solving
+        </h2>
+
+        <p>
+          Selected work showing how I investigate problems, understand users
+          and operational workflows, design solutions, test decisions, and
+          turn findings into practical product improvements.
+        </p>
       </div>
 
-      <div class="portfolio-wrap mt-5 case-studies-wrapper">
-        <div class="row">
+      <span class="home-case-count">3 case studies</span>
+    </div>
 
-          <div class="col-md-6">
-            <a href="./gesture-bond.html" class="persona-card d-block">
-              <img src="images/interface-preview.png" alt="GestureBond case study preview">
-              <h3>Gesture Bond</h3>
-              <p>
-                A gesture based avatar communication system focused on social presence,
-                emotional connectivity, user testing, onboarding, and interaction feedback.
-              </p>
-            </a>
+    <div class="home-case-grid">
+
+      <article class="home-case-card confidential-case-card">
+        <button
+          type="button"
+          class="confidential-card-button"
+          data-case-url="./confidential-invoice-automation.html"
+          aria-label="Open confidential invoice automation case study"
+        >
+          <div class="home-case-card-image generated-case-preview" aria-label="Illustrated confidential invoice workflow">
+            <div class="generated-preview-window">
+              <div class="generated-preview-bar">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="generated-preview-body">
+                <div class="generated-preview-node">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span>Purchase Record</span>
+                  <strong>Completed</strong>
+                </div>
+                <div class="generated-preview-arrow">
+                  <i class="fa-solid fa-arrow-down"></i>
+                </div>
+                <div class="generated-preview-node warning">
+                  <i class="fa-solid fa-user-xmark"></i>
+                  <span>Customer Sync</span>
+                  <strong>Data Missing</strong>
+                </div>
+                <div class="generated-preview-arrow">
+                  <i class="fa-solid fa-arrow-down"></i>
+                </div>
+                <div class="generated-preview-node success">
+                  <i class="fa-solid fa-envelope-circle-check"></i>
+                  <span>Invoice Flow</span>
+                  <strong>Restored</strong>
+                </div>
+              </div>
+            </div>
+            <span class="home-case-card-label">Confidential</span>
           </div>
 
-          <div class="col-md-6">
-            <a href="./Cyclosphere.html" class="persona-card d-block">
-              <img src="images/uiux.png" alt="Cyclosphere case study preview">
-              <h3>Cyclosphere</h3>
-              <p class="masking-2">
-                An AR assisted cyclist safety concept with mobile app flows,
-                hazard notifications, user personas, and multimodal interaction design.
-              </p>
-            </a>
-          </div>
+          <div class="home-case-card-content">
+            <div class="home-case-card-meta">
+              Commerce · ERP · Automation
+            </div>
 
+            <h3>Confidential Invoice Automation</h3>
+
+            <p>
+              A password-protected production case study covering stakeholder
+              interviews, workflow analysis, technical debugging, safe automation,
+              and validation of a silent invoice-delivery failure.
+            </p>
+
+            <div class="home-case-card-footer">
+              <div class="home-case-card-skills">
+                <span>Research</span>
+                <span>Debugging</span>
+                <span>Workflow Design</span>
+              </div>
+
+              <span class="home-case-card-link">
+                Request Access
+                <i class="fa-solid fa-lock"></i>
+              </span>
+            </div>
+          </div>
+        </button>
+      </article>
+
+
+      <a href="./gesture-bond.html" class="home-case-card">
+        <div class="home-case-card-image">
+          <img
+            src="images/interface-preview.png"
+            alt="Gesture Bond gesture-based avatar communication interface"
+            loading="lazy"
+          >
+          <span class="home-case-card-label">UX Research</span>
         </div>
-      </div>
+
+        <div class="home-case-card-content">
+          <div class="home-case-card-meta">
+            Interaction Design · User Testing
+          </div>
+
+          <h3>Gesture Bond</h3>
+
+          <p>
+            A gesture-based avatar communication system focused on social
+            presence, emotional connectivity, onboarding, usability testing,
+            and iterative interaction improvements.
+          </p>
+
+          <div class="home-case-card-footer">
+            <div class="home-case-card-skills">
+              <span>UX Research</span>
+              <span>Prototyping</span>
+              <span>Testing</span>
+            </div>
+
+            <span class="home-case-card-link">
+              View Case Study
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a href="./Cyclosphere.html" class="home-case-card">
+        <div class="home-case-card-image">
+          <img
+            src="images/uiux.png"
+            alt="Cyclosphere AR-assisted cyclist safety application preview"
+            loading="lazy"
+          >
+          <span class="home-case-card-label">Product Concept</span>
+        </div>
+
+        <div class="home-case-card-content">
+          <div class="home-case-card-meta">
+            AR · Mobile UX · Safety
+          </div>
+
+          <h3>Cyclosphere</h3>
+
+          <p>
+            An AR-assisted cyclist safety concept with mobile application flows,
+            hazard notifications, user personas, multimodal interaction design,
+            and safety-focused interface decisions.
+          </p>
+
+          <div class="home-case-card-footer">
+            <div class="home-case-card-skills">
+              <span>Personas</span>
+              <span>User Flows</span>
+              <span>AR Concepts</span>
+            </div>
+
+            <span class="home-case-card-link">
+              View Case Study
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </div>
+        </div>
+      </a>
 
     </div>
   </div>
@@ -397,7 +1353,7 @@
       <div class="col-lg-12">
         <div class="portfolio-text">
           <h2 class="sec-subtitle">Master Thesis</h2>
-          <p>Technische Hochschule Ingolstadt · TTZ Manching</p>
+          <p>University research project · Germany</p>
         </div>
       </div>
 
@@ -515,7 +1471,7 @@
               <h3 class="my-2">Newsletter Audit Tools</h3>
               <p class="pb-2 small-p">
                 A Flask based ecommerce audit platform for validating newsletter subscriber migrations
-                across Shopify, Shopware, PushOwl, and Brevo. It compares contacts, detects unsubscribed users,
+                across Ecommerce, Shopware, PushOwl, and Brevo. It compares contacts, detects unsubscribed users,
                 finds duplicates, and exports campaign reports.
               </p>
 
@@ -551,20 +1507,20 @@
 
           <div class="col-md-4">
             <div class="persona-card d-block">
-              <img src="images/techverx-banner.svg" alt="Techverx project preview">
-              <h3 class="my-2">Techverx</h3>
+              <img src="images/techverx-banner.svg" alt="Responsive Web Platform project preview">
+              <h3 class="my-2">Responsive Web Platform</h3>
               <p class="pb-2 small-p">
                 Converted Figma designs into responsive web pages using HTML, CSS, Bootstrap, and JavaScript.
                 Worked on frontend implementation, responsive behavior, and cross browser presentation.
               </p>
-              <a href="https://www.techverx.com/">Learn More</a>
+              <span class="text-muted">Private project</span>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="persona-card d-block">
-              <img src="images/carwaly-preview.png" alt="Carwaly project preview">
-              <h3 class="my-2">Carwaly</h3>
+              <img src="images/carwaly-preview.png" alt="Automotive Web Platform project preview">
+              <h3 class="my-2">Automotive Web Platform</h3>
               <p class="pb-2 small-p">
                 Developed responsive frontend pages from Figma designs using HTML, CSS, and Bootstrap.
                 Focused on layout structure, interface behavior, performance, and cross browser compatibility.
@@ -575,32 +1531,32 @@
 
           <div class="col-md-4">
             <div class="persona-card d-block">
-              <img src="images/friday-pos-banner.svg" alt="Friday POS project preview">
-              <h3 class="my-2">Friday POS</h3>
+              <img src="images/friday-pos-banner.svg" alt="Restaurant POS Interface project preview">
+              <h3 class="my-2">Restaurant POS Interface</h3>
               <p class="pb-2 small-p">
                 Developed ordering and checkout interfaces for a restaurant POS system.
                 Worked on React components, transaction flows, responsive layouts, and operational workflows.
               </p>
-              <a href="https://fridaypos.com/">Learn More</a>
+              <span class="text-muted">Private project</span>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="persona-card d-block">
-              <img src="images/quure.png" alt="Quure project preview">
-              <h3 class="my-2">Quure</h3>
+              <img src="images/quure.png" alt="Digital Health Interface project preview">
+              <h3 class="my-2">Digital Health Interface</h3>
               <p class="pb-2 small-p">
                 Built responsive UI components using HTML, Tailwind CSS, and React.
                 Worked on chat system interfaces, video call layouts, wireframes, and interaction states.
               </p>
-              <a href="https://app.quure.com/login">Learn More</a>
+              <span class="text-muted">Private project</span>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="persona-card d-block">
-              <img src="images/hivekeeper.png" alt="HiveKeeper project preview">
-              <h3 class="my-2">HiveKeeper</h3>
+              <img src="images/hivekeeper.png" alt="Apiary Management Interface project preview">
+              <h3 class="my-2">Apiary Management Interface</h3>
               <p class="pb-2 small-p">
                 Developed an interactive honey section where users can place apiaries through interface actions.
                 Focused on UI structure, interaction behavior, and frontend implementation.
@@ -612,12 +1568,12 @@
           <div class="col-md-4">
             <div class="persona-card d-block">
               <img src="images/bdata.png" alt="BDATA project preview">
-              <h3 class="my-2">Bdata</h3>
+              <h3 class="my-2">Device Management Platform</h3>
               <p class="pb-2 small-p">
                 Developed frontend interfaces for a device management platform using React.
                 Worked on reusable components, device workflows, dashboard structure, and API connected views.
               </p>
-              <a href="https://www.bdata.ca/">Learn More</a>
+              <span class="text-muted">Private project</span>
             </div>
           </div>
 
@@ -654,6 +1610,23 @@
 
 </main>
 
+
+<div id="confidentialAccessModal" class="confidential-access-modal" role="dialog" aria-modal="true" aria-labelledby="confidentialAccessTitle">
+  <div class="confidential-access-card">
+    <h2 id="confidentialAccessTitle">Confidential case study</h2>
+    <p>
+      This project is password protected. Request the password by emailing
+      <a href="mailto:hamzamohsin.work@gmail.com">hamzamohsin.work@gmail.com</a>.
+    </p>
+    <div class="confidential-access-actions">
+      <a id="openConfidentialCase" href="./confidential-invoice-automation.html">
+        Enter Password
+      </a>
+      <button id="closeConfidentialModal" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
 <footer class="footer-outer-wrap">
   <div class="container">
     <div class="row">
@@ -675,7 +1648,7 @@
 
       <div class="col-xl-4 col-lg-12">
         <div class="copyright-wrap">
-          <p>Copyright © 2025 . All Rights Reserved By Hamza.</p>
+          <p>Copyright © 2026. All Rights Reserved By Hamza.</p>
         </div>
       </div>
 
@@ -717,10 +1690,42 @@
   });
 </script>
 
-<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/wow.js"></script>
 <script src="js/custom.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
+<script>
+  (function () {
+    const modal = document.getElementById("confidentialAccessModal");
+    const closeButton = document.getElementById("closeConfidentialModal");
+    const cardButton = document.querySelector(".confidential-card-button");
+
+    function openModal() {
+      modal.classList.add("is-open");
+      closeButton.focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      cardButton.focus();
+    }
+
+    cardButton.addEventListener("click", openModal);
+    closeButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>

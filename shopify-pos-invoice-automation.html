@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>POS Invoice Automation | Hamza Mohsin</title>
+
+   <meta
+      name="description"
+      content="A case study explaining how I investigated and resolved a POS invoice automation problem across an ecommerce and ERP workflow."
+   >
+
+   <!-- Favicon -->
+   <link rel="shortcut icon" type="image/svg+xml" href="images/favicon.svg">
+   <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+   <!-- Remove these two tags when the website is ready for Google indexing -->
+   <meta name="googlebot" content="noindex">
+   <meta name="robots" content="noindex">
+
+   <!-- Bootstrap -->
+   <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+   <!-- Animate.css -->
+   <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+   >
+
+   <!-- Font Awesome 6 -->
+   <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+   >
+
+   <!-- Custom CSS -->
+   <link href="./css/custom.css" rel="stylesheet">
+   <link href="./css/pos.css" rel="stylesheet">
+
+   <style>
+      .proof-interface-mockup {
+         min-height: 430px;
+         overflow: hidden;
+         border: 1px solid #e4e7ec;
+         border-radius: 28px;
+         background: #ffffff;
+         box-shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
+      }
+
+      .mockup-toolbar {
+         display: flex;
+         gap: 8px;
+         align-items: center;
+         padding: 18px 22px;
+         border-bottom: 1px solid #e4e7ec;
+         background: #f8fafc;
+      }
+
+      .mockup-toolbar > span {
+         width: 10px;
+         height: 10px;
+         border-radius: 50%;
+         background: #d0d5dd;
+      }
+
+      .mockup-toolbar > span:first-child {
+         background: #f97066;
+      }
+
+      .mockup-toolbar > span:nth-child(2) {
+         background: #fdb022;
+      }
+
+      .mockup-toolbar > span:nth-child(3) {
+         background: #32d583;
+      }
+
+      .mockup-toolbar strong {
+         margin-left: 8px;
+         color: #344054;
+         font-size: 0.82rem;
+      }
+
+      .mockup-body {
+         padding: 28px;
+      }
+
+      .mockup-summary-row {
+         display: flex;
+         gap: 20px;
+         align-items: center;
+         justify-content: space-between;
+         padding-bottom: 22px;
+         border-bottom: 1px solid #e4e7ec;
+      }
+
+      .mockup-summary-row small,
+      .mockup-data-item span {
+         display: block;
+         margin-bottom: 5px;
+         color: #667085;
+         font-size: 0.7rem;
+         font-weight: 700;
+         letter-spacing: 0.05em;
+         text-transform: uppercase;
+      }
+
+      .mockup-summary-row strong {
+         color: #101828;
+         font-size: 1.35rem;
+      }
+
+      .mockup-success-badge {
+         display: inline-flex;
+         gap: 7px;
+         align-items: center;
+         padding: 8px 12px;
+         border-radius: 999px;
+         background: #ecfdf3;
+         color: #027a48;
+         font-size: 0.72rem;
+         font-weight: 800;
+      }
+
+      .mockup-data-grid {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 12px;
+         margin: 22px 0;
+      }
+
+      .mockup-data-item {
+         padding: 17px;
+         border: 1px solid #e4e7ec;
+         border-radius: 14px;
+         background: #f8fafc;
+      }
+
+      .mockup-data-item strong {
+         color: #101828;
+         font-size: 0.88rem;
+      }
+
+      .mockup-timeline {
+         display: flex;
+         flex-direction: column;
+         gap: 12px;
+      }
+
+      .mockup-timeline-item {
+         display: flex;
+         gap: 13px;
+         align-items: flex-start;
+         padding: 15px;
+         border: 1px solid #d1fadf;
+         border-radius: 14px;
+         background: #f6fef9;
+      }
+
+      .mockup-timeline-item > i {
+         display: flex;
+         width: 28px;
+         height: 28px;
+         flex-shrink: 0;
+         align-items: center;
+         justify-content: center;
+         border-radius: 50%;
+         background: #12b76a;
+         color: #ffffff;
+         font-size: 0.7rem;
+      }
+
+      .mockup-timeline-item strong,
+      .mockup-timeline-item span {
+         display: block;
+      }
+
+      .mockup-timeline-item strong {
+         margin-bottom: 3px;
+         color: #101828;
+         font-size: 0.87rem;
+      }
+
+      .mockup-timeline-item span {
+         color: #667085;
+         font-size: 0.76rem;
+      }
+
+      .commerce-icon {
+         background: #eef4ff;
+         color: #444ce7;
+      }
+
+      @media (max-width: 575px) {
+         .mockup-body {
+            padding: 19px;
+         }
+
+         .mockup-data-grid {
+            grid-template-columns: 1fr;
+         }
+
+         .mockup-summary-row {
+            align-items: flex-start;
+            flex-direction: column;
+         }
+      }
+   </style>
+
+</head>
+
+<body>
+
+   <!-- Header -->
+   <header>
+      <section id="menu-logo" class="nav-wraper light-bg">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <nav class="navbar navbar-expand-lg navbar-light">
+                     <a class="navbar-brand" href="index.html">
+                        <img
+                           class="img-fluid"
+                           src="images/header-logo.svg"
+                           alt="Hamza Mohsin portfolio"
+                        >
+                     </a>
+
+                     <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                     >
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                     </button>
+
+                     <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                     >
+                        <ul class="navbar-nav ms-auto nav-links">
+                           <li class="nav-item">
+                              <a
+                                 class="nav-link"
+                                 href="index.html"
+                                 aria-label="Home"
+                              >
+                                 <img
+                                    src="images/home.svg"
+                                    alt=""
+                                    aria-hidden="true"
+                                 >
+                              </a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="index.html#skills-section">
+                                 Skills
+                              </a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="index.html#experience-section">
+                                 Experience
+                              </a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="index.html#case-study-library">
+                                 Case Studies
+                              </a>
+                           </li>
+
+                           <li class="nav-item">
+                              <a class="nav-link" href="about.html">
+                                 About
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </nav>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Case-study hero -->
+      <section class="banner-wrap light-bg case-studies-wrapper pos-case-hero">
+         <div class="banner">
+            <div class="container">
+               <div class="row align-items-center g-5">
+                  <div class="col-lg-7">
+                     <div class="tagline">
+                        <div class="case-study-label">
+                           Confidential Production Case Study
+                        </div>
+
+                        <h1 class="case-study-title">
+                           Restoring POS Invoice Automation
+                        </h1>
+
+                        <p class="case-study-intro">
+                           I investigated a silent invoice-delivery failure
+                           across an ecommerce POS, a third-party integration connector,
+                           and an ERP system. Through stakeholder interviews, workflow
+                           mapping, source-code analysis, and production
+                           testing, I identified the root cause and built a
+                           safe automation bridge.
+                        </p>
+
+                        <div class="case-study-tags" aria-label="Project skills">
+                           <span>Ecommerce POS</span>
+                           <span>ERP System</span>
+                           <span>System Analysis</span>
+                           <span>Automation</span>
+                           <span>Stakeholder Interviews</span>
+                        </div>
+
+                        <div class="prototype-links mt-4">
+                           <a href="#case-study-overview" class="view-all-btn">
+                              Read Case Study
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-lg-5">
+                     <div class="case-hero-visual">
+                        <div class="system-window">
+                           <div class="system-window-header">
+                              <span></span>
+                              <span></span>
+                              <span></span>
+                           </div>
+
+                           <div class="system-window-content">
+                              <div class="system-status-row">
+                                 <div class="system-status-icon commerce-icon">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                 </div>
+                                 <div>
+                                    <small>Source</small>
+                                    <strong>POS order</strong>
+                                 </div>
+                                 <span class="status-success">
+                                    Completed
+                                 </span>
+                              </div>
+
+                              <div class="system-connector-line"></div>
+
+                              <div class="system-status-row">
+                                 <div class="system-status-icon connector-icon">
+                                    <i class="fa-solid fa-arrows-rotate"></i>
+                                 </div>
+                                 <div>
+                                    <small>Connector</small>
+                                    <strong>Customer synchronization</strong>
+                                 </div>
+                                 <span class="status-warning">
+                                    Email missing
+                                 </span>
+                              </div>
+
+                              <div class="system-connector-line"></div>
+
+                              <div class="system-status-row">
+                                 <div class="system-status-icon odoo-icon">
+                                    <i class="fa-solid fa-file-invoice"></i>
+                                 </div>
+                                 <div>
+                                    <small>Destination</small>
+                                    <strong>ERP invoice</strong>
+                                 </div>
+                                 <span class="status-muted">
+                                    Not sent
+                                 </span>
+                              </div>
+
+                              <div class="system-resolution">
+                                 <i class="fa-solid fa-check"></i>
+                                 Email restored through a safe backfill process
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="banner-social-wrap">
+            <div class="banner-social">
+               <a
+                  href="https://www.linkedin.com/in/hamzamohsin/"
+                  aria-label="LinkedIn profile"
+               >
+                  <img src="images/linkedin.svg" alt="">
+               </a>
+
+               <a
+                  href="https://github.com/HamzaMohsin1996"
+                  aria-label="GitHub profile"
+               >
+                  <i class="fa-brands fa-github"></i>
+               </a>
+
+               <a
+                  href="https://www.xing.com/Hamza_Warraich"
+                  aria-label="Xing profile"
+               >
+                  <i class="fa-brands fa-xing"></i>
+               </a>
+
+               <span></span>
+            </div>
+         </div>
+      </section>
+   </header>
+
+   <main>
+
+      <!-- Overview -->
+      <section
+         id="case-study-overview"
+         class="section-padding case-overview-section"
+      >
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Project Overview</h6>
+               </div>
+
+               <div class="row g-4 pt-5">
+                  <div class="col-lg-8">
+                     <h2>
+                        A successful automation that silently skipped the
+                        customers who needed it
+                     </h2>
+
+                     <p class="case-large-text mt-4">
+                        Customers who completed in-store purchases through
+                        the ecommerce POS were not receiving their invoices by email.
+                        The scheduled ERP action responsible for sending the
+                        invoices ran every two minutes and reported no errors,
+                        making the failure difficult to identify.
+                     </p>
+
+                     <p>
+                        I analyzed the complete workflow between the ecommerce platform,
+                        the integration connector, ERP contacts,
+                        accounting invoices, payment journals, and email
+                        automation. The investigation revealed that the email
+                        existed in Ecommerce and in the connector queue, but was
+                        never copied into the newly created ERP contact.
+                     </p>
+                  </div>
+
+                  <div class="col-lg-4">
+                     <aside class="case-info-card" aria-label="Project details">
+                        <div class="case-info-item">
+                           <span>My role</span>
+                           <p>
+                              System analysis, stakeholder interviews,
+                              debugging, automation design, testing
+                           </p>
+                        </div>
+
+                        <div class="case-info-item">
+                           <span>Project context</span>
+                           <p>Confidential production environment</p>
+                        </div>
+
+                        <div class="case-info-item">
+                           <span>Project type</span>
+                           <p>Production workflow investigation</p>
+                        </div>
+
+                        <div class="case-info-item">
+                           <span>Systems</span>
+                           <p>Ecommerce POS, ERP, Integration Connector</p>
+                        </div>
+
+                        <div class="case-info-item">
+                           <span>Environment</span>
+                           <p>Live production workflow</p>
+                        </div>
+                     </aside>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Problem and outcome -->
+      <section class="section-padding light-bg">
+         <div class="container">
+            <div class="row g-4">
+               <div class="col-lg-6">
+                  <article class="problem-outcome-card problem-card">
+                     <div class="case-card-icon">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                     </div>
+
+                     <span class="case-card-eyebrow">Problem</span>
+
+                     <h3>
+                        Paid POS invoices remained unsent without showing an
+                        error
+                     </h3>
+
+                     <p>
+                        Customers completed their purchase and provided their
+                        details, but ERP contacts created from POS orders had
+                        no email address. The sending automation required a
+                        contact email, so it quietly ignored the invoices.
+                     </p>
+                  </article>
+               </div>
+
+               <div class="col-lg-6">
+                  <article class="problem-outcome-card outcome-card">
+                     <div class="case-card-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                     </div>
+
+                     <span class="case-card-eyebrow">Outcome</span>
+
+                     <h3>
+                        Invoice delivery was restored without modifying vendor
+                        code
+                     </h3>
+
+                     <p>
+                        I implemented a safe email-backfill automation for
+                        identified customers and a separate PDF archival
+                        process for anonymous POS invoices. A previously
+                        failing invoice was then sent automatically.
+                     </p>
+                  </article>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Challenge -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>The Challenge</h6>
+               </div>
+
+               <div class="row section-padding g-5">
+                  <div class="col-lg-5">
+                     <h2>
+                        Why the issue was difficult to diagnose
+                     </h2>
+
+                     <p class="mt-4">
+                        The visible symptoms suggested an email or scheduled
+                        action problem. However, both systems were working
+                        correctly. The real failure occurred earlier in the
+                        data synchronization process.
+                     </p>
+                  </div>
+
+                  <div class="col-lg-7">
+                     <div class="challenge-list">
+                        <article class="challenge-item">
+                           <span class="challenge-number">01</span>
+                           <div>
+                              <h3>No visible errors</h3>
+                              <p>
+                                 The scheduled action completed successfully,
+                                 so the ERP did not report a failure.
+                              </p>
+                           </div>
+                        </article>
+
+                        <article class="challenge-item">
+                           <span class="challenge-number">02</span>
+                           <div>
+                              <h3>Only POS customers were affected</h3>
+                              <p>
+                                 Customers created earlier through web orders
+                                 already had email addresses and continued to
+                                 work normally.
+                              </p>
+                           </div>
+                        </article>
+
+                        <article class="challenge-item">
+                           <span class="challenge-number">03</span>
+                           <div>
+                              <h3>The data appeared to be missing</h3>
+                              <p>
+                                 The email was absent from the ERP contact,
+                                 although it still existed in the connector's
+                                 order queue.
+                              </p>
+                           </div>
+                        </article>
+
+                        <article class="challenge-item">
+                           <span class="challenge-number">04</span>
+                           <div>
+                              <h3>Different payment types behaved differently</h3>
+                              <p>
+                                 Cash invoices became paid immediately, while
+                                 card invoices depended on reconciliation.
+                              </p>
+                           </div>
+                        </article>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Interviews -->
+      <section class="section-padding interview-section light-bg">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Stakeholder Research</h6>
+               </div>
+
+               <div class="row pt-5 g-5 align-items-start">
+                  <div class="col-lg-5">
+                     <h2>
+                        I interviewed two people involved in the workflow
+                     </h2>
+
+                     <p class="mt-4">
+                        Before changing the automation, I needed to understand
+                        what happened at the till and what happened later in
+                        the ERP. The interviews helped separate operational
+                        expectations from technical behavior.
+                     </p>
+
+                     <div class="research-method-note mt-4">
+                        <i class="fa-solid fa-comments"></i>
+                        <p>
+                           The interview findings were combined with production
+                           data, system logs, invoice records, connector queue
+                           records, and source-code inspection.
+                        </p>
+                     </div>
+                  </div>
+
+                  <div class="col-lg-7">
+                     <div class="row g-4">
+                        <div class="col-md-6">
+                           <article class="interview-card">
+                              <div class="interview-person">
+                                 <div class="interview-avatar">
+                                    <i class="fa-solid fa-store"></i>
+                                 </div>
+
+                                 <div>
+                                    <span>Interview 01</span>
+                                    <h3>Store Operations</h3>
+                                 </div>
+                              </div>
+
+                              <div class="interview-question">
+                                 <span>Research goal</span>
+                                 <p>
+                                    Understand how customer information,
+                                    payment, and invoice expectations were
+                                    handled at the till.
+                                 </p>
+                              </div>
+
+                              <h4>Key findings</h4>
+
+                              <ul class="custom-ul-list">
+                                 <li>
+                                    Customers expected an invoice after payment.
+                                 </li>
+                                 <li>
+                                    Customer information could be attached
+                                    during the checkout process.
+                                 </li>
+                                 <li>
+                                    Existing and newly created customers did not
+                                    always behave in the same way.
+                                 </li>
+                                 <li>
+                                    Adding an email after charging could require
+                                    manual office follow-up.
+                                 </li>
+                              </ul>
+                           </article>
+                        </div>
+
+                        <div class="col-md-6">
+                           <article class="interview-card">
+                              <div class="interview-person">
+                                 <div class="interview-avatar">
+                                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                                 </div>
+
+                                 <div>
+                                    <span>Interview 02</span>
+                                    <h3>Finance / Back Office</h3>
+                                 </div>
+                              </div>
+
+                              <div class="interview-question">
+                                 <span>Research goal</span>
+                                 <p>
+                                    Understand how invoices, payments,
+                                    reconciliation, and scheduled email actions
+                                    behaved in the ERP.
+                                 </p>
+                              </div>
+
+                              <h4>Key findings</h4>
+
+                              <ul class="custom-ul-list">
+                                 <li>
+                                    The scheduled action displayed no errors.
+                                 </li>
+                                 <li>
+                                    Manual invoice sending still worked.
+                                 </li>
+                                 <li>
+                                    Unsent invoices were concentrated in the
+                                    ecommerce POS workflow.
+                                 </li>
+                                 <li>
+                                    Card invoices could remain unpaid until
+                                    reconciliation.
+                                 </li>
+                              </ul>
+                           </article>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Research question -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="case-question-block">
+               <span>Investigation Question</span>
+
+               <h2>
+                  At which point between a completed POS purchase and
+                  the ERP invoice-sending action was the customer's email being
+                  lost?
+               </h2>
+            </div>
+         </div>
+      </section>
+
+      <!-- Workflow mapping -->
+      <section class="section-padding workflow-section">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Workflow Mapping</h6>
+               </div>
+
+               <div class="row pt-5 g-5">
+                  <div class="col-lg-5">
+                     <h2>
+                        I traced the complete system instead of debugging only
+                        the final email action
+                     </h2>
+
+                     <p class="mt-4">
+                        Each stage was checked separately to determine whether
+                        the required information existed and whether it was
+                        passed correctly to the next system.
+                     </p>
+                  </div>
+
+                  <div class="col-lg-7">
+                     <div
+                        class="workflow-map"
+                        aria-label="POS invoice workflow"
+                     >
+                        <article class="workflow-step">
+                           <div class="workflow-icon">
+                              <i class="fa-solid fa-cart-shopping"></i>
+                           </div>
+                           <div class="workflow-content">
+                              <span>Step 1</span>
+                              <h3>POS order</h3>
+                              <p>
+                                 Customer, order, address, and payment
+                                 information are captured.
+                              </p>
+                           </div>
+                           <div class="workflow-result success">
+                              Email exists
+                           </div>
+                        </article>
+
+                        <article class="workflow-step">
+                           <div class="workflow-icon">
+                              <i class="fa-solid fa-list-check"></i>
+                           </div>
+                           <div class="workflow-content">
+                              <span>Step 2</span>
+                              <h3>Connector queue record</h3>
+                              <p>
+                                 The connector imports the order and stores the
+                                 customer email.
+                              </p>
+                           </div>
+                           <div class="workflow-result success">
+                              Email exists
+                           </div>
+                        </article>
+
+                        <article class="workflow-step workflow-step-error">
+                           <div class="workflow-icon">
+                              <i class="fa-solid fa-user"></i>
+                           </div>
+                           <div class="workflow-content">
+                              <span>Step 3</span>
+                              <h3>ERP contact creation</h3>
+                              <p>
+                                 Name, address, postcode, city, and phone are
+                                 written to the contact.
+                              </p>
+                           </div>
+                           <div class="workflow-result error">
+                              Email omitted
+                           </div>
+                        </article>
+
+                        <article class="workflow-step">
+                           <div class="workflow-icon">
+                              <i class="fa-solid fa-file-invoice"></i>
+                           </div>
+                           <div class="workflow-content">
+                              <span>Step 4</span>
+                              <h3>ERP invoice</h3>
+                              <p>
+                                 The invoice references a contact without an
+                                 email address.
+                              </p>
+                           </div>
+                           <div class="workflow-result warning">
+                              Cannot send
+                           </div>
+                        </article>
+
+                        <article class="workflow-step">
+                           <div class="workflow-icon">
+                              <i class="fa-solid fa-envelope"></i>
+                           </div>
+                           <div class="workflow-content">
+                              <span>Step 5</span>
+                              <h3>Scheduled email action</h3>
+                              <p>
+                                 The cron checks for a contact email and silently
+                                 skips the invoice.
+                              </p>
+                           </div>
+                           <div class="workflow-result muted">
+                              Skipped
+                           </div>
+                        </article>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Evidence -->
+      <section class="section-padding light-bg">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Technical Investigation</h6>
+               </div>
+
+               <div class="row pt-5 g-5">
+                  <div class="col-lg-6">
+                     <h2>
+                        The source code confirmed where the data flow broke
+                     </h2>
+
+                     <p class="mt-4">
+                        I inspected the third-party connector method
+                        responsible for creating customers from Ecommerce POS
+                        orders:
+                     </p>
+
+                     <div class="method-reference">
+                        <i class="fa-solid fa-code"></i>
+
+                        <div>
+                           <span>Connector location</span>
+                           <code>
+                              models/res_partner.py →
+                              create_shopify_pos_customer
+                           </code>
+                        </div>
+                     </div>
+
+                     <p class="mt-4">
+                        The connector read the customer email into a variable,
+                        but that value was not included when the new ERP
+                        contact was created. This explained why the email
+                        existed in the queue but not on the contact.
+                     </p>
+                  </div>
+
+                  <div class="col-lg-6">
+                     <div class="code-evidence-card">
+                        <div class="code-evidence-header">
+                           <span>Root-cause summary</span>
+                           <span class="code-language">Python / ERP</span>
+                        </div>
+
+                        <pre><code># Email is available from Ecommerce
+customer_email = shopify_customer_email
+
+partner_values = {
+    "name": customer_name,
+    "street": customer_street,
+    "zip": customer_zip,
+    "city": customer_city,
+    "phone": customer_phone,
+
+    # The email value is not written here
+    # "email": customer_email
+}</code></pre>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row g-4 mt-4">
+                  <div class="col-md-6 col-lg-3">
+                     <div class="evidence-card">
+                        <i class="fa-solid fa-address-card"></i>
+                        <h3>Empty contact email</h3>
+                        <p>
+                           Newly created POS contacts had no email in the ERP.
+                        </p>
+                     </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3">
+                     <div class="evidence-card">
+                        <i class="fa-solid fa-copy"></i>
+                        <h3>Duplicate contacts</h3>
+                        <p>
+                           Email-based matching failed and additional contact
+                           records were created.
+                        </p>
+                     </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3">
+                     <div class="evidence-card">
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
+                        <h3>Invoices skipped</h3>
+                        <p>
+                           The sending cron filtered out contacts without
+                           email addresses.
+                        </p>
+                     </div>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3">
+                     <div class="evidence-card">
+                        <i class="fa-solid fa-database"></i>
+                        <h3>Data recoverable</h3>
+                        <p>
+                           The connector queue still stored the original
+                           customer email.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Root cause -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="root-cause-panel">
+               <div class="root-cause-heading">
+                  <span>Verified Root Cause</span>
+
+                  <h2>
+                     The connector collected the email but did not write it to
+                     the ERP contact
+                  </h2>
+               </div>
+
+               <div class="root-cause-consequences">
+                  <div>
+                     <i class="fa-solid fa-xmark"></i>
+                     <p>
+                        Contact email remained empty.
+                     </p>
+                  </div>
+
+                  <div>
+                     <i class="fa-solid fa-xmark"></i>
+                     <p>
+                        Existing-contact matching failed.
+                     </p>
+                  </div>
+
+                  <div>
+                     <i class="fa-solid fa-xmark"></i>
+                     <p>
+                        Duplicate contacts were created.
+                     </p>
+                  </div>
+
+                  <div>
+                     <i class="fa-solid fa-xmark"></i>
+                     <p>
+                        Invoice automation silently skipped the invoice.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Solution -->
+      <section class="section-padding solution-section light-bg">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Solution Design</h6>
+               </div>
+
+               <div class="row pt-5 g-5">
+                  <div class="col-lg-5">
+                     <h2>
+                        A safe bridge instead of a risky third-party code change
+                     </h2>
+
+                     <p class="mt-4">
+                        Changing third-party connector code could complicate
+                        future updates. I therefore created two separate,
+                        narrowly scoped automations while preparing a permanent
+                        bug report for the connector vendor.
+                     </p>
+
+                     <div class="solution-principles mt-4">
+                        <div>
+                           <i class="fa-solid fa-shield-halved"></i>
+                           <span>Never overwrite existing emails</span>
+                        </div>
+
+                        <div>
+                           <i class="fa-solid fa-user-slash"></i>
+                           <span>Never email the shared POS customer</span>
+                        </div>
+
+                        <div>
+                           <i class="fa-solid fa-code-branch"></i>
+                           <span>Keep email and anonymous flows separate</span>
+                        </div>
+
+                        <div>
+                           <i class="fa-solid fa-clipboard-list"></i>
+                           <span>Log every automated change</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="col-lg-7">
+                     <article class="automation-card">
+                        <div class="automation-card-number">01</div>
+
+                        <div class="automation-card-content">
+                           <div class="automation-card-header">
+                              <div>
+                                 <span>Every 5 minutes</span>
+                                 <h3>Backfill customer emails</h3>
+                              </div>
+
+                              <div class="automation-status">
+                                 Active bridge
+                              </div>
+                           </div>
+
+                           <p>
+                              This automation reads the customer email from
+                              completed connector queue records and writes it
+                              to the associated ERP contact only when the
+                              contact's email field is empty.
+                           </p>
+
+                           <ul class="custom-ul-list">
+                              <li>Processes completed connector queue records.</li>
+                              <li>Validates that the value resembles an email.</li>
+                              <li>Checks order and invoice contacts.</li>
+                              <li>Skips the shared anonymous POS customer.</li>
+                              <li>Never replaces an existing email.</li>
+                              <li>Creates an audit log for every update.</li>
+                           </ul>
+                        </div>
+                     </article>
+
+                     <article class="automation-card">
+                        <div class="automation-card-number">02</div>
+
+                        <div class="automation-card-content">
+                           <div class="automation-card-header">
+                              <div>
+                                 <span>Every 30 minutes</span>
+                                 <h3>Archive anonymous POS invoices</h3>
+                              </div>
+
+                              <div class="automation-status">
+                                 Production
+                              </div>
+                           </div>
+
+                           <p>
+                              Anonymous sales use a generic POS customer without
+                              an email address. Instead of attempting delivery,
+                              this automation generates the official PDF after
+                              the invoice is fully paid and marks it as
+                              processed.
+                           </p>
+
+                           <ul class="custom-ul-list">
+                              <li>Processes only posted customer invoices.</li>
+                              <li>Requires the payment state to be Paid.</li>
+                              <li>Targets only the generic POS customer.</li>
+                              <li>Generates the official invoice PDF.</li>
+                              <li>Marks the invoice as archived or processed.</li>
+                              <li>Logs PDF-generation failures.</li>
+                           </ul>
+                        </div>
+                     </article>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Why no collision -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Automation Safety</h6>
+               </div>
+
+               <div class="row pt-5 g-5 align-items-center">
+                  <div class="col-lg-5">
+                     <h2>
+                        The two invoice flows cannot process the same invoice
+                     </h2>
+
+                     <p class="mt-4">
+                        I designed the conditions as disjoint sets. One flow
+                        handles identified customers who have an email. The
+                        other handles only the generic anonymous POS customer,
+                        which has no email.
+                     </p>
+                  </div>
+
+                  <div class="col-lg-7">
+                     <div class="logic-comparison">
+                        <div class="logic-set email-set">
+                           <div class="logic-set-icon">
+                              <i class="fa-solid fa-envelope"></i>
+                           </div>
+
+                           <span>Existing send cron</span>
+                           <h3>Identified customer</h3>
+
+                           <ul>
+                              <li>Contact has an email</li>
+                              <li>Invoice is posted</li>
+                              <li>Invoice is paid</li>
+                              <li>Invoice has not been sent</li>
+                           </ul>
+                        </div>
+
+                        <div class="logic-divider">
+                           <i class="fa-solid fa-not-equal"></i>
+                           <span>No overlap</span>
+                        </div>
+
+                        <div class="logic-set anonymous-set">
+                           <div class="logic-set-icon">
+                              <i class="fa-solid fa-file-pdf"></i>
+                           </div>
+
+                           <span>Anonymous archive cron</span>
+                           <h3>Generic POS customer</h3>
+
+                           <ul>
+                              <li>Contact has no email</li>
+                              <li>Invoice is posted</li>
+                              <li>Invoice is fully paid</li>
+                              <li>PDF has not been archived</li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Decision -->
+      <section class="section-padding payment-decision-section">
+         <div class="container">
+            <div class="decision-banner">
+               <div class="decision-icon">
+                  <i class="fa-solid fa-scale-balanced"></i>
+               </div>
+
+               <div>
+                  <span>Important implementation decision</span>
+
+                  <h2>
+                     Generate anonymous PDFs only when an invoice is fully Paid
+                  </h2>
+
+                  <p>
+                     The filter was changed from Paid or In Payment to Paid
+                     only. Cash invoices can be processed immediately, while
+                     card invoices wait until bank reconciliation confirms the
+                     payment.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Testing -->
+      <section class="section-padding light-bg">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Testing and Validation</h6>
+               </div>
+
+               <div class="row pt-5 g-5">
+                  <div class="col-lg-5">
+                     <h2>
+                        I validated the solution using real production
+                        scenarios
+                     </h2>
+
+                     <p class="mt-4">
+                        Testing covered the conditions that could cause an
+                        invoice to be sent, skipped, archived, duplicated, or
+                        delayed.
+                     </p>
+                  </div>
+
+                  <div class="col-lg-7">
+                     <div class="test-grid">
+                        <article class="test-item">
+                           <div class="test-icon">
+                              <i class="fa-solid fa-user-check"></i>
+                           </div>
+
+                           <div>
+                              <h3>Existing customer</h3>
+                              <p>
+                                 Confirmed that contacts with valid emails
+                                 continued to use the original send cron.
+                              </p>
+                           </div>
+
+                           <span class="test-pass">Passed</span>
+                        </article>
+
+                        <article class="test-item">
+                           <div class="test-icon">
+                              <i class="fa-solid fa-user-plus"></i>
+                           </div>
+
+                           <div>
+                              <h3>New POS customer</h3>
+                              <p>
+                                 Confirmed that an empty contact email could be
+                                 restored from the connector queue.
+                              </p>
+                           </div>
+
+                           <span class="test-pass">Passed</span>
+                        </article>
+
+                        <article class="test-item">
+                           <div class="test-icon">
+                              <i class="fa-solid fa-money-bill"></i>
+                           </div>
+
+                           <div>
+                              <h3>Cash payment</h3>
+                              <p>
+                                 Confirmed that a paid cash invoice could
+                                 continue automatically.
+                              </p>
+                           </div>
+
+                           <span class="test-pass">Passed</span>
+                        </article>
+
+                        <article class="test-item">
+                           <div class="test-icon">
+                              <i class="fa-solid fa-credit-card"></i>
+                           </div>
+
+                           <div>
+                              <h3>Card payment</h3>
+                              <p>
+                                 Confirmed that processing depends on the
+                                 reconciliation and payment-state workflow.
+                              </p>
+                           </div>
+
+                           <span class="test-watch">Monitored</span>
+                        </article>
+
+                        <article class="test-item">
+                           <div class="test-icon">
+                              <i class="fa-solid fa-user-secret"></i>
+                           </div>
+
+                           <div>
+                              <h3>Anonymous purchase</h3>
+                              <p>
+                                 Confirmed that no email is attempted and the
+                                 invoice PDF is archived after payment.
+                              </p>
+                           </div>
+
+                           <span class="test-pass">Passed</span>
+                        </article>
+
+                        <article class="test-item">
+                           <div class="test-icon">
+                              <i class="fa-solid fa-copy"></i>
+                           </div>
+
+                           <div>
+                              <h3>Duplicate contact</h3>
+                              <p>
+                                 Confirmed that restored emails support contact
+                                 identification and later deduplication.
+                              </p>
+                           </div>
+
+                           <span class="test-pass">Passed</span>
+                        </article>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Proof -->
+      <section class="section-padding proof-section">
+         <div class="container">
+            <div class="row g-5 align-items-center">
+               <div class="col-lg-6">
+                  <div class="proof-visual proof-interface-mockup" aria-label="Illustrated invoice automation result">
+                     <div class="mockup-toolbar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <strong>Invoice Automation</strong>
+                     </div>
+
+                     <div class="mockup-body">
+                        <div class="mockup-summary-row">
+                           <div>
+                              <small>Invoice status</small>
+                              <strong>Paid</strong>
+                           </div>
+                           <span class="mockup-success-badge">
+                              <i class="fa-solid fa-check"></i>
+                              Processed
+                           </span>
+                        </div>
+
+                        <div class="mockup-data-grid">
+                           <div class="mockup-data-item">
+                              <span>Customer record</span>
+                              <strong>Email restored</strong>
+                           </div>
+
+                           <div class="mockup-data-item">
+                              <span>Delivery method</span>
+                              <strong>Automated email</strong>
+                           </div>
+
+                           <div class="mockup-data-item">
+                              <span>Payment state</span>
+                              <strong>Confirmed</strong>
+                           </div>
+
+                           <div class="mockup-data-item">
+                              <span>Processing result</span>
+                              <strong>Completed</strong>
+                           </div>
+                        </div>
+
+                        <div class="mockup-timeline">
+                           <div class="mockup-timeline-item complete">
+                              <i class="fa-solid fa-check"></i>
+                              <div>
+                                 <strong>Customer data synchronized</strong>
+                                 <span>Missing email safely restored</span>
+                              </div>
+                           </div>
+
+                           <div class="mockup-timeline-item complete">
+                              <i class="fa-solid fa-check"></i>
+                              <div>
+                                 <strong>Invoice selected by automation</strong>
+                                 <span>All eligibility conditions passed</span>
+                              </div>
+                           </div>
+
+                           <div class="mockup-timeline-item complete">
+                              <i class="fa-solid fa-check"></i>
+                              <div>
+                                 <strong>Invoice delivery completed</strong>
+                                 <span>Processing log created successfully</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="col-lg-6">
+                  <div class="portfolio-text">
+                     <h6>Proof of Resolution</h6>
+                  </div>
+
+                  <h2 class="mt-4">
+                     A previously failing invoice was sent automatically
+                  </h2>
+
+                  <p class="mt-4">
+                     Three duplicate contact records for the same customer were
+                     merged into the correct record. After the valid email was
+                     available on the contact, invoice a previously affected invoice was picked
+                     up and sent automatically.
+                  </p>
+
+                  <div class="proof-callout">
+                     <i class="fa-solid fa-check"></i>
+
+                     <p>
+                        This confirmed that the invoice-generation and
+                        email-sending systems were working. The missing contact
+                        email was the blocking condition.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Impact -->
+      <section class="section-padding impact-section light-bg">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Business and Operational Impact</h6>
+               </div>
+
+               <div class="row pt-5 g-4">
+                  <div class="col-md-6 col-lg-3">
+                     <article class="impact-card">
+                        <span class="impact-number">01</span>
+                        <h3>Automatic delivery restored</h3>
+                        <p>
+                           Eligible POS invoices can enter the existing email
+                           flow after the missing contact email is restored.
+                        </p>
+                     </article>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3">
+                     <article class="impact-card">
+                        <span class="impact-number">02</span>
+                        <h3>Silent failure identified</h3>
+                        <p>
+                           The team now understands why the scheduled action
+                           appeared successful while invoices remained unsent.
+                        </p>
+                     </article>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3">
+                     <article class="impact-card">
+                        <span class="impact-number">03</span>
+                        <h3>Manual work reduced</h3>
+                        <p>
+                           Staff no longer need to investigate every eligible
+                           cash invoice individually.
+                        </p>
+                     </article>
+                  </div>
+
+                  <div class="col-md-6 col-lg-3">
+                     <article class="impact-card">
+                        <span class="impact-number">04</span>
+                        <h3>Vendor compatibility preserved</h3>
+                        <p>
+                           The bridge avoids direct modification of the
+                           connector and can be removed after the permanent connector fix.
+                        </p>
+                     </article>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Additional findings -->
+      <section class="section-padding">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Additional Findings</h6>
+               </div>
+
+               <div class="row pt-5 g-4">
+                  <div class="col-lg-6">
+                     <article class="finding-card">
+                        <div class="finding-icon">
+                           <i class="fa-solid fa-credit-card"></i>
+                        </div>
+
+                        <div>
+                           <h3>Card invoices require reconciliation</h3>
+                           <p>
+                              Card invoices may not reach the Paid state until
+                              the related bank or payout reconciliation is
+                              complete. A send-cron change was prepared but not
+                              applied immediately.
+                           </p>
+                        </div>
+                     </article>
+                  </div>
+
+                  <div class="col-lg-6">
+                     <article class="finding-card">
+                        <div class="finding-icon">
+                           <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+
+                        <div>
+                           <h3>Weekend payouts are delayed</h3>
+                           <p>
+                              Weekend Ecommerce card revenue is included in later
+                              business-day payouts. The delay is part of the
+                              financial workflow rather than a connector error.
+                           </p>
+                        </div>
+                     </article>
+                  </div>
+
+                  <div class="col-lg-6">
+                     <article class="finding-card">
+                        <div class="finding-icon">
+                           <i class="fa-solid fa-language"></i>
+                        </div>
+
+                        <div>
+                           <h3>Invoice language follows the contact</h3>
+                           <p>
+                              Anonymous PDFs were generated in English because
+                              the shared POS customer language was English. The
+                              contact language can be changed to German when
+                              required.
+                           </p>
+                        </div>
+                     </article>
+                  </div>
+
+                  <div class="col-lg-6">
+                     <article class="finding-card">
+                        <div class="finding-icon">
+                           <i class="fa-solid fa-user-clock"></i>
+                        </div>
+
+                        <div>
+                           <h3>Customer timing matters at the till</h3>
+                           <p>
+                              Attaching the customer and email before charging
+                              produces the most reliable automated workflow.
+                              Details added after payment may need manual
+                              handling.
+                           </p>
+                        </div>
+                     </article>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Open items -->
+      <section class="section-padding next-steps-section light-bg">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Next Steps</h6>
+               </div>
+
+               <div class="row pt-5 g-5">
+                  <div class="col-lg-5">
+                     <h2>
+                        The bridge solves the immediate problem while the
+                        permanent connector fix remains with the connector provider
+                     </h2>
+                  </div>
+
+                  <div class="col-lg-7">
+                     <ol class="next-steps-list">
+                        <li>
+                           <span>01</span>
+
+                           <div>
+                              <h3>Connector connector fix</h3>
+                              <p>
+                                 The connector should write the customer email
+                                 when creating POS contacts and update existing
+                                 contacts when the email is missing.
+                              </p>
+                           </div>
+                        </li>
+
+                        <li>
+                           <span>02</span>
+
+                           <div>
+                              <h3>Card-payment decision</h3>
+                              <p>
+                                 Observe the reconciliation cycle before
+                                 allowing bank-journal invoices to enter the
+                                 automatic sending process.
+                              </p>
+                           </div>
+                        </li>
+
+                        <li>
+                           <span>03</span>
+
+                           <div>
+                              <h3>Duplicate-contact cleanup</h3>
+                              <p>
+                                 Use case-insensitive email matching and review
+                                 suggested merges manually because family
+                                 members can share an email address.
+                              </p>
+                           </div>
+                        </li>
+
+                        <li>
+                           <span>04</span>
+
+                           <div>
+                              <h3>Improved till process</h3>
+                              <p>
+                                 Attach the correct customer with an email
+                                 before charging and add a complete name
+                                 whenever possible.
+                              </p>
+                           </div>
+                        </li>
+                     </ol>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- Retrospective -->
+      <section class="section-padding retrospective-section">
+         <div class="container">
+            <div class="custom-header-wrapper">
+               <div class="portfolio-text">
+                  <h6>Retrospective</h6>
+               </div>
+
+               <div class="row pt-5 g-5">
+                  <div class="col-lg-5">
+                     <h2>
+                        What this project taught me
+                     </h2>
+
+                     <p class="mt-4">
+                        The visible failure was an unsent email, but the true
+                        cause was an incomplete data transfer several steps
+                        earlier. Solving it required understanding the complete
+                        operational and technical system.
+                     </p>
+                  </div>
+
+                  <div class="col-lg-7">
+                     <div class="takeaway-grid">
+                        <article class="takeaway-card">
+                           <i class="fa-solid fa-diagram-project"></i>
+                           <h3>Investigate the complete workflow</h3>
+                           <p>
+                              A failure at the final step can originate much
+                              earlier in the data pipeline.
+                           </p>
+                        </article>
+
+                        <article class="takeaway-card">
+                           <i class="fa-solid fa-users"></i>
+                           <h3>Combine interviews with technical evidence</h3>
+                           <p>
+                              Stakeholders explained the real process, while
+                              logs and source code revealed the implementation.
+                           </p>
+                        </article>
+
+                        <article class="takeaway-card">
+                           <i class="fa-solid fa-shield"></i>
+                           <h3>Prefer reversible production fixes</h3>
+                           <p>
+                              A narrow automation bridge reduced risk and can
+                              be removed after the connector provider fix.
+                           </p>
+                        </article>
+
+                        <article class="takeaway-card">
+                           <i class="fa-solid fa-flask-vial"></i>
+                           <h3>Validate with real scenarios</h3>
+                           <p>
+                              Existing, new, anonymous, cash, and card cases
+                              required separate validation.
+                           </p>
+                        </article>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- End navigation -->
+      <section class="section-padding case-navigation-section light-bg">
+         <div class="container">
+            <div class="case-navigation">
+               <div>
+                  <span>Explore more work</span>
+                  <h2>View my other UX and engineering case studies</h2>
+               </div>
+
+               <a href="index.html#case-study-library" class="view-all-btn">
+                  All Case Studies
+               </a>
+            </div>
+         </div>
+      </section>
+   </main>
+
+   <!-- Footer -->
+   <footer class="footer-outer-wrap">
+      <div class="container">
+         <div class="row align-items-center">
+            <div class="col-xl-4 col-lg-12">
+               <div class="footer-logo-wrap">
+                  <a href="index.html">
+                     <img
+                        src="images/footer-logo.svg"
+                        alt="Hamza Mohsin portfolio"
+                     >
+                  </a>
+               </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-12">
+               <ul class="footer-links">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="index.html#case-study-library">Case Studies</a></li>
+                  <li><a href="about.html">About</a></li>
+               </ul>
+            </div>
+
+            <div class="col-xl-4 col-lg-12">
+               <div class="copyright-wrap">
+                  <p>
+                     Copyright © 2026. All Rights Reserved by Hamza.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </footer>
+
+   <!-- Scripts -->
+   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+   <script src="js/wow.js"></script>
+   <script src="js/custom.js"></script>
+</body>
+</html>
