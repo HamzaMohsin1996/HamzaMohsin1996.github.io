@@ -1192,7 +1192,7 @@
         </p>
       </div>
 
-      <span class="home-case-count">3 case studies</span>
+      <span class="home-case-count">4 case studies</span>
     </div>
 
     <div class="home-case-grid">
@@ -1254,6 +1254,74 @@
                 <span>Research</span>
                 <span>Debugging</span>
                 <span>Workflow Design</span>
+              </div>
+
+              <span class="home-case-card-link">
+                Request Access
+                <i class="fa-solid fa-lock"></i>
+              </span>
+            </div>
+          </div>
+        </button>
+      </article>
+
+      <article class="home-case-card confidential-case-card">
+        <button
+          type="button"
+          class="confidential-card-button"
+          data-case-url="./confidential-delivery-block-case-study.html"
+          aria-label="Open confidential delivery protection case study"
+        >
+          <div class="home-case-card-image generated-case-preview" aria-label="Illustrated payment verification and delivery protection workflow">
+            <div class="generated-preview-window">
+              <div class="generated-preview-bar">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="generated-preview-body">
+                <div class="generated-preview-node">
+                  <i class="fa-solid fa-box"></i>
+                  <span>Online Order</span>
+                  <strong>Ready</strong>
+                </div>
+                <div class="generated-preview-arrow">
+                  <i class="fa-solid fa-arrow-down"></i>
+                </div>
+                <div class="generated-preview-node warning">
+                  <i class="fa-solid fa-credit-card"></i>
+                  <span>Payment Check</span>
+                  <strong>Unpaid</strong>
+                </div>
+                <div class="generated-preview-arrow">
+                  <i class="fa-solid fa-arrow-down"></i>
+                </div>
+                <div class="generated-preview-node success">
+                  <i class="fa-solid fa-shield-halved"></i>
+                  <span>Delivery Validation</span>
+                  <strong>Protected</strong>
+                </div>
+              </div>
+            </div>
+            <span class="home-case-card-label">Confidential</span>
+          </div>
+
+          <div class="home-case-card-content">
+            <div class="home-case-card-meta">
+              Ecommerce · ERP · Risk Control
+            </div>
+
+            <h3>Preventing Unpaid Order Deliveries</h3>
+
+            <p>
+              A password-protected production case study showing how a targeted
+              validation rule prevents unpaid online orders from being shipped
+              while preserving invoice-term workflows for business customers.
+            </p>
+
+            <div class="home-case-card-footer">
+              <div class="home-case-card-skills">
+                <span>Automation</span>
+                <span>Risk Control</span>
+                <span>Testing</span>
               </div>
 
               <span class="home-case-card-link">
@@ -1700,19 +1768,26 @@
   (function () {
     const modal = document.getElementById("confidentialAccessModal");
     const closeButton = document.getElementById("closeConfidentialModal");
-    const cardButton = document.querySelector(".confidential-card-button");
+    const openCaseLink = document.getElementById("openConfidentialCase");
+    const cardButtons = document.querySelectorAll(".confidential-card-button");
+    let activeCardButton = null;
 
-    function openModal() {
+    function openModal(event) {
+      activeCardButton = event.currentTarget;
+      openCaseLink.href = activeCardButton.dataset.caseUrl;
       modal.classList.add("is-open");
       closeButton.focus();
     }
 
     function closeModal() {
       modal.classList.remove("is-open");
-      cardButton.focus();
+      if (activeCardButton) activeCardButton.focus();
     }
 
-    cardButton.addEventListener("click", openModal);
+    cardButtons.forEach(function (button) {
+      button.addEventListener("click", openModal);
+    });
+
     closeButton.addEventListener("click", closeModal);
 
     modal.addEventListener("click", function (event) {
