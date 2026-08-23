@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Questions Quiz</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .score {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+
+        .question {
+            background: white;
+            padding: 20px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .question-text {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .option {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #d5d5d5;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #f1f3f5;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .correct {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724;
+        }
+
+        .wrong {
+            background: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24;
+        }
+
+        .result {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .result.correct-result {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .result.wrong-result {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .option.disabled {
+            cursor: default;
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 7px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+        }
+
+        .reset-btn:hover {
+            background: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Internet of Things (IoT)</h1>
+
+    <div class="score">
+        Score: <span id="score">0</span> / 30
+    </div>
+
+    <div id="quiz"></div>
+
+    <button class="reset-btn" onclick="resetQuiz()">Reset Quiz</button>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        question: "CoAP operates on top of:",
+        options: [
+            "TCP",
+            "UDP",
+            "Ethernet only",
+            "FTP"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Predictive maintenance is associated with:",
+        options: [
+            "Cost reduction",
+            "Privacy concerns",
+            "Device heterogeneity",
+            "Network failure"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which type of sensor network has no fixed infrastructure?",
+        options: [
+            "Structured network",
+            "Ad-hoc network",
+            "Hybrid network",
+            "Cloud network"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "IPv6 uses:",
+        options: [
+            "32-bit addresses",
+            "64-bit addresses",
+            "128-bit addresses",
+            "256-bit addresses"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "6LoWPAN stands for:",
+        options: [
+            "IPv6 over Low Power Wireless Personal Area Network",
+            "Internet Protocol Wireless Local Private Area Network",
+            "Low Power Wide Area Network",
+            "IPv6 Wireless Private Network"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "A surveillance camera automatically switching between day and night modes demonstrates:",
+        options: [
+            "Scalability",
+            "Dynamic and self-adapting behavior",
+            "Connectivity",
+            "Heterogeneity"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which application of IoT focuses on saving time, money, and energy in homes?",
+        options: [
+            "Smart retail",
+            "Smart home",
+            "Smart city",
+            "Smart healthcare"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which protocol is connection-oriented?",
+        options: [
+            "UDP",
+            "TCP",
+            "HTTP",
+            "MQTT"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "IoT things can perform:",
+        options: [
+            "Remote sensing",
+            "Actuation",
+            "Monitoring",
+            "All of the above"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "6LoWPAN operates at:",
+        options: [
+            "900 MHz",
+            "1.8 GHz",
+            "2.4 GHz",
+            "60 GHz"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Smart traffic management is primarily an application of:",
+        options: [
+            "Smart city",
+            "Smart retail",
+            "Wearables",
+            "Connected cars"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which IoT communication model contains publishers, brokers, and consumers?",
+        options: [
+            "Request-Response",
+            "Publish-Subscribe",
+            "Push-Pull",
+            "Exclusive Pair"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "The Transport layer provides:",
+        options: [
+            "End-to-end message transfer",
+            "User interface",
+            "Physical sensing",
+            "Device identification only"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Industrial Internet of Things mainly connects:",
+        options: [
+            "Personal smartphones",
+            "Sensors, instruments, devices, and computers for industrial applications",
+            "Social media users",
+            "Home entertainment systems"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which communication model uses a persistent connection between client and server?",
+        options: [
+            "Request-Response",
+            "Publish-Subscribe",
+            "Push-Pull",
+            "Exclusive Pair"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "IoT devices are considered heterogeneous because they:",
+        options: [
+            "Use different hardware platforms",
+            "Use different networks",
+            "Use different identities",
+            "Work with one another"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "IPv4 uses:",
+        options: [
+            "16-bit addresses",
+            "32-bit addresses",
+            "64-bit addresses",
+            "128-bit addresses"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "A unique ID such as an IP address is primarily used to:",
+        options: [
+            "Increase bandwidth",
+            "Identify and track a device",
+            "Increase battery capacity",
+            "Reduce storage"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "HTTP follows which communication model?",
+        options: [
+            "Push-Pull",
+            "Request-Response",
+            "Publish-Subscribe",
+            "Exclusive Pair"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "CoAP is designed especially for:",
+        options: [
+            "Constrained devices and networks",
+            "High-powered servers",
+            "Desktop applications",
+            "Video editing systems"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which WSN challenge is directly related to battery-powered sensor nodes?",
+        options: [
+            "Power consumption",
+            "Web design",
+            "Software licensing",
+            "User interface"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Integrating diverse IoT devices with existing systems creates:",
+        options: [
+            "Integration challenges",
+            "Automatic security",
+            "Unlimited bandwidth",
+            "Zero complexity"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which advantage of IoT reduces human intervention in routine tasks?",
+        options: [
+            "Cost reduction",
+            "Automation and control",
+            "Privacy",
+            "Complexity"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "_____ IoT devices collect, share, and exchange data:",
+        options: [
+            "Only with humans",
+            "Without human intervention",
+            "Only through Bluetooth",
+            "Only through wired networks"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which protocol does not provide guaranteed delivery?",
+        options: [
+            "TCP",
+            "UDP",
+            "HTTP",
+            "MQTT"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "IEEE 802.11 is associated with:",
+        options: [
+            "Ethernet",
+            "Wi-Fi",
+            "WiMAX",
+            "ZigBee"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which of the following is required for a physical object to be considered an IoT thing?",
+        options: [
+            "Only a battery",
+            "Sensor and unique identifier",
+            "Only a processor",
+            "Only an Internet browser"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "UDP is particularly suitable for:",
+        options: [
+            "Time-sensitive applications",
+            "Applications requiring guaranteed delivery",
+            "Large database transactions only",
+            "Applications requiring permanent connections"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which IoT layer processes data close to where it is generated?",
+        options: [
+            "Application layer",
+            "Business layer",
+            "Edge/Processing layer",
+            "Perception layer"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "IEEE 802.15.4 is associated with:",
+        options: [
+            "LR-WPAN",
+            "Ethernet",
+            "WiMAX",
+            "Cellular only"
+        ],
+        answer: 0
+    }
+
+];
+
+let score = 0;
+let answered = new Array(questions.length).fill(false);
+
+function loadQuiz() {
+
+    const quiz = document.getElementById("quiz");
+    quiz.innerHTML = "";
+
+    questions.forEach((q, questionIndex) => {
+
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "question";
+
+        const questionText = document.createElement("div");
+        questionText.className = "question-text";
+        questionText.textContent =
+            (questionIndex + 1) + ". " + q.question;
+
+        questionDiv.appendChild(questionText);
+
+        q.options.forEach((option, optionIndex) => {
+
+            const label = document.createElement("label");
+            label.className = "option";
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "question-" + questionIndex;
+            input.value = optionIndex;
+
+            input.addEventListener("change", function () {
+                checkAnswer(
+                    questionIndex,
+                    optionIndex,
+                    questionDiv
+                );
+            });
+
+            label.appendChild(input);
+            label.appendChild(
+                document.createTextNode(
+                    String.fromCharCode(65 + optionIndex) +
+                    ". " +
+                    option
+                )
+            );
+
+            questionDiv.appendChild(label);
+        });
+
+        const result = document.createElement("div");
+        result.className = "result";
+        result.id = "result-" + questionIndex;
+
+        questionDiv.appendChild(result);
+
+        quiz.appendChild(questionDiv);
+    });
+}
+
+function checkAnswer(questionIndex, selectedIndex, questionDiv) {
+
+    if (answered[questionIndex]) {
+        return;
+    }
+
+    answered[questionIndex] = true;
+
+    const question = questions[questionIndex];
+    const options = questionDiv.querySelectorAll(".option");
+    const result = document.getElementById("result-" + questionIndex);
+
+    options.forEach((option, index) => {
+
+        option.classList.add("disabled");
+
+        const input = option.querySelector("input");
+        input.disabled = true;
+
+        if (index === question.answer) {
+            option.classList.add("correct");
+        }
+    });
+
+    if (selectedIndex === question.answer) {
+
+        score++;
+
+        result.textContent = "Correct!";
+        result.className = "result correct-result";
+
+    } else {
+
+        options[selectedIndex].classList.add("wrong");
+
+        const correctLetter =
+            String.fromCharCode(65 + question.answer);
+
+        result.textContent =
+            "Wrong! Correct answer: " +
+            correctLetter +
+            ". " +
+            question.options[question.answer];
+
+        result.className = "result wrong-result";
+    }
+
+    document.getElementById("score").textContent = score;
+}
+
+function resetQuiz() {
+
+    score = 0;
+    answered = new Array(questions.length).fill(false);
+
+    document.getElementById("score").textContent = "0";
+
+    loadQuiz();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+loadQuiz();
+
+</script>
+
+</body>
+</html>
