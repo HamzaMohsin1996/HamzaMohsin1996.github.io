@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Practice Hub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Mobile Header & Tabs */
+        .header-title {
+            text-align: center;
+            font-size: 22px;
+            margin: 10px 0 15px 0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            background: #e9ecef;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 10px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            background: transparent;
+            color: #495057;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Sticky Mobile Score Header */
+        .score-bar {
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .reset-link {
+            font-size: 13px;
+            color: #dc3545;
+            background: #fff0f1;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Questions Layout */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .question-card {
+            background: #ffffff;
+            padding: 16px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .question-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        code {
+            background: #eef2f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #d63384;
+            font-size: 15px;
+        }
+
+        /* Option Buttons */
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            margin: 8px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            background: #fafafa;
+            transition: background 0.2s, border-color 0.2s;
+            line-height: 1.3;
+        }
+
+        .option-label input {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .option-label.disabled {
+            cursor: default;
+        }
+
+        .correct {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724;
+            font-weight: 600;
+        }
+
+        .wrong {
+            background: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24;
+        }
+
+        .result-msg {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .result-msg.correct-res {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .result-msg.wrong-res {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="header-title">Exam Practice Hub</h1>
+
+    <div class="nav-tabs">
+        <button class="tab-btn" id="tab-iot-btn" onclick="switchTab('iot')">IoT Exam (40)</button>
+        <button class="tab-btn" id="tab-web-btn" onclick="switchTab('websystems')">Web Systems (68)</button>
+    </div>
+
+    <!-- IoT Tab Content -->
+    <div id="iot" class="tab-content">
+        <div class="score-bar">
+            <span>Score: <span id="score-iot">0</span> / 40</span>
+            <button class="reset-link" onclick="resetQuiz('iot')">Reset IoT</button>
+        </div>
+        <div id="quiz-iot"></div>
+    </div>
+
+    <!-- Web Systems Tab Content -->
+    <div id="websystems" class="tab-content">
+        <div class="score-bar">
+            <span>Score: <span id="score-web">0</span> / 68</span>
+            <button class="reset-link" onclick="resetQuiz('websystems')">Reset Web</button>
+        </div>
+        <div id="quiz-web"></div>
+    </div>
+</div>
+
+<script>
+// Quiz 1: IoT Data (40 Questions)
+const iotData = [
+    { question: "CoAP operates on top of:", options: ["TCP", "UDP", "Ethernet only", "FTP"], answer: 1 },
+    { question: "Predictive maintenance is associated with:", options: ["Cost reduction", "Privacy concerns", "Device heterogeneity", "Network failure"], answer: 0 },
+    { question: "Which type of sensor network has no fixed infrastructure?", options: ["Structured network", "Ad-hoc network", "Hybrid network", "Cloud network"], answer: 1 },
+    { question: "IPv6 uses:", options: ["32-bit addresses", "64-bit addresses", "128-bit addresses", "256-bit addresses"], answer: 2 },
+    { question: "6LoWPAN stands for:", options: ["IPv6 over Low Power Wireless Personal Area Network", "Internet Protocol Wireless Local Private Area Network", "Low Power Wide Area Network", "IPv6 Wireless Private Network"], answer: 0 },
+    { question: "A surveillance camera automatically switching between day and night modes demonstrates:", options: ["Scalability", "Dynamic and self-adapting behavior", "Connectivity", "Heterogeneity"], answer: 1 },
+    { question: "Which application of IoT focuses on saving time, money, and energy in homes?", options: ["Smart retail", "Smart home", "Smart city", "Smart healthcare"], answer: 1 },
+    { question: "Which protocol is connection-oriented?", options: ["UDP", "TCP", "HTTP", "MQTT"], answer: 1 },
+    { question: "IoT things can perform:", options: ["Remote sensing", "Actuation", "Monitoring", "All of the above"], answer: 3 },
+    { question: "6LoWPAN operates at:", options: ["900 MHz", "1.8 GHz", "2.4 GHz", "60 GHz"], answer: 2 },
+    { question: "Smart traffic management is primarily an application of:", options: ["Smart city", "Smart retail", "Wearables", "Connected cars"], answer: 0 },
+    { question: "Which IoT communication model contains publishers, brokers, and consumers?", options: ["Request-Response", "Publish-Subscribe", "Push-Pull", "Exclusive Pair"], answer: 1 },
+    { question: "The Transport layer provides:", options: ["End-to-end message transfer", "User interface", "Physical sensing", "Device identification only"], answer: 0 },
+    { question: "Industrial Internet of Things mainly connects:", options: ["Personal smartphones", "Sensors, instruments, devices, and computers for industrial applications", "Social media users", "Home entertainment systems"], answer: 1 },
+    { question: "Which communication model uses a persistent connection between client and server?", options: ["Request-Response", "Publish-Subscribe", "Push-Pull", "Exclusive Pair"], answer: 3 },
+    { question: "IoT devices are considered heterogeneous because they:", options: ["Use different hardware platforms", "Use different networks", "Use different identities", "Work with one another"], answer: 0 },
+    { question: "IPv4 uses:", options: ["16-bit addresses", "32-bit addresses", "64-bit addresses", "128-bit addresses"], answer: 1 },
+    { question: "A unique ID such as an IP address is primarily used to:", options: ["Increase bandwidth", "Identify and track a device", "Increase battery capacity", "Reduce storage"], answer: 1 },
+    { question: "HTTP follows which communication model?", options: ["Push-Pull", "Request-Response", "Publish-Subscribe", "Exclusive Pair"], answer: 1 },
+    { question: "CoAP is designed especially for:", options: ["Constrained devices and networks", "High-powered servers", "Desktop applications", "Video editing systems"], answer: 0 },
+    { question: "Which WSN challenge is directly related to battery-powered sensor nodes?", options: ["Power consumption", "Web design", "Software licensing", "User interface"], answer: 0 },
+    { question: "Integrating diverse IoT devices with existing systems creates:", options: ["Integration challenges", "Automatic security", "Unlimited bandwidth", "Zero complexity"], answer: 0 },
+    { question: "Which advantage of IoT reduces human intervention in routine tasks?", options: ["Cost reduction", "Automation and control", "Privacy", "Complexity"], answer: 1 },
+    { question: "_____ IoT devices collect, share, and exchange data:", options: ["Only with humans", "Without human intervention", "Only through Bluetooth", "Only through wired networks"], answer: 1 },
+    { question: "Which protocol does not provide guaranteed delivery?", options: ["TCP", "UDP", "HTTP", "MQTT"], answer: 1 },
+    { question: "IEEE 802.11 is associated with:", options: ["Ethernet", "Wi-Fi", "WiMAX", "ZigBee"], answer: 1 },
+    { question: "Which of the following is required for a physical object to be considered an IoT thing?", options: ["Only a battery", "Sensor and unique identifier", "Only a processor", "Only an Internet browser"], answer: 1 },
+    { question: "UDP is particularly suitable for:", options: ["Time-sensitive applications", "Applications requiring guaranteed delivery", "Large database transactions only", "Applications requiring permanent connections"], answer: 0 },
+    { question: "Which IoT layer processes data close to where it is generated?", options: ["Application layer", "Business layer", "Edge/Processing layer", "Perception layer"], answer: 2 },
+    { question: "IEEE 802.15.4 is associated with:", options: ["LR-WPAN", "Ethernet", "WiMAX", "Cellular only"], answer: 0 },
+    { question: "Logical design of IoT represents:", options: ["Hardware specifications", "Abstract entities and processes", "Physical connections only", "Circuit diagrams"], answer: 1 },
+    { question: "Consumer IoT mainly includes:", options: ["Industrial machines only", "Smartphones, wearables, and smart home appliances", "Power plants only", "Factory robots only"], answer: 1 },
+    { question: "The Network/Internet layer is responsible for:", options: ["Sensor measurement", "IP addressing and packet routing", "User interface design", "Data visualization only"], answer: 1 },
+    { question: "The term \"Internet of Things\" was first coined by:", options: ["Bill Gates", "Kevin Ashton", "Tim Berners-Lee", "Vint Cerf"], answer: 1 },
+    { question: "A connected car uses sensors and Internet connectivity mainly to optimize:", options: ["Only fuel price", "Operation, maintenance, and passenger comfort", "Only entertainment", "Only Internet speed"], answer: 1 },
+    { question: "A LAN generally connects devices:", options: ["Within a building or campus", "Across countries", "Globally", "Only through satellites"], answer: 0 },
+    { question: "Which network provides long-range communication with low power consumption?", options: ["PAN", "LAN", "LPWAN", "Bluetooth"], answer: 2 },
+    { question: "IEEE 802.3 is associated with:", options: ["Ethernet", "Wi-Fi", "ZigBee", "Bluetooth"], answer: 0 },
+    { question: "Setting up IoT infrastructure can be expensive because of:", options: ["Hardware and development costs", "Lack of sensors", "Reduced data collection", "Lack of applications"], answer: 0 },
+    { question: "Which cloud service provides development tools, APIs, software libraries, and services?", options: ["IaaS", "PaaS", "SaaS", "PAN"], answer: 1 }
+];
+
+// Quiz 2: Web Systems Data (68 Questions)
+const webData = [
+    { question: "What is a Web System?", options: ["A single computer", "A collection of web pages, servers, databases, and apps", "Only a database", "A type of hardware"], answer: 1 },
+    { question: "Which of these is an example of a web browser?", options: ["Apache", "MySQL", "Google Chrome", "Windows"], answer: 2 },
+    { question: "What does WWW stand for?", options: ["Wide World Web", "World Wide Web", "Web World Wide", "World Web Wide"], answer: 1 },
+    { question: "How is a \"Website\" defined?", options: ["A single document", "A collection of related web pages", "A network cable", "An internet protocol"], answer: 1 },
+    { question: "What is a key characteristic of a static website?", options: ["Uses a database", "Content changes for each user", "Shows same information to every visitor", "Interactive login"], answer: 2 },
+    { question: "Which type of website uses a database to change content automatically?", options: ["Static Website", "Dynamic Website", "Fixed Website", "Offline Website"], answer: 1 },
+    { question: "In a web system, who requests information from the server?", options: ["The database", "The client (user's device)", "The web server software", "The ISP"], answer: 1 },
+    { question: "Which software is used to open websites?", options: ["Web Browser", "Database", "Operating System", "FTP Server"], answer: 0 },
+    { question: "Which of these is a popular database?", options: ["Microsoft Edge", "Nginx", "MySQL", "HTML"], answer: 2 },
+    { question: "What is the Internet?", options: ["A single web page", "A worldwide network of millions of computers", "A type of browser", "A social media app"], answer: 1 },
+    { question: "Which application is used to send and receive messages?", options: ["Cloud Storage", "Electronic Mail (Email)", "Video Conferencing", "Web Browsing"], answer: 1 },
+    { question: "What is networking?", options: ["Building computers", "A group of connected computers sharing resources", "Writing code", "Designing graphics"], answer: 1 },
+    { question: "What is a protocol?", options: ["A hardware device", "A set of rules for communication", "A web page", "A browser plugin"], answer: 1 },
+    { question: "What does TCP/IP stand for?", options: ["Total Control Protocol", "Transmission Control Protocol / Internet Protocol", "Technical Communication Path", "Internal Protocol"], answer: 1 },
+    { question: "What are the small parts of data divided by TCP called?", options: ["Chunks", "Layers", "Packets", "Pages"], answer: 2 },
+    { question: "What does TCP do if a packet is damaged or lost?", options: ["Deletes the file", "Requests it again", "Shuts down the network", "Ignores it"], answer: 1 },
+    { question: "Which protocol is responsible for delivering packets to the correct destination?", options: ["TCP", "IP", "HTTP", "SMTP"], answer: 1 },
+    { question: "What is an IP Address?", options: ["A user's password", "A unique number assigned to every device", "A website's title", "An email address"], answer: 1 },
+    { question: "How many layers does the TCP/IP model have?", options: ["2", "4", "5", "7"], answer: 1 },
+    { question: "Which layer of TCP/IP provides services directly to users?", options: ["Internet Layer", "Application Layer", "Transport Layer", "Network Access Layer"], answer: 1 },
+    { question: "Which protocol transfers web pages between a browser and a server?", options: ["FTP", "SMTP", "HTTP", "DNS"], answer: 2 },
+    { question: "What is the primary purpose of HTTPS?", options: ["To send emails", "To encrypt data for security", "To download large files", "To login remotely"], answer: 1 },
+    { question: "Which protocol is used to upload and download files?", options: ["SMTP", "FTP", "POP3", "SSH"], answer: 1 },
+    { question: "What protocol is used to send emails?", options: ["IMAP", "POP3", "SMTP", "HTTP"], answer: 2 },
+    { question: "Which protocol keeps emails on the server for access from multiple devices?", options: ["POP3", "IMAP", "DNS", "Telnet"], answer: 1 },
+    { question: "What is the function of DNS?", options: ["Encrypt data", "Convert domain names to IP addresses", "Send emails", "Transfer files"], answer: 1 },
+    { question: "What has mostly replaced Telnet today because it is more secure?", options: ["FTP", "SSH", "SMTP", "HTTP"], answer: 1 },
+    { question: "What is the default port number for HTTP?", options: ["443", "21", "80", "25"], answer: 2 },
+    { question: "What is the default port number for HTTPS?", options: ["80", "443", "53", "22"], answer: 1 },
+    { question: "Which port is used by SMTP?", options: ["110", "25", "143", "21"], answer: 1 },
+    { question: "What is the port number for DNS?", options: ["53", "23", "80", "443"], answer: 0 },
+    { question: "Which of these is a commonly used web server software?", options: ["Windows 11", "Apache", "Google Chrome", "Oracle"], answer: 1 },
+    { question: "What does the status code \"200\" mean?", options: ["Page Not Found", "OK (Request Successful)", "Bad Request", "Forbidden"], answer: 1 },
+    { question: "What does status code \"404\" indicate?", options: ["Request Successful", "Internal Server Error", "Page Not Found", "Unauthorized"], answer: 2 },
+    { question: "What is virtual hosting?", options: ["A server with no hardware", "Hosting multiple websites on a single server", "A website that only works in VR", "A temporary website"], answer: 1 },
+    { question: "In Name-Based virtual hosting, what is shared?", options: ["Domain Name", "IP Address", "Operating System only", "Nothing"], answer: 1 },
+    { question: "What is Chunked Transfer?", options: ["Deleting small files", "Sending data in small parts (chunks)", "A type of email protocol", "A remote login method"], answer: 1 },
+    { question: "Which of these is a benefit of chunked transfer?", options: ["Improves loading speed", "Allows streaming", "Avoids memory overload", "All of the above"], answer: 3 },
+    { question: "Which HTTP header is used to enable chunked transfer?", options: ["Content-Type", "Transfer-Encoding: chunked", "Connection: close", "Host"], answer: 1 },
+    { question: "Which of the following uses chunked transfer?", options: ["Video Streaming", "Live Data Updates", "Large File Downloads", "All of the above"], answer: 3 },
+    { question: "According to the sources, computer protocols are compared to what in human communication?", options: ["Physical strength", "Grammar rules", "Personality traits", "Vocabulary size"], answer: 1 },
+    { question: "Which specific function of the Internet Protocol (IP) involves finding the path for packets?", options: ["Packet ordering", "Error checking", "Routing packets", "Data encryption"], answer: 2 },
+    { question: "What is the relationship between the Internet and the World Wide Web?", options: ["They are exactly the same", "They are not the same", "The Web created the Internet", "They are unrelated"], answer: 1 },
+    { question: "Which port number is used for the Secure Shell (SSH) service?", options: ["21", "22", "23", "25"], answer: 1 },
+    { question: "Which port is used by IMAP to synchronize emails across devices?", options: ["110", "143", "53", "80"], answer: 1 },
+    { question: "Which HTTP status code is returned when the server requires authentication credentials?", options: ["400", "401", "403", "500"], answer: 1 },
+    { question: "What does the status code \"500\" signify?", options: ["Page Not Found", "Unauthorized access", "Internal Server Error", "Request Successful"], answer: 2 },
+    { question: "Which status code indicates that a page has been \"Moved Permanently\"?", options: ["200", "301", "404", "403"], answer: 1 },
+    { question: "In web server configuration, what is the \"Document Root\"?", options: ["The main website URL", "The physical folder location of files", "The database password", "The server's IP address"], answer: 1 },
+    { question: "Which tag is the root element of an HTML page?", options: ["<head>", "<body>", "<html>", "<title>"], answer: 2 },
+    { question: "Which tag is used to define the largest heading?", options: ["<h6>", "<heading>", "<h1>", "<head>"], answer: 2 },
+    { question: "Which HTML tag is used to define a paragraph?", options: ["<pg>", "<p>", "<para>", "<a>"], answer: 1 },
+    { question: "Which tag is used to insert a single line break?", options: ["<break>", "<lb>", "<br>", "<hr>"], answer: 2 },
+    { question: "Which tag is used to create a hyperlink?", options: ["<a>", "<link>", "<href>", "<url>"], answer: 0 },
+    { question: "Which attribute is used with the <a> tag to specify the destination URL?", options: ["src", "link", "href", "target"], answer: 2 },
+    { question: "Which tag is used to display an image?", options: ["<picture>", "<img>", "<pic>", "<src>"], answer: 1 },
+    { question: "Which attribute is used to specify the path of an image in the <img> tag?", options: ["href", "link", "src", "path"], answer: 2 },
+    { question: "Which tag is used to create an unordered (bulleted) list?", options: ["<ol>", "<list>", "<ul>", "<li>"], answer: 2 },
+    { question: "Which tag is used for an ordered (numbered) list?", options: ["<ol>", "<ul>", "<nl>", "<list>"], answer: 0 },
+    { question: "Which tag defines an individual item inside a list?", options: ["<item>", "<li>", "<list>", "<ol>"], answer: 1 },
+    { question: "Which section of an HTML document contains metadata and the title?", options: ["<body>", "<meta>", "<head>", "<footer>"], answer: 2 },
+    { question: "Which tag contains all the visible content of a web page?", options: ["<html>", "<head>", "<body>", "<main>"], answer: 2 },
+    { question: "Which tag is used to define the title shown in the browser's title bar?", options: ["<head>", "<meta>", "<title>", "<header>"], answer: 2 },
+    { question: "Which tag is used to create a table in HTML?", options: ["<tab>", "<table>", "<tr>", "<td>"], answer: 1 },
+    { question: "Which tag defines a single row in an HTML table?", options: ["<row>", "<td>", "<tr>", "<th>"], answer: 2 },
+    { question: "Which tag is used to define a standard data cell in a table?", options: ["<td>", "<tr>", "<th>", "<cell>"], answer: 0 },
+    { question: "Which tag is used to group large sections of HTML content?", options: ["<span>", "<group>", "<div>", "<section>"], answer: 2 },
+    { question: "Which tag is used to create a clickable button?", options: ["<input>", "<click>", "<button>", "<a>"], answer: 2 }
+];
+
+let state = {
+    iot: { score: 0, answered: new Array(iotData.length).fill(false) },
+    websystems: { score: 0, answered: new Array(webData.length).fill(false) }
+};
+
+// Escape HTML tags so elements like <html> display correctly on mobile screens
+function escapeHTML(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function parseTextWithCode(text) {
+    const escaped = escapeHTML(text);
+    return escaped.replace(/&lt;([a-zA-Z0-9\/]+)&gt;/g, '<code>&lt;$1&gt;</code>');
+}
+
+function renderQuiz(type, data, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+
+    data.forEach((q, qIndex) => {
+        const qCard = document.createElement("div");
+        qCard.className = "question-card";
+
+        const qText = document.createElement("div");
+        qText.className = "question-text";
+        qText.innerHTML = (qIndex + 1) + ". " + parseTextWithCode(q.question);
+        qCard.appendChild(qText);
+
+        q.options.forEach((opt, optIndex) => {
+            const label = document.createElement("label");
+            label.className = "option-label";
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `${type}-q-${qIndex}`;
+            radio.value = optIndex;
+
+            radio.addEventListener("change", () => handleAnswer(type, data, qIndex, optIndex, qCard));
+
+            label.appendChild(radio);
+            
+            const optSpan = document.createElement("span");
+            optSpan.innerHTML = String.fromCharCode(65 + optIndex) + ". " + parseTextWithCode(opt);
+            label.appendChild(optSpan);
+
+            qCard.appendChild(label);
+        });
+
+        const resMsg = document.createElement("div");
+        resMsg.className = "result-msg";
+        resMsg.id = `${type}-res-${qIndex}`;
+        qCard.appendChild(resMsg);
+
+        container.appendChild(qCard);
+    });
+}
+
+function handleAnswer(type, data, qIndex, selectedIndex, qCard) {
+    if (state[type].answered[qIndex]) return;
+    state[type].answered[qIndex] = true;
+
+    const question = data[qIndex];
+    const labels = qCard.querySelectorAll(".option-label");
+    const resMsg = document.getElementById(`${type}-res-${qIndex}`);
+
+    labels.forEach((label, idx) => {
+        label.classList.add("disabled");
+        label.querySelector("input").disabled = true;
+
+        if (idx === question.answer) {
+            label.classList.add("correct");
+        }
+    });
+
+    if (selectedIndex === question.answer) {
+        state[type].score++;
+        resMsg.textContent = "Correct!";
+        resMsg.className = "result-msg correct-res";
+    } else {
+        labels[selectedIndex].classList.add("wrong");
+        const letter = String.fromCharCode(65 + question.answer);
+        resMsg.textContent = `Wrong! Correct answer: ${letter}. ${question.options[question.answer]}`;
+        resMsg.className = "result-msg wrong-res";
+    }
+
+    document.getElementById(`score-${type === 'iot' ? 'iot' : 'web'}`).textContent = state[type].score;
+}
+
+function resetQuiz(type) {
+    const data = type === 'iot' ? iotData : webData;
+    state[type].score = 0;
+    state[type].answered = new Array(data.length).fill(false);
+    document.getElementById(`score-${type === 'iot' ? 'iot' : 'web'}`).textContent = "0";
+    renderQuiz(type, data, type === 'iot' ? 'quiz-iot' : 'quiz-web');
+}
+
+function switchTab(tabKey) {
+    const targetKey = (tabKey === 'websystems' || tabKey === 'web') ? 'websystems' : 'iot';
+    
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+    if (targetKey === 'websystems') {
+        document.getElementById('websystems').classList.add('active');
+        document.getElementById('tab-web-btn').classList.add('active');
+        window.location.hash = 'websystems';
+    } else {
+        document.getElementById('iot').classList.add('active');
+        document.getElementById('tab-iot-btn').classList.add('active');
+        window.location.hash = 'iot';
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Initial Setup
+renderQuiz('iot', iotData, 'quiz-iot');
+renderQuiz('websystems', webData, 'quiz-web');
+
+// Handle Hash Routing on Load
+const initialHash = window.location.hash.replace('#', '');
+if (initialHash === 'websystems' || initialHash === 'web') {
+    switchTab('websystems');
+} else {
+    switchTab('iot');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Systems & HTML Practice Exam</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+            color: #1a252f;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .score {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .question {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+        }
+
+        .question-text {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: #2d3748;
+            line-height: 1.4;
+        }
+
+        .option {
+            display: block;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border: 1px solid #d5d5d5;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #fff;
+        }
+
+        .option:hover {
+            background: #f1f3f5;
+            border-color: #b0b0b0;
+        }
+
+        .option input {
+            margin-right: 12px;
+        }
+
+        .correct {
+            background: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724;
+            font-weight: 500;
+        }
+
+        .wrong {
+            background: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24;
+        }
+
+        .result {
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none;
+            font-size: 15px;
+        }
+
+        .result.correct-result {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .result.wrong-result {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .option.disabled {
+            cursor: default;
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 30px auto 50px auto;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 7px;
+            background: #2b6cb0;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        .reset-btn:hover {
+            background: #2c5282;
+        }
+
+        code {
+            background-color: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 0.95em;
+            color: #c53030;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Web Systems & HTML Exam Practice</h1>
+    <div class="subtitle">Complete Interactive Quiz (68 Questions)</div>
+
+    <div class="score">
+        Score: <span id="score">0</span> / 68
+    </div>
+
+    <div id="quiz"></div>
+
+    <button class="reset-btn" onclick="resetQuiz()">Reset Quiz</button>
+
+</div>
+
+<script>
+
+const questions = [
+    { question: "What is a Web System?", options: ["A single computer", "A collection of web pages, servers, databases, and apps", "Only a database", "A type of hardware"], answer: 1 },
+    { question: "Which of these is an example of a web browser?", options: ["Apache", "MySQL", "Google Chrome", "Windows"], answer: 2 },
+    { question: "What does WWW stand for?", options: ["Wide World Web", "World Wide Web", "Web World Wide", "World Web Wide"], answer: 1 },
+    { question: "How is a \"Website\" defined?", options: ["A single document", "A collection of related web pages", "A network cable", "An internet protocol"], answer: 1 },
+    { question: "What is a key characteristic of a static website?", options: ["Uses a database", "Content changes for each user", "Shows same information to every visitor", "Interactive login"], answer: 2 },
+    { question: "Which type of website uses a database to change content automatically?", options: ["Static Website", "Dynamic Website", "Fixed Website", "Offline Website"], answer: 1 },
+    { question: "In a web system, who requests information from the server?", options: ["The database", "The client (user's device)", "The web server software", "The ISP"], answer: 1 },
+    { question: "Which software is used to open websites?", options: ["Web Browser", "Database", "Operating System", "FTP Server"], answer: 0 },
+    { question: "Which of these is a popular database?", options: ["Microsoft Edge", "Nginx", "MySQL", "HTML"], answer: 2 },
+    { question: "What is the Internet?", options: ["A single web page", "A worldwide network of millions of computers", "A type of browser", "A social media app"], answer: 1 },
+    { question: "Which application is used to send and receive messages?", options: ["Cloud Storage", "Electronic Mail (Email)", "Video Conferencing", "Web Browsing"], answer: 1 },
+    { question: "What is networking?", options: ["Building computers", "A group of connected computers sharing resources", "Writing code", "Designing graphics"], answer: 1 },
+    { question: "What is a protocol?", options: ["A hardware device", "A set of rules for communication", "A web page", "A browser plugin"], answer: 1 },
+    { question: "What does TCP/IP stand for?", options: ["Total Control Protocol", "Transmission Control Protocol / Internet Protocol", "Technical Communication Path", "Internal Protocol"], answer: 1 },
+    { question: "What are the small parts of data divided by TCP called?", options: ["Chunks", "Layers", "Packets", "Pages"], answer: 2 },
+    { question: "What does TCP do if a packet is damaged or lost?", options: ["Deletes the file", "Requests it again", "Shuts down the network", "Ignores it"], answer: 1 },
+    { question: "Which protocol is responsible for delivering packets to the correct destination?", options: ["TCP", "IP", "HTTP", "SMTP"], answer: 1 },
+    { question: "What is an IP Address?", options: ["A user's password", "A unique number assigned to every device", "A website's title", "An email address"], answer: 1 },
+    { question: "How many layers does the TCP/IP model have?", options: ["2", "4", "5", "7"], answer: 1 },
+    { question: "Which layer of TCP/IP provides services directly to users?", options: ["Internet Layer", "Application Layer", "Transport Layer", "Network Access Layer"], answer: 1 },
+    { question: "Which protocol transfers web pages between a browser and a server?", options: ["FTP", "SMTP", "HTTP", "DNS"], answer: 2 },
+    { question: "What is the primary purpose of HTTPS?", options: ["To send emails", "To encrypt data for security", "To download large files", "To login remotely"], answer: 1 },
+    { question: "Which protocol is used to upload and download files?", options: ["SMTP", "FTP", "POP3", "SSH"], answer: 1 },
+    { question: "What protocol is used to send emails?", options: ["IMAP", "POP3", "SMTP", "HTTP"], answer: 2 },
+    { question: "Which protocol keeps emails on the server for access from multiple devices?", options: ["POP3", "IMAP", "DNS", "Telnet"], answer: 1 },
+    { question: "What is the function of DNS?", options: ["Encrypt data", "Convert domain names to IP addresses", "Send emails", "Transfer files"], answer: 1 },
+    { question: "What has mostly replaced Telnet today because it is more secure?", options: ["FTP", "SSH", "SMTP", "HTTP"], answer: 1 },
+    { question: "What is the default port number for HTTP?", options: ["443", "21", "80", "25"], answer: 2 },
+    { question: "What is the default port number for HTTPS?", options: ["80", "443", "53", "22"], answer: 1 },
+    { question: "Which port is used by SMTP?", options: ["110", "25", "143", "21"], answer: 1 },
+    { question: "What is the port number for DNS?", options: ["53", "23", "80", "443"], answer: 0 },
+    { question: "Which of these is a commonly used web server software?", options: ["Windows 11", "Apache", "Google Chrome", "Oracle"], answer: 1 },
+    { question: "What does the status code \"200\" mean?", options: ["Page Not Found", "OK (Request Successful)", "Bad Request", "Forbidden"], answer: 1 },
+    { question: "What does status code \"404\" indicate?", options: ["Request Successful", "Internal Server Error", "Page Not Found", "Unauthorized"], answer: 2 },
+    { question: "What is virtual hosting?", options: ["A server with no hardware", "Hosting multiple websites on a single server", "A website that only works in VR", "A temporary website"], answer: 1 },
+    { question: "In Name-Based virtual hosting, what is shared?", options: ["Domain Name", "IP Address", "Operating System only", "Nothing"], answer: 1 },
+    { question: "What is Chunked Transfer?", options: ["Deleting small files", "Sending data in small parts (chunks)", "A type of email protocol", "A remote login method"], answer: 1 },
+    { question: "Which of these is a benefit of chunked transfer?", options: ["Improves loading speed", "Allows streaming", "Avoids memory overload", "All of the above"], answer: 3 },
+    { question: "Which HTTP header is used to enable chunked transfer?", options: ["Content-Type", "Transfer-Encoding: chunked", "Connection: close", "Host"], answer: 1 },
+    { question: "Which of the following uses chunked transfer?", options: ["Video Streaming", "Live Data Updates", "Large File Downloads", "All of the above"], answer: 3 },
+    { question: "According to the sources, computer protocols are compared to what in human communication?", options: ["Physical strength", "Grammar rules", "Personality traits", "Vocabulary size"], answer: 1 },
+    { question: "Which specific function of the Internet Protocol (IP) involves finding the path for packets?", options: ["Packet ordering", "Error checking", "Routing packets", "Data encryption"], answer: 2 },
+    { question: "What is the relationship between the Internet and the World Wide Web?", options: ["They are exactly the same", "They are not the same", "The Web created the Internet", "They are unrelated"], answer: 1 },
+    { question: "Which port number is used for the Secure Shell (SSH) service?", options: ["21", "22", "23", "25"], answer: 1 },
+    { question: "Which port is used by IMAP to synchronize emails across devices?", options: ["110", "143", "53", "80"], answer: 1 },
+    { question: "Which HTTP status code is returned when the server requires authentication credentials?", options: ["400", "401", "403", "500"], answer: 1 },
+    { question: "What does the status code \"500\" signify?", options: ["Page Not Found", "Unauthorized access", "Internal Server Error", "Request Successful"], answer: 2 },
+    { question: "Which status code indicates that a page has been \"Moved Permanently\"?", options: ["200", "301", "404", "403"], answer: 1 },
+    { question: "In web server configuration, what is the \"Document Root\"?", options: ["The main website URL", "The physical folder location of files", "The database password", "The server's IP address"], answer: 1 },
+    { question: "Which tag is the root element of an HTML page?", options: ["<head>", "<body>", "<html>", "<title>"], answer: 2 },
+    { question: "Which tag is used to define the largest heading?", options: ["<h6>", "<heading>", "<h1>", "<head>"], answer: 2 },
+    { question: "Which HTML tag is used to define a paragraph?", options: ["<pg>", "<p>", "<para>", "<a>"], answer: 1 },
+    { question: "Which tag is used to insert a single line break?", options: ["<break>", "<lb>", "<br>", "<hr>"], answer: 2 },
+    { question: "Which tag is used to create a hyperlink?", options: ["<a>", "<link>", "<href>", "<url>"], answer: 0 },
+    { question: "Which attribute is used with the <a> tag to specify the destination URL?", options: ["src", "link", "href", "target"], answer: 2 },
+    { question: "Which tag is used to display an image?", options: ["<picture>", "<img>", "<pic>", "<src>"], answer: 1 },
+    { question: "Which attribute is used to specify the path of an image in the <img> tag?", options: ["href", "link", "src", "path"], answer: 2 },
+    { question: "Which tag is used to create an unordered (bulleted) list?", options: ["<ol>", "<list>", "<ul>", "<li>"], answer: 2 },
+    { question: "Which tag is used for an ordered (numbered) list?", options: ["<ol>", "<ul>", "<nl>", "<list>"], answer: 0 },
+    { question: "Which tag defines an individual item inside a list?", options: ["<item>", "<li>", "<list>", "<ol>"], answer: 1 },
+    { question: "Which section of an HTML document contains metadata and the title?", options: ["<body>", "<meta>", "<head>", "<footer>"], answer: 2 },
+    { question: "Which tag contains all the visible content of a web page?", options: ["<html>", "<head>", "<body>", "<main>"], answer: 2 },
+    { question: "Which tag is used to define the title shown in the browser's title bar?", options: ["<head>", "<meta>", "<title>", "<header>"], answer: 2 },
+    { question: "Which tag is used to create a table in HTML?", options: ["<tab>", "<table>", "<tr>", "<td>"], answer: 1 },
+    { question: "Which tag defines a single row in an HTML table?", options: ["<row>", "<td>", "<tr>", "<th>"], answer: 2 },
+    { question: "Which tag is used to define a standard data cell in a table?", options: ["<td>", "<tr>", "<th>", "<cell>"], answer: 0 },
+    { question: "Which tag is used to group large sections of HTML content?", options: ["<span>", "<group>", "<div>", "<section>"], answer: 2 },
+    { question: "Which tag is used to create a clickable button?", options: ["<input>", "<click>", "<button>", "<a>"], answer: 2 }
+];
+
+let score = 0;
+let answered = new Array(questions.length).fill(false);
+
+function sanitizeHTML(str) {
+    return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function renderText(str) {
+    let text = sanitizeHTML(str);
+    text = text.replace(/&lt;([a-zA-Z0-9]+)&gt;/g, '<code>&lt;$1&gt;</code>');
+    return text;
+}
+
+function loadQuiz() {
+    const quiz = document.getElementById("quiz");
+    quiz.innerHTML = "";
+
+    questions.forEach((q, questionIndex) => {
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "question";
+
+        const questionText = document.createElement("div");
+        questionText.className = "question-text";
+        questionText.innerHTML = (questionIndex + 1) + ". " + renderText(q.question);
+
+        questionDiv.appendChild(questionText);
+
+        q.options.forEach((option, optionIndex) => {
+            const label = document.createElement("label");
+            label.className = "option";
+
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = "question-" + questionIndex;
+            input.value = optionIndex;
+
+            input.addEventListener("change", function () {
+                checkAnswer(questionIndex, optionIndex, questionDiv);
+            });
+
+            label.appendChild(input);
+            
+            const span = document.createElement("span");
+            span.innerHTML = String.fromCharCode(65 + optionIndex) + ". " + renderText(option);
+            label.appendChild(span);
+
+            questionDiv.appendChild(label);
+        });
+
+        const result = document.createElement("div");
+        result.className = "result";
+        result.id = "result-" + questionIndex;
+
+        questionDiv.appendChild(result);
+        quiz.appendChild(questionDiv);
+    });
+}
+
+function checkAnswer(questionIndex, selectedIndex, questionDiv) {
+    if (answered[questionIndex]) return;
+
+    answered[questionIndex] = true;
+
+    const question = questions[questionIndex];
+    const options = questionDiv.querySelectorAll(".option");
+    const result = document.getElementById("result-" + questionIndex);
+
+    options.forEach((option, index) => {
+        option.classList.add("disabled");
+        const input = option.querySelector("input");
+        input.disabled = true;
+
+        if (index === question.answer) {
+            option.classList.add("correct");
+        }
+    });
+
+    if (selectedIndex === question.answer) {
+        score++;
+        result.textContent = "Correct!";
+        result.className = "result correct-result";
+    } else {
+        options[selectedIndex].classList.add("wrong");
+        const correctLetter = String.fromCharCode(65 + question.answer);
+        result.innerHTML = "Wrong! Correct answer: " + correctLetter + ". " + renderText(question.options[question.answer]);
+        result.className = "result wrong-result";
+    }
+
+    document.getElementById("score").textContent = score;
+}
+
+function resetQuiz() {
+    score = 0;
+    answered = new Array(questions.length).fill(false);
+    document.getElementById("score").textContent = "0";
+    loadQuiz();
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+loadQuiz();
+
+</script>
+
+</body>
+</html>
