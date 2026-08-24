@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Practice Hub</title>
+    <title>Exam Hub — Learn & Quiz</title>
     <style>
         * {
             box-sizing: border-box;
@@ -23,15 +23,16 @@
             margin: 0 auto;
         }
 
-        /* Mobile Header & Tabs */
         .header-title {
             text-align: center;
             font-size: 22px;
             margin: 10px 0 15px 0;
         }
 
+        /* Top Navigation Tabs */
         .nav-tabs {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 6px;
             margin-bottom: 15px;
             background: #e9ecef;
@@ -40,9 +41,8 @@
         }
 
         .tab-btn {
-            flex: 1;
-            padding: 12px 8px;
-            font-size: 14px;
+            padding: 10px 4px;
+            font-size: 13px;
             font-weight: bold;
             border: none;
             background: transparent;
@@ -51,8 +51,6 @@
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
-            text-decoration: none;
-            white-space: nowrap;
         }
 
         .tab-btn.active {
@@ -61,7 +59,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Sticky Mobile Score Header */
+        /* Score Bar for Quiz */
         .score-bar {
             position: sticky;
             top: 10px;
@@ -89,7 +87,7 @@
             cursor: pointer;
         }
 
-        /* Questions Layout */
+        /* Section Layouts */
         .tab-content {
             display: none;
         }
@@ -122,32 +120,31 @@
             font-size: 15px;
         }
 
-        /* Option Buttons */
-        .option-label {
+        /* Option Styling */
+        .option-item {
             display: flex;
             align-items: center;
-            padding: 14px;
-            margin: 8px 0;
+            padding: 12px 14px;
+            margin: 6px 0;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            cursor: pointer;
             font-size: 15px;
             background: #fafafa;
-            transition: background 0.2s, border-color 0.2s;
             line-height: 1.3;
         }
 
-        .option-label input {
+        .quiz-option {
+            cursor: pointer;
+        }
+
+        .quiz-option input {
             margin-right: 12px;
             width: 18px;
             height: 18px;
             flex-shrink: 0;
         }
 
-        .option-label.disabled {
-            cursor: default;
-        }
-
+        /* Correct/Wrong highlights */
         .correct {
             background: #d4edda !important;
             border-color: #28a745 !important;
@@ -159,6 +156,21 @@
             background: #f8d7da !important;
             border-color: #dc3545 !important;
             color: #721c24;
+        }
+
+        .disabled {
+            cursor: default;
+        }
+
+        /* Explanations & Results */
+        .explanation-box {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            background: #e7f5ff;
+            color: #1864ab;
+            font-size: 14px;
+            line-height: 1.4;
         }
 
         .result-msg {
@@ -186,239 +198,251 @@
 <body>
 
 <div class="container">
-    <h1 class="header-title">Exam Practice Hub</h1>
+    <h1 class="header-title">Exam Hub — Learn & Practice</h1>
 
+    <!-- Tabs Navigation -->
     <div class="nav-tabs">
-        <button class="tab-btn" id="tab-ai-btn" onclick="switchTab('ai')">AI (100)</button>
-        <button class="tab-btn" id="tab-compiler-btn" onclick="switchTab('compiler')">Compiler Construction (73)</button>
+        <button class="tab-btn" id="btn-learn-ai" onclick="switchTab('learn-ai')">📖 Learn AI</button>
+        <button class="tab-btn" id="btn-quiz-ai" onclick="switchTab('quiz-ai')">✏️ Quiz AI</button>
+        <button class="tab-btn" id="btn-learn-compiler" onclick="switchTab('learn-compiler')">📖 Learn Compiler</button>
+        <button class="tab-btn" id="btn-quiz-compiler" onclick="switchTab('quiz-compiler')">✏️ Quiz Compiler</button>
     </div>
 
-    <!-- Artificial Intelligence Tab Content -->
-    <div id="ai" class="tab-content">
+    <!-- 1. Learn Mode: AI -->
+    <div id="learn-ai" class="tab-content">
+        <div id="container-learn-ai"></div>
+    </div>
+
+    <!-- 2. Quiz Mode: AI -->
+    <div id="quiz-ai" class="tab-content">
         <div class="score-bar">
             <span>Score: <span id="score-ai">0</span> / 100</span>
-            <button class="reset-link" onclick="resetQuiz('ai')">Reset AI</button>
+            <button class="reset-link" onclick="resetQuiz('ai')">Reset AI Quiz</button>
         </div>
-        <div id="quiz-ai"></div>
+        <div id="container-quiz-ai"></div>
     </div>
 
-    <!-- Compiler Construction Tab Content -->
+    <!-- 3. Learn Mode: Compiler -->
+    <div id="learn-compiler" class="tab-content">
+        <div id="container-learn-compiler"></div>
+    </div>
+
+    <!-- 4. Quiz Mode: Compiler -->
     <div id="compiler" class="tab-content">
         <div class="score-bar">
             <span>Score: <span id="score-compiler">0</span> / 73</span>
-            <button class="reset-link" onclick="resetQuiz('compiler')">Reset Compiler</button>
+            <button class="reset-link" onclick="resetQuiz('compiler')">Reset Compiler Quiz</button>
         </div>
-        <div id="quiz-compiler"></div>
+        <div id="container-quiz-compiler"></div>
     </div>
 </div>
 
 <script>
-// Quiz 1: AI Data (100 Questions Combined)
+// AI Questions Database (100 MCQs)
 const aiData = [
-    // 1. Introduction to AI
-    { question: "Who is widely known as the 'Father of Artificial Intelligence'?", options: ["Alan Turing", "John McCarthy", "Marvin Minsky", "Herbert Simon", "Claude Shannon"], answer: 1 },
-    { question: "What does 'AI' stand for?", options: ["Automated Interaction", "Artificial Intelligence", "Advanced Integration", "Algorithmic Inference", "Autonomous Instruction"], answer: 1 },
-    { question: "Which test is used to determine if a machine can exhibit intelligent behavior indistinguishable from a human?", options: ["IQ Test", "Turing Test", "Binet Test", "CAPTCHA Test", "Rorschach Test"], answer: 1 },
-    { question: "Which of the following is a subfield of AI focused on learning from data?", options: ["Machine Learning", "Cloud Computing", "Web Development", "Database Management", "Network Security"], answer: 0 },
-    { question: "What is 'Narrow AI' also known as?", options: ["Strong AI", "General AI", "Weak AI", "Super AI", "Hybrid AI"], answer: 2 },
-    { question: "Which AI approach is inspired by the structure of the human brain?", options: ["Expert Systems", "Neural Networks", "Decision Trees", "Genetic Algorithms", "Fuzzy Logic"], answer: 1 },
-    { question: "Which of these is an example of a Natural Language Processing (NLP) application?", options: ["Image Recognition", "Chatbots", "Self-driving Cars", "Robotic Arms", "Facial Recognition"], answer: 1 },
-    { question: "In AI, what does 'Deep Learning' primarily use?", options: ["Rule-based Systems", "Multi-layered Neural Networks", "Spreadsheets", "Linear Regression only", "Manual Data Entry"], answer: 1 },
-    { question: "Which type of AI has not yet been achieved and would match or exceed human intelligence across all domains?", options: ["Narrow AI", "Artificial General Intelligence (AGI)", "Reactive Machines", "Limited Memory AI", "Expert Systems"], answer: 1 },
-    { question: "Which of the following is an early AI program designed to mimic a psychotherapist?", options: ["Deep Blue", "ELIZA", "AlphaGo", "Watson", "Siri"], answer: 1 },
+    // Introduction to AI
+    { question: "Who is widely known as the 'Father of Artificial Intelligence'?", options: ["Alan Turing", "John McCarthy", "Marvin Minsky", "Herbert Simon", "Claude Shannon"], answer: 1, explanation: "John McCarthy coined the term 'Artificial Intelligence' in 1956 and organized the Dartmouth Conference." },
+    { question: "What does 'AI' stand for?", options: ["Automated Interaction", "Artificial Intelligence", "Advanced Integration", "Algorithmic Inference", "Autonomous Instruction"], answer: 1, explanation: "AI stands for Artificial Intelligence — the simulation of human intelligence by machines." },
+    { question: "Which test is used to determine if a machine can exhibit intelligent behavior indistinguishable from a human?", options: ["IQ Test", "Turing Test", "Binet Test", "CAPTCHA Test", "Rorschach Test"], answer: 1, explanation: "The Turing Test, proposed by Alan Turing in 1950, evaluates human-like intelligent behavior." },
+    { question: "Which of the following is a subfield of AI focused on learning from data?", options: ["Machine Learning", "Cloud Computing", "Web Development", "Database Management", "Network Security"], answer: 0, explanation: "Machine Learning is a core subfield of AI that enables systems to learn patterns from data." },
+    { question: "What is 'Narrow AI' also known as?", options: ["Strong AI", "General AI", "Weak AI", "Super AI", "Hybrid AI"], answer: 2, explanation: "Narrow AI, also called Weak AI, is designed to perform a specific task." },
+    { question: "Which AI approach is inspired by the structure of the human brain?", options: ["Expert Systems", "Neural Networks", "Decision Trees", "Genetic Algorithms", "Fuzzy Logic"], answer: 1, explanation: "Neural Networks are computational models inspired by interconnected neurons of the human brain." },
+    { question: "Which of these is an example of a Natural Language Processing (NLP) application?", options: ["Image Recognition", "Chatbots", "Self-driving Cars", "Robotic Arms", "Facial Recognition"], answer: 1, explanation: "Chatbots use NLP to understand and generate human language for conversation." },
+    { question: "In AI, what does 'Deep Learning' primarily use?", options: ["Rule-based Systems", "Multi-layered Neural Networks", "Spreadsheets", "Linear Regression only", "Manual Data Entry"], answer: 1, explanation: "Deep Learning relies on multi-layered (deep) neural networks to learn complex patterns." },
+    { question: "Which type of AI has not yet been achieved and would match or exceed human intelligence across all domains?", options: ["Narrow AI", "Artificial General Intelligence (AGI)", "Reactive Machines", "Limited Memory AI", "Expert Systems"], answer: 1, explanation: "AGI refers to a theoretical AI with human-level cognitive abilities across all tasks." },
+    { question: "Which of the following is an early AI program designed to mimic a psychotherapist?", options: ["Deep Blue", "ELIZA", "AlphaGo", "Watson", "Siri"], answer: 1, explanation: "ELIZA, created by Joseph Weizenbaum in the 1960s, was an early NLP program simulating conversation." },
 
-    // 2. Basic Components of AI
-    { question: "Which component of AI is responsible for storing facts and information the system uses to reason?", options: ["Knowledge Base", "Sensor Array", "User Interface", "Compiler", "Cache Memory"], answer: 0 },
-    { question: "Which basic AI component takes raw data from the environment (like camera or microphone input)?", options: ["Actuator", "Sensor", "Reasoning Engine", "Knowledge Base", "Planner"], answer: 1 },
-    { question: "Which component allows an AI system to perform actions in the environment based on its decisions?", options: ["Actuator", "Sensor", "Knowledge Base", "Learning Module", "Interface"], answer: 0 },
-    { question: "Which component of AI applies logical rules to the knowledge base to draw conclusions?", options: ["Reasoning Engine", "Sensor", "Actuator", "Data Warehouse", "User Interface"], answer: 0 },
-    { question: "Which basic component enables an AI system to improve its performance over time from experience?", options: ["Learning Component", "Static Database", "Actuator", "Sensor", "Fixed Ruleset"], answer: 0 },
-    { question: "Which component of AI is responsible for choosing the best sequence of actions to reach a goal?", options: ["Planner", "Sensor", "Actuator", "Knowledge Base", "Display Unit"], answer: 0 },
-    { question: "In an AI agent architecture, what is the term for the part that decides the next action based on current perception?", options: ["Agent Function", "Firewall", "Cache", "Compiler", "Server"], answer: 0 },
-    { question: "Which component allows an AI system to represent and manipulate human language input?", options: ["Natural Language Processing (NLP) Module", "Actuator", "Sensor Array", "Reasoning Engine", "Knowledge Base"], answer: 0 },
-    { question: "Which basic component of an AI system evaluates how well a chosen action satisfies the desired goal?", options: ["Performance Measure", "Actuator", "Sensor", "Data Storage", "Interface"], answer: 0 },
-    { question: "Which term describes the environment in which an AI agent perceives and acts?", options: ["Task Environment", "Knowledge Base", "Reasoning Engine", "Actuator", "Learning Module"], answer: 0 },
+    // Basic Components of AI
+    { question: "Which component of AI is responsible for storing facts and information the system uses to reason?", options: ["Knowledge Base", "Sensor Array", "User Interface", "Compiler", "Cache Memory"], answer: 0, explanation: "The Knowledge Base stores facts, rules, and information that the AI system uses to make decisions and reason." },
+    { question: "Which basic AI component takes raw data from the environment (like camera or microphone input)?", options: ["Actuator", "Sensor", "Reasoning Engine", "Knowledge Base", "Planner"], answer: 1, explanation: "Sensors perceive and collect raw data from the environment, such as cameras, microphones, or input devices." },
+    { question: "Which component allows an AI system to perform actions in the environment based on its decisions?", options: ["Actuator", "Sensor", "Knowledge Base", "Learning Module", "Interface"], answer: 0, explanation: "Actuators carry out physical or digital actions decided by the AI system, like a robotic arm moving." },
+    { question: "Which component of AI applies logical rules to the knowledge base to draw conclusions?", options: ["Reasoning Engine", "Sensor", "Actuator", "Data Warehouse", "User Interface"], answer: 0, explanation: "The Reasoning Engine (or Inference Engine) applies logical rules to the knowledge base to derive conclusions." },
+    { question: "Which basic component enables an AI system to improve its performance over time from experience?", options: ["Learning Component", "Static Database", "Actuator", "Sensor", "Fixed Ruleset"], answer: 0, explanation: "The Learning Component allows an AI system to adapt and improve based on new data and past experiences." },
+    { question: "Which component of AI is responsible for choosing the best sequence of actions to reach a goal?", options: ["Planner", "Sensor", "Actuator", "Knowledge Base", "Display Unit"], answer: 0, explanation: "The Planning component determines the best sequence of actions an AI agent should take to achieve a goal." },
+    { question: "In an AI agent architecture, what is the term for the part that decides the next action based on current perception?", options: ["Agent Function", "Firewall", "Cache", "Compiler", "Server"], answer: 0, explanation: "The Agent Function maps a sequence of percepts to an action, deciding what the AI agent should do next." },
+    { question: "Which component allows an AI system to represent and manipulate human language input?", options: ["Natural Language Processing (NLP) Module", "Actuator", "Sensor Array", "Reasoning Engine", "Knowledge Base"], answer: 0, explanation: "The NLP Module enables the AI system to understand, interpret, and generate human language." },
+    { question: "Which basic component of an AI system evaluates how well a chosen action satisfies the desired goal?", options: ["Performance Measure", "Actuator", "Sensor", "Data Storage", "Interface"], answer: 0, explanation: "The Performance Measure evaluates how successful the AI agent's actions are in achieving goals." },
+    { question: "Which term describes the environment in which an AI agent perceives and acts?", options: ["Task Environment", "Knowledge Base", "Reasoning Engine", "Actuator", "Learning Module"], answer: 0, explanation: "The Task Environment refers to the surroundings within which an AI agent perceives and acts." },
 
-    // 3. Identifying AI Systems
-    { question: "Which of the following is the strongest indicator that a system is an AI system rather than a simple automated script?", options: ["It follows a fixed sequence of steps every time", "It adapts its output based on patterns learned from data", "It runs on a scheduled timer", "It stores data in a database", "It has a graphical user interface"], answer: 1 },
-    { question: "A spam filter that improves its accuracy over time based on user-flagged emails is best identified as which type of system?", options: ["A machine learning-based AI system", "A hardcoded if-else script", "A static lookup table", "A manual sorting process", "A basic file compression tool"], answer: 0 },
-    { question: "Which of these applications would you correctly identify as using AI for recommendation?", options: ["Netflix suggesting shows based on viewing history", "A printer printing a document", "A calculator adding two numbers", "A clock displaying the current time", "A text file storing notes"], answer: 0 },
-    { question: "Which characteristic helps identify a chatbot as AI-powered rather than a simple scripted FAQ bot?", options: ["It understands and responds to varied natural language phrasing", "It only replies to exact keyword matches", "It has a fixed menu of button options", "It responds with the same canned message always", "It requires manual updates for every new question"], answer: 0 },
-    { question: "Which of the following is a key sign that an image-tagging app uses computer vision AI?", options: ["It automatically recognizes and labels objects in new, unseen photos", "It lets users manually type captions", "It resizes images to a fixed dimension", "It converts images to black and white", "It compresses image file size"], answer: 0 },
-    { question: "Which factor would help you identify a self-driving car system as AI-based?", options: ["It perceives its surroundings and makes real-time driving decisions", "It follows a pre-programmed GPS route only", "It has cruise control set to a fixed speed", "It has a fuel gauge sensor", "It has an automatic transmission"], answer: 0 },
-    { question: "Which of these voice assistants' behaviors best identifies it as using AI?", options: ["It understands context across a conversation and answers novel questions", "It plays a pre-recorded greeting message", "It only responds to one exact trigger phrase", "It has a volume control button", "It displays the current battery percentage"], answer: 0 },
-    { question: "Which trait would help you distinguish an AI fraud-detection system from a simple rule-based alert system?", options: ["It identifies previously unseen fraud patterns by learning from transaction data", "It flags any transaction over a fixed dollar amount", "It blocks all transactions from a specific country", "It sends an alert every Monday morning", "It requires a manual review for every transaction"], answer: 0 },
-    { question: "Which is a reliable sign that a translation tool uses AI rather than a basic dictionary lookup?", options: ["It produces contextually accurate translations for idioms and complex sentences", "It translates word-for-word using a fixed glossary", "It only supports one language pair", "It requires the user to select words manually", "It shows a list of dictionary definitions"], answer: 0 },
-    { question: "Which behavior in a game NPC (non-player character) would indicate it uses AI rather than scripted behavior?", options: ["It adapts its strategy based on the player's past moves", "It walks the same fixed path every time", "It repeats the same dialogue line regardless of context", "It disappears after a fixed timer", "It has a static health bar value"], answer: 0 },
+    // Identifying AI Systems
+    { question: "Which of the following is the strongest indicator that a system is an AI system rather than a simple automated script?", options: ["It follows a fixed sequence of steps every time", "It adapts its output based on patterns learned from data", "It runs on a scheduled timer", "It stores data in a database", "It has a graphical user interface"], answer: 1, explanation: "AI systems adapt output based on patterns learned from data, unlike fixed rule-based scripts." },
+    { question: "A spam filter that improves its accuracy over time based on user-flagged emails is best identified as which type of system?", options: ["A machine learning-based AI system", "A hardcoded if-else script", "A static lookup table", "A manual sorting process", "A basic file compression tool"], answer: 0, explanation: "A system that improves accuracy from feedback data demonstrates machine learning." },
+    { question: "Which of these applications would you correctly identify as using AI for recommendation?", options: ["Netflix suggesting shows based on viewing history", "A printer printing a document", "A calculator adding two numbers", "A clock displaying the current time", "A text file storing notes"], answer: 0, explanation: "Recommendation engines like Netflix's use AI/ML to analyze user behavior and predict preferences." },
+    { question: "Which characteristic helps identify a chatbot as AI-powered rather than a simple scripted FAQ bot?", options: ["It understands and responds to varied natural language phrasing", "It only replies to exact keyword matches", "It has a fixed menu of button options", "It responds with the same canned message always", "It requires manual updates for every new question"], answer: 0, explanation: "AI-powered chatbots use NLP to understand varied natural language phrasing." },
+    { question: "Which of the following is a key sign that an image-tagging app uses computer vision AI?", options: ["It automatically recognizes and labels objects in new, unseen photos", "It lets users manually type captions", "It resizes images to a fixed dimension", "It converts images to black and white", "It compresses image file size"], answer: 0, explanation: "Recognizing and labeling objects in unseen images is a core capability of computer vision." },
+    { question: "Which factor would help you identify a self-driving car system as AI-based?", options: ["It perceives its surroundings and makes real-time driving decisions", "It follows a pre-programmed GPS route only", "It has cruise control set to a fixed speed", "It has a fuel gauge sensor", "It has an automatic transmission"], answer: 0, explanation: "Self-driving cars use AI to perceive surroundings and make autonomous real-time decisions." },
+    { question: "Which of these voice assistants' behaviors best identifies it as using AI?", options: ["It understands context across a conversation and answers novel questions", "It plays a pre-recorded greeting message", "It only responds to one exact trigger phrase", "It has a volume control button", "It displays the current battery percentage"], answer: 0, explanation: "Understanding context and answering novel questions requires NLP and reasoning." },
+    { question: "Which trait would help you distinguish an AI fraud-detection system from a simple rule-based alert system?", options: ["It identifies previously unseen fraud patterns by learning from transaction data", "It flags any transaction over a fixed dollar amount", "It blocks all transactions from a specific country", "It sends an alert every Monday morning", "It requires a manual review for every transaction"], answer: 0, explanation: "AI fraud-detection systems learn from data to spot new, previously unseen patterns." },
+    { question: "Which is a reliable sign that a translation tool uses AI rather than a basic dictionary lookup?", options: ["It produces contextually accurate translations for idioms and complex sentences", "It translates word-for-word using a fixed glossary", "It only supports one language pair", "It requires the user to select words manually", "It shows a list of dictionary definitions"], answer: 0, explanation: "AI translation produces contextually accurate translations rather than literal word-for-word lookups." },
+    { question: "Which behavior in a game NPC (non-player character) would indicate it uses AI rather than scripted behavior?", options: ["It adapts its strategy based on the player's past moves", "It walks the same fixed path every time", "It repeats the same dialogue line regardless of context", "It disappears after a fixed timer", "It has a static health bar value"], answer: 0, explanation: "Adapting strategy based on player behavior demonstrates dynamic decision-making." },
 
-    // 4. Branches of AI
-    { question: "Which branch of AI focuses on enabling systems to learn from data and improve without explicit programming?", options: ["Machine Learning", "Robotics", "Computer Vision", "Expert Systems", "Fuzzy Logic"], answer: 0 },
-    { question: "Which branch of AI deals with enabling machines to understand and generate human language?", options: ["Computer Vision", "Natural Language Processing", "Robotics", "Genetic Algorithms", "Machine Learning"], answer: 1 },
-    { question: "Which branch of AI enables machines to interpret and understand images and videos?", options: ["Expert Systems", "Natural Language Processing", "Computer Vision", "Fuzzy Logic", "Reinforcement Learning"], answer: 2 },
-    { question: "Which branch of AI focuses on designing intelligent machines that can physically sense and interact with the real world?", options: ["Machine Learning", "Natural Language Processing", "Expert Systems", "Robotics", "Fuzzy Logic"], answer: 3 },
-    { question: "Which branch of AI uses a knowledge base of rules encoded from human experts to mimic decision-making in a specific field?", options: ["Computer Vision", "Robotics", "Reinforcement Learning", "Machine Learning", "Expert Systems"], answer: 4 },
-    { question: "Which branch of AI uses multi-layered neural networks to model complex patterns from large datasets?", options: ["Deep Learning", "Expert Systems", "Robotics", "Fuzzy Logic", "Natural Language Processing"], answer: 0 },
-    { question: "Which branch of AI involves an agent learning optimal actions through rewards and penalties from its environment?", options: ["Expert Systems", "Reinforcement Learning", "Computer Vision", "Fuzzy Logic", "Robotics"], answer: 1 },
-    { question: "Which branch of AI deals with reasoning based on degrees of truth rather than fixed true/false values, handling uncertainty?", options: ["Machine Learning", "Computer Vision", "Fuzzy Logic", "Robotics", "Expert Systems"], answer: 2 },
-    { question: "Which branch of AI is inspired by natural selection and evolves solutions using mutation, crossover, and selection?", options: ["Natural Language Processing", "Computer Vision", "Expert Systems", "Genetic Algorithms", "Reinforcement Learning"], answer: 3 },
-    { question: "Which branch of AI focuses on converting spoken language into text for voice-based interaction?", options: ["Computer Vision", "Robotics", "Fuzzy Logic", "Genetic Algorithms", "Speech Recognition"], answer: 4 },
+    // Branches of AI
+    { question: "Which branch of AI focuses on enabling systems to learn from data and improve without explicit programming?", options: ["Machine Learning", "Robotics", "Computer Vision", "Expert Systems", "Fuzzy Logic"], answer: 0, explanation: "Machine Learning is focused on enabling systems to learn patterns from data without explicit programming." },
+    { question: "Which branch of AI deals with enabling machines to understand and generate human language?", options: ["Computer Vision", "Natural Language Processing", "Robotics", "Genetic Algorithms", "Machine Learning"], answer: 1, explanation: "Natural Language Processing (NLP) focuses on understanding, interpreting, and generating human language." },
+    { question: "Which branch of AI enables machines to interpret and understand images and videos?", options: ["Expert Systems", "Natural Language Processing", "Computer Vision", "Fuzzy Logic", "Reinforcement Learning"], answer: 2, explanation: "Computer Vision enables machines to interpret visual information from images and video." },
+    { question: "Which branch of AI focuses on designing intelligent machines that can physically sense and interact with the real world?", options: ["Machine Learning", "Natural Language Processing", "Expert Systems", "Robotics", "Fuzzy Logic"], answer: 3, explanation: "Robotics designs intelligent physical machines that sense and act in the real world." },
+    { question: "Which branch of AI uses a knowledge base of rules encoded from human experts to mimic decision-making in a specific field?", options: ["Computer Vision", "Robotics", "Reinforcement Learning", "Machine Learning", "Expert Systems"], answer: 4, explanation: "Expert Systems use encoded expert rules to mimic decision-making in a specific domain." },
+    { question: "Which branch of AI uses multi-layered neural networks to model complex patterns from large datasets?", options: ["Deep Learning", "Expert Systems", "Robotics", "Fuzzy Logic", "Natural Language Processing"], answer: 0, explanation: "Deep Learning uses multi-layered neural networks to model complex patterns in datasets." },
+    { question: "Which branch of AI involves an agent learning optimal actions through rewards and penalties from its environment?", options: ["Expert Systems", "Reinforcement Learning", "Computer Vision", "Fuzzy Logic", "Robotics"], answer: 1, explanation: "In Reinforcement Learning, an agent learns through trial-and-error rewards and penalties." },
+    { question: "Which branch of AI deals with reasoning based on degrees of truth rather than fixed true/false values, handling uncertainty?", options: ["Machine Learning", "Computer Vision", "Fuzzy Logic", "Robotics", "Expert Systems"], answer: 2, explanation: "Fuzzy Logic handles reasoning with degrees of truth rather than strict true/false values." },
+    { question: "Which branch of AI is inspired by natural selection and evolves solutions using mutation, crossover, and selection?", options: ["Natural Language Processing", "Computer Vision", "Expert Systems", "Genetic Algorithms", "Reinforcement Learning"], answer: 3, explanation: "Genetic Algorithms use mutation and crossover inspired by natural selection to evolve solutions." },
+    { question: "Which branch of AI focuses on converting spoken language into text for voice-based interaction?", options: ["Computer Vision", "Robotics", "Fuzzy Logic", "Genetic Algorithms", "Speech Recognition"], answer: 4, explanation: "Speech Recognition converts spoken language into text for voice interfaces." },
 
-    // 5. Reasoning and Knowledge Representation of AI
-    { question: "Which knowledge representation technique uses quantifiers and variables to represent relationships between objects?", options: ["Predicate Logic", "Semantic Network", "Frame Representation", "Production Rules", "Fuzzy Logic"], answer: 0 },
-    { question: "Which knowledge representation method uses a graph of nodes and labeled edges to show relationships between concepts?", options: ["Predicate Logic", "Semantic Network", "Production Rules", "Propositional Logic", "Bayesian Network"], answer: 1 },
-    { question: "Which knowledge representation technique organizes information into slots and values, similar to a record structure?", options: ["Semantic Network", "Predicate Logic", "Frames", "Production Rules", "Decision Trees"], answer: 2 },
-    { question: "Which knowledge representation technique expresses knowledge as IF-THEN condition-action statements?", options: ["Semantic Network", "Frames", "Predicate Logic", "Production Rules", "Ontology"], answer: 3 },
-    { question: "Which type of reasoning derives a specific, guaranteed-true conclusion from general premises using strict logical rules?", options: ["Inductive Reasoning", "Deductive Reasoning", "Abductive Reasoning", "Analogical Reasoning", "Fuzzy Reasoning"], answer: 1 },
-    { question: "Which type of reasoning draws general conclusions or patterns from specific observed examples?", options: ["Inductive Reasoning", "Deductive Reasoning", "Monotonic Reasoning", "Backward Chaining", "Predicate Logic"], answer: 0 },
-    { question: "Which type of reasoning starts from an observation and infers the most likely explanation, as used in medical diagnosis?", options: ["Deductive Reasoning", "Inductive Reasoning", "Abductive Reasoning", "Forward Chaining", "Non-monotonic Reasoning"], answer: 2 },
-    { question: "Which inference method starts from known facts and applies rules to derive new facts, moving toward a goal?", options: ["Forward Chaining", "Backward Chaining", "Abductive Reasoning", "Analogical Reasoning", "Fuzzy Reasoning"], answer: 0 },
-    { question: "Which inference method starts from a goal and works backward to find supporting facts and rules?", options: ["Forward Chaining", "Backward Chaining", "Inductive Reasoning", "Semantic Network", "Fuzzy Logic"], answer: 1 },
-    { question: "Which type of reasoning allows previously drawn conclusions to be revised or withdrawn when new contradicting information arrives?", options: ["Deductive Reasoning", "Monotonic Reasoning", "Forward Chaining", "Predicate Logic", "Non-monotonic Reasoning"], answer: 4 },
+    // Reasoning and Knowledge Representation
+    { question: "Which knowledge representation technique uses quantifiers and variables to represent relationships between objects?", options: ["Predicate Logic", "Semantic Network", "Frame Representation", "Production Rules", "Fuzzy Logic"], answer: 0, explanation: "Predicate Logic extends propositional logic using quantifiers and relations between objects." },
+    { question: "Which knowledge representation method uses a graph of nodes and labeled edges to show relationships between concepts?", options: ["Predicate Logic", "Semantic Network", "Production Rules", "Propositional Logic", "Bayesian Network"], answer: 1, explanation: "Semantic Networks represent knowledge as a graph of nodes (concepts) and labeled edges." },
+    { question: "Which knowledge representation technique organizes information into slots and values, similar to a record structure?", options: ["Semantic Network", "Predicate Logic", "Frames", "Production Rules", "Decision Trees"], answer: 2, explanation: "Frames organize knowledge into structured slots and values representing object attributes." },
+    { question: "Which knowledge representation technique expresses knowledge as IF-THEN condition-action statements?", options: ["Semantic Network", "Frames", "Predicate Logic", "Production Rules", "Ontology"], answer: 3, explanation: "Production Rules express knowledge as IF-THEN condition-action pairs." },
+    { question: "Which type of reasoning derives a specific, guaranteed-true conclusion from general premises using strict logical rules?", options: ["Inductive Reasoning", "Deductive Reasoning", "Abductive Reasoning", "Analogical Reasoning", "Fuzzy Reasoning"], answer: 1, explanation: "Deductive reasoning guarantees true conclusions when general premises are true." },
+    { question: "Which type of reasoning draws general conclusions or patterns from specific observed examples?", options: ["Inductive Reasoning", "Deductive Reasoning", "Monotonic Reasoning", "Backward Chaining", "Predicate Logic"], answer: 0, explanation: "Inductive reasoning generalizes patterns from specific observed examples." },
+    { question: "Which type of reasoning starts from an observation and infers the most likely explanation, as used in medical diagnosis?", options: ["Deductive Reasoning", "Inductive Reasoning", "Abductive Reasoning", "Forward Chaining", "Non-monotonic Reasoning"], answer: 2, explanation: "Abductive reasoning infers the most likely explanation for an observation." },
+    { question: "Which inference method starts from known facts and applies rules to derive new facts, moving toward a goal?", options: ["Forward Chaining", "Backward Chaining", "Abductive Reasoning", "Analogical Reasoning", "Fuzzy Reasoning"], answer: 0, explanation: "Forward Chaining starts from known facts and applies rules until a goal is reached." },
+    { question: "Which inference method starts from a goal and works backward to find supporting facts and rules?", options: ["Forward Chaining", "Backward Chaining", "Inductive Reasoning", "Semantic Network", "Fuzzy Logic"], answer: 1, explanation: "Backward Chaining starts from a goal and works backward to find supporting facts." },
+    { question: "Which type of reasoning allows previously drawn conclusions to be revised or withdrawn when new contradicting information arrives?", options: ["Deductive Reasoning", "Monotonic Reasoning", "Forward Chaining", "Predicate Logic", "Non-monotonic Reasoning"], answer: 4, explanation: "Non-monotonic reasoning allows conclusions to be revised when new information arrives." },
 
-    // 6. Introduction to Reasoning and Knowledge Representation
-    { question: "Which AI field studies how to formally encode facts and information so a machine can reason with them?", options: ["Machine Perception", "Knowledge Representation", "Data Encryption", "Signal Processing", "Network Routing"], answer: 1 },
-    { question: "What is the term for the process by which an AI system draws new conclusions from existing knowledge?", options: ["Reasoning", "Rendering", "Compilation", "Encryption", "Caching"], answer: 0 },
-    { question: "What is a key requirement of a good knowledge representation scheme in AI?", options: ["It must always be visual", "It must be written in English", "It should be expressive and support efficient reasoning", "It must use only numbers", "It must avoid all rules"], answer: 2 },
-    { question: "In knowledge representation, what term describes basic, explicitly stated pieces of information about the world?", options: ["Heuristics", "Facts", "Actuators", "Sensors", "Interfaces"], answer: 1 },
-    { question: "Which component of an AI system applies logical rules to a knowledge base to derive new facts?", options: ["Sensor Array", "Knowledge Base", "Actuator", "Inference Engine", "Display Module"], answer: 3 },
-    { question: "What is the term for the central repository of facts, rules, and relationships used by an AI system for reasoning?", options: ["Knowledge Base", "Cache Memory", "Firewall", "Compiler", "Operating System"], answer: 0 },
-    { question: "Which term describes practical, experience-based rules that help an AI system reason more efficiently without guaranteeing an optimal answer?", options: ["Facts", "Frames", "Heuristics", "Ontologies", "Predicates"], answer: 2 },
-    { question: "Which term refers to a formal definition of categories, properties, and relationships among concepts in a specific domain?", options: ["Production Rule", "Sensor", "Actuator", "Search Tree", "Ontology"], answer: 4 },
-    { question: "Which type of knowledge represents 'knowing that' a fact is true, rather than 'knowing how' to perform a task?", options: ["Procedural Knowledge", "Declarative Knowledge", "Heuristic Knowledge", "Structural Knowledge", "Meta Knowledge"], answer: 1 },
-    { question: "Which type of knowledge represents 'knowing how' to perform a task, such as the steps to solve a problem?", options: ["Procedural Knowledge", "Declarative Knowledge", "Static Knowledge", "Descriptive Knowledge", "Factual Knowledge"], answer: 0 },
+    // Introduction to Reasoning & KR
+    { question: "Which AI field studies how to formally encode facts and information so a machine can reason with them?", options: ["Machine Perception", "Knowledge Representation", "Data Encryption", "Signal Processing", "Network Routing"], answer: 1, explanation: "Knowledge Representation focuses on formally encoding information for machine reasoning." },
+    { question: "What is the term for the process by which an AI system draws new conclusions from existing knowledge?", options: ["Reasoning", "Rendering", "Compilation", "Encryption", "Caching"], answer: 0, explanation: "Reasoning is the process of inferring new facts from existing knowledge." },
+    { question: "What is a key requirement of a good knowledge representation scheme in AI?", options: ["It must always be visual", "It must be written in English", "It should be expressive and support efficient reasoning", "It must use only numbers", "It must avoid all rules"], answer: 2, explanation: "A good representation scheme must be expressive and support efficient reasoning." },
+    { question: "In knowledge representation, what term describes basic, explicitly stated pieces of information about the world?", options: ["Heuristics", "Facts", "Actuators", "Sensors", "Interfaces"], answer: 1, explanation: "Facts are basic, explicitly stated pieces of information about the world." },
+    { question: "Which component of an AI system applies logical rules to a knowledge base to derive new facts?", options: ["Sensor Array", "Knowledge Base", "Actuator", "Inference Engine", "Display Module"], answer: 3, explanation: "The Inference Engine applies logical rules to derive new facts from the Knowledge Base." },
+    { question: "What is the term for the central repository of facts, rules, and relationships used by an AI system for reasoning?", options: ["Knowledge Base", "Cache Memory", "Firewall", "Compiler", "Operating System"], answer: 0, explanation: "The Knowledge Base stores facts, rules, and relationships for AI reasoning." },
+    { question: "Which term describes practical, experience-based rules that help an AI system reason more efficiently without guaranteeing an optimal answer?", options: ["Facts", "Frames", "Heuristics", "Ontologies", "Predicates"], answer: 2, explanation: "Heuristics are practical shortcuts that improve search/reasoning speed without guaranteeing optimality." },
+    { question: "Which term refers to a formal definition of categories, properties, and relationships among concepts in a specific domain?", options: ["Production Rule", "Sensor", "Actuator", "Search Tree", "Ontology"], answer: 4, explanation: "An Ontology formally defines categories, properties, and relationships in a domain." },
+    { question: "Which type of knowledge represents 'knowing that' a fact is true, rather than 'knowing how' to perform a task?", options: ["Procedural Knowledge", "Declarative Knowledge", "Heuristic Knowledge", "Structural Knowledge", "Meta Knowledge"], answer: 1, explanation: "Declarative Knowledge represents explicit facts ('knowing that')." },
+    { question: "Which type of knowledge represents 'knowing how' to perform a task, such as the steps to solve a problem?", options: ["Procedural Knowledge", "Declarative Knowledge", "Static Knowledge", "Descriptive Knowledge", "Factual Knowledge"], answer: 0, explanation: "Procedural Knowledge represents step-by-step operational steps ('knowing how')." },
 
-    // 7. Propositional Logic
-    { question: "What is a 'proposition' in propositional logic?", options: ["A variable that holds numeric data", "A question that requires an answer", "A declarative statement that is either true or false", "A command to execute an action", "An undefined symbolic expression"], answer: 2 },
-    { question: "Which logical connective represents the AND operation, symbolized as ∧?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 1 },
-    { question: "Which logical connective represents the OR operation, symbolized as ∨?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 0 },
-    { question: "Which logical connective is false only when the antecedent is true and the consequent is false?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 3 },
-    { question: "Which logical connective is true only when both propositions have the same truth value?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 4 },
-    { question: "What is the term for a compound proposition that is always true regardless of the truth values of its components?", options: ["Contradiction", "Tautology", "Contingency", "Negation", "Predicate"], answer: 1 },
-    { question: "What is the term for a compound proposition that is always false regardless of the truth values of its components?", options: ["Contradiction", "Tautology", "Contingency", "Conjunction", "Quantifier"], answer: 0 },
-    { question: "Which tool systematically lists all possible truth value combinations of propositions and their resulting outcome?", options: ["Knowledge Base", "Semantic Network", "Truth Table", "Search Tree", "Decision Tree"], answer: 2 },
-    { question: "Which inference rule states that if P is true and P→Q is true, then Q must be true?", options: ["Modus Tollens", "De Morgan's Law", "Resolution", "Modus Ponens", "Contrapositive"], answer: 3 },
-    { question: "Which inference rule states that if P→Q is true and Q is false, then P must be false?", options: ["Modus Tollens", "Modus Ponens", "Conjunction Introduction", "Disjunctive Syllogism", "Hypothetical Syllogism"], answer: 0 },
+    // Propositional Logic
+    { question: "What is a 'proposition' in propositional logic?", options: ["A variable that holds numeric data", "A question that requires an answer", "A declarative statement that is either true or false", "A command to execute an action", "An undefined symbolic expression"], answer: 2, explanation: "A proposition is a declarative statement that is strictly true or false." },
+    { question: "Which logical connective represents the AND operation, symbolized as ∧?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 1, explanation: "Conjunction (∧) represents the AND operation." },
+    { question: "Which logical connective represents the OR operation, symbolized as ∨?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 0, explanation: "Disjunction (∨) represents the OR operation." },
+    { question: "Which logical connective is false only when the antecedent is true and the consequent is false?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 3, explanation: "Implication (P → Q) is false only when P is true and Q is false." },
+    { question: "Which logical connective is true only when both propositions have the same truth value?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 4, explanation: "Biconditional (P ↔ Q) is true when both operands have identical truth values." },
+    { question: "What is the term for a compound proposition that is always true regardless of the truth values of its components?", options: ["Contradiction", "Tautology", "Contingency", "Negation", "Predicate"], answer: 1, explanation: "A tautology is a statement that evaluates to true under all assignments." },
+    { question: "What is the term for a compound proposition that is always false regardless of the truth values of its components?", options: ["Contradiction", "Tautology", "Contingency", "Conjunction", "Quantifier"], answer: 0, explanation: "A contradiction is a statement that evaluates to false under all assignments." },
+    { question: "Which tool systematically lists all possible truth value combinations of propositions and their resulting outcome?", options: ["Knowledge Base", "Semantic Network", "Truth Table", "Search Tree", "Decision Tree"], answer: 2, explanation: "A Truth Table lists all possible variable assignments and outcomes." },
+    { question: "Which inference rule states that if P is true and P→Q is true, then Q must be true?", options: ["Modus Tollens", "De Morgan's Law", "Resolution", "Modus Ponens", "Contrapositive"], answer: 3, explanation: "Modus Ponens derives Q from P and P → Q." },
+    { question: "Which inference rule states that if P→Q is true and Q is false, then P must be false?", options: ["Modus Tollens", "Modus Ponens", "Conjunction Introduction", "Disjunctive Syllogism", "Hypothetical Syllogism"], answer: 0, explanation: "Modus Tollens derives ¬P from P → Q and ¬Q." },
 
-    // 8. First-Order Logic
-    { question: "What distinguishes First-Order Logic from Propositional Logic?", options: ["It only handles true/false statements without structure", "It represents knowledge as neural network weights", "It uses predicates, variables, and quantifiers to represent objects and relations", "It uses only fixed lookup tables", "It relies solely on probability values"], answer: 2 },
-    { question: "Which quantifier in First-Order Logic means 'for all', symbolized as ∀?", options: ["Existential Quantifier (∃)", "Universal Quantifier (∀)", "Negation (¬)", "Conjunction (∧)", "Implication (→)"], answer: 1 },
-    { question: "Which quantifier in First-Order Logic means 'there exists', symbolized as ∃?", options: ["Existential Quantifier (∃)", "Universal Quantifier (∀)", "Biconditional (↔)", "Disjunction (∨)", "Function Symbol"], answer: 0 },
-    { question: "In First-Order Logic, what term describes a relation like Loves(x, y) that returns true or false based on the objects involved?", options: ["Quantifier", "Function Symbol", "Constant Symbol", "Predicate", "Connective"], answer: 3 },
-    { question: "In First-Order Logic, which term refers to a fixed, specific object in the domain, such as 'John' or 'Paris'?", options: ["Variable", "Constant Symbol", "Quantifier", "Predicate", "Function"], answer: 1 },
-    { question: "Which term describes something like FatherOf(x), which maps an object to another related object rather than returning true or false?", options: ["Predicate", "Quantifier", "Constant Symbol", "Connective", "Function Symbol"], answer: 4 },
-    { question: "Which process finds a substitution that makes two logical expressions identical, enabling predicate matching during inference?", options: ["Unification", "Negation", "Quantification", "Tautology", "Disjunction"], answer: 0 },
-    { question: "Which process eliminates existential quantifiers by replacing existentially quantified variables with new functions or constants?", options: ["Unification", "Resolution", "Skolemization", "Negation", "Substitution"], answer: 2 },
-    { question: "Which inference rule combines two clauses containing complementary literals to derive a new clause, commonly used in automated theorem proving?", options: ["Skolemization", "Resolution", "Quantification", "Substitution", "Grounding"], answer: 1 },
-    { question: "Which normal form (a conjunction of disjunction clauses) must a First-Order Logic formula be converted to before applying resolution?", options: ["Disjunctive Normal Form (DNF)", "Binary Search Form", "Prefix Notation", "Conjunctive Normal Form (CNF)", "Truth Table Form"], answer: 3 },
+    // First-Order Logic
+    { question: "What distinguishes First-Order Logic from Propositional Logic?", options: ["It only handles true/false statements without structure", "It represents knowledge as neural network weights", "It uses predicates, variables, and quantifiers to represent objects and relations", "It uses only fixed lookup tables", "It relies solely on probability values"], answer: 2, explanation: "First-Order Logic incorporates predicates, quantifiers, and variables for rich object relations." },
+    { question: "Which quantifier in First-Order Logic means 'for all', symbolized as ∀?", options: ["Existential Quantifier (∃)", "Universal Quantifier (∀)", "Negation (¬)", "Conjunction (∧)", "Implication (→)"], answer: 1, explanation: "The Universal Quantifier (∀) represents 'for all' items in a domain." },
+    { question: "Which quantifier in First-Order Logic means 'there exists', symbolized as ∃?", options: ["Existential Quantifier (∃)", "Universal Quantifier (∀)", "Biconditional (↔)", "Disjunction (∨)", "Function Symbol"], answer: 0, explanation: "The Existential Quantifier (∃) represents 'there exists at least one'." },
+    { question: "In First-Order Logic, what term describes a relation like Loves(x, y) that returns true or false based on the objects involved?", options: ["Quantifier", "Function Symbol", "Constant Symbol", "Predicate", "Connective"], answer: 3, explanation: "A predicate maps objects to a true/false evaluation based on properties or relations." },
+    { question: "In First-Order Logic, which term refers to a fixed, specific object in the domain, such as 'John' or 'Paris'?", options: ["Variable", "Constant Symbol", "Quantifier", "Predicate", "Function"], answer: 1, explanation: "A Constant Symbol denotes a fixed entity in the domain." },
+    { question: "Which term describes something like FatherOf(x), which maps an object to another related object rather than returning true or false?", options: ["Predicate", "Quantifier", "Constant Symbol", "Connective", "Function Symbol"], answer: 4, explanation: "A Function Symbol maps input objects to another target object." },
+    { question: "Which process finds a substitution that makes two logical expressions identical, enabling predicate matching during inference?", options: ["Unification", "Negation", "Quantification", "Tautology", "Disjunction"], answer: 0, explanation: "Unification finds variable substitutions to unify two logical terms." },
+    { question: "Which process eliminates existential quantifiers by replacing existentially quantified variables with new functions or constants?", options: ["Unification", "Resolution", "Skolemization", "Negation", "Substitution"], answer: 2, explanation: "Skolemization removes existential quantifiers using Skolem constants/functions." },
+    { question: "Which inference rule combines two clauses containing complementary literals to derive a new clause, commonly used in automated theorem proving?", options: ["Skolemization", "Resolution", "Quantification", "Substitution", "Grounding"], answer: 1, explanation: "Resolution derives a new clause by resolving complementary literals." },
+    { question: "Which normal form (a conjunction of disjunction clauses) must a First-Order Logic formula be converted to before applying resolution?", options: ["Disjunctive Normal Form (DNF)", "Binary Search Form", "Prefix Notation", "Conjunctive Normal Form (CNF)", "Truth Table Form"], answer: 3, explanation: "CNF (Conjunctive Normal Form) is required for resolution theorem proving." },
 
-    // 9. Problem Solving by Searching
-    { question: "Which uninformed search algorithm explores all nodes at the current depth level before moving deeper, using a FIFO queue?", options: ["Depth-First Search", "Breadth-First Search", "A* Search", "Hill Climbing", "Greedy Best-First Search"], answer: 1 },
-    { question: "Which uninformed search algorithm explores as far as possible along each branch before backtracking, using a stack?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Simulated Annealing", "A* Search"], answer: 0 },
-    { question: "Which uninformed search algorithm always expands the node with the lowest cumulative path cost from the start?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Hill Climbing", "Greedy Best-First Search"], answer: 2 },
-    { question: "Which uninformed search algorithm repeatedly runs depth-limited search with increasing depth limits to combine BFS's completeness with DFS's memory efficiency?", options: ["Bidirectional Search", "Uniform Cost Search", "Greedy Best-First Search", "Iterative Deepening Search", "Beam Search"], answer: 3 },
-    { question: "In informed search, what is the term for the estimate of the cost from the current state to the goal, used to guide the search?", options: ["Transition Model", "Heuristic Function", "Path Cost Function", "Goal Test", "Successor Function"], answer: 1 },
-    { question: "Which informed search algorithm expands the node that appears closest to the goal, using only the heuristic estimate h(n)?", options: ["Breadth-First Search", "Uniform Cost Search", "Greedy Best-First Search", "Depth-First Search", "Iterative Deepening Search"], answer: 2 },
-    { question: "Which informed search algorithm combines path cost g(n) and heuristic estimate h(n) as f(n) = g(n) + h(n) to find an optimal solution?", options: ["A* Search", "Depth-First Search", "Breadth-First Search", "Hill Climbing", "Uniform Cost Search"], answer: 0 },
-    { question: "What term describes a heuristic that never overestimates the true cost to reach the goal, required for A* to guarantee an optimal solution?", options: ["Consistent", "Complete", "Monotonic", "Admissible", "Optimal"], answer: 3 },
-    { question: "Which local search algorithm continuously moves toward better neighboring states but can get stuck at a local maximum?", options: ["A* Search", "Hill Climbing", "Breadth-First Search", "Uniform Cost Search", "Iterative Deepening Search"], answer: 1 },
-    { question: "Which local search algorithm occasionally accepts worse moves, with decreasing probability over time, to avoid getting stuck in local optima?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Greedy Best-First Search", "Simulated Annealing"], answer: 4 },
+    // Searching Algorithms
+    { question: "Which uninformed search algorithm explores all nodes at the current depth level before moving deeper, using a FIFO queue?", options: ["Depth-First Search", "Breadth-First Search", "A* Search", "Hill Climbing", "Greedy Best-First Search"], answer: 1, explanation: "Breadth-First Search (BFS) explores level-by-level using a FIFO queue." },
+    { question: "Which uninformed search algorithm explores as far as possible along each branch before backtracking, using a stack?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Simulated Annealing", "A* Search"], answer: 0, explanation: "Depth-First Search (DFS) dives deep along branches using a stack." },
+    { question: "Which uninformed search algorithm always expands the node with the lowest cumulative path cost from the start?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Hill Climbing", "Greedy Best-First Search"], answer: 2, explanation: "Uniform Cost Search expands nodes based on total path cost g(n)." },
+    { question: "Which uninformed search algorithm repeatedly runs depth-limited search with increasing depth limits to combine BFS's completeness with DFS's memory efficiency?", options: ["Bidirectional Search", "Uniform Cost Search", "Greedy Best-First Search", "Iterative Deepening Search", "Beam Search"], answer: 3, explanation: "Iterative Deepening combines memory efficiency of DFS with completeness of BFS." },
+    { question: "In informed search, what is the term for the estimate of the cost from the current state to the goal, used to guide the search?", options: ["Transition Model", "Heuristic Function", "Path Cost Function", "Goal Test", "Successor Function"], answer: 1, explanation: "A heuristic function h(n) estimates cost from state n to goal." },
+    { question: "Which informed search algorithm expands the node that appears closest to the goal, using only the heuristic estimate h(n)?", options: ["Breadth-First Search", "Uniform Cost Search", "Greedy Best-First Search", "Depth-First Search", "Iterative Deepening Search"], answer: 2, explanation: "Greedy Best-First Search solely uses heuristic evaluation h(n)." },
+    { question: "Which informed search algorithm combines path cost g(n) and heuristic estimate h(n) as f(n) = g(n) + h(n) to find an optimal solution?", options: ["A* Search", "Depth-First Search", "Breadth-First Search", "Hill Climbing", "Uniform Cost Search"], answer: 0, explanation: "A* Search uses f(n) = g(n) + h(n) to guide optimal path finding." },
+    { question: "What term describes a heuristic that never overestimates the true cost to reach the goal, required for A* to guarantee an optimal solution?", options: ["Consistent", "Complete", "Monotonic", "Admissible", "Optimal"], answer: 3, explanation: "An admissible heuristic never overestimates the actual goal cost." },
+    { question: "Which local search algorithm continuously moves toward better neighboring states but can get stuck at a local maximum?", options: ["A* Search", "Hill Climbing", "Breadth-First Search", "Uniform Cost Search", "Iterative Deepening Search"], answer: 1, explanation: "Hill Climbing iteratively takes ascending steps but risks getting trapped in local maxima." },
+    { question: "Which local search algorithm occasionally accepts worse moves, with decreasing probability over time, to avoid getting stuck in local optima?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Greedy Best-First Search", "Simulated Annealing"], answer: 4, explanation: "Simulated Annealing uses probabilistic downhill moves to escape local optima." },
 
-    // 10. Adversarial Search
-    { question: "What core assumption does the Minimax algorithm make about the two players in a game?", options: ["Both players try to maximize their own score independently", "Both players try to minimize the total game length", "One player maximizes the score while the opponent minimizes it", "Players take turns randomly selecting moves", "Only the first move is evaluated"], answer: 2 },
-    { question: "What is the main purpose of Alpha-Beta Pruning in adversarial search?", options: ["It increases the search depth of Minimax", "It prunes branches that cannot affect the final decision, reducing nodes evaluated", "It randomizes the move selection", "It replaces the evaluation function", "It allows searching non-adversarial trees"], answer: 1 },
-    { question: "In Alpha-Beta Pruning, what does the 'alpha' value represent?", options: ["The best value found so far for the maximizer", "The best value found so far for the minimizer", "The total number of nodes visited", "The depth limit of the search tree", "The branching factor of the tree"], answer: 0 },
-    { question: "In Alpha-Beta Pruning, what does the 'beta' value represent?", options: ["The best value found so far for the maximizer", "The best value found so far for the minimizer", "The average branching factor", "The evaluation function score of the root", "The time limit for the search"], answer: 1 },
-    { question: "Under what condition does Alpha-Beta Pruning cut off (prune) a branch of the search tree?", options: ["When alpha equals zero", "When beta equals zero", "When the depth limit is reached", "When alpha becomes greater than or equal to beta", "When all child nodes have been visited"], answer: 3 },
-    { question: "Which function estimates the desirability of a non-terminal game state when full search to the end of the game isn't feasible?", options: ["Transition Model", "Successor Function", "Evaluation Function", "Goal Test", "Path Cost Function"], answer: 2 },
-    { question: "What term describes a game where one player's gain is exactly balanced by the other player's loss, such as chess?", options: ["Cooperative Game", "Stochastic Game", "Partial Information Game", "Simultaneous Move Game", "Zero-Sum Game"], answer: 4 },
-    { question: "What term is used to describe a single move by one player in a game tree, avoiding ambiguity with a full round?", options: ["Ply", "Branch", "Frontier", "Heuristic", "Leaf"], answer: 0 },
-    { question: "Which algorithm extends Minimax to handle games involving chance elements, such as dice rolls, by computing expected values?", options: ["Minimax", "Expectimax", "Alpha-Beta Pruning", "A* Search", "Hill Climbing"], answer: 1 },
-    { question: "Which practice significantly improves the efficiency of Alpha-Beta Pruning by increasing the number of branches that get cut off?", options: ["Increasing the branching factor", "Reducing the evaluation function's accuracy", "Searching randomly without order", "Exploring the most promising moves first (move ordering)", "Ignoring the depth limit"], answer: 3 }
+    // Adversarial Search
+    { question: "What core assumption does the Minimax algorithm make about the two players in a game?", options: ["Both players try to maximize their own score independently", "Both players try to minimize the total game length", "One player maximizes the score while the opponent minimizes it", "Players take turns randomly selecting moves", "Only the first move is evaluated"], answer: 2, explanation: "Minimax assumes a MAX player maximizing score and a MIN player minimizing it." },
+    { question: "What is the main purpose of Alpha-Beta Pruning in adversarial search?", options: ["It increases the search depth of Minimax", "It prunes branches that cannot affect the final decision, reducing nodes evaluated", "It randomizes the move selection", "It replaces the evaluation function", "It allows searching non-adversarial trees"], answer: 1, explanation: "Alpha-Beta Pruning cuts off branches that cannot affect the final decision." },
+    { question: "In Alpha-Beta Pruning, what does the 'alpha' value represent?", options: ["The best value found so far for the maximizer", "The best value found so far for the minimizer", "The total number of nodes visited", "The depth limit of the search tree", "The branching factor of the tree"], answer: 0, explanation: "Alpha represents the maximum score guaranteed for the MAX player so far." },
+    { question: "In Alpha-Beta Pruning, what does the 'beta' value represent?", options: ["The best value found so far for the maximizer", "The best value found so far for the minimizer", "The average branching factor", "The evaluation function score of the root", "The time limit for the search"], answer: 1, explanation: "Beta represents the minimum score guaranteed for the MIN player so far." },
+    { question: "Under what condition does Alpha-Beta Pruning cut off (prune) a branch of the search tree?", options: ["When alpha equals zero", "When beta equals zero", "When the depth limit is reached", "When alpha becomes greater than or equal to beta", "When all child nodes have been visited"], answer: 3, explanation: "Pruning occurs as soon as α ≥ β." },
+    { question: "Which function estimates the desirability of a non-terminal game state when full search to the end of the game isn't feasible?", options: ["Transition Model", "Successor Function", "Evaluation Function", "Goal Test", "Path Cost Function"], answer: 2, explanation: "Evaluation functions estimate position utility when complete search isn't feasible." },
+    { question: "What term describes a game where one player's gain is exactly balanced by the other player's loss, such as chess?", options: ["Cooperative Game", "Stochastic Game", "Partial Information Game", "Simultaneous Move Game", "Zero-Sum Game"], answer: 4, explanation: "In Zero-Sum games, utility gained by one player equals utility lost by the opponent." },
+    { question: "What term is used to describe a single move by one player in a game tree, avoiding ambiguity with a full round?", options: ["Ply", "Branch", "Frontier", "Heuristic", "Leaf"], answer: 0, explanation: "A ply refers to a single move turn by one player in the game tree." },
+    { question: "Which algorithm extends Minimax to handle games involving chance elements, such as dice rolls, by computing expected values?", options: ["Minimax", "Expectimax", "Alpha-Beta Pruning", "A* Search", "Hill Climbing"], answer: 1, explanation: "Expectimax computes expected values for chance nodes in non-deterministic games." },
+    { question: "Which practice significantly improves the efficiency of Alpha-Beta Pruning by increasing the number of branches that get cut off?", options: ["Increasing the branching factor", "Reducing the evaluation function's accuracy", "Searching randomly without order", "Exploring the most promising moves first (move ordering)", "Ignoring the depth limit"], answer: 3, explanation: "Effective move ordering maximizes cutoff occurrences in Alpha-Beta pruning." }
 ];
 
-// Quiz 2: Compiler Construction Data (73 Questions)
+// Compiler Construction Questions Database (73 MCQs)
 const compilerData = [
-    { question: "A compiler for a high-level language that runs on one machine and produce code for different machine is called.", options: ["Optimizing compiler", "One pass compiler", "Cross compiler", "Multipass compiler"], answer: 2 },
-    { question: "Lexical analyzer phase of a compiler is also called as", options: ["Scanner", "Tokenizer", "Parser", "Either scanner or tokenizer"], answer: 3 },
-    { question: "Intermediate code generation phase gets input from", options: ["Lexical analyzer", "Syntax analyzer", "Semantic analyzer", "Error handling"], answer: 2 },
-    { question: "___ is used to construct compiler.", options: ["Context - free grammar", "Pragmas", "Significant comments", "Lexical analyzer"], answer: 0 },
-    { question: "The grammar S -> SaaSa is:", options: ["left recursive", "right recursive", "unambiguous grammar", "ambiguous"], answer: 0 },
-    { question: "What data structure in a compiler is used for managing information about variables and their attributes?", options: ["Abstract syntax tree", "Symbol table", "Semantic stack", "Parse table"], answer: 1 },
-    { question: "The sequences of character that give rise to token are called", options: ["Intermediate code", "Stream", "Lexemes", "Semantic"], answer: 2 },
-    { question: "The output of a lexical analyzer is", options: ["Machine code", "Intermediate code", "A stream of tokens", "A parse tree"], answer: 2 },
-    { question: "How many parts (phases) of compiler are there?", options: ["1", "2", "4", "6"], answer: 3 },
-    { question: "Given expression grammar E -> E*F | F+E | F, F -> F-F | id. Which of the following is true?", options: ["* has higher precedence than +", "- has higher precedence than *", "+ and - have same precedence", "+ has higher precedence than *"], answer: 3 },
-    { question: "Which concept of FA is used in the compiler?", options: ["Lexical analysis", "Parser", "Code generation", "Code optimization"], answer: 0 },
-    { question: "Which concept of grammar is used in the compiler?", options: ["Lexical analysis", "Parser", "Code generation", "Code optimization"], answer: 1 },
-    { question: "Which of the following is NOT the set of regular expression R=(ab+abb)* bbab", options: ["ababbbbab", "abbbab", "ababbabbbab", "abababab"], answer: 3 },
-    { question: "String generated by S->aS/bA, A->d/ccA:", options: ["aabeed", "adabcca", "abcca", "abababd"], answer: 2 },
-    { question: "A finite automata recognizes", options: ["Any Language", "Context Sensitive Language", "Context Free Language", "Regular Language"], answer: 3 },
-    { question: "Which one is a type of Lexeme", options: ["Identifiers", "Constants", "Keywords", "All of the mentioned"], answer: 3 },
-    { question: "A system program that combines the separately compiled modules of a program into a form suitable for execution?", options: ["Assembler", "Compiler", "Linking Loader", "Interpreter"], answer: 2 },
-    { question: "Output file of Lex is _____ if the input file is Myfile?", options: ["Myfile.e", "Myfile.yy.c", "Myfile.lex", "Myfile.obj"], answer: 1 },
-    { question: "The transition function of a DFA is:", options: ["Q x Σ -> Q", "Q x Σ -> 2^Q", "Q x Σ -> 2^n", "Q x Σ -> Q_n"], answer: 0 },
-    { question: "The transition function of an NFA is:", options: ["Q x Σ -> Q", "Q x Σ -> 2^Q", "Q x Σ -> 2^n", "Q x Σ -> Q_n"], answer: 1 },
-    { question: "Compiler can check?", options: ["Logical error", "Syntax error", "a & b both", "None"], answer: 1 },
-    { question: "Select the machine independent phase of the compiler?", options: ["Syntax analysis", "Intermediate code generation", "Lexical analysis", "All of these"], answer: 3 },
-    { question: "Grammar of the programming is checked at _____ phase of compiler.", options: ["semantic analysis", "code generation", "syntax analysis", "code optimization"], answer: 2 },
-    { question: "A compiler that runs on one machine and produces code for a different machine is called:", options: ["Cross compilation", "One pass compilation", "Two pass compilation", "None of the above"], answer: 0 },
-    { question: "A system program that setup an executable program in main memory ready for execution is", options: ["Assembler", "Linker", "Loader", "Load and go"], answer: 2 },
-    { question: "Machine-independent optimization is applied on the code when it is in", options: ["Intermediate form", "Assembly code", "Target code", "Machine Code"], answer: 0 },
-    { question: "Program is independent of the source language and the target language when it is represented as", options: ["Machine code", "Intermediate code", "Assembly code", "Relocatable code"], answer: 1 },
-    { question: "Output of an interpreter is", options: ["HLL", "Exe code", "assembly code", "machine code"], answer: 3 },
-    { question: "The output of _____ is relocated machine code", options: ["Loader link editor", "Compiler", "Preprocessor", "assembler"], answer: 3 },
-    { question: "Syntax analyzer verifies syntax and produces", options: ["syntax tree", "parse tree", "DAG", "None"], answer: 1 },
-    { question: "_____ is related to synthesis phase.", options: ["Syntax analysis", "Code generation", "Lexical analysis", "Semantic analysis"], answer: 1 },
-    { question: "Semantic analysis is related to _____ phase.", options: ["Neither analysis nor synthesis", "Analysis and synthesis", "Analysis", "Synthesis"], answer: 2 },
-    { question: "A grammar that produces more than one parse tree for some sentence is called", options: ["Ambiguous", "Unambiguous", "Regular", "None of these"], answer: 0 },
-    { question: "Functions of Lexical analyzer are?", options: ["Removing white space", "Removing comments", "none of above", "all above"], answer: 3 },
-    { question: "Which of the following derivations does a top-down parser use while parsing an input string?", options: ["Leftmost derivation", "Leftmost derivation traced out in reverse", "Rightmost derivation", "Rightmost derivation traced out in reverse"], answer: 0 },
-    { question: "Shift reduce parsers are", options: ["Top down parser", "Bottom up parser", "May be top down or bottom up parser", "None of the above"], answer: 1 },
-    { question: "Which of the following parser is most powerful?", options: ["Operator precedence", "Canonical LR", "LALR", "SLR"], answer: 1 },
-    { question: "Which of the following is responsible for grouping of characters into tokens in compiler?", options: ["Scanner", "Parser", "Code generator", "Code optimizer"], answer: 0 },
-    { question: "The grammar A -> AxB | x, B -> xB | x is", options: ["Unambiguous", "left recursive", "right recursive", "ambiguous"], answer: 1 },
-    { question: "Which of the following is used for grouping of characters into tokens?", options: ["Parser", "Code optimization", "Code generator", "Lexical analyzer"], answer: 3 },
-    { question: "In a compiler, keywords of a language are recognized during", options: ["parsing of the program", "the code generation", "the lexical analysis of the program", "dataflow analysis"], answer: 2 },
-    { question: "YACC builds up", options: ["SLR parsing table", "Canonical LR parsing table", "LALR parsing table", "None of the above"], answer: 2 },
-    { question: "Analysis which determines the meaning of a statement once its grammatical structure becomes known is termed as", options: ["Syntax analysis", "Regular analysis", "Semantic analysis", "General analysis"], answer: 2 },
-    { question: "LR stands for", options: ["Left to right", "Left to right reduction", "Right to left", "Left to right scanning with Rightmost derivation in reverse"], answer: 3 },
-    { question: "LR parsing ______________ a string to the start symbol by inverting productions.", options: ["Reduces", "Shifts", "Adds", "None"], answer: 0 },
-    { question: "Which one of the following is TRUE?", options: ["+ is left associative, while * is right associative", "+ is right associative, while * is left associative", "Both + and * are right associative", "Both + and * are left associative"], answer: 3 },
-    { question: "S -> a | B, B -> Bb | epsilon. From the above grammar, the non-terminal _______ is left recursive.", options: ["a", "epsilon", "B", "Both epsilon & B"], answer: 2 },
-    { question: "Type checking is normally done during:", options: ["Lexical analysis", "Syntax analysis", "Semantic analysis / Syntax directed translation", "Code optimization"], answer: 2 },
-    { question: "An unambiguous grammar has same leftmost and rightmost derivation", options: ["True", "False"], answer: 1 },
-    { question: "Intermediate code generation phase gets input from", options: ["Lexical analyzer", "Syntax analyzer", "Semantic analyzer", "Error handling"], answer: 2 },
-    { question: "The three-address code for x + - y * (- y + z) is", options: ["t1 = -y, t2 = t1 + z, t3 = t1 * t2, t4 = x + t3", "t1 = -y, t2 = x + t1, t3 = t1 + z, t4 = t2 * t3", "Both a and b are valid", "none"], answer: 0 },
-    { question: "Indirect triples are used to implement ______________________.", options: ["Infix notation", "Postfix notation", "Three address code", "Prefix notation"], answer: 2 },
-    { question: "________ is the process where the stream of characters making up the source program is read form left to right and group into tokens:", options: ["Lexical Analysis", "Diversion", "Modeling", "none of the above"], answer: 0 },
-    { question: "An important component of semantic analysis is __________________.", options: ["code checking", "type checking", "flush checking", "None of the given"], answer: 1 },
-    { question: "In DFA minimization we construct one _______________ for each group of states from the initial DFA.", options: ["State", "NFA", "PDA", "None of given"], answer: 0 },
-    { question: "Three address codes involve:", options: ["Exactly three addresses", "at most three addresses", "No unary operators", "none of these"], answer: 1 },
-    { question: "Alternative of the backtrack in parser is Look ahead symbol in _________.", options: ["Input", "Output", "Input and Output", "None of the given"], answer: 0 },
-    { question: "A linker takes one or more source files generated by a compiler and combines them into a ______ executable program.", options: ["Double", "Triple", "Single", "Quadruples"], answer: 2 },
-    { question: "Which of the following is not an intermediate code form:", options: ["Postfix notation", "Syntax Trees", "Three address codes", "quadruples"], answer: 3 },
-    { question: "Parser takes tokens from scanner and tries to generate _______________ .", options: ["Binary Search tree", "Parse tree", "Syntax Trace", "None of the given"], answer: 1 },
-    { question: "Ambiguity can easily be handled by _____ Parser", options: ["Bottom-up", "Left recursive", "Predictive", "Top-down"], answer: 0 },
-    { question: "A top down parser generates:", options: ["Right most derivation", "Right most derivation in reverse", "Left most derivation", "Left most derivation in reverse"], answer: 2 },
-    { question: "Consider grammar rules S -> iCtSS1|a, S1 -> eS|epsilon, C -> b. The grammar is NOT LL(1) because:", options: ["it is left recursive", "it is right recursive", "it is ambiguous", "It is not context-free"], answer: 2 },
-    { question: "Consider grammar A -> B C D, B -> h B | epsilon, C -> C g | g | C h | i, D -> A B | epsilon. Follow of B is:", options: ["h", "g, h, i, $", "g, i", "g"], answer: 1 },
-    { question: "Three address code involves:", options: ["Exactly 3 address", "At least three addresses", "At most three-address", "No unary operator"], answer: 2 },
-    { question: "Lexical analyzer and scanner are two different phases of compiler", options: ["True", "False"], answer: 1 },
-    { question: "Which of the following statement is true about Two pass compiler.", options: ["Front End depends upon Back End", "Back End depends upon Front End", "Both are independent of each other", "None of the given"], answer: 1 },
-    { question: "Ambiguity can easily be handled by Top-down Parser", options: ["True", "False"], answer: 1 },
-    { question: "An intermediate code form is", options: ["Postfix notation", "Syntax trees", "Three address code", "All of these"], answer: 3 },
-    { question: "Synthesized attribute can be easily simulated by a", options: ["LL grammar", "Ambiguous grammar", "LR grammar", "None of the above"], answer: 2 },
-    { question: "The graph that shows basic blocks and their successor relationship is called", options: ["DAG", "Flow chart", "Control graph", "Hamiltonian graph"], answer: 2 },
-    { question: "A grammar is meaningless", options: ["If terminal set and non-terminal set are not disjoint", "If left hand side of a production is a single terminal", "If left hand side of a production has no nonterminal", "All of these"], answer: 3 },
-    { question: "Intermediate code generator is _____ phase in compiler design.", options: ["Second", "First", "Fourth", "Third"], answer: 2 }
+    { question: "A compiler for a high-level language that runs on one machine and produce code for different machine is called.", options: ["Optimizing compiler", "One pass compiler", "Cross compiler", "Multipass compiler"], answer: 2, explanation: "A cross compiler runs on one architecture and produces executable code for a different architecture." },
+    { question: "Lexical analyzer phase of a compiler is also called as", options: ["Scanner", "Tokenizer", "Parser", "Either scanner or tokenizer"], answer: 3, explanation: "Lexical analyzer is commonly termed as both scanner and tokenizer." },
+    { question: "Intermediate code generation phase gets input from", options: ["Lexical analyzer", "Syntax analyzer", "Semantic analyzer", "Error handling"], answer: 2, explanation: "Intermediate code generation consumes the verified decorated syntax tree from semantic analysis." },
+    { question: "___ is used to construct compiler.", options: ["Context - free grammar", "Pragmas", "Significant comments", "Lexical analyzer"], answer: 0, explanation: "Context-free grammars (CFGs) define structural syntax rules used to build parsers." },
+    { question: "The grammar S -> SaaSa is:", options: ["left recursive", "right recursive", "unambiguous grammar", "ambiguous"], answer: 0, explanation: "The production starts with non-terminal S on the left, making it left recursive." },
+    { question: "What data structure in a compiler is used for managing information about variables and their attributes?", options: ["Abstract syntax tree", "Symbol table", "Semantic stack", "Parse table"], answer: 1, explanation: "Symbol tables store identifiers, types, scopes, and memory locations." },
+    { question: "The sequences of character that give rise to token are called", options: ["Intermediate code", "Stream", "Lexemes", "Semantic"], answer: 2, explanation: "Lexemes are raw character substrings matching token patterns." },
+    { question: "The output of a lexical analyzer is", options: ["Machine code", "Intermediate code", "A stream of tokens", "A parse tree"], answer: 2, explanation: "Lexical analysis produces a stream of tokens for parsing." },
+    { question: "How many parts (phases) of compiler are there?", options: ["1", "2", "4", "6"], answer: 3, explanation: "Standard compiler pipeline includes 6 core phases." },
+    { question: "Given expression grammar E -> E*F | F+E | F, F -> F-F | id. Which of the following is true?", options: ["* has higher precedence than +", "- has higher precedence than *", "+ and - have same precedence", "+ has higher precedence than *"], answer: 3, explanation: "Grammar structure elevates '+' closer to the top evaluation level relative to '*'." },
+    { question: "Which concept of FA is used in the compiler?", options: ["Lexical analysis", "Parser", "Code generation", "Code optimization"], answer: 0, explanation: "Finite Automata (DFA/NFA) form the engine for lexical scanning." },
+    { question: "Which concept of grammar is used in the compiler?", options: ["Lexical analysis", "Parser", "Code generation", "Code optimization"], answer: 1, explanation: "Grammar specification guides the syntactic parser phase." },
+    { question: "Which of the following is NOT the set of regular expression R=(ab+abb)* bbab", options: ["ababbbbab", "abbbab", "ababbabbbab", "abababab"], answer: 3, explanation: "The pattern must terminate with 'bbab', making 'abababab' invalid." },
+    { question: "String generated by S->aS/bA, A->d/ccA:", options: ["aabeed", "adabcca", "abcca", "abababd"], answer: 2, explanation: "Derivation steps can produce the token string 'abcca'." },
+    { question: "A finite automata recognizes", options: ["Any Language", "Context Sensitive Language", "Context Free Language", "Regular Language"], answer: 3, explanation: "Finite Automata accept Regular Languages." },
+    { question: "Which one is a type of Lexeme", options: ["Identifiers", "Constants", "Keywords", "All of the mentioned"], answer: 3, explanation: "Identifiers, constants, and keywords are all valid lexemes." },
+    { question: "A system program that combines the separately compiled modules of a program into a form suitable for execution?", options: ["Assembler", "Compiler", "Linking Loader", "Interpreter"], answer: 2, explanation: "Linking Loaders merge separate object files into executable memory image." },
+    { question: "Output file of Lex is _____ if the input file is Myfile?", options: ["Myfile.e", "Myfile.yy.c", "Myfile.lex", "Myfile.obj"], answer: 1, explanation: "Lex generates C source file 'lex.yy.c' or 'filename.yy.c'." },
+    { question: "The transition function of a DFA is:", options: ["Q x Σ -> Q", "Q x Σ -> 2^Q", "Q x Σ -> 2^n", "Q x Σ -> Q_n"], answer: 0, explanation: "DFA transition maps state and symbol deterministically to a single state (Q x Σ -> Q)." },
+    { question: "The transition function of an NFA is:", options: ["Q x Σ -> Q", "Q x Σ -> 2^Q", "Q x Σ -> 2^n", "Q x Σ -> Q_n"], answer: 1, explanation: "NFA transition maps state and symbol to a power set of states (Q x Σ -> 2^Q)." },
+    { question: "Compiler can check?", options: ["Logical error", "Syntax error", "a & b both", "None"], answer: 1, explanation: "Compilers detect structural syntax errors, not runtime logical errors." },
+    { question: "Select the machine independent phase of the compiler?", options: ["Syntax analysis", "Intermediate code generation", "Lexical analysis", "All of these"], answer: 3, explanation: "Lexical, Syntax, and Intermediate Code phases are target-independent." },
+    { question: "Grammar of the programming is checked at _____ phase of compiler.", options: ["semantic analysis", "code generation", "syntax analysis", "code optimization"], answer: 2, explanation: "Grammar rules are checked during syntax analysis." },
+    { question: "A compiler that runs on one machine and produces code for a different machine is called:", options: ["Cross compilation", "One pass compilation", "Two pass compilation", "None of the above"], answer: 0, explanation: "Targeting alternative target architectures is termed cross compilation." },
+    { question: "A system program that setup an executable program in main memory ready for execution is", options: ["Assembler", "Linker", "Loader", "Load and go"], answer: 2, explanation: "Loaders copy executable programs into system RAM." },
+    { question: "Machine-independent optimization is applied on the code when it is in", options: ["Intermediate form", "Assembly code", "Target code", "Machine Code"], answer: 0, explanation: "Machine-independent optimizations act directly upon Intermediate Representations (IR)." },
+    { question: "Program is independent of the source language and the target language when it is represented as", options: ["Machine code", "Intermediate code", "Assembly code", "Relocatable code"], answer: 1, explanation: "IR abstracts source details away from backend hardware details." },
+    { question: "Output of an interpreter is", options: ["HLL", "Exe code", "assembly code", "machine code"], answer: 3, explanation: "Interpreters execute and translate source instructions into direct machine actions." },
+    { question: "The output of _____ is relocated machine code", options: ["Loader link editor", "Compiler", "Preprocessor", "assembler"], answer: 3, explanation: "Assemblers output relocatable object/machine code." },
+    { question: "Syntax analyzer verifies syntax and produces", options: ["syntax tree", "parse tree", "DAG", "None"], answer: 1, explanation: "The parser outputs a complete parse tree structure." },
+    { question: "_____ is related to synthesis phase.", options: ["Syntax analysis", "Code generation", "Lexical analysis", "Semantic analysis"], answer: 1, explanation: "Code generation forms part of the backend synthesis pipeline." },
+    { question: "Semantic analysis is related to _____ phase.", options: ["Neither analysis nor synthesis", "Analysis and synthesis", "Analysis", "Synthesis"], answer: 2, explanation: "Semantic validation sits within the frontend analysis pipeline." },
+    { question: "A grammar that produces more than one parse tree for some sentence is called", options: ["Ambiguous", "Unambiguous", "Regular", "None of these"], answer: 0, explanation: "Ambiguity means generating multiple distinct parse trees for one string." },
+    { question: "Functions of Lexical analyzer are?", options: ["Removing white space", "Removing comments", "none of above", "all above"], answer: 3, explanation: "Lexical analyzers strip comments and unneeded whitespace." },
+    { question: "Which of the following derivations does a top-down parser use while parsing an input string?", options: ["Leftmost derivation", "Leftmost derivation traced out in reverse", "Rightmost derivation", "Rightmost derivation traced out in reverse"], answer: 0, explanation: "Top-down parsers construct leftmost derivations." },
+    { question: "Shift reduce parsers are", options: ["Top down parser", "Bottom up parser", "May be top down or bottom up parser", "None of the above"], answer: 1, explanation: "Shift-reduce parsers work bottom-up." },
+    { question: "Which of the following parser is most powerful?", options: ["Operator precedence", "Canonical LR", "LALR", "SLR"], answer: 1, explanation: "Canonical LR (LR(1)) is the most powerful deterministic context-free parser." },
+    { question: "Which of the following is responsible for grouping of characters into tokens in compiler?", options: ["Scanner", "Parser", "Code generator", "Code optimizer"], answer: 0, explanation: "The scanner groups character streams into tokens." },
+    { question: "The grammar A -> AxB | x, B -> xB | x is", options: ["Unambiguous", "left recursive", "right recursive", "ambiguous"], answer: 1, explanation: "Production A -> AxB contains left-recursion." },
+    { question: "Which of the following is used for grouping of characters into tokens?", options: ["Parser", "Code optimization", "Code generator", "Lexical analyzer"], answer: 3, explanation: "Lexical analyzer performs token grouping." },
+    { question: "In a compiler, keywords of a language are recognized during", options: ["parsing of the program", "the code generation", "the lexical analysis of the program", "dataflow analysis"], answer: 2, explanation: "Keywords are matched during lexical scanning." },
+    { question: "YACC builds up", options: ["SLR parsing table", "Canonical LR parsing table", "LALR parsing table", "None of the above"], answer: 2, explanation: "YACC generates LALR(1) parsing tables." },
+    { question: "Analysis which determines the meaning of a statement once its grammatical structure becomes known is termed as", options: ["Syntax analysis", "Regular analysis", "Semantic analysis", "General analysis"], answer: 2, explanation: "Semantic analysis checks meaning and contextual types." },
+    { question: "LR stands for", options: ["Left to right", "Left to right reduction", "Right to left", "Left to right scanning with Rightmost derivation in reverse"], answer: 3, explanation: "LR = Left-to-right scan, Rightmost derivation in reverse." },
+    { question: "LR parsing ______________ a string to the start symbol by inverting productions.", options: ["Reduces", "Shifts", "Adds", "None"], answer: 0, explanation: "LR parsing reduces handle strings back to start symbol." },
+    { question: "Which one of the following is TRUE?", options: ["+ is left associative, while * is right associative", "+ is right associative, while * is left associative", "Both + and * are right associative", "Both + and * are left associative"], answer: 3, explanation: "Standard arithmetic grammar assigns left associativity to + and *." },
+    { question: "S -> a | B, B -> Bb | epsilon. From the above grammar, the non-terminal _______ is left recursive.", options: ["a", "epsilon", "B", "Both epsilon & B"], answer: 2, explanation: "Non-terminal B has left-recursive rule B -> Bb." },
+    { question: "Type checking is normally done during:", options: ["Lexical analysis", "Syntax analysis", "Semantic analysis / Syntax directed translation", "Code optimization"], answer: 2, explanation: "Type checking occurs during semantic analysis." },
+    { question: "An unambiguous grammar has same leftmost and rightmost derivation", options: ["True", "False"], answer: 1, explanation: "False; derivations differ in order, though they yield identical parse trees." },
+    { question: "Intermediate code generation phase gets input from", options: ["Lexical analyzer", "Syntax analyzer", "Semantic analyzer", "Error handling"], answer: 2, explanation: "IR phase takes semantic tree output." },
+    { question: "The three-address code for x + - y * (- y + z) is", options: ["t1 = -y, t2 = t1 + z, t3 = t1 * t2, t4 = x + t3", "t1 = -y, t2 = x + t1, t3 = t1 + z, t4 = t2 * t3", "Both a and b are valid", "none"], answer: 0, explanation: "Evaluates sub-expressions into temp vars t1 through t4 sequentially." },
+    { question: "Indirect triples are used to implement ______________________.", options: ["Infix notation", "Postfix notation", "Three address code", "Prefix notation"], answer: 2, explanation: "Indirect triples list pointers to three-address statements." },
+    { question: "________ is the process where the stream of characters making up the source program is read form left to right and group into tokens:", options: ["Lexical Analysis", "Diversion", "Modeling", "none of the above"], answer: 0, explanation: "Lexical analysis converts character streams into tokens." },
+    { question: "An important component of semantic analysis is __________________.", options: ["code checking", "type checking", "flush checking", "None of the given"], answer: 1, explanation: "Type checking is central to semantic validation." },
+    { question: "In DFA minimization we construct one _______________ for each group of states from the initial DFA.", options: ["State", "NFA", "PDA", "None of given"], answer: 0, explanation: "Minimization merges equivalent state partitions into single states." },
+    { question: "Three address codes involve:", options: ["Exactly three addresses", "at most three addresses", "No unary operators", "none of these"], answer: 1, explanation: "Three-address instructions contain at most 3 memory operands." },
+    { question: "Alternative of the backtrack in parser is Look ahead symbol in _________.", options: ["Input", "Output", "Input and Output", "None of the given"], answer: 0, explanation: "Predictive parsing relies on lookahead tokens in the input stream." },
+    { question: "A linker takes one or more source files generated by a compiler and combines them into a ______ executable program.", options: ["Double", "Triple", "Single", "Quadruples"], answer: 2, explanation: "Linkers create a single consolidated executable program." },
+    { question: "Which of the following is not an intermediate code form:", options: ["Postfix notation", "Syntax Trees", "Three address codes", "quadruples"], answer: 3, explanation: "Quadruples are a record implementation of three-address code, not a distinct language form." },
+    { question: "Parser takes tokens from scanner and tries to generate _______________ .", options: ["Binary Search tree", "Parse tree", "Syntax Trace", "None of the given"], answer: 1, explanation: "Parsers construct syntax/parse trees." },
+    { question: "Ambiguity can easily be handled by _____ Parser", options: ["Bottom-up", "Left recursive", "Predictive", "Top-down"], answer: 0, explanation: "Bottom-up parsers handle ambiguity via precedence rules." },
+    { question: "A top down parser generates:", options: ["Right most derivation", "Right most derivation in reverse", "Left most derivation", "Left most derivation in reverse"], answer: 2, explanation: "Top-down parsers generate leftmost derivations." },
+    { question: "Consider grammar rules S -> iCtSS1|a, S1 -> eS|epsilon, C -> b. The grammar is NOT LL(1) because:", options: ["it is left recursive", "it is right recursive", "it is ambiguous", "It is not context-free"], answer: 2, explanation: "Dangling-else ambiguity prevents strict LL(1) parsing." },
+    { question: "Consider grammar A -> B C D, B -> h B | epsilon, C -> C g | g | C h | i, D -> A B | epsilon. Follow of B is:", options: ["h", "g, h, i, $", "g, i", "g"], answer: 1, explanation: "FOLLOW(B) calculates tokens that can legally follow non-terminal B." },
+    { question: "Three address code involves:", options: ["Exactly 3 address", "At least three addresses", "At most three-address", "No unary operator"], answer: 2, explanation: "Three-address instructions contain at most 3 location references." },
+    { question: "Lexical analyzer and scanner are two different phases of compiler", options: ["True", "False"], answer: 1, explanation: "False; lexical analysis and scanning refer to the same phase." },
+    { question: "Which of the following statement is true about Two pass compiler.", options: ["Front End depends upon Back End", "Back End depends upon Front End", "Both are independent of each other", "None of the given"], answer: 1, explanation: "Back End requires intermediate code generated by the Front End." },
+    { question: "Ambiguity can easily be handled by Top-down Parser", options: ["True", "False"], answer: 1, explanation: "False; top-down predictive parsers fail on ambiguous grammars." },
+    { question: "An intermediate code form is", options: ["Postfix notation", "Syntax trees", "Three address code", "All of these"], answer: 3, explanation: "Postfix, syntax trees, and 3-address codes are all IR representations." },
+    { question: "Synthesized attribute can be easily simulated by a", options: ["LL grammar", "Ambiguous grammar", "LR grammar", "None of the above"], answer: 2, explanation: "LR parsing maps cleanly to bottom-up synthesized attribute evaluation." },
+    { question: "The graph that shows basic blocks and their successor relationship is called", options: ["DAG", "Flow chart", "Control graph", "Hamiltonian graph"], answer: 2, explanation: "Control Flow Graphs (CFGs) connect basic execution blocks." },
+    { question: "A grammar is meaningless", options: ["If terminal set and non-terminal set are not disjoint", "If left hand side of a production is a single terminal", "If left hand side of a production has no nonterminal", "All of these"], answer: 3, explanation: "Grammars violating fundamental set boundaries are invalid/meaningless." },
+    { question: "Intermediate code generator is _____ phase in compiler design.", options: ["Second", "First", "Fourth", "Third"], answer: 2, explanation: "IR generation is the 4th phase (Lexical, Syntax, Semantic, IR)." }
 ];
 
-let state = {
+let quizState = {
     ai: { score: 0, answered: new Array(aiData.length).fill(false) },
     compiler: { score: 0, answered: new Array(compilerData.length).fill(false) }
 };
 
-// Escape HTML tags so code blocks display cleanly
 function escapeHTML(str) {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -428,7 +452,43 @@ function parseTextWithCode(text) {
     return escaped.replace(/&lt;([a-zA-Z0-9\/]+)&gt;/g, '<code>&lt;$1&gt;</code>');
 }
 
-function renderQuiz(type, data, containerId) {
+/* Render Mode 1: Learn Mode (Answers & Explanations shown) */
+function renderLearnMode(data, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+
+    data.forEach((q, qIndex) => {
+        const qCard = document.createElement("div");
+        qCard.className = "question-card";
+
+        const qText = document.createElement("div");
+        qText.className = "question-text";
+        qText.innerHTML = (qIndex + 1) + ". " + parseTextWithCode(q.question);
+        qCard.appendChild(qText);
+
+        q.options.forEach((opt, optIndex) => {
+            const optDiv = document.createElement("div");
+            optDiv.className = "option-item";
+            if (optIndex === q.answer) {
+                optDiv.classList.add("correct");
+            }
+            optDiv.innerHTML = String.fromCharCode(65 + optIndex) + ". " + parseTextWithCode(opt);
+            qCard.appendChild(optDiv);
+        });
+
+        if (q.explanation) {
+            const expBox = document.createElement("div");
+            expBox.className = "explanation-box";
+            expBox.innerHTML = "💡 <b>Explanation:</b> " + parseTextWithCode(q.explanation);
+            qCard.appendChild(expBox);
+        }
+
+        container.appendChild(qCard);
+    });
+}
+
+/* Render Mode 2: Interactive Quiz Mode */
+function renderQuizMode(type, data, containerId) {
     const container = document.getElementById(containerId);
     container.innerHTML = "";
 
@@ -443,7 +503,7 @@ function renderQuiz(type, data, containerId) {
 
         q.options.forEach((opt, optIndex) => {
             const label = document.createElement("label");
-            label.className = "option-label";
+            label.className = "option-item quiz-option";
 
             const radio = document.createElement("input");
             radio.type = "radio";
@@ -471,11 +531,11 @@ function renderQuiz(type, data, containerId) {
 }
 
 function handleAnswer(type, data, qIndex, selectedIndex, qCard) {
-    if (state[type].answered[qIndex]) return;
-    state[type].answered[qIndex] = true;
+    if (quizState[type].answered[qIndex]) return;
+    quizState[type].answered[qIndex] = true;
 
     const question = data[qIndex];
-    const labels = qCard.querySelectorAll(".option-label");
+    const labels = qCard.querySelectorAll(".quiz-option");
     const resMsg = document.getElementById(`${type}-res-${qIndex}`);
 
     labels.forEach((label, idx) => {
@@ -488,7 +548,7 @@ function handleAnswer(type, data, qIndex, selectedIndex, qCard) {
     });
 
     if (selectedIndex === question.answer) {
-        state[type].score++;
+        quizState[type].score++;
         resMsg.textContent = "Correct!";
         resMsg.className = "result-msg correct-res";
     } else {
@@ -499,48 +559,47 @@ function handleAnswer(type, data, qIndex, selectedIndex, qCard) {
     }
 
     let scoreId = (type === 'ai') ? 'score-ai' : 'score-compiler';
-    document.getElementById(scoreId).textContent = state[type].score;
+    document.getElementById(scoreId).textContent = quizState[type].score;
 }
 
 function resetQuiz(type) {
     let data = (type === 'ai') ? aiData : compilerData;
-    let quizId = (type === 'ai') ? 'quiz-ai' : 'quiz-compiler';
+    let containerId = (type === 'ai') ? 'container-quiz-ai' : 'container-quiz-compiler';
     let scoreId = (type === 'ai') ? 'score-ai' : 'score-compiler';
 
-    state[type].score = 0;
-    state[type].answered = new Array(data.length).fill(false);
+    quizState[type].score = 0;
+    quizState[type].answered = new Array(data.length).fill(false);
     document.getElementById(scoreId).textContent = "0";
-    renderQuiz(type, data, quizId);
+    renderQuizMode(type, data, containerId);
 }
 
 function switchTab(tabKey) {
-    let targetKey = (tabKey === 'compiler') ? 'compiler' : 'ai';
-    
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
-    if (targetKey === 'compiler') {
-        document.getElementById('compiler').classList.add('active');
-        document.getElementById('tab-compiler-btn').classList.add('active');
-        window.location.hash = 'compiler';
-    } else {
-        document.getElementById('ai').classList.add('active');
-        document.getElementById('tab-ai-btn').classList.add('active');
-        window.location.hash = 'ai';
+    const activeContent = document.getElementById(tabKey);
+    const activeBtn = document.getElementById(`btn-${tabKey}`);
+
+    if (activeContent && activeBtn) {
+        activeContent.classList.add('active');
+        activeBtn.classList.add('active');
+        window.location.hash = tabKey;
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Initial Setup
-renderQuiz('ai', aiData, 'quiz-ai');
-renderQuiz('compiler', compilerData, 'quiz-compiler');
+// Initial Rendering
+renderLearnMode(aiData, 'container-learn-ai');
+renderQuizMode('ai', aiData, 'container-quiz-ai');
+renderLearnMode(compilerData, 'container-learn-compiler');
+renderQuizMode('compiler', compilerData, 'container-quiz-compiler');
 
-// Handle Hash Routing on Load
-const initialHash = window.location.hash.replace('#', '');
-if (initialHash === 'compiler') {
-    switchTab('compiler');
+// Routing on load
+const hash = window.location.hash.replace('#', '');
+if (['learn-ai', 'quiz-ai', 'learn-compiler', 'quiz-compiler'].includes(hash)) {
+    switchTab(hash);
 } else {
-    switchTab('ai');
+    switchTab('learn-ai');
 }
 </script>
 
