@@ -37,13 +37,12 @@
             background: #e9ecef;
             padding: 5px;
             border-radius: 10px;
-            overflow-x: auto;
         }
 
         .tab-btn {
             flex: 1;
-            padding: 10px 8px;
-            font-size: 13px;
+            padding: 12px 8px;
+            font-size: 14px;
             font-weight: bold;
             border: none;
             background: transparent;
@@ -190,27 +189,17 @@
     <h1 class="header-title">Exam Practice Hub</h1>
 
     <div class="nav-tabs">
-        <button class="tab-btn" id="tab-iot-btn" onclick="switchTab('iot')">IoT (40)</button>
-        <button class="tab-btn" id="tab-web-btn" onclick="switchTab('websystems')">Web Systems (68)</button>
-        <button class="tab-btn" id="tab-compiler-btn" onclick="switchTab('compiler')">Compiler (73)</button>
+        <button class="tab-btn" id="tab-ai-btn" onclick="switchTab('ai')">AI (100)</button>
+        <button class="tab-btn" id="tab-compiler-btn" onclick="switchTab('compiler')">Compiler Construction (73)</button>
     </div>
 
-    <!-- IoT Tab Content -->
-    <div id="iot" class="tab-content">
+    <!-- Artificial Intelligence Tab Content -->
+    <div id="ai" class="tab-content">
         <div class="score-bar">
-            <span>Score: <span id="score-iot">0</span> / 40</span>
-            <button class="reset-link" onclick="resetQuiz('iot')">Reset IoT</button>
+            <span>Score: <span id="score-ai">0</span> / 100</span>
+            <button class="reset-link" onclick="resetQuiz('ai')">Reset AI</button>
         </div>
-        <div id="quiz-iot"></div>
-    </div>
-
-    <!-- Web Systems Tab Content -->
-    <div id="websystems" class="tab-content">
-        <div class="score-bar">
-            <span>Score: <span id="score-web">0</span> / 68</span>
-            <button class="reset-link" onclick="resetQuiz('websystems')">Reset Web</button>
-        </div>
-        <div id="quiz-web"></div>
+        <div id="quiz-ai"></div>
     </div>
 
     <!-- Compiler Construction Tab Content -->
@@ -224,123 +213,130 @@
 </div>
 
 <script>
-// Quiz 1: IoT Data (40 Questions)
-const iotData = [
-    { question: "CoAP operates on top of:", options: ["TCP", "UDP", "Ethernet only", "FTP"], answer: 1 },
-    { question: "Predictive maintenance is associated with:", options: ["Cost reduction", "Privacy concerns", "Device heterogeneity", "Network failure"], answer: 0 },
-    { question: "Which type of sensor network has no fixed infrastructure?", options: ["Structured network", "Ad-hoc network", "Hybrid network", "Cloud network"], answer: 1 },
-    { question: "IPv6 uses:", options: ["32-bit addresses", "64-bit addresses", "128-bit addresses", "256-bit addresses"], answer: 2 },
-    { question: "6LoWPAN stands for:", options: ["IPv6 over Low Power Wireless Personal Area Network", "Internet Protocol Wireless Local Private Area Network", "Low Power Wide Area Network", "IPv6 Wireless Private Network"], answer: 0 },
-    { question: "A surveillance camera automatically switching between day and night modes demonstrates:", options: ["Scalability", "Dynamic and self-adapting behavior", "Connectivity", "Heterogeneity"], answer: 1 },
-    { question: "Which application of IoT focuses on saving time, money, and energy in homes?", options: ["Smart retail", "Smart home", "Smart city", "Smart healthcare"], answer: 1 },
-    { question: "Which protocol is connection-oriented?", options: ["UDP", "TCP", "HTTP", "MQTT"], answer: 1 },
-    { question: "IoT things can perform:", options: ["Remote sensing", "Actuation", "Monitoring", "All of the above"], answer: 3 },
-    { question: "6LoWPAN operates at:", options: ["900 MHz", "1.8 GHz", "2.4 GHz", "60 GHz"], answer: 2 },
-    { question: "Smart traffic management is primarily an application of:", options: ["Smart city", "Smart retail", "Wearables", "Connected cars"], answer: 0 },
-    { question: "Which IoT communication model contains publishers, brokers, and consumers?", options: ["Request-Response", "Publish-Subscribe", "Push-Pull", "Exclusive Pair"], answer: 1 },
-    { question: "The Transport layer provides:", options: ["End-to-end message transfer", "User interface", "Physical sensing", "Device identification only"], answer: 0 },
-    { question: "Industrial Internet of Things mainly connects:", options: ["Personal smartphones", "Sensors, instruments, devices, and computers for industrial applications", "Social media users", "Home entertainment systems"], answer: 1 },
-    { question: "Which communication model uses a persistent connection between client and server?", options: ["Request-Response", "Publish-Subscribe", "Push-Pull", "Exclusive Pair"], answer: 3 },
-    { question: "IoT devices are considered heterogeneous because they:", options: ["Use different hardware platforms", "Use different networks", "Use different identities", "Work with one another"], answer: 0 },
-    { question: "IPv4 uses:", options: ["16-bit addresses", "32-bit addresses", "64-bit addresses", "128-bit addresses"], answer: 1 },
-    { question: "A unique ID such as an IP address is primarily used to:", options: ["Increase bandwidth", "Identify and track a device", "Increase battery capacity", "Reduce storage"], answer: 1 },
-    { question: "HTTP follows which communication model?", options: ["Push-Pull", "Request-Response", "Publish-Subscribe", "Exclusive Pair"], answer: 1 },
-    { question: "CoAP is designed especially for:", options: ["Constrained devices and networks", "High-powered servers", "Desktop applications", "Video editing systems"], answer: 0 },
-    { question: "Which WSN challenge is directly related to battery-powered sensor nodes?", options: ["Power consumption", "Web design", "Software licensing", "User interface"], answer: 0 },
-    { question: "Integrating diverse IoT devices with existing systems creates:", options: ["Integration challenges", "Automatic security", "Unlimited bandwidth", "Zero complexity"], answer: 0 },
-    { question: "Which advantage of IoT reduces human intervention in routine tasks?", options: ["Cost reduction", "Automation and control", "Privacy", "Complexity"], answer: 1 },
-    { question: "_____ IoT devices collect, share, and exchange data:", options: ["Only with humans", "Without human intervention", "Only through Bluetooth", "Only through wired networks"], answer: 1 },
-    { question: "Which protocol does not provide guaranteed delivery?", options: ["TCP", "UDP", "HTTP", "MQTT"], answer: 1 },
-    { question: "IEEE 802.11 is associated with:", options: ["Ethernet", "Wi-Fi", "WiMAX", "ZigBee"], answer: 1 },
-    { question: "Which of the following is required for a physical object to be considered an IoT thing?", options: ["Only a battery", "Sensor and unique identifier", "Only a processor", "Only an Internet browser"], answer: 1 },
-    { question: "UDP is particularly suitable for:", options: ["Time-sensitive applications", "Applications requiring guaranteed delivery", "Large database transactions only", "Applications requiring permanent connections"], answer: 0 },
-    { question: "Which IoT layer processes data close to where it is generated?", options: ["Application layer", "Business layer", "Edge/Processing layer", "Perception layer"], answer: 2 },
-    { question: "IEEE 802.15.4 is associated with:", options: ["LR-WPAN", "Ethernet", "WiMAX", "Cellular only"], answer: 0 },
-    { question: "Logical design of IoT represents:", options: ["Hardware specifications", "Abstract entities and processes", "Physical connections only", "Circuit diagrams"], answer: 1 },
-    { question: "Consumer IoT mainly includes:", options: ["Industrial machines only", "Smartphones, wearables, and smart home appliances", "Power plants only", "Factory robots only"], answer: 1 },
-    { question: "The Network/Internet layer is responsible for:", options: ["Sensor measurement", "IP addressing and packet routing", "User interface design", "Data visualization only"], answer: 1 },
-    { question: "The term \"Internet of Things\" was first coined by:", options: ["Bill Gates", "Kevin Ashton", "Tim Berners-Lee", "Vint Cerf"], answer: 1 },
-    { question: "A connected car uses sensors and Internet connectivity mainly to optimize:", options: ["Only fuel price", "Operation, maintenance, and passenger comfort", "Only entertainment", "Only Internet speed"], answer: 1 },
-    { question: "A LAN generally connects devices:", options: ["Within a building or campus", "Across countries", "Globally", "Only through satellites"], answer: 0 },
-    { question: "Which network provides long-range communication with low power consumption?", options: ["PAN", "LAN", "LPWAN", "Bluetooth"], answer: 2 },
-    { question: "IEEE 802.3 is associated with:", options: ["Ethernet", "Wi-Fi", "ZigBee", "Bluetooth"], answer: 0 },
-    { question: "Setting up IoT infrastructure can be expensive because of:", options: ["Hardware and development costs", "Lack of sensors", "Reduced data collection", "Lack of applications"], answer: 0 },
-    { question: "Which cloud service provides development tools, APIs, software libraries, and services?", options: ["IaaS", "PaaS", "SaaS", "PAN"], answer: 1 }
+// Quiz 1: AI Data (100 Questions Combined)
+const aiData = [
+    // 1. Introduction to AI
+    { question: "Who is widely known as the 'Father of Artificial Intelligence'?", options: ["Alan Turing", "John McCarthy", "Marvin Minsky", "Herbert Simon", "Claude Shannon"], answer: 1 },
+    { question: "What does 'AI' stand for?", options: ["Automated Interaction", "Artificial Intelligence", "Advanced Integration", "Algorithmic Inference", "Autonomous Instruction"], answer: 1 },
+    { question: "Which test is used to determine if a machine can exhibit intelligent behavior indistinguishable from a human?", options: ["IQ Test", "Turing Test", "Binet Test", "CAPTCHA Test", "Rorschach Test"], answer: 1 },
+    { question: "Which of the following is a subfield of AI focused on learning from data?", options: ["Machine Learning", "Cloud Computing", "Web Development", "Database Management", "Network Security"], answer: 0 },
+    { question: "What is 'Narrow AI' also known as?", options: ["Strong AI", "General AI", "Weak AI", "Super AI", "Hybrid AI"], answer: 2 },
+    { question: "Which AI approach is inspired by the structure of the human brain?", options: ["Expert Systems", "Neural Networks", "Decision Trees", "Genetic Algorithms", "Fuzzy Logic"], answer: 1 },
+    { question: "Which of these is an example of a Natural Language Processing (NLP) application?", options: ["Image Recognition", "Chatbots", "Self-driving Cars", "Robotic Arms", "Facial Recognition"], answer: 1 },
+    { question: "In AI, what does 'Deep Learning' primarily use?", options: ["Rule-based Systems", "Multi-layered Neural Networks", "Spreadsheets", "Linear Regression only", "Manual Data Entry"], answer: 1 },
+    { question: "Which type of AI has not yet been achieved and would match or exceed human intelligence across all domains?", options: ["Narrow AI", "Artificial General Intelligence (AGI)", "Reactive Machines", "Limited Memory AI", "Expert Systems"], answer: 1 },
+    { question: "Which of the following is an early AI program designed to mimic a psychotherapist?", options: ["Deep Blue", "ELIZA", "AlphaGo", "Watson", "Siri"], answer: 1 },
+
+    // 2. Basic Components of AI
+    { question: "Which component of AI is responsible for storing facts and information the system uses to reason?", options: ["Knowledge Base", "Sensor Array", "User Interface", "Compiler", "Cache Memory"], answer: 0 },
+    { question: "Which basic AI component takes raw data from the environment (like camera or microphone input)?", options: ["Actuator", "Sensor", "Reasoning Engine", "Knowledge Base", "Planner"], answer: 1 },
+    { question: "Which component allows an AI system to perform actions in the environment based on its decisions?", options: ["Actuator", "Sensor", "Knowledge Base", "Learning Module", "Interface"], answer: 0 },
+    { question: "Which component of AI applies logical rules to the knowledge base to draw conclusions?", options: ["Reasoning Engine", "Sensor", "Actuator", "Data Warehouse", "User Interface"], answer: 0 },
+    { question: "Which basic component enables an AI system to improve its performance over time from experience?", options: ["Learning Component", "Static Database", "Actuator", "Sensor", "Fixed Ruleset"], answer: 0 },
+    { question: "Which component of AI is responsible for choosing the best sequence of actions to reach a goal?", options: ["Planner", "Sensor", "Actuator", "Knowledge Base", "Display Unit"], answer: 0 },
+    { question: "In an AI agent architecture, what is the term for the part that decides the next action based on current perception?", options: ["Agent Function", "Firewall", "Cache", "Compiler", "Server"], answer: 0 },
+    { question: "Which component allows an AI system to represent and manipulate human language input?", options: ["Natural Language Processing (NLP) Module", "Actuator", "Sensor Array", "Reasoning Engine", "Knowledge Base"], answer: 0 },
+    { question: "Which basic component of an AI system evaluates how well a chosen action satisfies the desired goal?", options: ["Performance Measure", "Actuator", "Sensor", "Data Storage", "Interface"], answer: 0 },
+    { question: "Which term describes the environment in which an AI agent perceives and acts?", options: ["Task Environment", "Knowledge Base", "Reasoning Engine", "Actuator", "Learning Module"], answer: 0 },
+
+    // 3. Identifying AI Systems
+    { question: "Which of the following is the strongest indicator that a system is an AI system rather than a simple automated script?", options: ["It follows a fixed sequence of steps every time", "It adapts its output based on patterns learned from data", "It runs on a scheduled timer", "It stores data in a database", "It has a graphical user interface"], answer: 1 },
+    { question: "A spam filter that improves its accuracy over time based on user-flagged emails is best identified as which type of system?", options: ["A machine learning-based AI system", "A hardcoded if-else script", "A static lookup table", "A manual sorting process", "A basic file compression tool"], answer: 0 },
+    { question: "Which of these applications would you correctly identify as using AI for recommendation?", options: ["Netflix suggesting shows based on viewing history", "A printer printing a document", "A calculator adding two numbers", "A clock displaying the current time", "A text file storing notes"], answer: 0 },
+    { question: "Which characteristic helps identify a chatbot as AI-powered rather than a simple scripted FAQ bot?", options: ["It understands and responds to varied natural language phrasing", "It only replies to exact keyword matches", "It has a fixed menu of button options", "It responds with the same canned message always", "It requires manual updates for every new question"], answer: 0 },
+    { question: "Which of the following is a key sign that an image-tagging app uses computer vision AI?", options: ["It automatically recognizes and labels objects in new, unseen photos", "It lets users manually type captions", "It resizes images to a fixed dimension", "It converts images to black and white", "It compresses image file size"], answer: 0 },
+    { question: "Which factor would help you identify a self-driving car system as AI-based?", options: ["It perceives its surroundings and makes real-time driving decisions", "It follows a pre-programmed GPS route only", "It has cruise control set to a fixed speed", "It has a fuel gauge sensor", "It has an automatic transmission"], answer: 0 },
+    { question: "Which of these voice assistants' behaviors best identifies it as using AI?", options: ["It understands context across a conversation and answers novel questions", "It plays a pre-recorded greeting message", "It only responds to one exact trigger phrase", "It has a volume control button", "It displays the current battery percentage"], answer: 0 },
+    { question: "Which trait would help you distinguish an AI fraud-detection system from a simple rule-based alert system?", options: ["It identifies previously unseen fraud patterns by learning from transaction data", "It flags any transaction over a fixed dollar amount", "It blocks all transactions from a specific country", "It sends an alert every Monday morning", "It requires a manual review for every transaction"], answer: 0 },
+    { question: "Which is a reliable sign that a translation tool uses AI rather than a basic dictionary lookup?", options: ["It produces contextually accurate translations for idioms and complex sentences", "It translates word-for-word using a fixed glossary", "It only supports one language pair", "It requires the user to select words manually", "It shows a list of dictionary definitions"], answer: 0 },
+    { question: "Which behavior in a game NPC (non-player character) would indicate it uses AI rather than scripted behavior?", options: ["It adapts its strategy based on the player's past moves", "It walks the same fixed path every time", "It repeats the same dialogue line regardless of context", "It disappears after a fixed timer", "It has a static health bar value"], answer: 0 },
+
+    // 4. Branches of AI
+    { question: "Which branch of AI focuses on enabling systems to learn from data and improve without explicit programming?", options: ["Machine Learning", "Robotics", "Computer Vision", "Expert Systems", "Fuzzy Logic"], answer: 0 },
+    { question: "Which branch of AI deals with enabling machines to understand and generate human language?", options: ["Computer Vision", "Natural Language Processing", "Robotics", "Genetic Algorithms", "Machine Learning"], answer: 1 },
+    { question: "Which branch of AI enables machines to interpret and understand images and videos?", options: ["Expert Systems", "Natural Language Processing", "Computer Vision", "Fuzzy Logic", "Reinforcement Learning"], answer: 2 },
+    { question: "Which branch of AI focuses on designing intelligent machines that can physically sense and interact with the real world?", options: ["Machine Learning", "Natural Language Processing", "Expert Systems", "Robotics", "Fuzzy Logic"], answer: 3 },
+    { question: "Which branch of AI uses a knowledge base of rules encoded from human experts to mimic decision-making in a specific field?", options: ["Computer Vision", "Robotics", "Reinforcement Learning", "Machine Learning", "Expert Systems"], answer: 4 },
+    { question: "Which branch of AI uses multi-layered neural networks to model complex patterns from large datasets?", options: ["Deep Learning", "Expert Systems", "Robotics", "Fuzzy Logic", "Natural Language Processing"], answer: 0 },
+    { question: "Which branch of AI involves an agent learning optimal actions through rewards and penalties from its environment?", options: ["Expert Systems", "Reinforcement Learning", "Computer Vision", "Fuzzy Logic", "Robotics"], answer: 1 },
+    { question: "Which branch of AI deals with reasoning based on degrees of truth rather than fixed true/false values, handling uncertainty?", options: ["Machine Learning", "Computer Vision", "Fuzzy Logic", "Robotics", "Expert Systems"], answer: 2 },
+    { question: "Which branch of AI is inspired by natural selection and evolves solutions using mutation, crossover, and selection?", options: ["Natural Language Processing", "Computer Vision", "Expert Systems", "Genetic Algorithms", "Reinforcement Learning"], answer: 3 },
+    { question: "Which branch of AI focuses on converting spoken language into text for voice-based interaction?", options: ["Computer Vision", "Robotics", "Fuzzy Logic", "Genetic Algorithms", "Speech Recognition"], answer: 4 },
+
+    // 5. Reasoning and Knowledge Representation of AI
+    { question: "Which knowledge representation technique uses quantifiers and variables to represent relationships between objects?", options: ["Predicate Logic", "Semantic Network", "Frame Representation", "Production Rules", "Fuzzy Logic"], answer: 0 },
+    { question: "Which knowledge representation method uses a graph of nodes and labeled edges to show relationships between concepts?", options: ["Predicate Logic", "Semantic Network", "Production Rules", "Propositional Logic", "Bayesian Network"], answer: 1 },
+    { question: "Which knowledge representation technique organizes information into slots and values, similar to a record structure?", options: ["Semantic Network", "Predicate Logic", "Frames", "Production Rules", "Decision Trees"], answer: 2 },
+    { question: "Which knowledge representation technique expresses knowledge as IF-THEN condition-action statements?", options: ["Semantic Network", "Frames", "Predicate Logic", "Production Rules", "Ontology"], answer: 3 },
+    { question: "Which type of reasoning derives a specific, guaranteed-true conclusion from general premises using strict logical rules?", options: ["Inductive Reasoning", "Deductive Reasoning", "Abductive Reasoning", "Analogical Reasoning", "Fuzzy Reasoning"], answer: 1 },
+    { question: "Which type of reasoning draws general conclusions or patterns from specific observed examples?", options: ["Inductive Reasoning", "Deductive Reasoning", "Monotonic Reasoning", "Backward Chaining", "Predicate Logic"], answer: 0 },
+    { question: "Which type of reasoning starts from an observation and infers the most likely explanation, as used in medical diagnosis?", options: ["Deductive Reasoning", "Inductive Reasoning", "Abductive Reasoning", "Forward Chaining", "Non-monotonic Reasoning"], answer: 2 },
+    { question: "Which inference method starts from known facts and applies rules to derive new facts, moving toward a goal?", options: ["Forward Chaining", "Backward Chaining", "Abductive Reasoning", "Analogical Reasoning", "Fuzzy Reasoning"], answer: 0 },
+    { question: "Which inference method starts from a goal and works backward to find supporting facts and rules?", options: ["Forward Chaining", "Backward Chaining", "Inductive Reasoning", "Semantic Network", "Fuzzy Logic"], answer: 1 },
+    { question: "Which type of reasoning allows previously drawn conclusions to be revised or withdrawn when new contradicting information arrives?", options: ["Deductive Reasoning", "Monotonic Reasoning", "Forward Chaining", "Predicate Logic", "Non-monotonic Reasoning"], answer: 4 },
+
+    // 6. Introduction to Reasoning and Knowledge Representation
+    { question: "Which AI field studies how to formally encode facts and information so a machine can reason with them?", options: ["Machine Perception", "Knowledge Representation", "Data Encryption", "Signal Processing", "Network Routing"], answer: 1 },
+    { question: "What is the term for the process by which an AI system draws new conclusions from existing knowledge?", options: ["Reasoning", "Rendering", "Compilation", "Encryption", "Caching"], answer: 0 },
+    { question: "What is a key requirement of a good knowledge representation scheme in AI?", options: ["It must always be visual", "It must be written in English", "It should be expressive and support efficient reasoning", "It must use only numbers", "It must avoid all rules"], answer: 2 },
+    { question: "In knowledge representation, what term describes basic, explicitly stated pieces of information about the world?", options: ["Heuristics", "Facts", "Actuators", "Sensors", "Interfaces"], answer: 1 },
+    { question: "Which component of an AI system applies logical rules to a knowledge base to derive new facts?", options: ["Sensor Array", "Knowledge Base", "Actuator", "Inference Engine", "Display Module"], answer: 3 },
+    { question: "What is the term for the central repository of facts, rules, and relationships used by an AI system for reasoning?", options: ["Knowledge Base", "Cache Memory", "Firewall", "Compiler", "Operating System"], answer: 0 },
+    { question: "Which term describes practical, experience-based rules that help an AI system reason more efficiently without guaranteeing an optimal answer?", options: ["Facts", "Frames", "Heuristics", "Ontologies", "Predicates"], answer: 2 },
+    { question: "Which term refers to a formal definition of categories, properties, and relationships among concepts in a specific domain?", options: ["Production Rule", "Sensor", "Actuator", "Search Tree", "Ontology"], answer: 4 },
+    { question: "Which type of knowledge represents 'knowing that' a fact is true, rather than 'knowing how' to perform a task?", options: ["Procedural Knowledge", "Declarative Knowledge", "Heuristic Knowledge", "Structural Knowledge", "Meta Knowledge"], answer: 1 },
+    { question: "Which type of knowledge represents 'knowing how' to perform a task, such as the steps to solve a problem?", options: ["Procedural Knowledge", "Declarative Knowledge", "Static Knowledge", "Descriptive Knowledge", "Factual Knowledge"], answer: 0 },
+
+    // 7. Propositional Logic
+    { question: "What is a 'proposition' in propositional logic?", options: ["A variable that holds numeric data", "A question that requires an answer", "A declarative statement that is either true or false", "A command to execute an action", "An undefined symbolic expression"], answer: 2 },
+    { question: "Which logical connective represents the AND operation, symbolized as ∧?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 1 },
+    { question: "Which logical connective represents the OR operation, symbolized as ∨?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 0 },
+    { question: "Which logical connective is false only when the antecedent is true and the consequent is false?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 3 },
+    { question: "Which logical connective is true only when both propositions have the same truth value?", options: ["Disjunction (∨)", "Conjunction (∧)", "Negation (¬)", "Implication (→)", "Biconditional (↔)"], answer: 4 },
+    { question: "What is the term for a compound proposition that is always true regardless of the truth values of its components?", options: ["Contradiction", "Tautology", "Contingency", "Negation", "Predicate"], answer: 1 },
+    { question: "What is the term for a compound proposition that is always false regardless of the truth values of its components?", options: ["Contradiction", "Tautology", "Contingency", "Conjunction", "Quantifier"], answer: 0 },
+    { question: "Which tool systematically lists all possible truth value combinations of propositions and their resulting outcome?", options: ["Knowledge Base", "Semantic Network", "Truth Table", "Search Tree", "Decision Tree"], answer: 2 },
+    { question: "Which inference rule states that if P is true and P→Q is true, then Q must be true?", options: ["Modus Tollens", "De Morgan's Law", "Resolution", "Modus Ponens", "Contrapositive"], answer: 3 },
+    { question: "Which inference rule states that if P→Q is true and Q is false, then P must be false?", options: ["Modus Tollens", "Modus Ponens", "Conjunction Introduction", "Disjunctive Syllogism", "Hypothetical Syllogism"], answer: 0 },
+
+    // 8. First-Order Logic
+    { question: "What distinguishes First-Order Logic from Propositional Logic?", options: ["It only handles true/false statements without structure", "It represents knowledge as neural network weights", "It uses predicates, variables, and quantifiers to represent objects and relations", "It uses only fixed lookup tables", "It relies solely on probability values"], answer: 2 },
+    { question: "Which quantifier in First-Order Logic means 'for all', symbolized as ∀?", options: ["Existential Quantifier (∃)", "Universal Quantifier (∀)", "Negation (¬)", "Conjunction (∧)", "Implication (→)"], answer: 1 },
+    { question: "Which quantifier in First-Order Logic means 'there exists', symbolized as ∃?", options: ["Existential Quantifier (∃)", "Universal Quantifier (∀)", "Biconditional (↔)", "Disjunction (∨)", "Function Symbol"], answer: 0 },
+    { question: "In First-Order Logic, what term describes a relation like Loves(x, y) that returns true or false based on the objects involved?", options: ["Quantifier", "Function Symbol", "Constant Symbol", "Predicate", "Connective"], answer: 3 },
+    { question: "In First-Order Logic, which term refers to a fixed, specific object in the domain, such as 'John' or 'Paris'?", options: ["Variable", "Constant Symbol", "Quantifier", "Predicate", "Function"], answer: 1 },
+    { question: "Which term describes something like FatherOf(x), which maps an object to another related object rather than returning true or false?", options: ["Predicate", "Quantifier", "Constant Symbol", "Connective", "Function Symbol"], answer: 4 },
+    { question: "Which process finds a substitution that makes two logical expressions identical, enabling predicate matching during inference?", options: ["Unification", "Negation", "Quantification", "Tautology", "Disjunction"], answer: 0 },
+    { question: "Which process eliminates existential quantifiers by replacing existentially quantified variables with new functions or constants?", options: ["Unification", "Resolution", "Skolemization", "Negation", "Substitution"], answer: 2 },
+    { question: "Which inference rule combines two clauses containing complementary literals to derive a new clause, commonly used in automated theorem proving?", options: ["Skolemization", "Resolution", "Quantification", "Substitution", "Grounding"], answer: 1 },
+    { question: "Which normal form (a conjunction of disjunction clauses) must a First-Order Logic formula be converted to before applying resolution?", options: ["Disjunctive Normal Form (DNF)", "Binary Search Form", "Prefix Notation", "Conjunctive Normal Form (CNF)", "Truth Table Form"], answer: 3 },
+
+    // 9. Problem Solving by Searching
+    { question: "Which uninformed search algorithm explores all nodes at the current depth level before moving deeper, using a FIFO queue?", options: ["Depth-First Search", "Breadth-First Search", "A* Search", "Hill Climbing", "Greedy Best-First Search"], answer: 1 },
+    { question: "Which uninformed search algorithm explores as far as possible along each branch before backtracking, using a stack?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Simulated Annealing", "A* Search"], answer: 0 },
+    { question: "Which uninformed search algorithm always expands the node with the lowest cumulative path cost from the start?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Hill Climbing", "Greedy Best-First Search"], answer: 2 },
+    { question: "Which uninformed search algorithm repeatedly runs depth-limited search with increasing depth limits to combine BFS's completeness with DFS's memory efficiency?", options: ["Bidirectional Search", "Uniform Cost Search", "Greedy Best-First Search", "Iterative Deepening Search", "Beam Search"], answer: 3 },
+    { question: "In informed search, what is the term for the estimate of the cost from the current state to the goal, used to guide the search?", options: ["Transition Model", "Heuristic Function", "Path Cost Function", "Goal Test", "Successor Function"], answer: 1 },
+    { question: "Which informed search algorithm expands the node that appears closest to the goal, using only the heuristic estimate h(n)?", options: ["Breadth-First Search", "Uniform Cost Search", "Greedy Best-First Search", "Depth-First Search", "Iterative Deepening Search"], answer: 2 },
+    { question: "Which informed search algorithm combines path cost g(n) and heuristic estimate h(n) as f(n) = g(n) + h(n) to find an optimal solution?", options: ["A* Search", "Depth-First Search", "Breadth-First Search", "Hill Climbing", "Uniform Cost Search"], answer: 0 },
+    { question: "What term describes a heuristic that never overestimates the true cost to reach the goal, required for A* to guarantee an optimal solution?", options: ["Consistent", "Complete", "Monotonic", "Admissible", "Optimal"], answer: 3 },
+    { question: "Which local search algorithm continuously moves toward better neighboring states but can get stuck at a local maximum?", options: ["A* Search", "Hill Climbing", "Breadth-First Search", "Uniform Cost Search", "Iterative Deepening Search"], answer: 1 },
+    { question: "Which local search algorithm occasionally accepts worse moves, with decreasing probability over time, to avoid getting stuck in local optima?", options: ["Depth-First Search", "Breadth-First Search", "Uniform Cost Search", "Greedy Best-First Search", "Simulated Annealing"], answer: 4 },
+
+    // 10. Adversarial Search
+    { question: "What core assumption does the Minimax algorithm make about the two players in a game?", options: ["Both players try to maximize their own score independently", "Both players try to minimize the total game length", "One player maximizes the score while the opponent minimizes it", "Players take turns randomly selecting moves", "Only the first move is evaluated"], answer: 2 },
+    { question: "What is the main purpose of Alpha-Beta Pruning in adversarial search?", options: ["It increases the search depth of Minimax", "It prunes branches that cannot affect the final decision, reducing nodes evaluated", "It randomizes the move selection", "It replaces the evaluation function", "It allows searching non-adversarial trees"], answer: 1 },
+    { question: "In Alpha-Beta Pruning, what does the 'alpha' value represent?", options: ["The best value found so far for the maximizer", "The best value found so far for the minimizer", "The total number of nodes visited", "The depth limit of the search tree", "The branching factor of the tree"], answer: 0 },
+    { question: "In Alpha-Beta Pruning, what does the 'beta' value represent?", options: ["The best value found so far for the maximizer", "The best value found so far for the minimizer", "The average branching factor", "The evaluation function score of the root", "The time limit for the search"], answer: 1 },
+    { question: "Under what condition does Alpha-Beta Pruning cut off (prune) a branch of the search tree?", options: ["When alpha equals zero", "When beta equals zero", "When the depth limit is reached", "When alpha becomes greater than or equal to beta", "When all child nodes have been visited"], answer: 3 },
+    { question: "Which function estimates the desirability of a non-terminal game state when full search to the end of the game isn't feasible?", options: ["Transition Model", "Successor Function", "Evaluation Function", "Goal Test", "Path Cost Function"], answer: 2 },
+    { question: "What term describes a game where one player's gain is exactly balanced by the other player's loss, such as chess?", options: ["Cooperative Game", "Stochastic Game", "Partial Information Game", "Simultaneous Move Game", "Zero-Sum Game"], answer: 4 },
+    { question: "What term is used to describe a single move by one player in a game tree, avoiding ambiguity with a full round?", options: ["Ply", "Branch", "Frontier", "Heuristic", "Leaf"], answer: 0 },
+    { question: "Which algorithm extends Minimax to handle games involving chance elements, such as dice rolls, by computing expected values?", options: ["Minimax", "Expectimax", "Alpha-Beta Pruning", "A* Search", "Hill Climbing"], answer: 1 },
+    { question: "Which practice significantly improves the efficiency of Alpha-Beta Pruning by increasing the number of branches that get cut off?", options: ["Increasing the branching factor", "Reducing the evaluation function's accuracy", "Searching randomly without order", "Exploring the most promising moves first (move ordering)", "Ignoring the depth limit"], answer: 3 }
 ];
 
-// Quiz 2: Web Systems Data (68 Questions)
-const webData = [
-    { question: "What is a Web System?", options: ["A single computer", "A collection of web pages, servers, databases, and apps", "Only a database", "A type of hardware"], answer: 1 },
-    { question: "Which of these is an example of a web browser?", options: ["Apache", "MySQL", "Google Chrome", "Windows"], answer: 2 },
-    { question: "What does WWW stand for?", options: ["Wide World Web", "World Wide Web", "Web World Wide", "World Web Wide"], answer: 1 },
-    { question: "How is a \"Website\" defined?", options: ["A single document", "A collection of related web pages", "A network cable", "An internet protocol"], answer: 1 },
-    { question: "What is a key characteristic of a static website?", options: ["Uses a database", "Content changes for each user", "Shows same information to every visitor", "Interactive login"], answer: 2 },
-    { question: "Which type of website uses a database to change content automatically?", options: ["Static Website", "Dynamic Website", "Fixed Website", "Offline Website"], answer: 1 },
-    { question: "In a web system, who requests information from the server?", options: ["The database", "The client (user's device)", "The web server software", "The ISP"], answer: 1 },
-    { question: "Which software is used to open websites?", options: ["Web Browser", "Database", "Operating System", "FTP Server"], answer: 0 },
-    { question: "Which of these is a popular database?", options: ["Microsoft Edge", "Nginx", "MySQL", "HTML"], answer: 2 },
-    { question: "What is the Internet?", options: ["A single web page", "A worldwide network of millions of computers", "A type of browser", "A social media app"], answer: 1 },
-    { question: "Which application is used to send and receive messages?", options: ["Cloud Storage", "Electronic Mail (Email)", "Video Conferencing", "Web Browsing"], answer: 1 },
-    { question: "What is networking?", options: ["Building computers", "A group of connected computers sharing resources", "Writing code", "Designing graphics"], answer: 1 },
-    { question: "What is a protocol?", options: ["A hardware device", "A set of rules for communication", "A web page", "A browser plugin"], answer: 1 },
-    { question: "What does TCP/IP stand for?", options: ["Total Control Protocol", "Transmission Control Protocol / Internet Protocol", "Technical Communication Path", "Internal Protocol"], answer: 1 },
-    { question: "What are the small parts of data divided by TCP called?", options: ["Chunks", "Layers", "Packets", "Pages"], answer: 2 },
-    { question: "What does TCP do if a packet is damaged or lost?", options: ["Deletes the file", "Requests it again", "Shuts down the network", "Ignores it"], answer: 1 },
-    { question: "Which protocol is responsible for delivering packets to the correct destination?", options: ["TCP", "IP", "HTTP", "SMTP"], answer: 1 },
-    { question: "What is an IP Address?", options: ["A user's password", "A unique number assigned to every device", "A website's title", "An email address"], answer: 1 },
-    { question: "How many layers does the TCP/IP model have?", options: ["2", "4", "5", "7"], answer: 1 },
-    { question: "Which layer of TCP/IP provides services directly to users?", options: ["Internet Layer", "Application Layer", "Transport Layer", "Network Access Layer"], answer: 1 },
-    { question: "Which protocol transfers web pages between a browser and a server?", options: ["FTP", "SMTP", "HTTP", "DNS"], answer: 2 },
-    { question: "What is the primary purpose of HTTPS?", options: ["To send emails", "To encrypt data for security", "To download large files", "To login remotely"], answer: 1 },
-    { question: "Which protocol is used to upload and download files?", options: ["SMTP", "FTP", "POP3", "SSH"], answer: 1 },
-    { question: "What protocol is used to send emails?", options: ["IMAP", "POP3", "SMTP", "HTTP"], answer: 2 },
-    { question: "Which protocol keeps emails on the server for access from multiple devices?", options: ["POP3", "IMAP", "DNS", "Telnet"], answer: 1 },
-    { question: "What is the function of DNS?", options: ["Encrypt data", "Convert domain names to IP addresses", "Send emails", "Transfer files"], answer: 1 },
-    { question: "What has mostly replaced Telnet today because it is more secure?", options: ["FTP", "SSH", "SMTP", "HTTP"], answer: 1 },
-    { question: "What is the default port number for HTTP?", options: ["443", "21", "80", "25"], answer: 2 },
-    { question: "What is the default port number for HTTPS?", options: ["80", "443", "53", "22"], answer: 1 },
-    { question: "Which port is used by SMTP?", options: ["110", "25", "143", "21"], answer: 1 },
-    { question: "What is the port number for DNS?", options: ["53", "23", "80", "443"], answer: 0 },
-    { question: "Which of these is a commonly used web server software?", options: ["Windows 11", "Apache", "Google Chrome", "Oracle"], answer: 1 },
-    { question: "What does the status code \"200\" mean?", options: ["Page Not Found", "OK (Request Successful)", "Bad Request", "Forbidden"], answer: 1 },
-    { question: "What does status code \"404\" indicate?", options: ["Request Successful", "Internal Server Error", "Page Not Found", "Unauthorized"], answer: 2 },
-    { question: "What is virtual hosting?", options: ["A server with no hardware", "Hosting multiple websites on a single server", "A website that only works in VR", "A temporary website"], answer: 1 },
-    { question: "In Name-Based virtual hosting, what is shared?", options: ["Domain Name", "IP Address", "Operating System only", "Nothing"], answer: 1 },
-    { question: "What is Chunked Transfer?", options: ["Deleting small files", "Sending data in small parts (chunks)", "A type of email protocol", "A remote login method"], answer: 1 },
-    { question: "Which of these is a benefit of chunked transfer?", options: ["Improves loading speed", "Allows streaming", "Avoids memory overload", "All of the above"], answer: 3 },
-    { question: "Which HTTP header is used to enable chunked transfer?", options: ["Content-Type", "Transfer-Encoding: chunked", "Connection: close", "Host"], answer: 1 },
-    { question: "Which of the following uses chunked transfer?", options: ["Video Streaming", "Live Data Updates", "Large File Downloads", "All of the above"], answer: 3 },
-    { question: "According to the sources, computer protocols are compared to what in human communication?", options: ["Physical strength", "Grammar rules", "Personality traits", "Vocabulary size"], answer: 1 },
-    { question: "Which specific function of the Internet Protocol (IP) involves finding the path for packets?", options: ["Packet ordering", "Error checking", "Routing packets", "Data encryption"], answer: 2 },
-    { question: "What is the relationship between the Internet and the World Wide Web?", options: ["They are exactly the same", "They are not the same", "The Web created the Internet", "They are unrelated"], answer: 1 },
-    { question: "Which port number is used for the Secure Shell (SSH) service?", options: ["21", "22", "23", "25"], answer: 1 },
-    { question: "Which port is used by IMAP to synchronize emails across devices?", options: ["110", "143", "53", "80"], answer: 1 },
-    { question: "Which HTTP status code is returned when the server requires authentication credentials?", options: ["400", "401", "403", "500"], answer: 1 },
-    { question: "What does the status code \"500\" signify?", options: ["Page Not Found", "Unauthorized access", "Internal Server Error", "Request Successful"], answer: 2 },
-    { question: "Which status code indicates that a page has been \"Moved Permanently\"?", options: ["200", "301", "404", "403"], answer: 1 },
-    { question: "In web server configuration, what is the \"Document Root\"?", options: ["The main website URL", "The physical folder location of files", "The database password", "The server's IP address"], answer: 1 },
-    { question: "Which tag is the root element of an HTML page?", options: ["<head>", "<body>", "<html>", "<title>"], answer: 2 },
-    { question: "Which tag is used to define the largest heading?", options: ["<h6>", "<heading>", "<h1>", "<head>"], answer: 2 },
-    { question: "Which HTML tag is used to define a paragraph?", options: ["<pg>", "<p>", "<para>", "<a>"], answer: 1 },
-    { question: "Which tag is used to insert a single line break?", options: ["<break>", "<lb>", "<br>", "<hr>"], answer: 2 },
-    { question: "Which tag is used to create a hyperlink?", options: ["<a>", "<link>", "<href>", "<url>"], answer: 0 },
-    { question: "Which attribute is used with the <a> tag to specify the destination URL?", options: ["src", "link", "href", "target"], answer: 2 },
-    { question: "Which tag is used to display an image?", options: ["<picture>", "<img>", "<pic>", "<src>"], answer: 1 },
-    { question: "Which attribute is used to specify the path of an image in the <img> tag?", options: ["href", "link", "src", "path"], answer: 2 },
-    { question: "Which tag is used to create an unordered (bulleted) list?", options: ["<ol>", "<list>", "<ul>", "<li>"], answer: 2 },
-    { question: "Which tag is used for an ordered (numbered) list?", options: ["<ol>", "<ul>", "<nl>", "<list>"], answer: 0 },
-    { question: "Which tag defines an individual item inside a list?", options: ["<item>", "<li>", "<list>", "<ol>"], answer: 1 },
-    { question: "Which section of an HTML document contains metadata and the title?", options: ["<body>", "<meta>", "<head>", "<footer>"], answer: 2 },
-    { question: "Which tag contains all the visible content of a web page?", options: ["<html>", "<head>", "<body>", "<main>"], answer: 2 },
-    { question: "Which tag is used to define the title shown in the browser's title bar?", options: ["<head>", "<meta>", "<title>", "<header>"], answer: 2 },
-    { question: "Which tag is used to create a table in HTML?", options: ["<tab>", "<table>", "<tr>", "<td>"], answer: 1 },
-    { question: "Which tag defines a single row in an HTML table?", options: ["<row>", "<td>", "<tr>", "<th>"], answer: 2 },
-    { question: "Which tag is used to define a standard data cell in a table?", options: ["<td>", "<tr>", "<th>", "<cell>"], answer: 0 },
-    { question: "Which tag is used to group large sections of HTML content?", options: ["<span>", "<group>", "<div>", "<section>"], answer: 2 },
-    { question: "Which tag is used to create a clickable button?", options: ["<input>", "<click>", "<button>", "<a>"], answer: 2 }
-];
-
-// Quiz 3: Compiler Construction Data (73 Questions)
+// Quiz 2: Compiler Construction Data (73 Questions)
 const compilerData = [
     { question: "A compiler for a high-level language that runs on one machine and produce code for different machine is called.", options: ["Optimizing compiler", "One pass compiler", "Cross compiler", "Multipass compiler"], answer: 2 },
     { question: "Lexical analyzer phase of a compiler is also called as", options: ["Scanner", "Tokenizer", "Parser", "Either scanner or tokenizer"], answer: 3 },
@@ -418,8 +414,7 @@ const compilerData = [
 ];
 
 let state = {
-    iot: { score: 0, answered: new Array(iotData.length).fill(false) },
-    websystems: { score: 0, answered: new Array(webData.length).fill(false) },
+    ai: { score: 0, answered: new Array(aiData.length).fill(false) },
     compiler: { score: 0, answered: new Array(compilerData.length).fill(false) }
 };
 
@@ -503,27 +498,14 @@ function handleAnswer(type, data, qIndex, selectedIndex, qCard) {
         resMsg.className = "result-msg wrong-res";
     }
 
-    let scoreId = 'score-iot';
-    if (type === 'websystems') scoreId = 'score-web';
-    if (type === 'compiler') scoreId = 'score-compiler';
-
+    let scoreId = (type === 'ai') ? 'score-ai' : 'score-compiler';
     document.getElementById(scoreId).textContent = state[type].score;
 }
 
 function resetQuiz(type) {
-    let data = iotData;
-    let quizId = 'quiz-iot';
-    let scoreId = 'score-iot';
-
-    if (type === 'websystems') {
-        data = webData;
-        quizId = 'quiz-web';
-        scoreId = 'score-web';
-    } else if (type === 'compiler') {
-        data = compilerData;
-        quizId = 'quiz-compiler';
-        scoreId = 'score-compiler';
-    }
+    let data = (type === 'ai') ? aiData : compilerData;
+    let quizId = (type === 'ai') ? 'quiz-ai' : 'quiz-compiler';
+    let scoreId = (type === 'ai') ? 'score-ai' : 'score-compiler';
 
     state[type].score = 0;
     state[type].answered = new Array(data.length).fill(false);
@@ -532,42 +514,33 @@ function resetQuiz(type) {
 }
 
 function switchTab(tabKey) {
-    let targetKey = 'iot';
-    if (tabKey === 'websystems' || tabKey === 'web') targetKey = 'websystems';
-    if (tabKey === 'compiler') targetKey = 'compiler';
+    let targetKey = (tabKey === 'compiler') ? 'compiler' : 'ai';
     
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
 
-    if (targetKey === 'websystems') {
-        document.getElementById('websystems').classList.add('active');
-        document.getElementById('tab-web-btn').classList.add('active');
-        window.location.hash = 'websystems';
-    } else if (targetKey === 'compiler') {
+    if (targetKey === 'compiler') {
         document.getElementById('compiler').classList.add('active');
         document.getElementById('tab-compiler-btn').classList.add('active');
         window.location.hash = 'compiler';
     } else {
-        document.getElementById('iot').classList.add('active');
-        document.getElementById('tab-iot-btn').classList.add('active');
-        window.location.hash = 'iot';
+        document.getElementById('ai').classList.add('active');
+        document.getElementById('tab-ai-btn').classList.add('active');
+        window.location.hash = 'ai';
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Initial Setup
-renderQuiz('iot', iotData, 'quiz-iot');
-renderQuiz('websystems', webData, 'quiz-web');
+renderQuiz('ai', aiData, 'quiz-ai');
 renderQuiz('compiler', compilerData, 'quiz-compiler');
 
 // Handle Hash Routing on Load
 const initialHash = window.location.hash.replace('#', '');
-if (initialHash === 'websystems' || initialHash === 'web') {
-    switchTab('websystems');
-} else if (initialHash === 'compiler') {
+if (initialHash === 'compiler') {
     switchTab('compiler');
 } else {
-    switchTab('iot');
+    switchTab('ai');
 }
 </script>
 
