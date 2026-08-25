@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science MCQs Practice</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --accent-color: #2563eb;
+            --correct-bg: #dcfce7;
+            --correct-border: #16a34a;
+            --incorrect-bg: #fee2e2;
+            --incorrect-border: #dc2626;
+            --option-hover: #f1f5f9;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .quiz-container {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .topic-selector-container {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background-color: #fff;
+            font-size: 1rem;
+            color: var(--text-color);
+            outline: none;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover:not(.disabled) {
+            background-color: var(--option-hover);
+            border-color: #cbd5e1;
+        }
+
+        .option.correct {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--correct-border) !important;
+            color: #14532d;
+            font-weight: 600;
+        }
+
+        .option.incorrect {
+            background-color: var(--incorrect-bg) !important;
+            border-color: var(--incorrect-border) !important;
+            color: #7f1d1d;
+        }
+
+        .option.disabled {
+            cursor: default;
+        }
+
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="header">
+        <h1>Data Science Quiz Practice</h1>
+        <div class="topic-selector-container">
+            <label for="topicSelect">Select Topic:</label>
+            <select id="topicSelect" onchange="switchTopic()">
+                <option value="all">All Topics (115 MCQs)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="card" id="quizCard">
+        <div class="q-header">
+            <span id="topicLabel">Topic</span>
+            <span id="progressLabel">Q 1 / 115</span>
+        </div>
+        <div class="question-text" id="questionText">Loading...</div>
+        <div class="options" id="optionsContainer"></div>
+        <div class="nav-controls">
+            <button id="prevBtn" onclick="prevQuestion()">Previous</button>
+            <button id="nextBtn" onclick="nextQuestion()">Next</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const quizData = [
+  // Section 1
+  { topic: "Introduction to data science", q: "What is Data Science?", options: ["Study of computer hardware", "Extracting knowledge and insights from data", "Creating websites only", "Managing networks"], answer: 1 },
+  { topic: "Introduction to data science", q: "Which of the following is a major goal of Data Science?", options: ["Data storage only", "Knowledge discovery and decision making", "Computer repair", "Software installation"], answer: 1 },
+  { topic: "Introduction to data science", q: "Which skill is commonly used in Data Science?", options: ["Cooking", "Data analysis", "Carpentry", "Painting"], answer: 1 },
+  { topic: "Introduction to data science", q: "What is the first step in the Data Science life cycle?", options: ["Building models", "Generating visualizations", "Asking the right questions", "Deploying software"], answer: 2 },
+  { topic: "Introduction to data science", q: "Why is asking the right question important in Data Science?", options: ["It reduces data storage", "It defines the problem to solve", "It improves internet speed", "It removes all errors"], answer: 1 },
+  { topic: "Introduction to data science", q: "What is meant by obtaining data?", options: ["Deleting data", "Collecting relevant data from sources", "Printing reports", "Designing websites"], answer: 1 },
+  { topic: "Introduction to data science", q: "Which is a common source of data?", options: ["Databases", "Social media", "Sensors", "All of the above"], answer: 3 },
+  { topic: "Introduction to data science", q: "Understanding data involves:", options: ["Ignoring missing values", "Exploring and examining data characteristics", "Building networks", "Writing essays"], answer: 1 },
+  { topic: "Introduction to data science", q: "Which activity helps understand data better?", options: ["Data exploration", "Hardware installation", "Coding games", "Graphic design"], answer: 0 },
+  { topic: "Introduction to data science", q: "What is a predictive model used for?", options: ["Predicting future outcomes", "Storing data", "Creating spreadsheets", "Designing databases"], answer: 0 },
+  { topic: "Introduction to data science", q: "Which stage comes after understanding data?", options: ["Building predictive models", "Data deletion", "Networking", "Hardware testing"], answer: 0 },
+  { topic: "Introduction to data science", q: "What is the purpose of data visualization?", options: ["Hide information", "Present data in graphical form", "Encrypt files", "Increase storage capacity"], answer: 1 },
+  { topic: "Introduction to data science", q: "Which of the following is a data visualization tool?", options: ["Plotly", "Matplotlib", "Tableau", "All of the above"], answer: 3 },
+  { topic: "Introduction to data science", q: "A chart showing trends over time is called a:", options: ["Pie Chart", "Line Chart", "Histogram", "Table"], answer: 1 },
+  { topic: "Introduction to data science", q: "Which Data Science step focuses on collecting information?", options: ["Understanding data", "Obtaining data", "Visualization", "Modeling"], answer: 1 },
+  { topic: "Introduction to data science", q: "Predictive models are built using:", options: ["Historical data", "Random guesses", "Network cables", "Operating systems"], answer: 0 },
+  { topic: "Introduction to data science", q: "Which of the following is NOT a step in the Data Science life cycle?", options: ["Asking the right questions", "Obtaining data", "Building predictive models", "Manufacturing hardware"], answer: 3 },
+  { topic: "Introduction to data science", q: "Data visualization helps users to:", options: ["Understand patterns and trends", "Reduce internet usage", "Install software", "Increase memory size"], answer: 0 },
+  { topic: "Introduction to data science", q: "Which stage identifies patterns and relationships in data?", options: ["Understanding data", "Printing reports", "Data deletion", "Hardware maintenance"], answer: 0 },
+  { topic: "Introduction to data science", q: "The final step mentioned in the Data Science process is:", options: ["Data Collection", "Understanding Data", "Generating Visualizations", "Asking Questions"], answer: 2 },
+
+  // Section 2
+  { topic: "Building Data Products & Introduction to Data", q: "What is a data product?", options: ["A physical product made from raw materials", "A product or application that uses data to provide value", "A computer hardware device", "A programming language"], answer: 1 },
+  { topic: "Building Data Products & Introduction to Data", q: "What is the main purpose of building a data product?", options: ["To store files permanently", "To provide useful insights, predictions, or services using data", "To increase computer speed", "To replace databases"], answer: 1 },
+  { topic: "Building Data Products & Introduction to Data", q: "Which of the following is an example of a data product?", options: ["Recommendation system", "Keyboard", "Printer", "Monitor"], answer: 0 },
+  { topic: "Building Data Products & Introduction to Data", q: "Which factor is important when building a successful data product?", options: ["Understanding user needs", "Using as much data as possible", "Avoiding data analysis", "Removing all visualizations"], answer: 0 },
+  { topic: "Building Data Products & Introduction to Data", q: "What is data?", options: ["A collection of facts, observations, or information", "Only numbers stored in a computer", "Only text documents", "Computer hardware"], answer: 0 },
+  { topic: "Building Data Products & Introduction to Data", q: "Which of the following is an example of numerical data?", options: ["Student name", "City name", "Student age", "Blood group"], answer: 2 },
+  { topic: "Building Data Products & Introduction to Data", q: "Which type of data consists of categories or labels?", options: ["Categorical data", "Numerical data", "Continuous data", "Binary code"], answer: 0 },
+  { topic: "Building Data Products & Introduction to Data", q: "Which of the following is an example of categorical data?", options: ["Height = 170 cm", "Age = 20 years", "Gender = Male", "Weight = 65 kg"], answer: 2 },
+  { topic: "Building Data Products & Introduction to Data", q: "What is discrete data?", options: ["Data that can take any value within a range", "Data that consists of countable values", "Data that contains only text", "Data that cannot be measured"], answer: 1 },
+  { topic: "Building Data Products & Introduction to Data", q: "Which is an example of continuous data?", options: ["Number of students in a class", "Number of cars", "Height of a person", "Number of books"], answer: 2 },
+  { topic: "Building Data Products & Introduction to Data", q: "What is a dataset?", options: ["A single data value", "A collection of related data organized for analysis", "A computer program", "A network connection"], answer: 1 },
+  { topic: "Building Data Products & Introduction to Data", q: "In a tabular dataset, what does a row usually represent?", options: ["A variable", "An individual observation or record", "A data type", "A formula"], answer: 1 },
+  { topic: "Building Data Products & Introduction to Data", q: "In a dataset, what does a column usually represent?", options: ["A variable or feature", "A complete database", "A single record", "A computer file"], answer: 0 },
+  { topic: "Building Data Products & Introduction to Data", q: "Which of the following is an example of a binary data type?", options: ["Age", "Height", "Yes/No", "Temperature"], answer: 2 },
+  { topic: "Building Data Products & Introduction to Data", q: "Which statement about datasets is correct?", options: ["A dataset can contain only numerical data", "A dataset can contain different types of data", "A dataset cannot contain missing values", "A dataset must always contain exactly 100 rows"], answer: 1 },
+
+  // Section 3
+  { topic: "Data Quality", q: "What is data quality?", options: ["The amount of data collected", "The degree to which data is accurate, complete, and reliable", "The size of a database", "The speed of a computer"], answer: 1 },
+  { topic: "Data Quality", q: "Which of the following is an important characteristic of high-quality data?", options: ["Accuracy", "Randomness", "Duplication", "Incompleteness"], answer: 0 },
+  { topic: "Data Quality", q: "What is measurement error?", options: ["Error caused by storing data", "Difference between the measured value and the true value", "Error caused by deleting data", "Error caused by sorting data"], answer: 1 },
+  { topic: "Data Quality", q: "Which of the following can cause measurement errors?", options: ["Faulty measuring instruments", "Incorrect measurement procedures", "Human mistakes", "All of the above"], answer: 3 },
+  { topic: "Data Quality", q: "What is sampling bias?", options: ["Selecting a sample that does not properly represent the population", "Collecting too much data", "Removing duplicate data", "Correcting missing values"], answer: 0 },
+  { topic: "Data Quality", q: "What is a common problem during data collection?", options: ["Missing data", "Perfect accuracy", "Complete information", "Consistent measurements"], answer: 0 },
+  { topic: "Data Quality", q: "Why is missing data a problem?", options: ["It can reduce the accuracy of analysis", "It always increases data quality", "It makes datasets larger", "It removes measurement errors"], answer: 0 },
+  { topic: "Data Quality", q: "What is response bias?", options: ["When respondents provide answers that do not accurately reflect their true opinions or behavior", "When data is stored in a database", "When a computer crashes", "When data is duplicated"], answer: 0 },
+  { topic: "Data Quality", q: "Which method can help improve data quality during collection?", options: ["Using standardized procedures", "Ignoring errors", "Collecting data randomly without a plan", "Avoiding quality checks"], answer: 0 },
+  { topic: "Data Quality", q: "Why should data collection instruments be tested before use?", options: ["To increase the amount of data", "To identify and reduce measurement problems", "To delete unnecessary records", "To make the dataset smaller"], answer: 1 },
+
+  // Section 4
+  { topic: "Data Preprocessing Stages", q: "What is the main purpose of data preprocessing?", options: ["To make data more difficult to analyze", "To prepare raw data for analysis or modeling", "To delete all data", "To increase hardware performance"], answer: 1 },
+  { topic: "Data Preprocessing Stages", q: "What is data aggregation?", options: ["Dividing data into smaller parts", "Combining data into summarized forms", "Deleting duplicate records", "Removing all numerical values"], answer: 1 },
+  { topic: "Data Preprocessing Stages", q: "Which of the following is an example of data aggregation?", options: ["Calculating the average monthly sales", "Changing a person's name", "Removing a column", "Selecting one random record"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "What is the main purpose of sampling?", options: ["To work with a representative subset of data", "To increase the size of the dataset", "To remove all categorical data", "To create new variables"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "Which sampling method gives every member of a population an equal chance of being selected?", options: ["Cluster sampling", "Systematic sampling", "Simple random sampling", "Convenience sampling"], answer: 2 },
+  { topic: "Data Preprocessing Stages", q: "What is dimensionality reduction?", options: ["Increasing the number of features", "Reducing the number of features while preserving important information", "Increasing the number of records", "Removing the target variable only"], answer: 1 },
+  { topic: "Data Preprocessing Stages", q: "Which of the following is a dimensionality reduction technique?", options: ["PCA", "SQL", "HTML", "FTP"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "What is the purpose of feature subset selection?", options: ["To select the most useful features from the available features", "To create more records", "To increase data duplication", "To remove the entire dataset"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "Why is feature subset selection useful in machine learning?", options: ["It can reduce model complexity and improve performance", "It always increases the number of features", "It makes data collection unnecessary", "It guarantees 100% accuracy"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "What is feature creation?", options: ["Deleting existing features", "Creating new features from existing data", "Removing missing values only", "Sampling the dataset"], answer: 1 },
+  { topic: "Data Preprocessing Stages", q: "Which is an example of feature creation?", options: ["Creating 'Age' from 'Date of Birth'", "Deleting the age column", "Selecting random rows", "Removing duplicate records"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "What is data cleaning?", options: ["Identifying and correcting errors or inconsistencies in data", "Increasing the number of records", "Creating a database", "Converting data into images"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "Which preprocessing technique can be used to handle different scales of numerical features?", options: ["Normalization", "Aggregation", "Sampling", "Feature deletion"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "What is the benefit of dimensionality reduction?", options: ["It can reduce computational complexity", "It always increases data size", "It creates missing values", "It eliminates the need for data analysis"], answer: 0 },
+  { topic: "Data Preprocessing Stages", q: "Which sequence represents common data preprocessing activities?", options: ["Data cleaning → transformation → feature selection/creation → modeling", "Modeling → data collection → data deletion → cleaning", "Visualization → deletion → sampling → data collection", "Feature deletion → modeling → data collection → cleaning"], answer: 0 },
+
+  // Section 5
+  { topic: "Algebraic & Probabilistic View of Data", q: "How can data be represented from an algebraic point of view?", options: ["As vectors and matrices", "As pictures only", "As sentences only", "As audio files only"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What is a vector in data science?", options: ["A collection of values arranged in a specific order", "A database server", "A programming language", "A data visualization tool"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "In a dataset, a row can often be represented as a:", options: ["Vector", "Graph only", "Probability", "Function name"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What is a matrix?", options: ["A collection of numbers arranged in rows and columns", "A single numerical value", "A type of probability", "A programming error"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "In a data matrix, what do columns commonly represent?", options: ["Features or variables", "Individual computers", "Probability values only", "File names"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What is the main purpose of algebraic representation of data?", options: ["To perform mathematical operations and analysis on data", "To delete data", "To prevent data collection", "To create computer hardware"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "Which operation is commonly performed on vectors and matrices?", options: ["Matrix multiplication", "File compression", "Web browsing", "Text formatting"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What does probability measure?", options: ["The likelihood that an event will occur", "The size of a dataset", "The number of columns in a dataset", "The speed of a computer"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What is the probability of an event that is certain to occur?", options: ["0", "0.25", "0.5", "1"], answer: 3 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What is the probability of an impossible event?", options: ["0", "0.5", "1", "2"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What is a random variable?", options: ["A variable whose value is determined by the outcome of a random experiment", "A variable that always has the same value", "A fixed mathematical constant", "A database column that cannot change"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "Which of the following is an example of a random experiment?", options: ["Tossing a coin", "Adding 2 + 2", "Reading a fixed number", "Typing a password"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What does a probability distribution describe?", options: ["The probabilities associated with possible values of a random variable", "The physical location of a computer", "The number of columns in a table", "The structure of a website"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "What is the expected value of a random variable?", options: ["Its long-run average or mean value", "Its minimum value only", "Its maximum value only", "Its most frequent value only"], answer: 0 },
+  { topic: "Algebraic & Probabilistic View of Data", q: "Which statement best describes the probabilistic view of data?", options: ["Data can be viewed as observations generated from underlying probability distributions", "Data contains only fixed values with no uncertainty", "Data can only be represented using images", "Data cannot be analyzed mathematically"], answer: 0 },
+
+  // Section 6
+  { topic: "Python Data Science Stack", q: "Which programming language is widely used in Data Science?", options: ["Python", "HTML", "CSS", "XML"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "Why is Python popular in Data Science?", options: ["It has many useful libraries and is easy to learn", "It can only be used for web design", "It does not support data analysis", "It cannot work with numerical data"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "What is NumPy mainly used for?", options: ["Numerical and scientific computing", "Web page design", "Creating presentations", "Managing emails"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "What is the full form of NumPy?", options: ["Numerical Python", "Number Programming", "Numeric Program", "New Python"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "Which NumPy object is commonly used to store numerical data?", options: ["ndarray", "DataFrame", "Figure", "String"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "What is Pandas mainly used for?", options: ["Data manipulation and analysis", "Computer networking", "Game development", "Operating system management"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "Which Pandas data structure is two-dimensional?", options: ["Series", "DataFrame", "Array", "Tuple"], answer: 1 },
+  { topic: "Python Data Science Stack", q: "Which Pandas data structure is one-dimensional?", options: ["DataFrame", "Series", "Matrix", "Table"], answer: 1 },
+  { topic: "Python Data Science Stack", q: "Which function is commonly used to read a CSV file using Pandas?", options: ["pd.read_csv()", "pd.open_csv()", "pd.get_csv()", "pd.load_csv()"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "What is Matplotlib mainly used for?", options: ["Data visualization", "Data storage", "Data encryption", "Database creation"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "Which of the following can be created using Matplotlib?", options: ["Line charts", "Bar charts", "Scatter plots", "All of the above"], answer: 3 },
+  { topic: "Python Data Science Stack", q: "Which library is commonly imported as np?", options: ["Pandas", "NumPy", "Matplotlib", "Seaborn"], answer: 1 },
+  { topic: "Python Data Science Stack", q: "Which library is commonly imported as pd?", options: ["NumPy", "Pandas", "Matplotlib", "Scikit-learn"], answer: 1 },
+  { topic: "Python Data Science Stack", q: "Which statement correctly describes the Python Data Science stack?", options: ["Python provides the programming environment, NumPy supports numerical computing, Pandas handles data analysis, and Matplotlib supports visualization", "All four are operating systems", "All four are database management systems", "They are all programming languages"], answer: 0 },
+  { topic: "Python Data Science Stack", q: "Which sequence is most appropriate for a basic data analysis task?", options: ["Python → Pandas/NumPy → Matplotlib", "Matplotlib → HTML → CSS", "Pandas → Photoshop → Python", "NumPy → PowerPoint → HTML"], answer: 0 },
+
+  // Section 7
+  { topic: "Relational Algebra & SQL", q: "What is relational algebra?", options: ["A programming language", "A formal query language used to manipulate relational data", "A data visualization tool", "A statistical method"], answer: 1 },
+  { topic: "Relational Algebra & SQL", q: "Which data structure is used in a relational database?", options: ["Tables", "Images", "Audio files", "Graphs only"], answer: 0 },
+  { topic: "Relational Algebra & SQL", q: "Which relational algebra operation selects specific rows from a table?", options: ["Projection", "Selection", "Union", "Join"], answer: 1 },
+  { topic: "Relational Algebra & SQL", q: "Which symbol is commonly used for the selection operation?", options: ["π", "σ", "∪", "×"], answer: 1 },
+  { topic: "Relational Algebra & SQL", q: "What does the projection operation do?", options: ["Selects specific rows", "Selects specific columns", "Combines two tables", "Deletes the database"], answer: 1 },
+  { topic: "Relational Algebra & SQL", q: "Which symbol represents projection in relational algebra?", options: ["σ", "π", "∩", "−"], answer: 1 },
+  { topic: "Relational Algebra & SQL", q: "What is the purpose of the union operation?", options: ["Combines rows from two compatible relations", "Selects columns from one table", "Sorts a table", "Removes all records"], answer: 0 },
+  { topic: "Relational Algebra & SQL", q: "For two relations to be combined using union, they must generally have:", options: ["Different numbers of columns", "Compatible attributes and domains", "No rows", "The same data values"], answer: 1 },
+  { topic: "Relational Algebra & SQL", q: "What does the Cartesian product operation produce?", options: ["Only matching rows", "Every possible combination of rows from two relations", "Only unique columns", "Only duplicate records"], answer: 1 },
+  { topic: "Relational Algebra & SQL", q: "Which operation is commonly used to combine related data from two or more tables?", options: ["Join", "Selection", "Projection", "Rename"], answer: 0 },
+  { topic: "Relational Algebra & SQL", q: "Why is relational algebra important in Data Science?", options: ["It helps retrieve and manipulate data for analysis", "It creates computer hardware", "It replaces all programming languages", "It is used only for image editing"], answer: 0 },
+  { topic: "Relational Algebra & SQL", q: "Which operation returns rows that are common to two relations?", options: ["Union", "Intersection", "Difference", "Projection"], answer: 1 },
+  { topic: "Relational Algebra & SQL", q: "What does the difference operation in relational algebra do?", options: ["Returns tuples present in one relation but not in the other", "Combines all columns", "Multiplies two tables", "Selects random records"], answer: 0 },
+  { topic: "Relational Algebra & SQL", q: "Which relational algebra operation can be used to change the name of a relation or its attributes?", options: ["Rename", "Join", "Union", "Selection"], answer: 0 },
+  { topic: "Relational Algebra & SQL", q: "Which statement best explains the relationship between relational algebra and Data Science?", options: ["Relational algebra provides operations for querying and transforming structured data used in data analysis", "Relational algebra is used only for creating graphs", "Relational algebra is a type of machine learning algorithm", "Relational algebra is used only for collecting sensor data"], answer: 0 },
+
+  // Section 8
+  { topic: "Scraping & Data Wrangling", q: "What is web scraping?", options: ["Collecting data from websites automatically", "Deleting website data", "Designing a website", "Encrypting web pages"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "What is the main purpose of data wrangling?", options: ["To prepare raw data for analysis", "To create computer hardware", "To increase internet speed", "To design websites"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "Which of the following is a common step in data wrangling?", options: ["Cleaning data", "Structuring data", "Assessing data", "All of the above"], answer: 3 },
+  { topic: "Scraping & Data Wrangling", q: "What does data assessment involve?", options: ["Examining data to identify quality and consistency issues", "Deleting the entire dataset", "Creating a new programming language", "Designing a database server"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "Which of the following is a data quality issue?", options: ["Missing values", "Duplicate records", "Incorrect values", "All of the above"], answer: 3 },
+  { topic: "Scraping & Data Wrangling", q: "What is data structuring?", options: ["Organizing data into a suitable format for analysis", "Removing all data", "Encrypting data", "Increasing the number of records"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "What is data cleaning?", options: ["Identifying and correcting inaccurate, incomplete, or inconsistent data", "Collecting data from websites only", "Creating charts", "Building machine learning models"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "How can missing values be handled?", options: ["By removing affected records", "By filling them with appropriate values", "By using statistical methods such as mean or median where appropriate", "All of the above"], answer: 3 },
+  { topic: "Scraping & Data Wrangling", q: "What are duplicate records?", options: ["Records that contain repeated information unnecessarily", "Records with missing values only", "Records containing numerical data", "Records that are always incorrect"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "What is data munging?", options: ["Transforming and converting raw data into a usable format", "Deleting a database", "Creating computer networks", "Designing a website"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "Which operation is commonly performed during data munging?", options: ["Converting data types", "Combining datasets", "Reshaping data", "All of the above"], answer: 3 },
+  { topic: "Scraping & Data Wrangling", q: "Why is data wrangling important in Data Science?", options: ["Poor-quality data can lead to unreliable analysis and models", "It eliminates the need for data collection", "It guarantees 100% accurate predictions", "It replaces machine learning"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "Which Python library is widely used for data wrangling?", options: ["Pandas", "Pygame", "Tkinter", "Turtle"], answer: 0 },
+  { topic: "Scraping & Data Wrangling", q: "What should be done after collecting data through scraping?", options: ["Immediately build a model without checking it", "Assess and clean the collected data", "Delete all collected data", "Convert everything into images"], answer: 1 },
+  { topic: "Scraping & Data Wrangling", q: "Which sequence best represents a typical data wrangling process?", options: ["Assess → Structure → Clean → Transform/Munge", "Clean → Delete → Assess → Ignore", "Model → Scrape → Delete → Structure", "Visualize → Delete → Scrape → Ignore"], answer: 0 },
+
+  // Section 9
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "What is the primary purpose of Descriptive Data Analysis?", options: ["Predict future outcomes", "Summarize and describe data", "Build machine learning models", "Collect data"], answer: 1 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Exploratory Data Analysis (EDA) is mainly used to:", options: ["Deploy applications", "Discover patterns and relationships in data", "Create databases", "Encrypt data"], answer: 1 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which Python library is commonly used for creating static visualizations?", options: ["Plotly", "Matplotlib", "NumPy", "TensorFlow"], answer: 1 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which library is known for creating interactive visualizations?", options: ["Pandas", "Matplotlib", "Plotly", "Scikit-learn"], answer: 2 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which chart is commonly used to show trends over time?", options: ["Pie Chart", "Histogram", "Line Chart", "Scatter Plot"], answer: 2 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "A histogram is mainly used to display:", options: ["Data distribution", "Categories only", "Geographic data", "Network connections"], answer: 0 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which plot is useful for showing the relationship between two numerical variables?", options: ["Pie Chart", "Scatter Plot", "Bar Chart", "Histogram"], answer: 1 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "What does EDA help identify?", options: ["Hardware issues", "Data patterns, trends, and outliers", "Programming errors only", "Network failures"], answer: 1 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which of the following is an advantage of Plotly?", options: ["Interactive charts", "Database management", "Data encryption", "Software testing"], answer: 0 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which Matplotlib module is most commonly used for plotting?", options: ["matplotlib.plot", "matplotlib.pyplot", "matplotlib.chart", "matplotlib.graph"], answer: 1 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which visualization is best for comparing categories?", options: ["Bar Chart", "Histogram", "Scatter Plot", "Line Chart"], answer: 0 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "What is an outlier in a dataset?", options: ["A missing value", "A duplicate value", "A value significantly different from others", "A category label"], answer: 2 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which chart is commonly used to show proportions of a whole?", options: ["Scatter Plot", "Pie Chart", "Histogram", "Line Chart"], answer: 1 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Before building predictive models, data scientists often perform:", options: ["Data Encryption", "Exploratory Data Analysis", "Network Configuration", "Software Deployment"], answer: 1 },
+  { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "The main goal of data visualization in EDA is to:", options: ["Increase storage space", "Improve internet speed", "Understand and communicate insights from data", "Replace databases"], answer: 2 }
+];
+
+let filteredData = [...quizData];
+let currentIndex = 0;
+let userAnswers = new Array(quizData.length).fill(null);
+
+function initTopics() {
+    const topics = [...new Set(quizData.map(q => q.topic))];
+    const select = document.getElementById("topicSelect");
+    topics.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t;
+        opt.textContent = t;
+        select.appendChild(opt);
+    });
+}
+
+function switchTopic() {
+    const selectedTopic = document.getElementById("topicSelect").value;
+    if (selectedTopic === "all") {
+        filteredData = [...quizData];
+    } else {
+        filteredData = quizData.filter(q => q.topic === selectedTopic);
+    }
+    currentIndex = 0;
+    renderQuestion();
+}
+
+function renderQuestion() {
+    const q = filteredData[currentIndex];
+    const globalIndex = quizData.indexOf(q);
+
+    document.getElementById("topicLabel").textContent = q.topic;
+    document.getElementById("progressLabel").textContent = `Q ${currentIndex + 1} / ${filteredData.length}`;
+    document.getElementById("questionText").textContent = `${currentIndex + 1}. ${q.q}`;
+
+    const container = document.getElementById("optionsContainer");
+    container.innerHTML = "";
+
+    const letters = ["A", "B", "C", "D"];
+    const userAns = userAnswers[globalIndex];
+
+    q.options.forEach((opt, idx) => {
+        const div = document.createElement("div");
+        div.className = "option";
+        div.textContent = `${letters[idx]}) ${opt}`;
+
+        if (userAns !== null) {
+            div.classList.add("disabled");
+            if (idx === q.answer) {
+                div.classList.add("correct");
+            } else if (idx === userAns) {
+                div.classList.add("incorrect");
+            }
+        } else {
+            div.onclick = () => selectOption(globalIndex, idx);
+        }
+
+        container.appendChild(div);
+    });
+
+    document.getElementById("prevBtn").disabled = currentIndex === 0;
+    document.getElementById("nextBtn").disabled = currentIndex === filteredData.length - 1;
+}
+
+function selectOption(globalIndex, optionIndex) {
+    userAnswers[globalIndex] = optionIndex;
+    renderQuestion();
+}
+
+function prevQuestion() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+    }
+}
+
+function nextQuestion() {
+    if (currentIndex < filteredData.length - 1) {
+        currentIndex++;
+        renderQuestion();
+    }
+}
+
+initTopics();
+renderQuestion();
+</script>
+</body>
+</html>
