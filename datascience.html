@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Science MCQs Practice</title>
+    <title>Data Science MCQs Practice & Study</title>
     <style>
         :root {
             --bg-color: #f4f6f9;
             --card-bg: #ffffff;
             --text-color: #333333;
             --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
             --correct-bg: #dcfce7;
             --correct-border: #16a34a;
             --incorrect-bg: #fee2e2;
             --incorrect-border: #dc2626;
             --option-hover: #f1f5f9;
+            --tab-inactive: #e2e8f0;
         }
 
         body {
@@ -27,36 +29,59 @@
             justify-content: center;
         }
 
-        .quiz-container {
+        .main-container {
             width: 100%;
-            max-width: 700px;
+            max-width: 800px;
         }
 
-        .header {
+        /* Tabs Styling */
+        .tabs-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            background-color: var(--tab-inactive);
+            color: #475569;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Control Panel */
+        .control-panel {
             background-color: var(--card-bg);
-            padding: 20px;
+            padding: 16px 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
             margin-bottom: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            margin: 0 0 10px 0;
-            font-size: 1.5rem;
-            color: var(--accent-color);
-        }
-
-        .topic-selector-container {
-            margin-top: 15px;
-            text-align: left;
         }
 
         label {
             font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             font-size: 0.9rem;
+            color: #475569;
         }
 
         select {
@@ -65,16 +90,17 @@
             border-radius: 8px;
             border: 1px solid #cbd5e1;
             background-color: #fff;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-color);
             outline: none;
         }
 
+        /* Quiz Layout */
         .card {
             background-color: var(--card-bg);
             border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
             margin-bottom: 20px;
         }
 
@@ -112,7 +138,7 @@
             align-items: center;
         }
 
-        .option:hover:not(.disabled) {
+        .quiz-option:hover:not(.disabled) {
             background-color: var(--option-hover);
             border-color: #cbd5e1;
         }
@@ -138,10 +164,10 @@
             display: flex;
             justify-content: space-between;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 18px;
         }
 
-        button {
+        .btn {
             flex: 1;
             padding: 12px;
             border: none;
@@ -154,46 +180,103 @@
             transition: background 0.2s;
         }
 
-        button:disabled {
+        .btn:disabled {
             background-color: #94a3b8;
             cursor: not-allowed;
         }
 
-        button:hover:not(:disabled) {
-            background-color: #1d4ed8;
+        .btn:hover:not(:disabled) {
+            background-color: var(--accent-hover);
+        }
+
+        /* Study List Layout */
+        .study-item {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 16px;
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .study-item .topic-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .study-item .q-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .study-opts {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .study-opt {
+            padding: 10px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-<div class="quiz-container">
-    <div class="header">
-        <h1>Data Science Quiz Practice</h1>
-        <div class="topic-selector-container">
-            <label for="topicSelect">Select Topic:</label>
-            <select id="topicSelect" onchange="switchTopic()">
+<div class="main-container">
+
+    <!-- Header Navigation Tabs -->
+    <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchMainTab('studyTab')">📖 Solved Study Mode</button>
+        <button class="tab-btn" onclick="switchMainTab('quizTab')">✍️ Interactive Quiz</button>
+    </div>
+
+    <!-- TAB 1: SOLVED STUDY MODE -->
+    <div id="studyTab" class="tab-content active">
+        <div class="control-panel">
+            <label for="studyTopicSelect">Filter Study Material by Topic:</label>
+            <select id="studyTopicSelect" onchange="renderStudyList()">
                 <option value="all">All Topics (115 MCQs)</option>
             </select>
         </div>
+        <div id="studyListContainer"></div>
     </div>
 
-    <div class="card" id="quizCard">
-        <div class="q-header">
-            <span id="topicLabel">Topic</span>
-            <span id="progressLabel">Q 1 / 115</span>
+    <!-- TAB 2: INTERACTIVE QUIZ MODE -->
+    <div id="quizTab" class="tab-content">
+        <div class="control-panel">
+            <label for="quizTopicSelect">Filter Quiz by Topic:</label>
+            <select id="quizTopicSelect" onchange="switchQuizTopic()">
+                <option value="all">All Topics (115 MCQs)</option>
+            </select>
         </div>
-        <div class="question-text" id="questionText">Loading...</div>
-        <div class="options" id="optionsContainer"></div>
-        <div class="nav-controls">
-            <button id="prevBtn" onclick="prevQuestion()">Previous</button>
-            <button id="nextBtn" onclick="nextQuestion()">Next</button>
+
+        <div class="card">
+            <div class="q-header">
+                <span id="quizTopicLabel">Topic</span>
+                <span id="quizProgressLabel">Q 1 / 115</span>
+            </div>
+            <div class="question-text" id="quizQuestionText">Loading...</div>
+            <div class="options" id="quizOptionsContainer"></div>
+            <div class="nav-controls">
+                <button class="btn" id="prevBtn" onclick="prevQuestion()">Previous</button>
+                <button class="btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+            </div>
         </div>
     </div>
+
 </div>
 
 <script>
 const quizData = [
-  // Section 1
+  // Section 1: Introduction to data science
   { topic: "Introduction to data science", q: "What is Data Science?", options: ["Study of computer hardware", "Extracting knowledge and insights from data", "Creating websites only", "Managing networks"], answer: 1 },
   { topic: "Introduction to data science", q: "Which of the following is a major goal of Data Science?", options: ["Data storage only", "Knowledge discovery and decision making", "Computer repair", "Software installation"], answer: 1 },
   { topic: "Introduction to data science", q: "Which skill is commonly used in Data Science?", options: ["Cooking", "Data analysis", "Carpentry", "Painting"], answer: 1 },
@@ -215,7 +298,7 @@ const quizData = [
   { topic: "Introduction to data science", q: "Which stage identifies patterns and relationships in data?", options: ["Understanding data", "Printing reports", "Data deletion", "Hardware maintenance"], answer: 0 },
   { topic: "Introduction to data science", q: "The final step mentioned in the Data Science process is:", options: ["Data Collection", "Understanding Data", "Generating Visualizations", "Asking Questions"], answer: 2 },
 
-  // Section 2
+  // Section 2: Building Data Products
   { topic: "Building Data Products & Introduction to Data", q: "What is a data product?", options: ["A physical product made from raw materials", "A product or application that uses data to provide value", "A computer hardware device", "A programming language"], answer: 1 },
   { topic: "Building Data Products & Introduction to Data", q: "What is the main purpose of building a data product?", options: ["To store files permanently", "To provide useful insights, predictions, or services using data", "To increase computer speed", "To replace databases"], answer: 1 },
   { topic: "Building Data Products & Introduction to Data", q: "Which of the following is an example of a data product?", options: ["Recommendation system", "Keyboard", "Printer", "Monitor"], answer: 0 },
@@ -232,7 +315,7 @@ const quizData = [
   { topic: "Building Data Products & Introduction to Data", q: "Which of the following is an example of a binary data type?", options: ["Age", "Height", "Yes/No", "Temperature"], answer: 2 },
   { topic: "Building Data Products & Introduction to Data", q: "Which statement about datasets is correct?", options: ["A dataset can contain only numerical data", "A dataset can contain different types of data", "A dataset cannot contain missing values", "A dataset must always contain exactly 100 rows"], answer: 1 },
 
-  // Section 3
+  // Section 3: Data Quality
   { topic: "Data Quality", q: "What is data quality?", options: ["The amount of data collected", "The degree to which data is accurate, complete, and reliable", "The size of a database", "The speed of a computer"], answer: 1 },
   { topic: "Data Quality", q: "Which of the following is an important characteristic of high-quality data?", options: ["Accuracy", "Randomness", "Duplication", "Incompleteness"], answer: 0 },
   { topic: "Data Quality", q: "What is measurement error?", options: ["Error caused by storing data", "Difference between the measured value and the true value", "Error caused by deleting data", "Error caused by sorting data"], answer: 1 },
@@ -244,7 +327,7 @@ const quizData = [
   { topic: "Data Quality", q: "Which method can help improve data quality during collection?", options: ["Using standardized procedures", "Ignoring errors", "Collecting data randomly without a plan", "Avoiding quality checks"], answer: 0 },
   { topic: "Data Quality", q: "Why should data collection instruments be tested before use?", options: ["To increase the amount of data", "To identify and reduce measurement problems", "To delete unnecessary records", "To make the dataset smaller"], answer: 1 },
 
-  // Section 4
+  // Section 4: Data Preprocessing
   { topic: "Data Preprocessing Stages", q: "What is the main purpose of data preprocessing?", options: ["To make data more difficult to analyze", "To prepare raw data for analysis or modeling", "To delete all data", "To increase hardware performance"], answer: 1 },
   { topic: "Data Preprocessing Stages", q: "What is data aggregation?", options: ["Dividing data into smaller parts", "Combining data into summarized forms", "Deleting duplicate records", "Removing all numerical values"], answer: 1 },
   { topic: "Data Preprocessing Stages", q: "Which of the following is an example of data aggregation?", options: ["Calculating the average monthly sales", "Changing a person's name", "Removing a column", "Selecting one random record"], answer: 0 },
@@ -261,7 +344,7 @@ const quizData = [
   { topic: "Data Preprocessing Stages", q: "What is the benefit of dimensionality reduction?", options: ["It can reduce computational complexity", "It always increases data size", "It creates missing values", "It eliminates the need for data analysis"], answer: 0 },
   { topic: "Data Preprocessing Stages", q: "Which sequence represents common data preprocessing activities?", options: ["Data cleaning → transformation → feature selection/creation → modeling", "Modeling → data collection → data deletion → cleaning", "Visualization → deletion → sampling → data collection", "Feature deletion → modeling → data collection → cleaning"], answer: 0 },
 
-  // Section 5
+  // Section 5: Algebraic & Probabilistic
   { topic: "Algebraic & Probabilistic View of Data", q: "How can data be represented from an algebraic point of view?", options: ["As vectors and matrices", "As pictures only", "As sentences only", "As audio files only"], answer: 0 },
   { topic: "Algebraic & Probabilistic View of Data", q: "What is a vector in data science?", options: ["A collection of values arranged in a specific order", "A database server", "A programming language", "A data visualization tool"], answer: 0 },
   { topic: "Algebraic & Probabilistic View of Data", q: "In a dataset, a row can often be represented as a:", options: ["Vector", "Graph only", "Probability", "Function name"], answer: 0 },
@@ -278,7 +361,7 @@ const quizData = [
   { topic: "Algebraic & Probabilistic View of Data", q: "What is the expected value of a random variable?", options: ["Its long-run average or mean value", "Its minimum value only", "Its maximum value only", "Its most frequent value only"], answer: 0 },
   { topic: "Algebraic & Probabilistic View of Data", q: "Which statement best describes the probabilistic view of data?", options: ["Data can be viewed as observations generated from underlying probability distributions", "Data contains only fixed values with no uncertainty", "Data can only be represented using images", "Data cannot be analyzed mathematically"], answer: 0 },
 
-  // Section 6
+  // Section 6: Python Data Science Stack
   { topic: "Python Data Science Stack", q: "Which programming language is widely used in Data Science?", options: ["Python", "HTML", "CSS", "XML"], answer: 0 },
   { topic: "Python Data Science Stack", q: "Why is Python popular in Data Science?", options: ["It has many useful libraries and is easy to learn", "It can only be used for web design", "It does not support data analysis", "It cannot work with numerical data"], answer: 0 },
   { topic: "Python Data Science Stack", q: "What is NumPy mainly used for?", options: ["Numerical and scientific computing", "Web page design", "Creating presentations", "Managing emails"], answer: 0 },
@@ -295,7 +378,7 @@ const quizData = [
   { topic: "Python Data Science Stack", q: "Which statement correctly describes the Python Data Science stack?", options: ["Python provides the programming environment, NumPy supports numerical computing, Pandas handles data analysis, and Matplotlib supports visualization", "All four are operating systems", "All four are database management systems", "They are all programming languages"], answer: 0 },
   { topic: "Python Data Science Stack", q: "Which sequence is most appropriate for a basic data analysis task?", options: ["Python → Pandas/NumPy → Matplotlib", "Matplotlib → HTML → CSS", "Pandas → Photoshop → Python", "NumPy → PowerPoint → HTML"], answer: 0 },
 
-  // Section 7
+  // Section 7: Relational Algebra & SQL
   { topic: "Relational Algebra & SQL", q: "What is relational algebra?", options: ["A programming language", "A formal query language used to manipulate relational data", "A data visualization tool", "A statistical method"], answer: 1 },
   { topic: "Relational Algebra & SQL", q: "Which data structure is used in a relational database?", options: ["Tables", "Images", "Audio files", "Graphs only"], answer: 0 },
   { topic: "Relational Algebra & SQL", q: "Which relational algebra operation selects specific rows from a table?", options: ["Projection", "Selection", "Union", "Join"], answer: 1 },
@@ -312,7 +395,7 @@ const quizData = [
   { topic: "Relational Algebra & SQL", q: "Which relational algebra operation can be used to change the name of a relation or its attributes?", options: ["Rename", "Join", "Union", "Selection"], answer: 0 },
   { topic: "Relational Algebra & SQL", q: "Which statement best explains the relationship between relational algebra and Data Science?", options: ["Relational algebra provides operations for querying and transforming structured data used in data analysis", "Relational algebra is used only for creating graphs", "Relational algebra is a type of machine learning algorithm", "Relational algebra is used only for collecting sensor data"], answer: 0 },
 
-  // Section 8
+  // Section 8: Scraping & Data Wrangling
   { topic: "Scraping & Data Wrangling", q: "What is web scraping?", options: ["Collecting data from websites automatically", "Deleting website data", "Designing a website", "Encrypting web pages"], answer: 0 },
   { topic: "Scraping & Data Wrangling", q: "What is the main purpose of data wrangling?", options: ["To prepare raw data for analysis", "To create computer hardware", "To increase internet speed", "To design websites"], answer: 0 },
   { topic: "Scraping & Data Wrangling", q: "Which of the following is a common step in data wrangling?", options: ["Cleaning data", "Structuring data", "Assessing data", "All of the above"], answer: 3 },
@@ -329,7 +412,7 @@ const quizData = [
   { topic: "Scraping & Data Wrangling", q: "What should be done after collecting data through scraping?", options: ["Immediately build a model without checking it", "Assess and clean the collected data", "Delete all collected data", "Convert everything into images"], answer: 1 },
   { topic: "Scraping & Data Wrangling", q: "Which sequence best represents a typical data wrangling process?", options: ["Assess → Structure → Clean → Transform/Munge", "Clean → Delete → Assess → Ignore", "Model → Scrape → Delete → Structure", "Visualize → Delete → Scrape → Ignore"], answer: 0 },
 
-  // Section 9
+  // Section 9: Descriptive & EDA
   { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "What is the primary purpose of Descriptive Data Analysis?", options: ["Predict future outcomes", "Summarize and describe data", "Build machine learning models", "Collect data"], answer: 1 },
   { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Exploratory Data Analysis (EDA) is mainly used to:", options: ["Deploy applications", "Discover patterns and relationships in data", "Create databases", "Encrypt data"], answer: 1 },
   { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "Which Python library is commonly used for creating static visualizations?", options: ["Plotly", "Matplotlib", "NumPy", "TensorFlow"], answer: 1 },
@@ -347,41 +430,88 @@ const quizData = [
   { topic: "Descriptive & EDA (Plotly/Matplotlib)", q: "The main goal of data visualization in EDA is to:", options: ["Increase storage space", "Improve internet speed", "Understand and communicate insights from data", "Replace databases"], answer: 2 }
 ];
 
-let filteredData = [...quizData];
-let currentIndex = 0;
+let quizFilteredData = [...quizData];
+let currentQuizIndex = 0;
 let userAnswers = new Array(quizData.length).fill(null);
 
 function initTopics() {
     const topics = [...new Set(quizData.map(q => q.topic))];
-    const select = document.getElementById("topicSelect");
+    const studySelect = document.getElementById("studyTopicSelect");
+    const quizSelect = document.getElementById("quizTopicSelect");
+
     topics.forEach(t => {
-        const opt = document.createElement("option");
-        opt.value = t;
-        opt.textContent = t;
-        select.appendChild(opt);
+        const opt1 = document.createElement("option");
+        opt1.value = t;
+        opt1.textContent = t;
+        studySelect.appendChild(opt1);
+
+        const opt2 = document.createElement("option");
+        opt2.value = t;
+        opt2.textContent = t;
+        quizSelect.appendChild(opt2);
     });
 }
 
-function switchTopic() {
-    const selectedTopic = document.getElementById("topicSelect").value;
-    if (selectedTopic === "all") {
-        filteredData = [...quizData];
+function switchMainTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+    if (tabId === 'studyTab') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('studyTab').classList.add('active');
+        renderStudyList();
     } else {
-        filteredData = quizData.filter(q => q.topic === selectedTopic);
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('quizTab').classList.add('active');
+        renderQuizQuestion();
     }
-    currentIndex = 0;
-    renderQuestion();
 }
 
-function renderQuestion() {
-    const q = filteredData[currentIndex];
+/* --- SOLVED STUDY MODE LOGIC --- */
+function renderStudyList() {
+    const selectedTopic = document.getElementById("studyTopicSelect").value;
+    const container = document.getElementById("studyListContainer");
+    container.innerHTML = "";
+
+    const filtered = selectedTopic === "all" ? quizData : quizData.filter(q => q.topic === selectedTopic);
+    const letters = ["A", "B", "C", "D"];
+
+    filtered.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "study-item";
+
+        let optionsHtml = item.options.map((opt, idx) => {
+            const isCorrect = idx === item.answer;
+            const optClass = isCorrect ? "option correct" : "study-opt";
+            return `<div class="${optClass}">${letters[idx]}) ${opt} ${isCorrect ? ' ✓' : ''}</div>`;
+        }).join('');
+
+        div.innerHTML = `
+            <div class="topic-tag">${item.topic}</div>
+            <div class="q-title">${index + 1}. ${item.q}</div>
+            <div class="study-opts">${optionsHtml}</div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+/* --- INTERACTIVE QUIZ LOGIC --- */
+function switchQuizTopic() {
+    const selectedTopic = document.getElementById("quizTopicSelect").value;
+    quizFilteredData = selectedTopic === "all" ? [...quizData] : quizData.filter(q => q.topic === selectedTopic);
+    currentQuizIndex = 0;
+    renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
+    const q = quizFilteredData[currentQuizIndex];
     const globalIndex = quizData.indexOf(q);
 
-    document.getElementById("topicLabel").textContent = q.topic;
-    document.getElementById("progressLabel").textContent = `Q ${currentIndex + 1} / ${filteredData.length}`;
-    document.getElementById("questionText").textContent = `${currentIndex + 1}. ${q.q}`;
+    document.getElementById("quizTopicLabel").textContent = q.topic;
+    document.getElementById("quizProgressLabel").textContent = `Q ${currentQuizIndex + 1} / ${quizFilteredData.length}`;
+    document.getElementById("quizQuestionText").textContent = `${currentQuizIndex + 1}. ${q.q}`;
 
-    const container = document.getElementById("optionsContainer");
+    const container = document.getElementById("quizOptionsContainer");
     container.innerHTML = "";
 
     const letters = ["A", "B", "C", "D"];
@@ -389,7 +519,7 @@ function renderQuestion() {
 
     q.options.forEach((opt, idx) => {
         const div = document.createElement("div");
-        div.className = "option";
+        div.className = "option quiz-option";
         div.textContent = `${letters[idx]}) ${opt}`;
 
         if (userAns !== null) {
@@ -400,37 +530,38 @@ function renderQuestion() {
                 div.classList.add("incorrect");
             }
         } else {
-            div.onclick = () => selectOption(globalIndex, idx);
+            div.onclick = () => selectQuizOption(globalIndex, idx);
         }
 
         container.appendChild(div);
     });
 
-    document.getElementById("prevBtn").disabled = currentIndex === 0;
-    document.getElementById("nextBtn").disabled = currentIndex === filteredData.length - 1;
+    document.getElementById("prevBtn").disabled = currentQuizIndex === 0;
+    document.getElementById("nextBtn").disabled = currentQuizIndex === quizFilteredData.length - 1;
 }
 
-function selectOption(globalIndex, optionIndex) {
+function selectQuizOption(globalIndex, optionIndex) {
     userAnswers[globalIndex] = optionIndex;
-    renderQuestion();
+    renderQuizQuestion();
 }
 
 function prevQuestion() {
-    if (currentIndex > 0) {
-        currentIndex--;
-        renderQuestion();
+    if (currentQuizIndex > 0) {
+        currentQuizIndex--;
+        renderQuizQuestion();
     }
 }
 
 function nextQuestion() {
-    if (currentIndex < filteredData.length - 1) {
-        currentIndex++;
-        renderQuestion();
+    if (currentQuizIndex < quizFilteredData.length - 1) {
+        currentQuizIndex++;
+        renderQuizQuestion();
     }
 }
 
+// Initial setup
 initTopics();
-renderQuestion();
+renderStudyList();
 </script>
 </body>
 </html>
