@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compiler Construction Practice Quiz</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --correct: #16a34a;
+            --correct-bg: #f0fdf4;
+            --incorrect: #dc2626;
+            --incorrect-bg: #fef2f2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+
+        .quiz-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .question-number {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            padding: 0.875rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: white;
+            color: var(--text);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .option-btn.correct {
+            border-color: var(--correct);
+            background: var(--correct-bg);
+            color: var(--correct);
+            font-weight: 600;
+        }
+
+        .option-btn.incorrect {
+            border-color: var(--incorrect);
+            background: var(--incorrect-bg);
+            color: var(--incorrect);
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .explanation {
+            margin-top: 1.25rem;
+            padding: 1rem;
+            border-radius: 8px;
+            background: #f1f5f9;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            display: none;
+        }
+
+        .explanation.visible {
+            display: block;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--primary-hover);
+        }
+
+        .nav-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+        }
+
+        .result-screen {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 2.5rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .result-screen h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+            }
+            .quiz-card {
+                padding: 1rem;
+            }
+            .option-btn {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Compiler Construction</h1>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Objective Question Bank Practice</p>
+    </header>
+
+    <div class="stats-bar">
+        <span id="progress-text">Question 1 / 73</span>
+        <span id="score-text">Score: 0</span>
+    </div>
+
+    <div id="quiz-box" class="quiz-card">
+        <div class="question-number" id="q-number">Question 1</div>
+        <div class="question-text" id="q-text">Loading question...</div>
+        <div class="options-grid" id="options-container"></div>
+        <div class="explanation" id="explanation-box"></div>
+    </div>
+
+    <div class="nav-controls" id="nav-controls">
+        <button class="nav-btn" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+        <button class="nav-btn" id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <div id="result-box" class="result-screen">
+        <h2>Practice Completed!</h2>
+        <div class="score-display" id="final-score">0 / 73</div>
+        <button class="nav-btn" onclick="restartQuiz()" style="max-width: 200px;">Try Again</button>
+    </div>
+</div>
+
+<script>
+const compilerData = [
+    { question: "A compiler for a high-level language that runs on one machine and produces code for a different machine is called[cite: 15]:", options: ["Optimizing compiler", "One pass compiler", "Cross compiler", "Multipass compiler"], answer: 2, explanation: "A cross compiler runs on one architecture/OS and generates executable code for a different target platform[cite: 15]." },
+    { question: "Lexical analyzer phase of a compiler is also called as[cite: 15]:", options: ["Scanner", "Tokenizer", "Parser", "Either scanner or tokenizer"], answer: 3, explanation: "Lexical analysis reads stream characters to form tokens, so it is referred to as scanning or tokenizing[cite: 15]." },
+    { question: "Intermediate code generation phase gets input from[cite: 15]:", options: ["Lexical analyzer", "Syntax analyzer", "Semantic analyzer", "Error handling"], answer: 2, explanation: "Intermediate code generation processes the annotated syntax tree produced by semantic analysis[cite: 15]." },
+    { question: "___ is used to construct compiler[cite: 15]:", options: ["Context - free grammar", "Pragmas", "Significant comments", "Lexical analyzer"], answer: 0, explanation: "Context-Free Grammars (CFGs) define the structural syntax of programming languages[cite: 15]." },
+    { question: "The grammar S -> S a a | S a | a is[cite: 15]:", options: ["Left recursive", "Right recursive", "Unambiguous grammar", "Ambiguous"], answer: 0, explanation: "Productions where the non-terminal appears as the leftmost symbol on the right-hand side are left-recursive[cite: 15]." },
+    { question: "What data structure in a compiler is used for managing information about variables and their attributes?[cite: 15]", options: ["Abstract syntax tree", "Symbol table", "Semantic stack", "Parse table"], answer: 1, explanation: "The symbol table stores information about identifiers including scope, type, and memory location[cite: 15]." },
+    { question: "The sequences of character that give rise to token are called[cite: 15]:", options: ["Intermediate code", "Stream", "Lexemes", "Semantic"], answer: 2, explanation: "Lexemes are the raw character strings that map to abstract tokens[cite: 15]." },
+    { question: "The output of a lexical analyzer is[cite: 15]:", options: ["Machine code", "Intermediate code", "A stream of tokens", "A parse tree"], answer: 2, explanation: "The scanner converts raw source code into a standardized stream of tokens for the parser[cite: 15]." },
+    { question: "How many parts (phases) of compiler are there?[cite: 15]", options: ["1", "2", "4", "6"], answer: 3, explanation: "The 6 primary phases are Lexical, Syntax, Semantic, Intermediate Code Gen, Code Optimization, and Target Code Gen[cite: 15]." },
+    { question: "Given the expression grammar E -> E * F | F + E | F; F -> F - F | id. Which of the following is true?[cite: 15]", options: ["* has higher precedence than +", "- has higher precedence than *", "+ and - have same precedence", "+ has higher precedence than *"], answer: 0, explanation: "Rules defined deeper in grammar derivation chains bind tighter, giving * higher precedence[cite: 15]." },
+    { question: "Which concept of FA is used in the compiler?[cite: 15]", options: ["Lexical analysis", "Parser", "Code generation", "Code optimization"], answer: 0, explanation: "Finite Automata state machines are used to implement token scanners[cite: 15]." },
+    { question: "Which concept of grammar is used in the compiler?[cite: 15]", options: ["Lexical analysis", "Parser", "Code generation", "Code optimization"], answer: 1, explanation: "Context-Free Grammars are used primarily by the parser to validate syntax[cite: 15]." },
+    { question: "Which of the following is NOT in the set of regular expression R = (ab + abb)* bbab?[cite: 15]", options: ["ababbbbab", "abbbab", "ababbabbbab", "abababab"], answer: 3, explanation: "Every string generated by R must end with 'bbab'. 'abababab' ends with 'abab'[cite: 15]." },
+    { question: "String generated by S -> aS | bA; A -> d | ccA[cite: 15]:", options: ["aabeed", "adabcca", "abcca", "abccd"], answer: 3, explanation: "Derivation: S -> aS -> abA -> abccA -> abccd[cite: 15]." },
+    { question: "A finite automata recognizes[cite: 15]:", options: ["Any Language", "Context Sensitive Language", "Context Free Language", "Regular Language"], answer: 3, explanation: "Finite Automata are equivalent in power to Regular Expressions and recognize Regular Languages[cite: 15]." },
+    { question: "Which one is a type of Lexeme?[cite: 15]", options: ["Identifiers", "Constants", "Keywords", "All of the mentioned"], answer: 3, explanation: "Identifiers, constants, and keywords are all concrete instances of lexemes[cite: 15]." },
+    { question: "A system program that combines the separately compiled modules of a program into a form suitable for execution?[cite: 15]", options: ["Assembler", "Compiler", "Linking Loader", "Interpreter"], answer: 2, explanation: "Linkers combine separate object files and resolve external references to build an executable[cite: 15]." },
+    { question: "Output file of Lex is ___ if the input file is Myfile?[cite: 15]", options: ["Myfile.e", "lex.yy.c", "Myfile.lex", "Myfile.obj"], answer: 1, explanation: "Lex tools standardly generate source file 'lex.yy.c'[cite: 15]." },
+    { question: "The transition function of a DFA is[cite: 15]:", options: ["Q x Σ -> Q", "Q x Σ -> 2^Q", "Q x Σ -> 2^n", "Q x Σ -> Q^n"], answer: 0, explanation: "A DFA transitions from one state to exactly one single state given an input symbol[cite: 15]." },
+    { question: "The transition function of an NFA is[cite: 15]:", options: ["Q x Σ -> Q", "Q x Σ -> 2^Q", "Q x Σ -> 2^n", "Q x Σ -> Q^n"], answer: 1, explanation: "An NFA can transition to a set of possible next states (powerset 2^Q)[cite: 15]." },
+    { question: "Compiler can check?[cite: 15]", options: ["Logical error", "Syntax error", "a & b both", "None"], answer: 1, explanation: "Compilers check syntax and static semantics, but cannot detect logical runtime errors[cite: 15]." },
+    { question: "Select the machine independent phase of the compiler[cite: 15]:", options: ["Syntax analysis", "Intermediate code generation", "Lexical analysis", "All of these"], answer: 3, explanation: "Lexical analysis, syntax analysis, and intermediate code generation are all machine-independent[cite: 15]." },
+    { question: "Grammar of the programming is checked at ___ phase of compiler[cite: 15].", options: ["semantic analysis", "code generation", "syntax analysis", "code optimization"], answer: 2, explanation: "Syntax analysis verifies whether code tokens conform to structural grammar rules[cite: 15]." },
+    { question: "A compiler that runs on one machine and produces code for a different machine is called[cite: 15]:", options: ["Cross compilation", "One pass compilation", "Two pass compilation", "None of the above"], answer: 0, explanation: "Cross-compilation targets platforms different from the host system running the compiler[cite: 15]." },
+    { question: "A system program that setup an executable program in main memory ready for execution is[cite: 15]:", options: ["Assembler", "Linker", "Loader", "Load and go"], answer: 2, explanation: "Loaders allocate memory and load executable binary instructions into system RAM[cite: 15]." },
+    { question: "Machine-independent optimization is applied on the code when it is in[cite: 15]:", options: ["Intermediate form", "Assembly code", "Target code", "Machine Code"], answer: 0, explanation: "High-level optimizations operate on the Intermediate Representation (IR)[cite: 15]." },
+    { question: "Program is independent of the source language and the target language when it is represented as[cite: 15]:", options: ["Machine code", "Intermediate code", "Assembly code", "Relocatable code"], answer: 1, explanation: "Intermediate Code acts as an abstract bridge between language front-ends and target back-ends[cite: 15]." },
+    { question: "Output of an interpreter is[cite: 15]:", options: ["HLL", "Exe code", "assembly code", "Direct execution output"], answer: 3, explanation: "Interpreters translate and execute statements directly on the fly without building a standalone executable file[cite: 15]." },
+    { question: "The output of ___ is relocatable machine code[cite: 15]:", options: ["Loader link editor", "Compiler", "Preprocessor", "assembler"], answer: 3, explanation: "Assemblers translate assembly source code into relocatable object files[cite: 15]." },
+    { question: "Syntax analyzer verifies syntax and produces[cite: 15]:", options: ["syntax tree / parse tree", "symbol table", "DAG", "None"], answer: 0, explanation: "Parsers construct parse trees or syntax trees to represent hierarchical structure[cite: 15]." },
+    { question: "___ is related to synthesis phase[cite: 15].", options: ["Syntax analysis", "Code generation", "Lexical analysis", "Semantic analysis"], answer: 1, explanation: "Synthesis phases (back-end) generate target code from intermediate forms[cite: 15]." },
+    { question: "Semantic analysis is related to ___ phase[cite: 15].", options: ["Neither analysis nor synthesis", "Analysis and synthesis", "Analysis", "Synthesis"], answer: 2, explanation: "Semantic analysis forms the final part of front-end analysis[cite: 15]." },
+    { question: "A grammar that produces more than one parse tree for some sentence is called[cite: 15]:", options: ["Ambiguous", "Unambiguous", "Regular", "None of these"], answer: 0, explanation: "Ambiguity means multiple valid parse trees exist for an identical string[cite: 15]." },
+    { question: "Functions of Lexical analyzer are?[cite: 15]", options: ["Removing white space", "Removing comments", "none of above", "all above"], answer: 3, explanation: "Lexical analyzers strip whitespace and comments while generating token streams[cite: 15]." },
+    { question: "Which of the following derivations does a top-down parser use while parsing an input string?[cite: 15]", options: ["Leftmost derivation", "Leftmost derivation traced out in reverse", "Rightmost derivation", "Rightmost derivation traced out in reverse"], answer: 0, explanation: "Top-down parsers trace a Leftmost derivation starting from the root start symbol[cite: 15]." },
+    { question: "Shift reduce parsers are[cite: 15]:", options: ["Top down parser", "Bottom up parser", "May be top down or bottom up parser", "None of the above"], answer: 1, explanation: "Shift-reduce parsing builds trees from leaves up to the root, making it bottom-up[cite: 15]." },
+    { question: "Which of the following parser is most powerful?[cite: 15]", options: ["Operator precedence", "Canonical LR", "LALR", "SLR"], answer: 1, explanation: "Canonical LR(1) parses the largest class of deterministic context-free grammars[cite: 15]." },
+    { question: "Which of the following is responsible for grouping of characters into tokens in compiler?[cite: 15]", options: ["Scanner", "Parser", "Code generator", "Code optimizer"], answer: 0, explanation: "The scanner groups character sequences into tokens[cite: 15]." },
+    { question: "The following grammar is: A -> A x B | x; B -> x B x[cite: 15]", options: ["Unambiguous", "left recursive", "right recursive", "ambiguous"], answer: 1, explanation: "The rule A -> A x B contains immediate left-recursion on non-terminal A[cite: 15]." },
+    { question: "Which of the following is used for grouping of characters into tokens?[cite: 15]", options: ["Parser", "Code optimization", "Code generator", "Lexical analyzer"], answer: 3, explanation: "Lexical analysis handles character grouping into tokens[cite: 15]." },
+    { question: "In a compiler, keywords of a language are recognized during[cite: 15]:", options: ["parsing of the program", "the code generation", "the lexical analysis of the program", "dataflow analysis"], answer: 2, explanation: "Keywords are identified as specific token types during lexical analysis scanning[cite: 15]." },
+    { question: "YACC builds up[cite: 15]:", options: ["SLR parsing table", "Canonical LR parsing table", "LALR parsing table", "None of the above"], answer: 2, explanation: "YACC automatically generates LALR(1) parsing tables[cite: 15]." },
+    { question: "Analysis which determines the meaning of a statement once its grammatical structure becomes known is termed as[cite: 15]:", options: ["Syntax analysis", "Regular analysis", "Semantic analysis", "General analysis"], answer: 2, explanation: "Semantic analysis checks meaning, type compatibility, and declaration validity[cite: 15]." },
+    { question: "LR stands for[cite: 15]:", options: ["Left to right", "Regular analysis", "Right to left", "Left to right and right most derivation in reverse"], answer: 3, explanation: "L = Left-to-right scan, R = Rightmost derivation in reverse[cite: 15]." },
+    { question: "LR parsing ___ a string to the start symbol by inverting productions[cite: 15].", options: ["Reduces", "Shifts", "Adds", "Left to right reduction"], answer: 0, explanation: "LR parsers reduce input tokens back to the start symbol following reversed rightmost derivation[cite: 15]." },
+    { question: "Which one of the following is TRUE?[cite: 15]", options: ["+ is left associative, while - is right associative", "+ is right associative, while - is left associative", "Both + and - are right associative", "Both + and - are left associative"], answer: 3, explanation: "Standard arithmetic operations evaluate left-to-right (+ and - are left-associative)[cite: 15]." },
+    { question: "S -> a B; B -> B b | epsilon. From the above grammar, the non-terminal ___ is left recursive[cite: 15].", options: ["a", "epsilon", "B", "Both epsilon & B"], answer: 2, explanation: "Rule B -> B b has non-terminal B appearing directly as the first symbol on the right side[cite: 15]." },
+    { question: "Type checking is normally done during[cite: 15]:", options: ["Lexical analysis", "Syntax analysis", "Syntax directed translation / Semantic Analysis", "Code optimization"], answer: 2, explanation: "Type checking is a primary responsibility of semantic analysis/syntax-directed translation[cite: 15]." },
+    { question: "An unambiguous grammar has same leftmost and rightmost derivation tree structure[cite: 15]:", options: ["true", "false"], answer: 0, explanation: "For an unambiguous grammar, every valid sentence has exactly one unique parse tree[cite: 15]." },
+    { question: "Intermediate code generation phase gets input from[cite: 15]:", options: ["Lexical analyzer", "Syntax analyzer", "Semantic analyzer", "Error handling"], answer: 2, explanation: "Intermediate code generators take annotated trees produced by semantic analysis[cite: 15]." },
+    { question: "The three-address code for the statement x + -y * (-y + z) is[cite: 15]:", options: ["t1=-y, t2=t1+z, t3=t1*t2, t4=x+t3", "t1=-y, t2=x+t1, t3=t1+z, t4=t2*t3", "Both a and b are valid", "none"], answer: 0, explanation: "t1 holds -y; t2 holds (-y+z); t3 holds -y * (-y+z); t4 holds the total sum x + t3[cite: 15]." },
+    { question: "Indirect triples are used to implement[cite: 15]:", options: ["Infix notation", "Postfix notation", "Three address code", "Prefix notation"], answer: 2, explanation: "Indirect triples use pointers to a table of triples to efficiently implement 3-address IR[cite: 15]." },
+    { question: "___ is the process where the stream of characters making up the source program is read form left to right and group into tokens[cite: 15]:", options: ["Lexical Analysis", "Diversion", "Modeling", "none of the above"], answer: 0, explanation: "Lexical analysis scans character streams to produce tokens[cite: 15]." },
+    { question: "An important component of semantic analysis is[cite: 15]:", options: ["code checking", "type checking", "flush checking", "None of the given"], answer: 1, explanation: "Type checking validates data types in expressions and statements[cite: 15]." },
+    { question: "In DFA minimization we construct one ___ for each group of states from the initial DFA[cite: 15].", options: ["State", "NFA", "PDA", "None of given"], answer: 0, explanation: "DFA minimization groups indistinguishable states into single states of a reduced DFA[cite: 15]." },
+    { question: "Three address codes involve[cite: 15]:", options: ["Exactly three addresses", "at most three addresses", "No unary operators", "none of these"], answer: 1, explanation: "3-address code statements have at most three operands[cite: 15]." },
+    { question: "Alternative of the backtrack in parser is Look ahead symbol in[cite: 15]:", options: ["Input", "Output", "Input and Output", "None of the given"], answer: 0, explanation: "Lookahead symbols from the input stream allow predictive parsers to avoid backtracking[cite: 15]." },
+    { question: "A linker takes one or more source files generated by a compiler and combines them into a ___ executable program[cite: 15].", options: ["Double", "Triple", "Single", "Quadruples"], answer: 2, explanation: "Linkers combine separate module files into one single binary file[cite: 15]." },
+    { question: "Which of the following is not an intermediate code form[cite: 15]:", options: ["Postfix notation", "Syntax Trees", "Three address codes", "quadruples"], answer: 3, explanation: "Quadruples are an implementation record structure for 3AC rather than an independent representation form[cite: 15]." },
+    { question: "Parser takes tokens from scanner and tries to generate[cite: 15]:", options: ["Binary Search tree", "Parse tree", "Syntax Trace", "None of the given"], answer: 1, explanation: "Parsers analyze token sequences to generate concrete or abstract parse trees[cite: 15]." },
+    { question: "Ambiguity can easily be handled by ___ Parser[cite: 15]:", options: ["Bottom-up", "Left recursive", "Predictive", "Top-down"], answer: 0, explanation: "Bottom-up parsers handle ambiguity via operator shift-reduce parsing rules[cite: 15]." },
+    { question: "A top down parser generates[cite: 15]:", options: ["Right most derivation", "Right most derivation in reverse", "Left most derivation", "Left most derivation in reverse"], answer: 2, explanation: "Top-down parsers build trees top-to-bottom using leftmost expansion[cite: 15]." },
+    { question: "Consider grammar S -> iCtSS1 | a; S1 -> eS | epsilon; C -> b. The grammar is NOT LL(1) because[cite: 15]:", options: ["it is left recursive", "it is right recursive", "it is ambiguous", "It is not context-free"], answer: 2, explanation: "The dangling-else pattern creates FIRST/FOLLOW conflicts because it is ambiguous[cite: 15]." },
+    { question: "Grammar A -> B C D; B -> h B | epsilon; C -> C g | g | C h | i; D -> A B | epsilon. Follow of B is[cite: 15]:", options: ["h", "g, h, i, $", "g, i", "g"], answer: 1, explanation: "B is followed by C (First(C) = {g, h, i}) and inherits end-marker $ when C/D derive epsilon[cite: 15]." },
+    { question: "Three address code involves[cite: 15]:", options: ["Exactly 3 address", "At least three addresses", "At most three-address", "No unary operator"], answer: 2, explanation: "Each 3AC instruction uses at most three address references[cite: 15]." },
+    { question: "Lexical analyzer and scanner are two different phases of compiler[cite: 15].", options: ["True", "False"], answer: 1, explanation: "False: Scanner and Lexical Analyzer refer to the exact same compiler phase[cite: 15]." },
+    { question: "Which statement is true about Two pass compiler[cite: 15]:", options: ["Front End depends upon Back End", "Back End depends upon Frond End", "Both are independent of each other", "None of the given"], answer: 2, explanation: "Front-end and back-end are decoupled; IR acts as the universal interface[cite: 15]." },
+    { question: "Ambiguity can easily be handled by Top-down Parser[cite: 15].", options: ["true", "false"], answer: 1, explanation: "False: Top-down LL parsers cannot handle ambiguous grammars directly[cite: 15]." },
+    { question: "An intermediate code form is[cite: 15]:", options: ["Postfix notation", "Syntax trees", "Three address code", "All of these"], answer: 3, explanation: "Postfix, Abstract Syntax Trees, and 3-Address Code are all valid intermediate representations[cite: 15]." },
+    { question: "Synthesized attribute can be easily simulated by a[cite: 15]:", options: ["LL grammar", "Ambiguous grammar", "LR grammar", "None of the above"], answer: 2, explanation: "Synthesized attributes evaluate values bottom-up, fitting naturally into LR parser stack reductions[cite: 15]." },
+    { question: "The graph that shows basic blocks and their successor relationship is called[cite: 15]:", options: ["DAG", "Flow chart", "Control graph (CFG)", "Hamiltonian graph"], answer: 2, explanation: "Control Flow Graphs represent program execution paths between basic blocks[cite: 15]." },
+    { question: "A grammar is meaningless[cite: 15]:", options: ["If terminal set and non-terminal set are not disjoint", "If left hand side of a production is a single terminal", "If left hand side of a production has no nonterminal", "All of these"], answer: 3, explanation: "Grammar rules must have disjoint symbol sets and non-terminals on their left-hand side[cite: 15]." },
+    { question: "Intermediate code generator is ___ phase in compiler design[cite: 15].", options: ["Second", "First", "Fourth", "Third"], answer: 2, explanation: "1. Lexical, 2. Syntax, 3. Semantic, 4. Intermediate Code Generation[cite: 15]." }
+];
+
+let currentIndex = 0;
+let userAnswers = new Array(compilerData.length).fill(null);
+let score = 0;
+
+function loadQuestion() {
+    const q = compilerData[currentIndex];
+    document.getElementById("q-number").innerText = `Question ${currentIndex + 1} of ${compilerData.length}`;
+    document.getElementById("q-text").innerText = q.question;
+    document.getElementById("progress-text").innerText = `Question ${currentIndex + 1} / ${compilerData.length}`;
+    
+    const optionsContainer = document.getElementById("options-container");
+    optionsContainer.innerHTML = "";
+    
+    const explanationBox = document.getElementById("explanation-box");
+    explanationBox.classList.remove("visible");
+
+    q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerText = `${String.fromCharCode(97 + idx)}) ${opt}`;
+        btn.onclick = () => selectOption(idx);
+        
+        if (userAnswers[currentIndex] !== null) {
+            btn.disabled = true;
+            if (idx === q.answer) {
+                btn.classList.add("correct");
+            }
+            if (userAnswers[currentIndex] === idx && idx !== q.answer) {
+                btn.classList.add("incorrect");
+            }
+        }
+        optionsContainer.appendChild(btn);
+    });
+
+    if (userAnswers[currentIndex] !== null) {
+        explanationBox.innerText = `Explanation: ${q.explanation}`;
+        explanationBox.classList.add("visible");
+    }
+
+    document.getElementById("prev-btn").disabled = currentIndex === 0;
+    document.getElementById("next-btn").innerText = currentIndex === compilerData.length - 1 ? "Finish" : "Next";
+}
+
+function selectOption(index) {
+    if (userAnswers[currentIndex] !== null) return;
+    
+    userAnswers[currentIndex] = index;
+    if (index === compilerData[currentIndex].answer) {
+        score++;
+    }
+    
+    document.getElementById("score-text").innerText = `Score: ${score}`;
+    loadQuestion();
+}
+
+function nextQuestion() {
+    if (currentIndex < compilerData.length - 1) {
+        currentIndex++;
+        loadQuestion();
+    } else {
+        showResults();
+    }
+}
+
+function prevQuestion() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        loadQuestion();
+    }
+}
+
+function showResults() {
+    document.getElementById("quiz-box").style.display = "none";
+    document.getElementById("nav-controls").style.display = "none";
+    document.getElementById("result-box").style.display = "block";
+    document.getElementById("final-score").innerText = `${score} / ${compilerData.length}`;
+}
+
+function restartQuiz() {
+    currentIndex = 0;
+    score = 0;
+    userAnswers.fill(null);
+    document.getElementById("score-text").innerText = `Score: 0`;
+    document.getElementById("quiz-box").style.display = "block";
+    document.getElementById("nav-controls").style.display = "flex";
+    document.getElementById("result-box").style.display = "none";
+    loadQuestion();
+}
+
+// Initial Load
+loadQuestion();
+</script>
+
+</body>
+</html>
