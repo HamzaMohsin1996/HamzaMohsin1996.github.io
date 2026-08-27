@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms Analysis Practice Test</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            padding: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-bottom: 80px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 8px;
+            background: var(--bg-card);
+            padding: 4px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+        }
+
+        .sticky-score {
+            position: sticky;
+            top: 12px;
+            z-index: 10;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .score-val {
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+        }
+
+        .q-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .q-title {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .q-num {
+            color: var(--accent-blue);
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .options-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-item {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .option-item:hover:not(.disabled) {
+            background: #273549;
+        }
+
+        .option-item.selected-correct {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: var(--accent-green);
+            color: #4ade80;
+        }
+
+        .option-item.selected-wrong {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--accent-red);
+            color: #f87171;
+        }
+
+        .option-item.reveal-correct {
+            border-color: var(--accent-green);
+            color: #4ade80;
+        }
+
+        .option-item.disabled {
+            cursor: default;
+        }
+
+        .badge {
+            font-size: 0.8rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .badge-correct {
+            background: var(--accent-green);
+            color: black;
+        }
+
+        .badge-wrong {
+            background: var(--accent-red);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Algorithms Analysis (80 MCQs)</h1>
+</header>
+
+<div class="mode-toggle">
+    <button class="mode-btn active" id="btn-quiz" onclick="setMode('quiz')">✍️ Interactive Quiz</button>
+    <button class="mode-btn" id="btn-solved" onclick="setMode('solved')">📖 Solved Study Mode</button>
+</div>
+
+<div class="sticky-score" id="score-bar">
+    <span>Score: <span class="score-val" id="score">0 / 0</span></span>
+    <span>Progress: <span class="score-val" id="progress">0 / 80</span></span>
+</div>
+
+<div id="quiz-container"></div>
+
+<script>
+const quizData = [
+    { id: 1, q: "What is an algorithm?", options: ["A programming language", "A finite sequence of well-defined steps to solve a problem", "A computer hardware component", "A database"], ans: 1 },
+    { id: 2, q: "Which characteristic means that an algorithm must eventually stop?", options: ["Input", "Output", "Finiteness", "Complexity"], ans: 2 },
+    { id: 3, q: "What is the primary purpose of an algorithm?", options: ["To increase hardware size", "To solve a computational problem", "To create an operating system", "To store files"], ans: 1 },
+    { id: 4, q: "Which of the following is an important property of a well-designed algorithm?", options: ["Ambiguity", "Infinite execution", "Clearly defined steps", "Random instructions"], ans: 2 },
+    { id: 5, q: "Algorithms are important in computing because they provide:", options: ["System hardware", "Systematic methods for solving problems", "Internet connections", "Programming keyboards"], ans: 1 },
+    { id: 6, q: "Which of the following is NOT normally considered a basic characteristic of an algorithm?", options: ["Input", "Output", "Definiteness", "Ambiguity"], ans: 3 },
+    { id: 7, q: "The efficiency of an algorithm is commonly evaluated in terms of:", options: ["Screen size", "Time and space requirements", "Keyboard speed", "File extension"], ans: 1 },
+    { id: 8, q: "Two algorithms that solve the same problem may differ in their:", options: ["Efficiency", "Problem definition", "Required output type always", "Mathematical meaning"], ans: 0 },
+    { id: 9, q: "Algorithm analysis helps determine:", options: ["The color of a program", "How efficiently an algorithm uses computational resources", "The brand of computer", "The operating system version"], ans: 1 },
+    { id: 10, q: "Which factor is most directly related to the running time of an algorithm?", options: ["Input size", "Monitor resolution", "Keyboard layout", "File icon"], ans: 0 },
+    { id: 11, q: "In algorithm analysis, input size generally refers to:", options: ["The physical size of the computer", "The amount of data processed by the algorithm", "The size of the program window", "The number of programmers"], ans: 1 },
+    { id: 12, q: "For a sorting algorithm, input size is commonly represented by:", options: ["n", "x²", "π", "0"], ans: 0 },
+    { id: 13, q: "If an array contains 100 elements, its input size n is:", options: ["10", "50", "100", "1000"], ans: 2 },
+    { id: 14, q: "Why is input size important in algorithm analysis?", options: ["It determines the computer brand", "Running time can change as input size increases", "It determines the programming language", "It changes the monitor size"], ans: 1 },
+    { id: 15, q: "The nature of input can affect:", options: ["Algorithm performance", "Keyboard design", "Screen brightness", "Operating system logo"], ans: 0 },
+    { id: 16, q: "In analyzing an algorithm, the best-case input is the input that:", options: ["Requires the maximum running time", "Requires the minimum running time", "Always contains zero elements", "Causes an error"], ans: 1 },
+    { id: 17, q: "The worst-case analysis considers:", options: ["The minimum possible running time", "The maximum running time for inputs of a given size", "Only empty inputs", "Random hardware failures"], ans: 1 },
+    { id: 18, q: "Average-case analysis attempts to determine:", options: ["Expected performance over inputs", "Maximum hardware capacity", "Minimum memory size", "Number of program statements"], ans: 0 },
+    { id: 19, q: "As input size increases, an efficient algorithm should ideally:", options: ["Become exponentially slower whenever possible", "Scale reasonably with input size", "Stop working", "Ignore the input"], ans: 1 },
+    { id: 20, q: "If an algorithm processes every element of an array once, its basic operation is generally related to:", options: ["n", "n²", "2", "n!"], ans: 0 },
+    { id: 21, q: "Asymptotic analysis mainly studies algorithm behavior when:", options: ["Input size is very small", "Input size becomes large", "Input is always zero", "Hardware is replaced"], ans: 1 },
+    { id: 22, q: "Asymptotic notation is used to describe:", options: ["Exact programming syntax", "Growth rate of an algorithm's resource usage", "Computer architecture", "File size only"], ans: 1 },
+    { id: 23, q: "Which notation represents an asymptotic upper bound?", options: ["Big-O", "Big-Ω", "Big-Θ only", "Little-ω"], ans: 0 },
+    { id: 24, q: "Which notation represents an asymptotic lower bound?", options: ["Big-O", "Big-Ω", "Little-o", "Big-Θ"], ans: 1 },
+    { id: 25, q: "Which notation represents a tight asymptotic bound?", options: ["Big-O", "Big-Ω", "Big-Θ", "Little-o"], ans: 2 },
+    { id: 26, q: "The notation O(f(n)) generally describes:", options: ["An upper bound", "A lower bound", "An exact value", "A programming error"], ans: 0 },
+    { id: 27, q: "The notation Ω(f(n)) generally describes:", options: ["An upper bound", "A lower bound", "A syntax rule", "A sorting technique"], ans: 1 },
+    { id: 28, q: "The notation Θ(f(n)) indicates that a function:", options: ["Has only an upper bound", "Has only a lower bound", "Is bounded both above and below asymptotically by f(n)", "Is always constant"], ans: 2 },
+    { id: 29, q: "Which notation is most appropriate when both upper and lower bounds match asymptotically?", options: ["O", "Ω", "Θ", "o"], ans: 2 },
+    { id: 30, q: "Which of the following grows faster as n becomes large?", options: ["n", "n²", "log n", "1"], ans: 1 },
+    { id: 31, q: "What is the Big-O complexity of 5n + 10?", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], ans: 2 },
+    { id: 32, q: "What is the Big-O complexity of n² + n + 5?", options: ["O(n)", "O(n²)", "O(n³)", "O(log n)"], ans: 1 },
+    { id: 33, q: "What is the Big-O complexity of 1000?", options: ["O(n)", "O(log n)", "O(1)", "O(n²)"], ans: 2 },
+    { id: 34, q: "What is the Big-O complexity of 3 log n + 20?", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], ans: 1 },
+    { id: 35, q: "What is the Big-O complexity of 2n³ + 7n² + n?", options: ["O(n)", "O(n²)", "O(n³)", "O(2n)"], ans: 2 },
+    { id: 36, q: "In Big-O analysis, constant factors are generally:", options: ["Dominant", "Ignored", "Multiplied by n", "Converted to logarithms"], ans: 1 },
+    { id: 37, q: "Which is the dominant term in 4n⁴ + 3n² + 10?", options: ["10", "3n²", "4n⁴", "4"], ans: 2 },
+    { id: 38, q: "What is the Big-O complexity of a loop that runs exactly n times?", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], ans: 2 },
+    { id: 39, q: "Two consecutive loops each running n times generally have complexity:", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], ans: 2 },
+    { id: 40, q: "Two nested loops, each running n times, generally have complexity:", options: ["O(n)", "O(n²)", "O(log n)", "O(1)"], ans: 1 },
+    { id: 41, q: "Big-Ω is commonly used to express:", options: ["An asymptotic lower bound", "An asymptotic upper bound", "A programming language", "A recurrence equation"], ans: 0 },
+    { id: 42, q: "If an algorithm is Ω(n), this means its growth is:", options: ["At most proportional to n", "At least proportional to n asymptotically", "Always exactly n", "Constant"], ans: 1 },
+    { id: 43, q: "If f(n) = 3n + 2, which is a valid tight bound?", options: ["Θ(1)", "Θ(log n)", "Θ(n)", "Θ(n²)"], ans: 2 },
+    { id: 44, q: "If f(n) = n² + 10n, its tight asymptotic bound is:", options: ["Θ(n)", "Θ(n²)", "Θ(n³)", "Θ(log n)"], ans: 1 },
+    { id: 45, q: "Which statement about Θ(n) is correct?", options: ["It indicates only an upper bound", "It indicates only a lower bound", "It indicates both asymptotic upper and lower bounds", "It indicates constant time only"], ans: 2 },
+    { id: 46, q: "If f(n) = 7, then f(n) is:", options: ["Θ(1)", "Θ(n)", "Θ(n²)", "Θ(log n)"], ans: 0 },
+    { id: 47, q: "Which relationship is generally true for f(n) = n²?", options: ["f(n) is O(n)", "f(n) is Ω(n²)", "f(n) is Θ(n)", "f(n) is O(1)"], ans: 1 },
+    { id: 48, q: "If an algorithm has both O(n²) and Ω(n²), then it can be described as:", options: ["Θ(n²)", "Θ(n)", "O(n)", "Ω(n³)"], ans: 0 },
+    { id: 49, q: "Which notation gives the most precise asymptotic growth among O, Ω and Θ when both bounds are known?", options: ["O", "Ω", "Θ", "None"], ans: 2 },
+    { id: 50, q: "For f(n) = n³ + n, the tight asymptotic bound is:", options: ["Θ(n)", "Θ(n²)", "Θ(n³)", "O(1)"], ans: 2 },
+    { id: 51, q: "Little-o notation represents:", options: ["A strict asymptotic upper bound", "A strict asymptotic lower bound", "An exact value", "A constant function"], ans: 0 },
+    { id: 52, q: "Little-ω notation represents:", options: ["A strict asymptotic upper bound", "A strict asymptotic lower bound", "A tight bound", "A constant bound"], ans: 1 },
+    { id: 53, q: "Which relationship is true for n and n²?", options: ["n² = o(n)", "n = o(n²)", "n = ω(n²)", "n² = Θ(n)"], ans: 1 },
+    { id: 54, q: "Which statement is correct?", options: ["n² = o(n)", "n = o(n²)", "n² = Θ(n)", "n³ = o(n²)"], ans: 1 },
+    { id: 55, q: "Which notation indicates that f(n) grows strictly slower than g(n)?", options: ["O", "Ω", "o", "ω"], ans: 2 },
+    { id: 56, q: "Which notation indicates that f(n) grows strictly faster than g(n)?", options: ["o", "O", "ω", "Θ"], ans: 2 },
+    { id: 57, q: "Which is true for log n and n?", options: ["log n = o(n)", "n = o(log n)", "log n = ω(n)", "log n = Θ(n²)"], ans: 0 },
+    { id: 58, q: "Which notation represents a strict lower bound?", options: ["O", "o", "Ω", "ω"], ans: 3 },
+    { id: 59, q: "If f(n) = n and g(n) = n², then f(n) is:", options: ["ω(g(n))", "o(g(n))", "Θ(g(n))", "Ω(g(n))"], ans: 1 },
+    { id: 60, q: "The major distinction between O and o is that little-o represents:", options: ["A strict upper-growth relationship", "A strict lower-growth relationship", "An exact equality", "A constant relationship"], ans: 0 },
+    { id: 61, q: "What is the primary purpose of a sorting algorithm?", options: ["To delete data", "To arrange data according to a specified order", "To compress data", "To encrypt data"], ans: 1 },
+    { id: 62, q: "Which of the following is a sorting algorithm?", options: ["Binary Search", "Bubble Sort", "Hashing", "Recursion"], ans: 1 },
+    { id: 63, q: "Bubble Sort repeatedly compares:", options: ["Random elements", "Adjacent elements", "First and last elements only", "Only equal elements"], ans: 1 },
+    { id: 64, q: "The typical worst-case time complexity of Bubble Sort is:", options: ["O(1)", "O(log n)", "O(n)", "O(n²)"], ans: 3 },
+    { id: 65, q: "The average-case time complexity of Selection Sort is generally:", options: ["O(1)", "O(log n)", "O(n²)", "O(n³)"], ans: 2 },
+    { id: 66, q: "Insertion Sort builds the sorted portion by:", options: ["Randomly deleting elements", "Inserting elements into their appropriate position", "Dividing the array into equal halves only", "Swapping every pair"], ans: 1 },
+    { id: 67, q: "The worst-case time complexity of Insertion Sort is:", options: ["O(n)", "O(log n)", "O(n²)", "O(n³)"], ans: 2 },
+    { id: 68, q: "Which sorting algorithm can have O(n) best-case time when the input is already sorted, under its standard optimized form?", options: ["Insertion Sort", "Selection Sort", "Heap Sort", "Merge Sort"], ans: 0 },
+    { id: 69, q: "The worst-case time complexity of Merge Sort is:", options: ["O(n)", "O(log n)", "O(n log n)", "O(n²)"], ans: 2 },
+    { id: 70, q: "Merge Sort is based on which strategy?", options: ["Greedy approach", "Divide and conquer", "Random search", "Brute-force deletion"], ans: 1 },
+    { id: 71, q: "A loop invariant is a condition that:", options: ["Is always false", "Remains true at a particular point during loop execution", "Is checked only after program termination", "Changes randomly"], ans: 1 },
+    { id: 72, q: "The three major steps commonly used to prove a loop invariant are:", options: ["Input, output, storage", "Initialization, maintenance, termination", "Compile, execute, delete", "Start, stop, restart"], ans: 1 },
+    { id: 73, q: "Initialization of a loop invariant occurs:", options: ["Before the first iteration", "Only after termination", "After every program", "During compilation"], ans: 0 },
+    { id: 74, q: "Maintenance of a loop invariant means:", options: ["The invariant remains true after an iteration", "The program is deleted", "Input is removed", "The loop never executes"], ans: 0 },
+    { id: 75, q: "Termination of a loop helps use the invariant to:", options: ["Prove a property of the final result", "Change the programming language", "Increase memory", "Remove the algorithm"], ans: 0 },
+    { id: 76, q: "Loop invariants are primarily useful for:", options: ["Proving correctness of iterative algorithms", "Increasing processor speed", "Designing computer hardware", "Formatting output"], ans: 0 },
+    { id: 77, q: "A recursive function is a function that:", options: ["Never terminates", "Calls itself directly or indirectly", "Cannot accept input", "Only uses loops"], ans: 1 },
+    { id: 78, q: "A recursive algorithm normally requires a:", options: ["Base case", "Sorting table", "Compiler error", "Hardware interrupt"], ans: 0 },
+    { id: 79, q: "What is the purpose of a base case in recursion?", options: ["To make recursion continue forever", "To provide a condition that stops further recursive calls", "To increase input size", "To remove all variables"], ans: 1 },
+    { id: 80, q: "A recurrence relation is commonly used to describe:", options: ["The running time of a recursive algorithm", "The color of an algorithm", "The size of a monitor", "The programming language syntax"], ans: 0 }
+];
+
+let currentMode = 'quiz';
+let userAnswers = {};
+
+function setMode(mode) {
+    currentMode = mode;
+    document.getElementById('btn-quiz').classList.toggle('active', mode === 'quiz');
+    document.getElementById('btn-solved').classList.toggle('active', mode === 'solved');
+    document.getElementById('score-bar').style.display = mode === 'quiz' ? 'flex' : 'none';
+    render();
+}
+
+function selectAnswer(qId, optionIdx) {
+    if (currentMode !== 'quiz' || userAnswers[qId] !== undefined) return;
+    userAnswers[qId] = optionIdx;
+    updateScore();
+    render();
+}
+
+function updateScore() {
+    let score = 0;
+    let answered = Object.keys(userAnswers).length;
+    
+    quizData.forEach(q => {
+        if (userAnswers[q.id] === q.ans) score++;
+    });
+
+    document.getElementById('score').innerText = `${score} / ${answered}`;
+    document.getElementById('progress').innerText = `${answered} / ${quizData.length}`;
+}
+
+function render() {
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = '';
+
+    quizData.forEach((q) => {
+        const card = document.createElement('div');
+        card.className = 'q-card';
+
+        const title = document.createElement('div');
+        title.className = 'q-title';
+        title.innerHTML = `<span class="q-num">${q.id}.</span>${q.q}`;
+        card.appendChild(title);
+
+        const optionsList = document.createElement('ul');
+        optionsList.className = 'options-list';
+
+        q.options.forEach((opt, idx) => {
+            const optItem = document.createElement('li');
+            optItem.className = 'option-item';
+
+            if (currentMode === 'solved') {
+                optItem.classList.add('disabled');
+                if (idx === q.ans) {
+                    optItem.classList.add('selected-correct');
+                    optItem.innerHTML = `<span>${opt}</span><span class="badge badge-correct">✓</span>`;
+                } else {
+                    optItem.innerHTML = `<span>${opt}</span>`;
+                }
+            } else {
+                const userChoice = userAnswers[q.id];
+                if (userChoice !== undefined) {
+                    optItem.classList.add('disabled');
+                    if (idx === q.ans) {
+                        optItem.classList.add(userChoice === q.ans ? 'selected-correct' : 'reveal-correct');
+                        optItem.innerHTML = `<span>${opt}</span><span class="badge badge-correct">✓</span>`;
+                    } else if (idx === userChoice) {
+                        optItem.classList.add('selected-wrong');
+                        optItem.innerHTML = `<span>${opt}</span><span class="badge badge-wrong">✗</span>`;
+                    } else {
+                        optItem.innerHTML = `<span>${opt}</span>`;
+                    }
+                } else {
+                    optItem.onclick = () => selectAnswer(q.id, idx);
+                    optItem.innerHTML = `<span>${opt}</span>`;
+                }
+            }
+
+            optionsList.appendChild(optItem);
+        });
+
+        card.appendChild(optionsList);
+        container.appendChild(card);
+    });
+}
+
+render();
+</script>
+
+</body>
+</html>
